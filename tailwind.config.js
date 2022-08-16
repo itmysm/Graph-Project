@@ -24,7 +24,7 @@ module.exports = {
       serif: ['Inter', 'Work Sans']
     }
   },
-  plugins: [],
+  plugins: [require('daisyui')],
   variants: {
     extend: {}
   }
