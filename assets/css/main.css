@@ -1,2 +1,7 @@
 @import './tailwind.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500&display=swap');
+
+
+.btn {
+  outline: none !important;
+}
