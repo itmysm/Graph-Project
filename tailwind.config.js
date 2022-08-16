@@ -6,6 +6,7 @@ module.exports = {
     "./components/**/*.{vue,js}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
+    "./pages/*.vue",
     "./plugins/**/*.{js,ts}"
   ],
   darkMode: 'media',
@@ -16,6 +17,11 @@ module.exports = {
       //   yellow: colors.amber,
       //   purple: colors.violet,
       // },
+    },
+
+    fontFamily: {
+      sans: ["Inter", 'Work Sans'],
+      serif: ['Inter', 'Work Sans']
     }
   },
   plugins: [],
