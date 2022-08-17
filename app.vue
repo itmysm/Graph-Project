@@ -8,6 +8,8 @@
 useRouter().push('/welcome')
 
 onMounted(() => {
-  document.querySelector('body').setAttribute('data-theme', 'light')
+  const body = document.querySelector('body')
+  body.setAttribute('data-theme', 'light')
+  body.setAttribute('dir', 'ltr')
 })
 </script>

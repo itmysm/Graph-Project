@@ -28,7 +28,6 @@ module.exports = {
   variants: {
     extend: {}
   },
- 
   daisyui: {
     styled: true,
     themes: [{
@@ -41,7 +40,7 @@ module.exports = {
         'primary-content': "#6c5dd3",
         secondary: "#10ff132c",
         accent: "#eaeaea",
-        neutral: "#11142d",
+        neutral: "#8a8c98",
         'neutral-content': "#ffcd72",
         info: "#3f8cff",
         success: "#ff754c",
