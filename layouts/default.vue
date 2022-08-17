@@ -1,6 +1,9 @@
 <template>
   <div class="layout">
-    <slot v-if="true"/>
-    <TheUnsupported v-if="false"/>
+    <main class="flex">
+      <TheSideBar />
+      <slot v-if="true" />
+    </main>
+    <TheUnsupported v-if="false" class="absolute top-0  min-w-full" />
   </div>
 </template>
