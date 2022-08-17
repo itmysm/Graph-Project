@@ -1,5 +1,6 @@
 <template>
   <div class="layout">
-    <slot />
+    <slot v-if="true"/>
+    <TheUnsupported v-if="false"/>
   </div>
 </template>

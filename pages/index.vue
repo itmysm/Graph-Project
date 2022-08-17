@@ -7,17 +7,17 @@
       items-center
       pt-24
       px-16
-      bg-base-100
+      bg-base-100!
     "
   >
     <div class="d-flex flex-column relative bottom-16">
-      <h1 class="text text-6xl text-primary-focus capitalize font-bold pb-1">
+      <h1 class="text text-4xl xl:text-6xl text-primary-focus capitalize font-bold pb-1">
         the graph project
       </h1>
-      <p class="text-lg text-white w-2/3 font-normal mt-4">
+      <p class="text-lg text-neutral w-2/3 font-normal mt-4">
         Graph is the must powerful tools for checking activities based on
         messages sent in social media.
-        <a class="link text-info">Click here</a>
+        <a class="link text-info hover:text-info-content">Click here</a>
         to see the full list of features.
       </p>
 
@@ -25,11 +25,12 @@
         let's start
       </button>
     </div>
-    <img src="~/assets/media/banners/s-9f7685ac9540833d5.jpg" alt="Welcome to graph">
-    <!-- <img
+    <img v-if="theme === 'light'" class="max-w-[400px] xl:max-w-[490px] 2xl:max-w-fit" src="~/assets/media/banners/s-9f7685ac9540833d5.jpg" alt="Welcome to graph">
+    <img
+      v-else
       src="~/assets/media/banners/309c2dee518ba070f5f88ce6811fcd05.png"
       alt="Welcome to graph"
-    /> -->
+    />
   </div>
 </template>
 
@@ -38,6 +39,11 @@
 definePageMeta({
   layout: 'default'
 })
+const theme = ref('')
+onMounted(() => {
+  theme.value = document.querySelector('body').getAttribute('data-theme')
+})
+
 </script>
 
 <style lang="scss" scoped>
