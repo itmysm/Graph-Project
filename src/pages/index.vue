@@ -1,5 +1,5 @@
 <template>
-  <div>this is a test</div>
+  <div><h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1></div>
 </template>
 
 <script lang="ts" setup>
