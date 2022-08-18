@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   srcDir: 'src',
+
   buildModules: [],
   build: {
     postcss: {
@@ -23,7 +24,7 @@ export default defineNuxtConfig({
     },
     link: [
       {
-        href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined',
+        href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0',
         rel: 'stylesheet',
       }
     ],

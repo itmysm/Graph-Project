@@ -2,3 +2,8 @@
 .link {
   transition: all 0.2s linear;
 }
+
+
+.btn {
+  outline: none !important;
+}
