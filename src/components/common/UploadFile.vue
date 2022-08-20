@@ -5,45 +5,51 @@
       <h3 class="text-2xl text-secondary">Upload File</h3>
     </div>
 
-    <div id="drop_zone" class="upload-box bg-[#e7e9ee] w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative" @drop="dropHandler" @dragover="dragOverHandler">
-      <input type="file" class="opacity-[0] absolute w-[inherit] h-[inherit]">
-      <div class="flex flex-col items-center text-secondary">
-        <i class="material-symbols-rounded text-4xl">home_storage</i>
-        <p>Drop your file here or <a class="text-primary" href="#">Browse</a></p>
-        <p>Ex: html, json</p>
+    <div id="drop_zone" class="upload-box group bg-[#e7e9ee] w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false">
+      <input id="dropbox" type="file" accept=".html,.json" class="opacity-[0] absolute w-[inherit] h-[inherit] cursor-pointer" @change="fileUploadedFromBrowse">
+      <div class="flex flex-col text-lg items-center text-secondary">
+        <i class="material-symbols-rounded text-6xl mb-4">home_storage</i>
+        <p>Drop your file here or click to <a class="text-primary" href="#">browse</a></p>
+        <p class="text-xs mt-1 font-semibold">Allowed file extensions: .html, .json</p>
       </div>
     </div>
+
+    <div class="min-w-[100vw] min-h-[100vh] absolute bg-secondary/[.4] top-0 left-0" v-show="userIsInDropZone"></div>
   </div>
 </template>
 
 <script setup>
-
+const allowedFileExtentions = ['html', 'htm', 'json']
+const userIsInDropZone = ref(false)
 function dropHandler (ev) {
-  console.log('File(s) dropped')
   ev.preventDefault()
-
-  if (ev.dataTransfer.items) {
-    [...ev.dataTransfer.items].forEach((item, i) => {
-      if (item.kind === 'file') {
-        const file = item.getAsFile()
-        console.log(`… file[${i}].name = ${file.name}`)
-      }
-    })
-  } else {
-    [...ev.dataTransfer.files].forEach((file, i) => {
-      console.log(`… file[${i}].name = ${file.name}`)
-    })
+  userIsInDropZone.value = false
+  const item = ev.dataTransfer.items[0]
+  if (item) {
+    if (item.kind === 'file') {
+      const file = item.getAsFile()
+      console.log(file)
+    }
   }
 }
 
-function dragOverHandler (ev) {
-  console.log('File(s) in drop zone')
+function fileUploadedFromBrowse () {
+  const file = document.getElementById('dropbox').files[0]
+  checkFile(file)
+}
 
+function checkFile (file) {
+  const fileName = file.name
+  allowedFileExtentions.map(x => fileName.slice((x.length + 1) - fileName.length) === x ? console.log('true') : console.log('false')) // check ectention the file if..
+}
+
+function dragOverHandler (ev) {
+  userIsInDropZone.value = true
   ev.preventDefault()
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .upload-box {
     background-color: #FFFFFF;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23DBDCDEFF' stroke-width='3' stroke-dasharray='20%2c 20' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
