@@ -5,7 +5,7 @@
       <h3 class="text-2xl text-secondary">Upload File</h3>
     </div>
 
-    <div id="drop_zone" class="upload-box bg-[#e7e9ee] w-full flex justify-center items-center w-[900px] h-[300px] overflow-hidden" @drop="dropHandler" @dragover="dragOverHandler">
+    <div id="drop_zone" class="upload-box bg-[#e7e9ee] w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative" @drop="dropHandler" @dragover="dragOverHandler">
       <input type="file" class="opacity-[0] absolute w-[inherit] h-[inherit]">
       <div class="flex flex-col items-center text-secondary">
         <i class="material-symbols-rounded text-4xl">home_storage</i>

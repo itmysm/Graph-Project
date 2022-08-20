@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar border-accent ltr:border-r rtl:border-l bg-base-1 h-[100vh] transition-all duration-500 relative" :class="isSidebarOpen ? '!w-52' : '!w-20'">
-    <a class="w-5 h-5 flex justify-center border-none items-center bg-primary rounded-full absolute ltr:right-[-11px] rtl:left-[-11px] mt-14 cursor-pointer select-none" @click="sidebar(null)">
+    <a class="w-5 h-5 flex justify-center border-none items-center bg-primary rounded-full absolute ltr:right-[-11px] rtl:left-[-11px] mt-14 cursor-pointer select-none" @click="sidebar(true)">
       <i class="material-symbols-rounded text-white transition-all rtl:rotate-180 text-[20px]">chevron_right</i>
     </a>
 
@@ -34,12 +34,6 @@ const props = defineProps(['sideBarInfo'])
 const isSidebarOpen = ref(true)
 const selectedItem = ref(0)
 
-onMounted(() => {
-  window.addEventListener('click', () => {
-    sidebar(window.innerWidth)
-  })
-})
-
 const menuItems = reactive([
   { name: 'Home', icon: 'dashboard', path: '/' },
   { name: 'History', icon: 'history', path: '/history' },
@@ -48,17 +42,13 @@ const menuItems = reactive([
   { name: 'Home', icon: 'home', path: '/' }
 ])
 
-function sidebar (screenSize) {
-  if (screenSize == null) {
-    isSidebarOpen.value = !isSidebarOpen.value
-  } else if (screenSize > 1400) {
-    // isSidebarOpen.value = true
-  }
-
+function sidebar (redeclare) {
+  if (redeclare) isSidebarOpen.value = !isSidebarOpen.value
   emit('sidebarIsOpen', isSidebarOpen.value)
 }
-watch(() => props.sideBarInfo, (first) => {
-  if (window.innerWidth < 1400) isSidebarOpen.value = !first
+watch(() => props.sideBarInfo, (newValue) => {
+  if (window.innerWidth < 1400) isSidebarOpen.value = !newValue
+  sidebar(false)
 })
 </script>
 
