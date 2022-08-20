@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <h3 class="text-2xl text-secondary">Recently Files</h3>
+    <h3 class="text-2xl text-secondary">{{$t('recentFiles')}}</h3>
     <div class="flex">
       <ul class="flex mt-6">
-        <li class="w-52 mb-4 group cursor-pointer mr-5" @click="openFile(i)" v-for="data in examples" :key="data">
+        <li class="w-52 mb-4 group cursor-pointer rtl:ml-5 ltr:mr-5" @click="openFile(i)" v-for="data in examples" :key="data">
           <div class="overflow-hidden rounded-md relative">
             <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/socials/s-bf3594e61940024a1b16bffcada0c4a0.png" alt="">
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>

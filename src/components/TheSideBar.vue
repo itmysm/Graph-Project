@@ -24,6 +24,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const emit = defineEmits(['sidebarIsOpen'])
 // eslint-disable-next-line no-undef
 definePageMeta({
@@ -33,13 +35,14 @@ definePageMeta({
 const props = defineProps(['sideBarInfo'])
 const isSidebarOpen = ref(true)
 const selectedItem = ref(0)
+const i18n = useI18n()
 
 const menuItems = reactive([
-  { name: 'Home', icon: 'dashboard', path: '/' },
-  { name: 'History', icon: 'history', path: '/history' },
-  { name: 'Setting', icon: 'settings', path: '/setting' },
-  { name: 'Home', icon: 'home', path: '/' },
-  { name: 'Home', icon: 'home', path: '/' }
+  { name: i18n.t('menuDashboard'), icon: 'dashboard', path: '/' },
+  { name: i18n.t('menuHistory'), icon: 'history', path: '/history' },
+  { name: i18n.t('menuSetting'), icon: 'settings', path: '/setting' },
+  { name: i18n.t('menuDashboard'), icon: 'home', path: '/' },
+  { name: i18n.t('menuDashboard'), icon: 'home', path: '/' }
 ])
 
 function sidebar (redeclare) {

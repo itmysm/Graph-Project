@@ -2,15 +2,16 @@
   <div class="w-full flex flex-col items-center">
 
     <div class="w-full mb-8">
-      <h3 class="text-2xl text-secondary">Upload File</h3>
+      <h3 class="text-2xl text-secondary">{{$t('uploadFile')}}</h3>
     </div>
 
     <div id="drop_zone" class="upload-box group bg-[#e7e9ee] w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false">
       <input id="dropbox" type="file" accept=".html,.json" class="opacity-[0] absolute w-[inherit] h-[inherit] cursor-pointer" @change="fileUploadedFromBrowse">
       <div class="flex flex-col text-lg items-center text-secondary">
         <i class="material-symbols-rounded text-6xl mb-4">home_storage</i>
-        <p>Drop your file here or click to <a class="text-primary" href="#">browse</a></p>
-        <p class="text-xs mt-1 font-semibold">Allowed file extensions: .html, .json</p>
+        <p>{{$t('dropBox')}} <a class="text-primary" href="#">{{$t('browse')}}</a></p>
+        <p class="text-xs mt-1 font-semibold">{{ $t('extensions') }} {{$t('extensionsFileTypes')}}</p>
+
       </div>
     </div>
 

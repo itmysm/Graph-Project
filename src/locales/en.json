@@ -1,4 +1,14 @@
 {
   "hello": "Hello En!",
-  "language": "Language"
+  "language": "Language",
+  "recentFiles": "Recent files",
+  "uploadFile": "Upload file",
+  "dropBox": "Drop your file here or click to",
+  "browse": "browse",
+  "extensions": "Allowed file extensions:",
+  "extensionsFileTypes": ".html, .json",
+  "menuDashboard": "Dashboard",
+  "menuHistory": "History",
+  "menuSetting": "Setting",
+  "infoSidebarNoFile": "No files found. Upload a file to get started."
 }
