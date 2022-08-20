@@ -5,7 +5,7 @@
       <h3 class="text-2xl text-secondary">{{$t('uploadFile')}}</h3>
     </div>
 
-    <div id="drop_zone" class="upload-box group bg-[#e7e9ee] w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false">
+    <div id="drop_zone" class="upload-box shadow-md group w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false">
       <input id="dropbox" type="file" accept=".html,.json" class="opacity-[0] absolute w-[inherit] h-[inherit] cursor-pointer" @change="fileUploadedFromBrowse">
       <div class="flex flex-col text-lg items-center text-secondary">
         <i class="material-symbols-rounded text-6xl mb-4">home_storage</i>
@@ -53,7 +53,7 @@ function dragOverHandler (ev) {
 <style lang="scss" scoped>
   .upload-box {
     background-color: #FFFFFF;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23DBDCDEFF' stroke-width='3' stroke-dasharray='20%2c 20' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23F2EFEF' stroke-width='3' stroke-dasharray='20%2c 20' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 8px;
   }
 </style>

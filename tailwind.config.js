@@ -49,7 +49,7 @@ module.exports = {
         error: "#F87272"
       },
 
-      dark: {
+      darkness: {
         'base-100': '#1f2128',
         'base-200': '#fff',
         'base-300': '#fff',
@@ -57,8 +57,8 @@ module.exports = {
         'primary-focus': "#3f8cff",
         'primary-content': "#10132c",
         secondary: "#1f2128",
-        accent: "#37CDBE",
-        neutral: "#efefef",
+        accent: "#33343b",
+        neutral: "#87888c",
         'neutral-content': "#ffcd72",
         info: "#cfc8ff",
         'info-content': "#000",
@@ -71,7 +71,6 @@ module.exports = {
     utils: true,
     logs: true,
     rtl: false,
-    prefix: "",
-    darkTheme: "light"
+    prefix: ""
   }
 }
