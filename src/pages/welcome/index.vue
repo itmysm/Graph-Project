@@ -25,7 +25,7 @@
         let's start
       </button>
     </div>
-    <img v-if="theme === 'light'" class="max-w-[400px] xl:max-w-[490px] 2xl:max-w-fit" src="~/assets/media/banners/s-9f7685ac9540833d5.jpg" alt="Welcome to graph">
+    <img v-if="theme === 'dark'" class="max-w-[400px] xl:max-w-[490px] 2xl:max-w-fit" src="~/assets/media/banners/s-9f7685ac9540833d5.jpg" alt="Welcome to graph">
     <img
       v-else
       src="~/assets/media/banners/309c2dee518ba070f5f88ce6811fcd05.png"
@@ -39,7 +39,8 @@
 definePageMeta({
   layout: 'start'
 })
-const theme = ref('')
+
+const theme = ref()
 onMounted(() => {
   theme.value = document.querySelector('body').getAttribute('data-theme')
 })

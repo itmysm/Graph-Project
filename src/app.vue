@@ -5,10 +5,21 @@
 </template>
 
 <script setup>
+import { provide } from 'vue'
+
+const minimumScreenSize = 992 // px
+const isUserDeviceSupported = ref(true)
+
 onBeforeMount(() => {
   userHandler()
 })
 onMounted(() => {
+  checkUserDevice()
+
+  window.addEventListener('resize', () => {
+    checkUserDevice()
+  })
+
   setupApp()
 })
 
@@ -35,4 +46,10 @@ function setupApp () {
   body.setAttribute('data-theme', userData.userTheme)
   body.setAttribute('dir', useDirectionDetector(userData.language).value)
 }
+
+function checkUserDevice () {
+  window.innerWidth < minimumScreenSize ? isUserDeviceSupported.value = false : isUserDeviceSupported.value = true
+}
+
+provide('isUserDeviceSupported', isUserDeviceSupported)
 </script>
