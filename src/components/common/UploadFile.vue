@@ -41,7 +41,7 @@ function fileUploadedFromBrowse () {
 
 function checkFile (file) {
   const fileName = file.name
-  allowedFileExtentions.map(x => fileName.slice((x.length + 1) - fileName.length) === x ? console.log('true') : console.log('false')) // check ectention the file if..
+  allowedFileExtentions.map(x => fileName.slice((x.length + 1) - fileName.length) === x ? console.log('true') : console.log('false')) // file extention check
 }
 
 function dragOverHandler (ev) {
