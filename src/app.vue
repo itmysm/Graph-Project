@@ -7,35 +7,49 @@
 <script setup>
 import { provide } from 'vue'
 
-
-const appInfo = reactive({ screenSize: 0, timeSpend: 0 })
+const minimumScreenSize = 992 // px
+const isUserDeviceSupported = ref(true)
 
 onBeforeMount(() => {
+  userHandler()
+})
+onMounted(() => {
+  checkUserDevice()
+
+  window.addEventListener('resize', () => {
+    checkUserDevice()
+  })
+
+  setupApp()
+})
+
+function userHandler () {
   if (!localStorage.getItem('register')) {
+    // create profile for new user
     const userData = {}
     userData.userTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' // getting browser theme
-    userData.userId = new Date().getTime() // date register
+    userData.userId = new Date().getTime()
     userData.userDevice = navigator.userAgent
     userData.userLanguage = navigator.language
+
     localStorage.setItem('register', JSON.stringify(userData))
+    // redirect to welcome page
     useRouter().push('/welcome')
   } else {
     useRouter().push('/')
   }
-})
-onMounted(() => {
+}
+
+function setupApp () {
+  const userData = useLocalStorageDecode('register').value
   const body = document.querySelector('body')
-  body.setAttribute('data-theme', 'light')
-  body.setAttribute('dir', 'ltr')
+  body.setAttribute('data-theme', userData.userTheme)
+  body.setAttribute('dir', useDirectionDetector(userData.language).value)
+}
 
-  window.addEventListener(window, () => {
-    appInfo.screenSize = window.innerWidth
-  })
+function checkUserDevice () {
+  window.innerWidth < minimumScreenSize ? isUserDeviceSupported.value = false : isUserDeviceSupported.value = true
+}
 
-  setTimeout(() => {
-    appInfo.timeSpend++
-  }, 1000)
-})
-
-provide('appInfo', appInfo)
+provide('isUserDeviceSupported', isUserDeviceSupported)
 </script>
