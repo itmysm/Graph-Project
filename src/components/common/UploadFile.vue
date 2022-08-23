@@ -5,13 +5,17 @@
       <h3 class="text-2xl text-secondary">{{$t('uploadFile')}}</h3>
     </div>
 
-    <div id="drop_zone" class="upload-box shadow-md group w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false">
-      <input id="dropbox" type="file" accept=".html,.json" class="opacity-[0] absolute w-[inherit] h-[inherit] cursor-pointer" @change="fileUploadedFromBrowse">
-      <div class="flex flex-col text-lg items-center text-secondary">
+    <div id="drop_zone" class="shadow-md group w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10" @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false" :class="uploadFileCompeleted ? '' : 'upload-box'">
+      <input id="dropbox" type="file" accept=".html,.json" class="opacity-[0] absolute w-[inherit] h-[inherit]" @change="fileUploadedFromBrowse" :disabled="uploadFileCompeleted ? true : false" :class="uploadFileCompeleted ? '' : 'cursor-pointer'">
+      <div class="flex flex-col text-lg items-center text-secondary" v-if="!uploadFileCompeleted">
         <i class="material-symbols-rounded text-6xl mb-4">home_storage</i>
         <p>{{$t('dropBox')}} <a class="text-primary" href="#">{{$t('browse')}}</a></p>
         <p class="text-xs mt-1 font-semibold">{{ $t('extensions') }} {{$t('extensionsFileTypes')}}</p>
+      </div>
 
+      <div class="bg-light w-full h-full flex flex-col justify-center items-center" v-else>
+        <animationsSuccessfully />
+        Your File Uploaded Completely
       </div>
     </div>
 
@@ -22,6 +26,7 @@
 <script setup>
 const allowedFileExtentions = ['html', 'htm', 'json']
 const userIsInDropZone = ref(false)
+const uploadFileCompeleted = ref(false)
 function dropHandler (ev) {
   ev.preventDefault()
   userIsInDropZone.value = false
@@ -42,12 +47,22 @@ function fileUploadedFromBrowse () {
 function checkFile (file) {
   const fileName = file.name
   allowedFileExtentions.map(x => fileName.slice((x.length + 1) - fileName.length) === x ? console.log('true') : console.log('false')) // file extention check
+  // eslint-disable-next-line no-constant-condition
+  if (true) changeContentInUploadBox(fileName)
 }
 
 function dragOverHandler (ev) {
   userIsInDropZone.value = true
   ev.preventDefault()
 }
+
+function changeContentInUploadBox () {
+  uploadFileCompeleted.value = true
+  setTimeout(() => {
+    useRouter().push('/desk')
+  }, 2000)
+}
+
 </script>
 
 <style lang="scss" scoped>

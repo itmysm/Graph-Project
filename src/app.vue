@@ -47,7 +47,7 @@ function setupApp () {
   body.setAttribute('dir', useDirectionDetector(userData.language).value)
 }
 
-function checkUserDevice () {
+function checkUserDevice() {
   window.innerWidth < minimumScreenSize ? isUserDeviceSupported.value = false : isUserDeviceSupported.value = true
 }
 

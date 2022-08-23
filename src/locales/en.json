@@ -8,6 +8,7 @@
   "extensions": "Allowed file extensions:",
   "extensionsFileTypes": ".html, .json",
   "menuDashboard": "Dashboard",
+  "menuDesk": "Desk",
   "menuHistory": "History",
   "menuSetting": "Setting",
   "infoSidebarNoFile": "No files found. Upload a file to get started.",
