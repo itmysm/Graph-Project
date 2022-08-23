@@ -10,5 +10,6 @@
   "menuDashboard": "Dashboard",
   "menuHistory": "History",
   "menuSetting": "Setting",
-  "infoSidebarNoFile": "No files found. Upload a file to get started."
+  "infoSidebarNoFile": "No files found. Upload a file to get started.",
+  "setings": "Settings"
 }

@@ -9,7 +9,7 @@
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>
           </div>
           <p class="text-secondary mt-2 group-hover:text-primary transition-all duration-500">{{data.title}}.{{data._extension}}</p>
-          <p class="text-xs text-red group-hover:text-primary transition-all duration-500">add 30days ago</p>
+          <p class="text-xs text-neutral group-hover:text-primary transition-all duration-500">add 30days ago</p>
         </li>
       </ul>
     </div>

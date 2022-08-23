@@ -13,7 +13,7 @@
 
       <ul class="w-full mt-10">
         <li class="w-full overflow-hidden" :class="isSidebarOpen ? 'px-2' : 'px-4 py-2'" v-for="(item, i) in menuItems" :key="i" @click="selectedItem = i">
-          <NuxtLink class="group w-full flex items-center hover:bg-primary rounded-lg transition-all duration-300 mb-2" :class="[selectedItem === i ? 'bg-primary' : false, isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']" to="/">
+          <NuxtLink :to="item.path" class="group w-full flex items-center hover:bg-primary rounded-lg transition-all duration-300 mb-2" :class="[selectedItem === i ? 'bg-primary' : false, isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
             <i class="material-symbols-rounded text-neutral group-hover:text-white transition-all duration-300" :class="selectedItem == i ? '!text-white' : ''">{{item.icon}}</i>
             <p class="xl:block ml-3 text-neutral group-hover:text-white transition-all duration-300" :class="selectedItem === i ? '!text-white' : false" v-if="isSidebarOpen">{{item.name}}</p>
           </NuxtLink>
@@ -40,7 +40,7 @@ const i18n = useI18n()
 const menuItems = reactive([
   { name: i18n.t('menuDashboard'), icon: 'dashboard', path: '/' },
   { name: i18n.t('menuHistory'), icon: 'history', path: '/history' },
-  { name: i18n.t('menuSetting'), icon: 'settings', path: '/setting' },
+  { name: i18n.t('menuSetting'), icon: 'settings', path: '/settings' },
   { name: i18n.t('menuDashboard'), icon: 'home', path: '/' },
   { name: i18n.t('menuDashboard'), icon: 'home', path: '/' }
 ])
