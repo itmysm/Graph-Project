@@ -1,9 +1,9 @@
 <template>
   <div class="layout">
-    <main class="flex" v-if="isUserDeviceSupported">
+    <main class="main flex" v-if="isUserDeviceSupported">
       <TheSideBar @sidebarIsOpen="sideBar = $event" :sideBarInfo="sideBarInfo" />
       <slot />
-      <TheSideBarInfo  @sideBarInfoUpdated="sideBarInfo = $event" :sideBar="sideBar" />
+      <TheSideBarInfo @sideBarInfoUpdated="sideBarInfo = $event" :sideBar="sideBar" />
     </main>
     <TheUnsupported v-if="!isUserDeviceSupported" />
   </div>
@@ -11,8 +11,20 @@
 
 <script setup>
 import { inject } from 'vue'
-const loading = ref(true)
+// const loading = ref(true)
 const isUserDeviceSupported = inject('isUserDeviceSupported')
 const sideBar = ref(true)
 const sideBarInfo = ref(false)
 </script>
+
+<style lang="scss">
+//
+.main {
+ max-height: 100vh;
+ overflow-y: hidden;
+}
+.main--content {
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+</style>
