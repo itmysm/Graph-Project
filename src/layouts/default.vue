@@ -1,21 +1,27 @@
 <template>
   <div class="layout">
-    <main class="main flex" v-if="isUserDeviceSupported">
+    <main class="main flex" v-if="isUserDeviceSupported && !loading">
       <TheSideBar @sidebarIsOpen="sideBar = $event" :sideBarInfo="sideBarInfo" />
       <slot />
       <TheSideBarInfo @sideBarInfoUpdated="sideBarInfo = $event" :sideBar="sideBar" />
     </main>
+
     <TheUnsupported v-if="!isUserDeviceSupported" />
-        <commonNotifications />
+    <commonNotifications />
+    <TheLoading />
   </div>
 </template>
 
 <script setup>
 import { inject } from 'vue'
-// const loading = ref(true)
+const loading = ref(true)
 const isUserDeviceSupported = inject('isUserDeviceSupported')
 const sideBar = ref(true)
 const sideBarInfo = ref(false)
+
+onMounted(() => {
+  loading.value = false
+})
 </script>
 
 <style lang="scss">

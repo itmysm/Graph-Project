@@ -15,7 +15,7 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 2s linear infinite',
         alertCame: 'alertCame 1s ease-out both',
-        alertOut: 'alertOut 1s ease-in both'
+        alertOut: 'alertOut .5s ease-in both'
       },
       keyframes: {
         wiggle: {
