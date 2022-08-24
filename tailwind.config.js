@@ -13,12 +13,24 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'spin-slow': 'spin 3s linear infinite'
+        wiggle: 'wiggle 2s linear infinite',
+        alertCame: 'alertCame 1s ease-out both',
+        alertOut: 'alertOut 1s ease-in both'
       },
       keyframes: {
         wiggle: {
-          '0%, 100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' }
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '50%': { transform: 'rotate(360deg)' }
+        },
+        alertCame: {
+          '0%': { transform: 'translate(500px)' },
+          '90%': { transform: 'translate(-10px)' },
+          '100%': { transform: 'translate(0px)' }
+        },
+        alertOut: {
+          '0%': { transform: 'translate(0px)' },
+          '10%': { transform: 'translate(-10px)' },
+          '100%': { transform: 'translate(500px)' }
         }
       }
     },

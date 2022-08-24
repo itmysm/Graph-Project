@@ -6,6 +6,7 @@
       <TheSideBarInfo @sideBarInfoUpdated="sideBarInfo = $event" :sideBar="sideBar" />
     </main>
     <TheUnsupported v-if="!isUserDeviceSupported" />
+        <commonNotifications />
   </div>
 </template>
 
@@ -22,9 +23,11 @@ const sideBarInfo = ref(false)
 .main {
  max-height: 100vh;
  overflow-y: hidden;
+  overflow-x: hidden;
 }
 .main--content {
   max-height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 </style>

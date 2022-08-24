@@ -47,7 +47,7 @@ function setupApp () {
   body.setAttribute('dir', useDirectionDetector(userData.language).value)
 }
 
-function checkUserDevice() {
+function checkUserDevice () {
   window.innerWidth < minimumScreenSize ? isUserDeviceSupported.value = false : isUserDeviceSupported.value = true
 }
 
@@ -55,7 +55,7 @@ provide('isUserDeviceSupported', isUserDeviceSupported)
 </script>
 
 <style lang="scss">
-.body {
+html, body {
   max-height: 100vh;
   overflow: hidden;
 }

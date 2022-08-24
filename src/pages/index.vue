@@ -1,6 +1,5 @@
 <template>
-  <div class="w-full mt-14 px-10">
-  <!-- <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1> -->
+  <div class="max-w-[100%] w-full overflow-x-hidden mt-14 px-10">
     <dashboardRecentFiles />
     <commonUploadFile class="mt-5 " />
   </div>
