@@ -3,19 +3,59 @@
     <a class="w-5 h-10 flex justify-center border-none items-center ltr:rounded-l-lg rtl:rounded-r-lg bg-primary absolute ltr:left-[-21px] rtl:right-[-21px] mt-14 cursor-pointer select-none" @click="sidebar(true)">
       <i class="material-symbols-rounded text-white transition-all rtl:rotate-180 text-[20px] text-2xl" :class="sidebarInfoIsOpen ? 'rotate-180' : 'rotate-360'">arrow_left</i>
     </a>
-    <div class="flex flex-col items-center justify-center h-full animate--up relative" :class="sidebarInfoIsOpen ?'show--content': ''" v-if="sidebarInfoIsOpen">
+    <div class="flex flex-col items-center justify-center h-full relative" :class="[sidebarInfoIsOpen ?'show--content': '', isFileExists ? 'animate--up' : '' ]" v-if="false">
       <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.png" alt="" width="100">
       <h3 class="text-secondary text-center mt-2">{{$t('infoSidebarNoFile')}}</h3>
+    </div>
+
+    <div class="h-full flex flex-col justify-end py-4" v-if="sidebarInfoIsOpen">
+      <div class="mb-10">
+        <p class="text-xs font-bold">File name:</p>
+        <h6 class="text-sm">myChats.json</h6>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-2"><h5 class="text-md font-medium">File information</h5></div>
+
+        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
+          <h5 class="text-sm text-secondary fw-bold mt-1">Social media</h5>
+          <p class="text-[12px] text-neutral">Telegram</p>
+        </div>
+
+        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
+          <h5 class="text-sm text-secondary fw-bold mt-1">File size</h5>
+          <p class="text-[12px] text-neutral">500kb</p>
+        </div>
+
+        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
+          <h5 class="text-sm text-secondary fw-bold mt-1">Social media</h5>
+          <p class="text-[12px] text-neutral">Telegram</p>
+        </div>
+
+        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Groups</i></span>
+          <h5 class="text-sm text-secondary fw-bold mt-1">Persons</h5>
+          <p class="text-[12px] text-neutral">0</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useMainStore } from '~/stores/index.js'
+const mainStore = useMainStore()
+const isFileExists = ref(false)
+
 const props = defineProps(['sideBar'])
 const emit = defineEmits(['sideBarInfoUpdated'])
 const sidebarInfoIsOpen = ref(false)
 
-onMounted(() => {
+onUpdated(() => {
+  isFileExists.value = mainStore.fileStatus.isFileUploaded
 })
 
 function sidebar (redeclare) {

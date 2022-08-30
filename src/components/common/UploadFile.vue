@@ -70,12 +70,12 @@
 </template>
 
 <script setup>
-import { useAlerts } from '~/stores/alerts.js'
-import { useIndexStore } from '~/stores/index.js'
+import { useMainStore } from '../../stores/index.js'
+import { useAlerts } from '~/stores/alerts/alerts.js'
 const storeAlerts = useAlerts()
-const indexStore = useIndexStore()
-
-console.log(indexStore)
+const mainStore = useMainStore()
+console.log(useMainStore())
+const regexFileExtension = /[^\\.]+$/
 const allowedFileExtentions = ['html', 'htm', 'json']
 const userIsInDropZone = ref(false)
 const uploadFileCompeleted = ref(false)
@@ -102,13 +102,23 @@ function dragOverHandler (ev) {
 }
 
 function checkFile (file) {
+  const isFileAllowed = ref(false)
   const fileName = file.name
-  allowedFileExtentions.map(x => fileName.slice((x.length + 1) - fileName.length) === x ? console.log('true') : console.log('false')) // file extention check
-  // eslint-disable-next-line no-constant-condition
-  if (true) {
+  // eslint-disable-next-line no-return-assign
+  allowedFileExtentions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
+
+  if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
     storeAlerts.addNewAlert({ title: 'Your file was upload!', description: 'Your file was successfully upload. You can start righ now', type: 'success', button: false, destruction: 5000 })
+  } else {
+    storeAlerts.addNewAlert({ title: 'Oops! file format is not allowed', description: 'The file format is not allowed. Please try another file', type: 'error', button: false, destruction: 5000 })
   }
+
+  updateFileStatus(isFileAllowed.value)
+}
+
+function updateFileStatus (fileExists) {
+  mainStore.fileUpdate(fileExists)
 }
 
 function changeContentInUploadBox () {

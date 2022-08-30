@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useIndexStore = defineStore('index', {
+export const useMainStore = defineStore('mainStore', {
   state: () => ({
     file: {
       isFileUploaded: false,
@@ -9,11 +9,17 @@ export const useIndexStore = defineStore('index', {
       fileType: '',
       app: '',
       fileLines: ''
-    }
+    },
+
+    options: {
+      telegram: { messagesEachPerson: true },
+      whatsapp: { messagesEachPerson: true },
+      instagram: { messagesEachPerson: true }
+    } // each app have diffrent options
   }),
 
   getters: {
-    fileStatus: (state) => state.file.isFileUploaded
+    fileStatus: (state) => state.file
   },
 
   actions: {

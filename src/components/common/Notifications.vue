@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { useAlerts } from '~/stores/alerts.js'
+import { useAlerts } from '~/stores/alerts/alerts.js'
 
 const storeAlert = useAlerts()
 const notifications = reactive(storeAlert.getAlerts)
