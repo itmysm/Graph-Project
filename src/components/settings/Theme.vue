@@ -12,11 +12,7 @@
         <i class="material-symbols-rounded normal-case text-[20px] mr-2">Dark_Mode</i>
         Themes
       </h4>
-      <select class="select select-bordered w-full max-w-xs">
-        <option :disabled="i == 0" :selected="i == 0" v-for="(theme, i) in themes" :key="i">
-          {{theme.type}}
-        </option>
-      </select>
+      <commonSelectDrodown :items="themes" :defaultItem="defaultTheme" @return-value="changeSetting(themes[$event])" />
     </div>
 
     <div class="flex items-center justify-between mt-5">
@@ -24,15 +20,22 @@
         <i class="material-symbols-rounded normal-case text-[20px] mr-2">Translate</i>
         Languages
       </h4>
-      <select class="select select-bordered w-full max-w-xs">
-        <option :disabled="i == 0" :selected="i == 0" v-for="(language, i) in languages" :key="i">{{language.flag}} {{language.name}}</option>
-      </select>
+
+      <commonSelectDrodown :items="languages" :defaultItem="defaultLanguages" />
     </div>
   </div>
 </template>
 
 <script setup>
-const themes = reactive([{ type: 'Dark', icon: 'Dark_Mode' }, { type: 'Light', icon: 'Light_Mode' }, { type: 'Default', icon: 'Computer' }])
-const languages = reactive([{ name: 'English', flag: '🇬🇧' }, { name: 'Persian', flag: '🇮🇷' }])
+const registerData = JSON.parse(localStorage.getItem('register'))
+const themes = reactive([{ name: 'Dark', icon: 'Dark_Mode' }, { name: 'Light', icon: 'Light_Mode' }, { name: 'Default', icon: 'Computer' }])
+const defaultTheme = registerData.userTheme
+
+const languages = reactive([{ name: 'English', icon: '🇬🇧' }, { name: 'Persian', icon: '🇮🇷' }])
+const defaultLanguages = 'English'
+
+function changeSetting (item) {
+  console.log(item)
+}
 
 </script>

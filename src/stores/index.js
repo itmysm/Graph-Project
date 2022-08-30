@@ -2,10 +2,23 @@ import { defineStore } from 'pinia'
 
 export const useIndexStore = defineStore('index', {
   state: () => ({
-    notifications: []
+    file: {
+      isFileUploaded: false,
+      fileName: '',
+      fileSize: '',
+      fileType: '',
+      app: '',
+      fileLines: ''
+    }
   }),
 
   getters: {
-    returnIcons: (state) => state.icons
+    fileStatus: (state) => state.file.isFileUploaded
+  },
+
+  actions: {
+    fileUpdate (status) {
+      this.file.isFileUploaded = status
+    }
   }
 })

@@ -27,12 +27,16 @@ function userHandler () {
   if (!localStorage.getItem('register')) {
     // create profile for new user
     const userData = {}
-    userData.userTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' // getting browser theme
+    userData.userTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'Dark' : 'Light' // getting browser theme
     userData.userId = new Date().getTime()
     userData.userDevice = navigator.userAgent
     userData.userLanguage = navigator.language
 
     localStorage.setItem('register', JSON.stringify(userData))
+
+    const appSetting = { language: 'english', theme: userData.userTheme, notifications: { notificationAlert: { appContent: true, updates: true, network: true }, sounds: true } }
+    localStorage.setItem('settings', JSON.stringify(appSetting))
+
     // redirect to welcome page
     useRouter().push('/welcome')
   } else {

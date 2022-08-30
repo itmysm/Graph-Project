@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-col justify-end absolute right-6 z-[10] bottom-0 max-w-[400px] max-h-fit transition-all duration-500">
-    <commonNotification class="alert animate-alertCame mb-2" v-for="(notification, i) in notificationsInStore" :key="i"
+    <commonNotification class="alert animate-alertCame mb-2" v-for="(notification, i) in notifications" :key="i"
       :notification="notification" @result="resultCameFromNotification($event, i)" @close=(destruction(i))
       :data-notification-loaded="destruction(i, false)" />
   </div>
 </template>
 
 <script setup>
-const notificationsInStore = reactive(
-  [{ title: 'Just a minute...', description: 'Your file is uploading right now. just give us a second to finish your.', type: 'upload', destruction: 15000 },
-    { title: 'Your file was upload!', description: 'Your file was successfully upload. You can start righ now', type: 'success', button: false, destruction: 12000 }
-  ])
+import { useAlerts } from '~/stores/alerts.js'
+
+const storeAlert = useAlerts()
+const notifications = reactive(storeAlert.getAlerts)
 
 function resultCameFromNotification (result, notificationId) {
   !result ? destruction(notificationId) : console.log('do something')
@@ -39,13 +39,13 @@ class DestructionNotification {
 
   removeFromList () {
     setTimeout(() => {
-      notificationsInStore.splice(this.index, 1)
+      notifications.splice(this.index, 1)
     }, 3000)
   }
 }
 
 function destruction (index, isForce = true) {
-  const ds = new DestructionNotification(notificationsInStore[index], index)
+  const ds = new DestructionNotification(notifications[index], index)
   isForce ? ds.destructionByClick() : ds.destructionByTime()
 }
 

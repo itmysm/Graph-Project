@@ -14,6 +14,8 @@
 </template>
 
 <script setup>
+const appSetting = JSON.parse(localStorage.getItem('settings'))
+const settings = { display: { theme: appSetting.theme, language: appSetting.language, notifications: appSetting?.notifications.notificationAlert, sounds: appSetting.notifications.sounds } }
 </script>
 
 <style>
