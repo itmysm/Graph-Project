@@ -1,3 +1,3 @@
 <template>
-  <div>1111</div>
+  <div class="w-full">Test</div>
 </template>

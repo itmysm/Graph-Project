@@ -48,8 +48,7 @@ const menuItems = reactive([
   { name: i18n.t('menuDashboard'), icon: 'dashboard', path: '/' },
   { name: i18n.t('menuDesk'), icon: 'Bar_Chart', path: '/desk' },
   { name: i18n.t('menuHistory'), icon: 'history', path: '/history' },
-  { name: i18n.t('menuSetting'), icon: 'settings', path: '/settings' },
-  { name: i18n.t('menuDashboard'), icon: 'home', path: '/' }
+  { name: i18n.t('menuSetting'), icon: 'settings', path: '/settings' }
 ])
 
 function sidebar (redeclare) {
