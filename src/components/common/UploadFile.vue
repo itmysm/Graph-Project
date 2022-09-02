@@ -74,25 +74,28 @@ import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
 const storeAlerts = useAlerts()
 const mainStore = useMainStore()
-console.log(useMainStore())
-const regexFileExtension = /[^\\.]+$/
+
+let file = reactive([])
 const allowedFileExtentions = ['html', 'htm', 'json']
-const userIsInDropZone = ref(false)
+const regexFileExtension = /[^\\.]+$/
+
 const uploadFileCompeleted = ref(false)
+const userIsInDropZone = ref(false)
+
 function dropHandler (ev) {
   ev.preventDefault()
   userIsInDropZone.value = false
   const item = ev.dataTransfer.items[0]
   if (item) {
     if (item.kind === 'file') {
-      const file = item.getAsFile()
+      file = item.getAsFile()
       checkFile(file)
     }
   }
 }
 
 function fileUploadedFromBrowse () {
-  const file = document.getElementById('dropbox').files[0]
+  file = document.getElementById('dropbox').files[0]
   checkFile(file)
 }
 
@@ -110,15 +113,15 @@ function checkFile (file) {
   if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
     storeAlerts.addNewAlert({ title: 'Your file was upload!', description: 'Your file was successfully upload. You can start righ now', type: 'success', button: false, destruction: 5000 })
+    file.available = true
+    updateFileStatus(file)
   } else {
     storeAlerts.addNewAlert({ title: 'Oops! file format is not allowed', description: 'The file format is not allowed. Please try another file', type: 'error', button: false, destruction: 5000 })
   }
-
-  updateFileStatus(isFileAllowed.value)
 }
 
-function updateFileStatus (fileExists) {
-  mainStore.fileUpdate(fileExists)
+function updateFileStatus () {
+  mainStore.fileUpdate(file)
 }
 
 function changeContentInUploadBox () {

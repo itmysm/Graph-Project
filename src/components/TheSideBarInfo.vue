@@ -18,27 +18,27 @@
         <div class="col-span-2"><h5 class="text-md font-medium">File information</h5></div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
-          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
-          <h5 class="text-sm text-secondary fw-bold mt-1">Social media</h5>
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Description</i></span>
+          <h5 class="text-[13px] text-secondary fw-bold mt-1">File name</h5>
           <p class="text-[12px] text-neutral">Telegram</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
-          <h5 class="text-sm text-secondary fw-bold mt-1">File size</h5>
+          <h5 class="text-[13px] text-secondary fw-bold mt-1">File size</h5>
           <p class="text-[12px] text-neutral">500kb</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
-          <h5 class="text-sm text-secondary fw-bold mt-1">Social media</h5>
+          <h5 class="text-[13px] text-secondary fw-bold mt-1">Social media</h5>
           <p class="text-[12px] text-neutral">Telegram</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
-          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Groups</i></span>
-          <h5 class="text-sm text-secondary fw-bold mt-1">Persons</h5>
-          <p class="text-[12px] text-neutral">0</p>
+          <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Schedule</i></span>
+          <h5 class="text-[13px] text-secondary fw-bold mt-1">Last Modified</h5>
+          <p class="text-[12px] text-neutral">2021</p>
         </div>
       </div>
     </div>

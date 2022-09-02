@@ -7,7 +7,7 @@ export const useMainStore = defineStore('mainStore', {
       fileName: '',
       fileSize: '',
       fileType: '',
-      app: '',
+      fileLastModified: '',
       fileLines: ''
     },
 
@@ -23,8 +23,11 @@ export const useMainStore = defineStore('mainStore', {
   },
 
   actions: {
-    fileUpdate (status) {
-      this.file.isFileUploaded = status
+    fileUpdate (file) {
+      this.file.isFileUploaded = file.available
+      this.file.fileName = file.name
+      this.file.fileSize = file.size
+      this.file.fileLastModified = file.lastModified
     }
   }
 })
