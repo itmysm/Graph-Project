@@ -35,6 +35,8 @@
         </div>
       </div>
     </div>
+
+    <audio autoplay :src="'../../assets/media/audios/' + notification.type + '.mp3'"></audio>
   </div>
 </template>
 
