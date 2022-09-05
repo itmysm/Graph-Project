@@ -45,6 +45,7 @@ function userHandler () {
 }
 
 function setupApp () {
+  localStorage.removeItem('operationSetting') // remove if exist
   const userData = useLocalStorageDecode('register').value
   const body = document.querySelector('body')
   body.setAttribute('data-theme', userData.userTheme)

@@ -109,7 +109,6 @@ function checkFile (file) {
   const fileName = file.name
   // eslint-disable-next-line no-return-assign
   allowedFileExtentions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
-
   if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
     storeAlerts.addNewAlert({ title: 'Your file was upload!', description: 'Your file was successfully upload. You can start righ now', type: 'success', button: false, destruction: 5000 })

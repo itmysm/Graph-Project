@@ -8,7 +8,8 @@ export const useMainStore = defineStore('mainStore', {
       fileSize: '',
       fileType: '',
       fileLastModified: '',
-      fileLines: ''
+      fileLines: '',
+      content: null
     },
 
     options: {
@@ -23,7 +24,9 @@ export const useMainStore = defineStore('mainStore', {
   },
 
   actions: {
-    fileUpdate (file) {
+    async fileUpdate (file) {
+      this.file.fileType = file.name.match(/[^\\.]+$/)[0]
+      this.file.content = this.file.fileType.toLowerCase() === 'json' ? await JSON.parse(file.text()) : await file.text()
       this.file.isFileUploaded = file.available
       this.file.fileName = file.name
       this.file.fileSize = file.size
