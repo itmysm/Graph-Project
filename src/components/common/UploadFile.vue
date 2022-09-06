@@ -72,6 +72,7 @@
 <script setup>
 import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
+
 const storeAlerts = useAlerts()
 const mainStore = useMainStore()
 
@@ -120,7 +121,10 @@ function checkFile (file) {
 }
 
 function updateFileStatus () {
-  mainStore.fileUpdate(file)
+  // prevent to update file when user upload repetive file
+  if (mainStore.$state.file.fileSize !== file.size) {
+    mainStore.fileUpdate(file)
+  }
 }
 
 function changeContentInUploadBox () {
