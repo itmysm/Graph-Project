@@ -130,6 +130,8 @@ function changeContentInUploadBox () {
   }, 2000)
 }
 
+/* IndexDB section */
+
 </script>
 
 <style lang="scss" scoped>

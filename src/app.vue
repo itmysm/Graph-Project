@@ -54,6 +54,9 @@ function setupApp () {
 
 function checkUserDevice () {
   window.innerWidth < minimumScreenSize ? isUserDeviceSupported.value = false : isUserDeviceSupported.value = true
+  if (window.indexedDB === null) {
+    alert("this browser dosen't support indexDB! \n * update your browser to last version and try again!")
+  }
 }
 
 provide('isUserDeviceSupported', isUserDeviceSupported)
