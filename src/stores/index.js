@@ -9,7 +9,8 @@ export const useMainStore = defineStore('mainStore', {
       fileType: '',
       fileLastModified: '',
       fileLines: '',
-      content: null
+      content: null,
+      dateUploaded: null
     },
 
     options: {
@@ -26,11 +27,12 @@ export const useMainStore = defineStore('mainStore', {
   actions: {
     async fileUpdate (file) {
       this.file.fileType = file.name.match(/[^\\.]+$/)[0]
-      this.file.content = this.file.fileType.toLowerCase() === 'json' ? await JSON.parse(file.text()) : await file.text()
+      this.file.content = this.file.fileType.toLowerCase() === 'json' ? file.text() : await file.text()
       this.file.isFileUploaded = file.available
       this.file.fileName = file.name
       this.file.fileSize = file.size
       this.file.fileLastModified = file.lastModified
+      this.file.dateUploaded = new Date().getTime()
     }
   }
 })
