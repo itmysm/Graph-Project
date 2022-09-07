@@ -4,11 +4,11 @@ export const useMainStore = defineStore('mainStore', {
   state: () => ({
     file: {
       isFileUploaded: false,
-      fileName: '',
-      fileSize: '',
-      fileType: '',
-      fileLastModified: '',
-      fileLines: '',
+      fileName: 'undefined',
+      fileSize: 0,
+      fileType: 'none',
+      fileLastModified: 'September 1, 2002 23:54:00',
+      fileLines: '0',
       content: null,
       dateUploaded: null
     },

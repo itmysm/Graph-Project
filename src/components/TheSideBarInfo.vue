@@ -11,7 +11,7 @@
     <div class="h-full flex flex-col justify-end py-4" v-if="sidebarInfoIsOpen">
       <div class="mb-10">
         <p class="text-xs font-bold">File name:</p>
-        <h6 class="text-sm">myChats.json</h6>
+        <h6 class="text-sm"> {{ file.fileName}} </h6>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
@@ -20,13 +20,13 @@
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Description</i></span>
           <h5 class="text-[13px] text-secondary fw-bold mt-1">File name</h5>
-          <p class="text-[12px] text-neutral">Telegram</p>
+          <p class="text-[12px] text-neutral">{{file.fileName}}</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
           <h5 class="text-[13px] text-secondary fw-bold mt-1">File size</h5>
-          <p class="text-[12px] text-neutral">{{ file.fileSize }}</p>
+          <p class="text-[12px] text-neutral">{{ getSize() }}</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
@@ -38,7 +38,7 @@
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Schedule</i></span>
           <h5 class="text-[13px] text-secondary fw-bold mt-1">Last Modified</h5>
-          <p class="text-[12px] text-neutral">2021</p>
+          <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified) }}</p>
         </div>
       </div>
     </div>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { useMainStore } from '~/stores/index.js'
+import { fromNow } from '~/scripts/fromNow'
 const mainStore = useMainStore()
 const file = mainStore.$state.file
 const isFileExists = ref(false)
@@ -62,6 +63,14 @@ onUpdated(() => {
 function sidebar (redeclare) {
   if (redeclare) sidebarInfoIsOpen.value = !sidebarInfoIsOpen.value
   emit('sideBarInfoUpdated', sidebarInfoIsOpen.value)
+}
+
+function getSize () {
+  const bytes = file.fileSize
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  if (bytes === 0) return '0 Byte'
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
 }
 
 watch(() => props.sideBar, (newValue) => {
