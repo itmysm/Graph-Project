@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-end absolute right-6 z-[10] bottom-0 max-w-[400px] max-h-fit transition-all duration-500">
+  <div class="flex flex-col justify-end absolute right-6 z-[99] bottom-0 max-w-[400px] max-h-fit transition-all duration-500">
     <commonNotification class="alert animate-alertCame mb-2" v-for="(notification, i) in notifications" :key="i"
       :notification="notification" @result="resultCameFromNotification($event, i)" @close=(destruction(i))
       :data-notification-loaded="destruction(i, false)" />

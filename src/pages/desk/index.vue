@@ -5,8 +5,7 @@
       <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.png" alt="" width="100">
       <h3 class="text-secondary text-center mt-2">{{$t('infoSidebarNoFile')}}</h3>
     </div>
-    <pagesDeskOptions v-else-if="isFileExists && step == 1" @next="step++"/>
-    <pagesDeskTransitionsInstagramHtmlToJson v-else-if="fileType === 'html' && step == 2" @next="step++"/>
+    <pagesDeskProgress v-show="isFileExists" />
   </div>
 </template>
 
