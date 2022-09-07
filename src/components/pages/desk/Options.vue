@@ -41,6 +41,8 @@
 </template>
 
 <script setup>
+import { get } from 'idb-keyval'
+get('file').then((val) => console.log(val))
 const range = ref(2022)
 const options = reactive({
   numberOfMessages: { text: 'Count the number of messages sent in the chat', active: true },

@@ -26,7 +26,7 @@
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
           <h5 class="text-[13px] text-secondary fw-bold mt-1">File size</h5>
-          <p class="text-[12px] text-neutral">500kb</p>
+          <p class="text-[12px] text-neutral">{{ file.fileSize }}</p>
         </div>
 
         <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
@@ -48,6 +48,7 @@
 <script setup>
 import { useMainStore } from '~/stores/index.js'
 const mainStore = useMainStore()
+const file = mainStore.$state.file
 const isFileExists = ref(false)
 
 const props = defineProps(['sideBar'])

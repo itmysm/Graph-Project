@@ -70,6 +70,7 @@
 </template>
 
 <script setup>
+import { set } from 'idb-keyval'
 import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
 
@@ -120,10 +121,11 @@ function checkFile (file) {
   }
 }
 
-function updateFileStatus () {
+async function updateFileStatus () {
   // prevent to update file when user upload repetive file
   if (mainStore.$state.file.fileSize !== file.size) {
     mainStore.fileUpdate(file)
+    set('file', JSON.stringify(await file.text())) // add file to DB
   }
 }
 

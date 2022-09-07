@@ -6,7 +6,6 @@
 
 <script setup>
 import { provide } from 'vue'
-
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
 

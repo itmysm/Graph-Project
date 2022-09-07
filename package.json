@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.1",
+    "idb-keyval": "^6.2.0",
     "pinia": "^2.0.21"
   }
 }
