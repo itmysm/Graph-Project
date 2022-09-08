@@ -1,17 +1,19 @@
 <template>
   <div class="w-[100vw] absolute top-0 left-0 flex justify-center items-center min-h-full bg-[#12181e] z-[10]">
     <ul class="w-fit">
-
       <li class="flex items-center mb-5 relative transition-all duration-500"
-        :class="[step.isComplete ? 'complete' : '', step.isActive ? 'in-Process' : 'in-queue']"
-        v-for="(step, i) in steps" :key="i">
+        :class="[step.complete ? 'complete' : '', step.process ? 'in-Process' : 'in-queue']"
+        v-for="(step, i) in stepsQueue" :key="i">
         <p class="title min-w-[420px]">{{ step.name}}</p>
-        <AnimationsLoading v-show="step.isActive && !step.isComplete" />
-        <i class="material-symbols-rounded text-[20px]" v-show="step.isComplete || step.isActive == false">{{
-        step.isComplete ? 'Done' :
+        <AnimationsLoading v-show="step.process && !step.complete" />
+        <i class="material-symbols-rounded text-[20px]" v-show="step.complete || step.process == false">{{
+        step.complete ? 'Done' :
         'Hourglass_Empty' }}</i>
       </li>
     </ul>
+
+    <pagesDeskDetect @status="stepsRunner($event)" v-if="activeIndex" />
+    <pagesDeskTransitionsInstagramHtmlToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
   </div>
 </template>
 
@@ -20,22 +22,25 @@ import { useAlerts } from '~/stores/alerts/alerts.js'
 const storeAlerts = useAlerts()
 storeAlerts.addNewAlert({ title: 'Attention!', description: 'Please do not leave this page until the results are fully displayed', type: 'warning', button: false, destruction: 12000 })
 
-const steps = reactive([{ name: 'Detecting data type', duration: 1000, isActive: true, isComplete: false }, { name: 'Transition data to standard format', duration: 7000, isActive: false, isComplete: false }, { name: 'Calculating...', duration: 22000, isActive: false, isComplete: false }, { name: 'Preparing results...', duration: 7000, isActive: false, isComplete: false }])
+const stepsQueue = reactive([{ name: 'Detecting data type', process: true, complete: false }, { name: 'Transition data to standard format', process: false, complete: false }, { name: 'Calculating...', process: false, complete: false }, { name: 'Preparing results...', process: false, complete: false }])
+const activeIndex = ref(0)
 
-for (let index = 0; index < steps.length + 1; index++) {
-  let duration = 0
-  if (index > 0 && index < steps.length) duration = steps[index - 1].duration
-  else if (index === steps.length) duration = steps[index - 1].duration
+stepsRunner()
+function stepsRunner (dataComponent = { limit: 2, time: 2 }) {
+  const minLimit = dataComponent.limit
+  const timeSpend = dataComponent.time
 
   setTimeout(() => {
-    if (index > 0) {
-      const prevIndex = index - 1
-      steps[prevIndex].isActive = false
-      steps[prevIndex].isComplete = true
-      // eslint-disable-next-line no-unused-expressions
-      steps[index] ? steps[index].isActive = true : null
+    if (activeIndex.value > 0) {
+      stepsQueue[activeIndex.value - 1].process = false
+      stepsQueue[activeIndex.value - 1].complete = true
     }
-  }, duration * index)
+
+    stepsQueue[activeIndex.value].process = true
+
+    if (activeIndex.value < stepsQueue.length) activeIndex.value++
+    console.log(activeIndex.value)
+  }, (minLimit - timeSpend) * 1000)
 }
 
 </script>

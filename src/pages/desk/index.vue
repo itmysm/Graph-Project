@@ -5,16 +5,14 @@
       <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.png" alt="" width="100">
       <h3 class="text-secondary text-center mt-2">{{$t('infoSidebarNoFile')}}</h3>
     </div>
-    <pagesDeskProgress v-show="isFileExists" />
+    <pagesDeskProgress v-if="isFileExists" />
   </div>
 </template>
 
 <script setup>
 import { useMainStore } from '~/stores/index.js'
-const step = ref(1)
 const mainStore = useMainStore()
 const isFileExists = ref(false)
-const fileType = ref(mainStore.$state.file.fileType.toLocaleLowerCase())
 
 onMounted(() => {
   isFileExists.value = mainStore.fileStatus.isFileUploaded

@@ -27,7 +27,7 @@
       <input
         id="dropbox"
         type="file"
-        accept=".html,.json"
+        accept=".html,.json,.htm,.txt"
         class="opacity-[0] absolute w-[inherit] h-[inherit]"
         @change="fileUploadedFromBrowse"
         :disabled="uploadFileCompeleted ? true : false"
@@ -78,7 +78,7 @@ const storeAlerts = useAlerts()
 const mainStore = useMainStore()
 
 let file = reactive([])
-const allowedFileExtentions = ['html', 'htm', 'json']
+const allowedFileExtentions = ['html', 'txt', 'htm', 'json']
 const regexFileExtension = /[^\\.]+$/
 
 const uploadFileCompeleted = ref(false)

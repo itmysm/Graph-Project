@@ -1,30 +1,37 @@
 <!-- This file extracts the information from the html file and converts it into an object -->
 
 <template>
-  <div class="instagram--temp hidden">{{content}}</div>
+  <div class="instagram--temp"></div>
 </template>
 
 <script setup>
-import { useMainStore } from '~~/src/stores/index.js'
+import { get, set } from 'idb-keyval'
 
-const mainStore = useMainStore()
+const startTime = performance.now()
+const emit = defineEmits(['status'])
 
-let content = mainStore.$state.file.content
+const fileInfo = JSON.parse(localStorage.getItem('temporaryInfoFile'))
+const minLimit = fileInfo.application === 'instagram' ? 5 : 1
+
+let content = reactive([])
 const date = new Date()
-let temp = ({})
+let temp = reactive({})
 const data = {
   chatName: '',
   type: '',
   messages: []
 }
 
-onMounted(() => {
-  temp = document.querySelector('.instagram--temp')
-  injectionIntoDOM()
+onMounted(async () => {
+  if (fileInfo.application === 'instagram') {
+    temp = document.querySelector('.instagram--temp')
+    content = await get('file').then((val) => JSON.parse(val))
+    injectionIntoDOM()
+  }
 })
 
 function injectionIntoDOM () {
-  content = content.replaceAll('src', 'alt') // prevent to load files dosent exist && errors on console
+  content = content.replaceAll('src=', 'alt=') // prevent to load files doesn't exist
   temp.innerHTML = content
   exportDataFromDOM()
 }
@@ -47,8 +54,8 @@ function exportDataFromDOM () {
 
 function cleanDOM () {
   temp.innerHTML = ''
-  console.log(mainStore.$state.file.content)
-  mainStore.$state.file.content = data
-  console.log(mainStore.$state.file.content)
+  set('file', JSON.stringify(data))
+  const endTime = performance.now()
+  emit('status', { limit: minLimit, time: Math.round((endTime - startTime) / 1000) })
 }
 </script>
