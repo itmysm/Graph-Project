@@ -60,9 +60,9 @@ watch(() => props.sideBarInfo, (newValue) => {
   sidebar(false)
 })
 
-watch(() => useRoute().name, (newPath) => {
+watch(() => useRoute().path, (newPath) => {
   // eslint-disable-next-line no-return-assign
-  menuItems.map((item, index) => item.path === '/' + newPath ? selectedItem.value = index : false)
+  menuItems.map((item, index) => item.path === newPath ? selectedItem.value = index : false)
 })
 
 </script>
