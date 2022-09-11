@@ -12,7 +12,7 @@
         <i class="material-symbols-rounded normal-case text-[20px] mr-2">Dark_Mode</i>
         Themes
       </h4>
-      <commonSelectDrodown :items="themes" :defaultItem="defaultTheme" @return-value="changeSetting(themes[$event])" />
+      <commonSelectDrodown :items="themes" @newChanges="changeSetting('themes', $event)" />
     </div>
 
     <div class="flex items-center justify-between mt-5">
@@ -21,21 +21,19 @@
         Languages
       </h4>
 
-      <commonSelectDrodown :items="languages" :defaultItem="defaultLanguages" />
+      <commonSelectDrodown :items="languages" @newChanges="changeSetting('languages', $event)"/>
     </div>
   </div>
 </template>
 
 <script setup>
-const registerData = JSON.parse(localStorage.getItem('register'))
-const themes = reactive([{ name: 'Dark', icon: 'Dark_Mode' }, { name: 'Light', icon: 'Light_Mode' }, { name: 'Default', icon: 'Computer' }])
-const defaultTheme = registerData.userTheme
+import { useMainStore } from '~/stores/index.js'
+const emit = defineEmits(['themesChange', 'languagesChange'])
 
-const languages = reactive([{ name: 'English', icon: '🇬🇧' }, { name: 'Persian', icon: '🇮🇷' }])
-const defaultLanguages = 'English'
+const languages = useMainStore().$state.setting.language
+const themes = useMainStore().$state.setting.themes
 
-function changeSetting (item) {
-  console.log(item)
+function changeSetting (key, changes) {
+  key === 'themes' ? emit('themesChange', changes) : emit('languagesChange', changes)
 }
-
 </script>

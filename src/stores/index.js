@@ -2,6 +2,25 @@ import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('mainStore', {
   state: () => ({
+    setting: {
+      language: [
+        { name: 'English', icon: '🇬🇧', default: true },
+        { name: 'Persian', icon: '🇮🇷', default: false }
+      ],
+
+      themes: [
+        { name: 'Dark', icon: 'Dark_Mode', default: false },
+        { name: 'Light', icon: 'Light_Mode', default: false },
+        { name: 'Default', icon: 'Computer', default: true }
+      ],
+      notifications: [
+        { serviceName: 'Graph internal Notifications', icon: 'Grid_View', default: true },
+        { serviceName: 'Updates and features', icon: 'Electric_Bolt', default: true },
+        { serviceName: 'Conections and network', icon: 'Wifi', default: true }
+      ],
+      sounds: true
+    },
+
     file: {
       isFileUploaded: false,
       fileName: 'undefined',
@@ -17,7 +36,7 @@ export const useMainStore = defineStore('mainStore', {
       telegram: { messagesEachPerson: true },
       whatsapp: { messagesEachPerson: true },
       instagram: { messagesEachPerson: true }
-    } // each app have diffrent options
+    } // each app have diffrent steps
   }),
 
   getters: {
@@ -33,6 +52,10 @@ export const useMainStore = defineStore('mainStore', {
       this.file.fileSize = file.size
       this.file.fileLastModified = file.lastModified
       this.file.dateUploaded = new Date().getTime()
+    },
+
+    getSettingsFromLocalStorage () {
+      this.setting = JSON.parse(localStorage.getItem('settings'))
     }
   }
 })

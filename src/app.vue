@@ -6,12 +6,14 @@
 
 <script setup>
 import { provide } from 'vue'
+import { useMainStore } from './stores/index.js'
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
 
 onBeforeMount(() => {
   userHandler()
 })
+
 onMounted(() => {
   checkUserDevice()
 
@@ -30,15 +32,12 @@ function userHandler () {
     userData.userId = new Date().getTime()
     userData.userDevice = navigator.userAgent
     userData.userLanguage = navigator.language
-
     localStorage.setItem('register', JSON.stringify(userData))
-
-    const appSetting = { language: 'english', theme: userData.userTheme, notifications: { notificationAlert: { appContent: true, updates: true, network: true }, sounds: true } }
-    localStorage.setItem('settings', JSON.stringify(appSetting))
 
     // redirect to welcome page
     useRouter().push('/welcome')
   } else {
+    useMainStore().getSettingsFromLocalStorage()
     useRouter().push('/')
   }
 }
@@ -62,7 +61,8 @@ provide('isUserDeviceSupported', isUserDeviceSupported)
 </script>
 
 <style lang="scss">
-html, body {
+html,
+body {
   max-height: 100vh;
   overflow: hidden;
 }

@@ -15,7 +15,7 @@
         </h4>
 
         <div class="flex">
-          <input type="checkbox" class="toggle toggle-primary" :checked="notification.default" @click="notification.default = !notification.default"/>
+          <input type="checkbox" class="toggle toggle-primary" :checked="notification.default" @click="changeSetting(i)"/>
           <p class="ml-2 select-none w-5 text-center">{{ notification.default ? 'On' : 'Off' }}</p>
         </div>
       </li>
@@ -24,9 +24,12 @@
 </template>
 
 <script setup>
-const notifications = reactive([
-  { serviceName: 'Apps Contents notification', icon: 'Grid_View', default: true },
-  { serviceName: 'Updates and content notifications', icon: 'Electric_Bolt', default: true },
-  { serviceName: 'Network notifications', icon: 'Wifi', default: true }
-])
+import { useMainStore } from '~/stores/index.js'
+const emit = defineEmits(['notifications'])
+const notifications = useMainStore().$state.setting.notifications
+
+function changeSetting (index) {
+  notifications[index].default = !notifications[index].default
+  emit('notifications', notifications)
+}
 </script>

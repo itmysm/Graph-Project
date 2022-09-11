@@ -9,7 +9,7 @@
     </div>
 
     <ul class="border w-72 rounded-sm bg-base-100 text-sm h-fit mt-2 rounded-b-lg absolute top-12 z-10" v-show="showList">
-      <li class="h-8 flex items-center hover:bg-accent px-3 cursor-pointer" v-for="(item, i) in items" :key="i" @click="selectedItem = item, showList = false, $emit('return-value', i)">
+      <li class="h-8 flex items-center hover:bg-accent px-3 cursor-pointer" v-for="(item, i) in items" :key="i" @click="dropDownChange(i), selectedItem = item">
         <i class="material-symbols-rounded text-[18px]">{{item.icon}}</i>
         <p class="ml-2">{{item.name}}</p>
       </li>
@@ -22,19 +22,26 @@ const props = defineProps({
   items: {
     type: Array,
     required: true
-  },
-  defaultItem: {
-    required: true
   }
 })
 
-let selectedItem = reactive()
-const showList = ref(false)
+const emit = defineEmits(['newChanges'])
 
-findDefaultItemInItems(props.defaultItem, props.items)
-function findDefaultItemInItems (defaultKey, items) {
+const showList = ref(false)
+let selectedItem = reactive()
+
+// eslint-disable-next-line array-callback-return
+props.items.map(item => {
+  if (item.default) selectedItem = item
+}) // find default item
+
+function dropDownChange (index) {
+  showList.value = !showList.value
   // eslint-disable-next-line no-return-assign
-  items.map((item, index) => item.name === defaultKey ? selectedItem = item : false)
+  props.items.map(item => item.default = false)
+  // eslint-disable-next-line vue/no-mutating-props
+  props.items[index].default = true
+  emit('newChanges', props.items)
 }
 </script>
 
