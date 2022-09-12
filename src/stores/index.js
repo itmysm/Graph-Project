@@ -4,8 +4,8 @@ export const useMainStore = defineStore('mainStore', {
   state: () => ({
     setting: {
       language: [
-        { name: 'English', icon: '🇬🇧', default: true },
-        { name: 'Persian', icon: '🇮🇷', default: false }
+        { name: 'English', lang: 'en', direction: 'ltr', icon: '🇬🇧', default: true },
+        { name: 'Persian', lang: 'fa', direction: 'rtl', icon: '🇮🇷', default: false }
       ],
 
       themes: [
@@ -53,8 +53,10 @@ export const useMainStore = defineStore('mainStore', {
       this.file.fileLastModified = file.lastModified
       this.file.dateUploaded = new Date().getTime()
     },
-
-    getSettingsFromLocalStorage () {
+    setDefaultSettingOnLocaleStorage () {
+      localStorage.setItem('settings', JSON.stringify(this.setting))
+    },
+    setSettingsOnState () {
       this.setting = JSON.parse(localStorage.getItem('settings'))
     }
   }

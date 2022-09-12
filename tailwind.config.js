@@ -65,7 +65,7 @@ module.exports = {
         error: "#F87272"
       },
 
-      darkness: {
+      dark: {
         'base-100': '#1f2128',
         'base-200': '#fff',
         'base-300': '#fff',
@@ -87,6 +87,7 @@ module.exports = {
     utils: true,
     logs: true,
     rtl: false,
-    prefix: ""
+    prefix: "",
+    theme: 'dark'
   }
 }
