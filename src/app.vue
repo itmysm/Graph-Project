@@ -6,9 +6,11 @@
 
 <script setup>
 import { provide } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useMainStore } from './stores/index.js'
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
+const i18n = useI18n()
 
 onBeforeMount(() => {
   userHandler()
@@ -56,10 +58,13 @@ function checkUserDevice () {
 
 function selectAppLang (languages) {
   const html = document.querySelector('html')
+  // eslint-disable-next-line array-callback-return
   languages.map(language => {
     if (language.default) {
       html.setAttribute('dir', language.direction)
       html.setAttribute('lang', language.lang)
+      i18n.locale.value = language.lang
+      language.lang === 'fa' ? document.querySelector('body').classList.add('font-sans') : document.querySelector('body').classList.add('font-sans')
     }
   })
 }
@@ -70,7 +75,7 @@ function applayTheme (themes) {
   // eslint-disable-next-line array-callback-return
   themes.map(theme => {
     if (theme.default) {
-      body.setAttribute('data-theme', theme.name === 'Default' ? systemTheme : theme.name.toLocaleLowerCase())
+      body.setAttribute('data-theme', theme.name === 'defaultMode' ? systemTheme : theme.name.toLocaleLowerCase().split('mode')[0])
     }
   })
 }

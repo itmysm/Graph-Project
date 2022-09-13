@@ -21,7 +21,7 @@
             :class="[selectedItem === i ? 'bg-primary' : false, isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
             <i class="material-symbols-rounded text-neutral group-hover:text-white transition-all duration-300"
               :class="selectedItem == i ? '!text-white' : ''">{{ item.icon }}</i>
-            <p class="xl:block ml-3 text-neutral group-hover:text-white transition-all duration-300"
+            <p class="xl:block ltr:ml-3 rtl:mr-3 text-neutral group-hover:text-white transition-all duration-300"
               :class="selectedItem === i ? '!text-white' : false" v-if="isSidebarOpen">{{ item.name }}</p>
           </NuxtLink>
         </li>

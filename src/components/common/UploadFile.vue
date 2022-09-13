@@ -73,7 +73,8 @@
 import { set } from 'idb-keyval'
 import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
-
+import { useI18n } from 'vue-i18n'
+const i18n = useI18n()
 const storeAlerts = useAlerts()
 const mainStore = useMainStore()
 const theme = ref(document.querySelector('body').getAttribute('data-theme'))
@@ -114,11 +115,11 @@ function checkFile (file) {
   allowedFileExtentions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
   if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
-    storeAlerts.addNewAlert({ title: 'Your file was upload!', description: 'Your file was successfully upload. You can start righ now', type: 'success', button: false, destruction: 5000 })
+    storeAlerts.addNewAlert({ title: i18n.t('alertUploadSuccessTitle'), description: i18n.t('alertUploadSuccessDescription'), type: 'success', button: false, destruction: 5000 })
     file.available = true
     updateFileStatus(file)
   } else {
-    storeAlerts.addNewAlert({ title: 'Oops! file format is not allowed', description: 'The file format is not allowed. Please try another file', type: 'error', button: false, destruction: 5000 })
+    storeAlerts.addNewAlert({ title: i18n.t('alertUploadErrorTitle'), description: 'alertUploadErrorDescription', type: 'error', button: false, destruction: 5000 })
   }
 }
 

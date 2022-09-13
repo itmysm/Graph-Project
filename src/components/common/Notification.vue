@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[400px] h-20 relative rounded-lg py-5 px-4 h-fit" :class="theme === 'dark' ? 'border-accent' : 'bg-secondary'">
+  <div class="w-[400px] h-20 relative rounded-lg py-5 px-4 h-fit ltr:font-sans rtl:font-persian" :class="theme === 'dark' ? 'border-accent' : 'bg-secondary'">
     <button class="btn btn-xs border-none bg-transparent hover:bg-transparent absolute top-2 right-2"
       @click.once="$emit('close', true)">
       <i class="material-symbols-rounded text-[20px] text-accent" :class="close ? '' : 'animate-wiggle'">Close</i>

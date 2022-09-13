@@ -26,27 +26,27 @@ function fromNow (dateInput) {
   if (timeStampDateInput > dateNow) {
     return ('this is in the future')
   } else if (delta <= FROM_NOW_JUST_NOW) {
-    return ('a few seconds ago')
+    return ('secondsAgo')
   } else if (delta <= FROM_NOW_MINUTE) {
-    return ('a minute ago')
+    return ('minutesAgo')
   } else if (delta <= FROM_NOW_MINUTES) {
-    return (Math.ceil(delta / MS_MINUTE) + ' minutes ago')
+    return (Math.ceil(delta / MS_MINUTE) + ' minutesAgo')
   } else if (delta <= FROM_NOW_HOUR) {
-    return ('an hour ago')
+    return ('hoursAgo')
   } else if (delta <= FROM_NOW_HOURS) {
-    return (Math.ceil(delta / MS_HOUR) + ' hours ago')
+    return (Math.ceil(delta / MS_HOUR) + ' dateHours')
   } else if (delta <= FROM_NOW_DAY) {
-    return ('a day ago')
+    return ('daysAgo')
   } else if (delta <= FROM_NOW_DAYS) {
-    return (Math.ceil(delta / MS_DAY) + ' days ago')
+    return (Math.ceil(delta / MS_DAY) + ' daysAgo')
   } else if (delta <= FROM_NOW_MONTH) {
-    return ('a month ago')
+    return ('monthsAgo')
   } else if (delta <= FROM_NOW_MONTHS) {
-    return (Math.ceil(delta / MS_MONTH) + ' months ago')
+    return (Math.ceil(delta / MS_MONTH) + ' monthsAgo')
   } else if (delta <= FROM_NOW_YEAR) {
-    return ('a year ago')
+    return ('yearsAgo')
   } else {
-    return (Math.ceil(delta / MS_YEAR) + ' years ago')
+    return (Math.ceil(delta / MS_YEAR) + ' yearsAgo')
   }
 }
 

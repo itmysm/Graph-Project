@@ -12,7 +12,7 @@
           </div>
           <p class="mt-2 group-hover:text-primary transition-all duration-500">
             {{data.title}}.{{data._extension}}</p>
-          <p class="text-xs text-neutral group-hover:text-primary transition-all duration-500">{{fromNow('September 1, 2022 23:54:00')}}</p>
+          <p class="text-xs text-neutral group-hover:text-primary transition-all duration-500"> {{ fromNow('September 1, 2022 23:54:00').split(' ')[0] }} {{ $t(fromNow('September 1, 2022 23:54:00').split(' ')[1]) }}</p>
         </li>
       </ul>
     </div>

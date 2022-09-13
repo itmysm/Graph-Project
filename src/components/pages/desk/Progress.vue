@@ -19,10 +19,13 @@
 
 <script setup>
 import { useAlerts } from '~/stores/alerts/alerts.js'
+import { useI18n } from 'vue-i18n'
 const storeAlerts = useAlerts()
-storeAlerts.addNewAlert({ title: 'Attention!', description: 'Please do not leave this page until the results are fully displayed', type: 'warning', button: false, destruction: 12000 })
+const i18n = useI18n()
 
-const stepsQueue = reactive([{ name: 'Detecting data type', process: true, complete: false }, { name: 'Transition data to standard format', process: false, complete: false }, { name: 'Calculating...', process: false, complete: false }, { name: 'Preparing results...', process: false, complete: false }])
+storeAlerts.addNewAlert({ title: i18n.t('alertAttentionTitle'), description: i18n.t('alertAttentionDescription'), type: 'warning', button: false, destruction: 12000 })
+
+const stepsQueue = reactive([{ name: i18n.t('progressStepDetect'), process: true, complete: false }, { name: i18n.t('progressStepTransition'), process: false, complete: false }, { name: i18n.t('progressStepCalculate'), process: false, complete: false }, { name: i18n.t('progressStepPreparing'), process: false, complete: false }])
 const activeIndex = ref(0)
 
 stepsRunner()

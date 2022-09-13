@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <main class="main flex" v-if="isUserDeviceSupported && !loading">
+    <main class="main flex ltr:font-sans rtl:font-persian" v-if="isUserDeviceSupported && !loading">
       <TheSideBar @sidebarIsOpen="sideBar = $event" :sideBarInfo="sideBarInfo" />
       <slot />
       <TheSideBarInfo @sideBarInfoUpdated="sideBarInfo = $event" :sideBar="sideBar" />

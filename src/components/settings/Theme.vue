@@ -1,24 +1,23 @@
 <template>
   <div class="px-5">
     <h3 class="text-2xl flex items-center" :class="theme ? 'text-white' : 'text-secondary'">
-       <i class="material-symbols-rounded normal-case mr-2">Laptop_Mac</i>
-      Display
+       <i class="material-symbols-rounded normal-case ltr:mr-2 rtl:ml-2">Laptop_Mac</i>
+       {{ $t('settingsDisplayTitle') }}
     </h3>
-    <p class="mt-2 text-neutral font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, vel
-      natus. Impedit maxime ipsam doloremque</p>
+    <p class="mt-2 text-neutral font-light">{{ $t('settingsDisplayDescription') }}</p>
 
     <div class="flex items-center justify-between mt-5">
       <h4 class="capitalize flex items-center">
-        <i class="material-symbols-rounded normal-case text-[20px] mr-2">Dark_Mode</i>
-        Themes
+        <i class="material-symbols-rounded normal-case text-[20px] ltr:mr-2 rtl:ml-2">Dark_Mode</i>
+        {{ $t('settingsThemes') }}
       </h4>
       <commonSelectDrodown :items="themes" @newChanges="changeSetting('themes', $event)" />
     </div>
 
     <div class="flex items-center justify-between mt-5">
       <h4 class="capitalize flex items-center">
-        <i class="material-symbols-rounded normal-case text-[20px] mr-2">Translate</i>
-        Languages
+        <i class="material-symbols-rounded normal-case text-[20px] ltr:mr-2 rtl:ml-2">Translate</i>
+        {{ $t('settingsLanguages') }}
       </h4>
 
       <commonSelectDrodown :items="languages" @newChanges="changeSetting('languages', $event)"/>

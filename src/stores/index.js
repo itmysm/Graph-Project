@@ -4,19 +4,19 @@ export const useMainStore = defineStore('mainStore', {
   state: () => ({
     setting: {
       language: [
-        { name: 'English', lang: 'en', direction: 'ltr', icon: '🇬🇧', default: true },
-        { name: 'Persian', lang: 'fa', direction: 'rtl', icon: '🇮🇷', default: false }
+        { name: 'english', lang: 'en', direction: 'ltr', flag: '🇬🇧', default: true },
+        { name: 'persian', lang: 'fa', direction: 'rtl', flag: '🇮🇷', default: false }
       ],
 
       themes: [
-        { name: 'Dark', icon: 'Dark_Mode', default: false },
-        { name: 'Light', icon: 'Light_Mode', default: false },
-        { name: 'Default', icon: 'Computer', default: true }
+        { name: 'darkMode', icon: 'Dark_Mode', default: false },
+        { name: 'lightMode', icon: 'Light_Mode', default: false },
+        { name: 'defaultMode', icon: 'Computer', default: true }
       ],
       notifications: [
-        { serviceName: 'Graph internal Notifications', icon: 'Grid_View', default: true },
-        { serviceName: 'Updates and features', icon: 'Electric_Bolt', default: true },
-        { serviceName: 'Conections and network', icon: 'Wifi', default: true }
+        { serviceName: 'settingsNotificationsInternal', icon: 'Grid_View', default: true },
+        { serviceName: 'settingsNotificationsUpdate', icon: 'Electric_Bolt', default: true },
+        { serviceName: 'settingsNotificationsNetwork', icon: 'Wifi', default: true }
       ],
       sounds: true
     },

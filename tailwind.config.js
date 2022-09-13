@@ -37,7 +37,8 @@ module.exports = {
 
     fontFamily: {
       sans: ["Inter", 'Work Sans'],
-      serif: ['Inter', 'Work Sans']
+      serif: ['Inter', 'Work Sans'],
+      persian: ['Vazirmatn']
     }
   },
   plugins: [require('daisyui')],
