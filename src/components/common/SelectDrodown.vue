@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center relative w-80">
-    <div class="w-72 h-12 rounded-lg border bg-base-100 px-3 text-sm font-semibold cursor-pointer flex justify-between items-center" :class="!showList ? 'animate' : ''" @click="showList = !showList">
+    <div class="w-72 h-12 rounded-lg border bg-base-100 px-3 text-sm font-semibold cursor-pointer flex justify-between items-center" :class="[!showList ? 'animate' : '', theme === 'dark' ? 'border-primary' : 'border-accent']" @click="showList = !showList">
       <span class="flex items-center">
         <i class="material-symbols-rounded text-[18px]">{{selectedItem.icon}}</i>
         <p class="ml-1">{{selectedItem.name}}</p>
@@ -8,7 +8,7 @@
       <i class="material-symbols-rounded text-[22px]">Keyboard_Arrow_Down</i>
     </div>
 
-    <ul class="border w-72 rounded-sm bg-base-100 text-sm h-fit mt-2 rounded-b-lg absolute top-12 z-10" v-show="showList">
+    <ul class="border w-72 rounded-sm bg-base-100 text-sm h-fit mt-2 rounded-b-lg absolute top-12 z-10" :class="theme === 'dark' ? 'border-primary' : 'border-accent'" v-show="showList">
       <li class="h-8 flex items-center hover:bg-accent px-3 cursor-pointer" v-for="(item, i) in items" :key="i" @click="dropDownChange(i), selectedItem = item">
         <i class="material-symbols-rounded text-[18px]">{{item.icon}}</i>
         <p class="ml-2">{{item.name}}</p>
@@ -26,6 +26,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['newChanges'])
+const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 const showList = ref(false)
 let selectedItem = reactive()

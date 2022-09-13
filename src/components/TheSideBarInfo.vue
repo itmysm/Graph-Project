@@ -17,27 +17,27 @@
       <div class="grid grid-cols-2 gap-4">
         <div class="col-span-2"><h5 class="text-md font-medium">File information</h5></div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-white' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Description</i></span>
-          <h5 class="text-[13px] text-secondary fw-bold mt-1">File name</h5>
+          <h5 class="text-[13px] fw-bold mt-1">File name</h5>
           <p class="text-[12px] text-neutral">{{file.fileName}}</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
-          <h5 class="text-[13px] text-secondary fw-bold mt-1">File size</h5>
+          <h5 class="text-[13px] fw-bold mt-1">File size</h5>
           <p class="text-[12px] text-neutral">{{ getSize() }}</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-r cursor-default">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
-          <h5 class="text-[13px] text-secondary fw-bold mt-1">Social media</h5>
+          <h5 class="text-[13px] fw-bold mt-1">Social media</h5>
           <p class="text-[12px] text-neutral">Telegram</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-sm rounded-lg border-l cursor-default">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Schedule</i></span>
-          <h5 class="text-[13px] text-secondary fw-bold mt-1">Last Modified</h5>
+          <h5 class="text-[13px] fw-bold mt-1">Last Modified</h5>
           <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified) }}</p>
         </div>
       </div>
@@ -55,6 +55,7 @@ const isFileExists = ref(false)
 const props = defineProps(['sideBar'])
 const emit = defineEmits(['sideBarInfoUpdated'])
 const sidebarInfoIsOpen = ref(false)
+const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 onUpdated(() => {
   isFileExists.value = mainStore.fileStatus.isFileUploaded

@@ -10,7 +10,7 @@
               src="~/assets/media/banners/socials/s-bf3594e61940024a1b16bffcada0c4a0.png" alt="">
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>
           </div>
-          <p class="text-secondary mt-2 group-hover:text-primary transition-all duration-500">
+          <p class="mt-2 group-hover:text-primary transition-all duration-500">
             {{data.title}}.{{data._extension}}</p>
           <p class="text-xs text-neutral group-hover:text-primary transition-all duration-500">{{fromNow('September 1, 2022 23:54:00')}}</p>
         </li>

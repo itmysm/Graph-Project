@@ -1,6 +1,6 @@
 <template>
   <div class="px-5">
-    <h3 class="text-2xl text-secondary flex items-center">
+    <h3 class="text-2xl flex items-center" :class="theme ? 'text-white' : 'text-secondary'">
        <i class="material-symbols-rounded normal-case mr-2">Laptop_Mac</i>
       Display
     </h3>
@@ -29,6 +29,7 @@
 <script setup>
 import { useMainStore } from '~/stores/index.js'
 const emit = defineEmits(['themesChange', 'languagesChange'])
+const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 const languages = useMainStore().$state.setting.language
 const themes = useMainStore().$state.setting.themes

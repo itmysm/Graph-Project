@@ -22,7 +22,7 @@
       @drop="dropHandler"
       @dragover="dragOverHandler"
       @dragleave="userIsInDropZone = false"
-      :class="uploadFileCompeleted ? '' : 'upload-box'"
+      :class="[uploadFileCompeleted ? '' : theme === 'dark' ? 'upload-box-dark' : 'upload-box', theme === 'dark' ? 'border-primary !bg-secondary' : '', ]"
     >
       <input
         id="dropbox"
@@ -37,12 +37,12 @@
         class="flex flex-col text-lg items-center text-secondary"
         v-if="!uploadFileCompeleted"
       >
-        <i class="material-symbols-rounded text-6xl mb-4">home_storage</i>
-        <p>
+        <i class="material-symbols-rounded text-6xl mb-4" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">home_storage</i>
+        <p :class="theme === 'dark' ? 'text-white' : 'text-secondary'">
           {{ $t("dropBox") }}
-          <a class="text-primary" href="#">{{ $t("browse") }}</a>
+          <a class="text-primary" :class="theme === 'dark' ? 'text-info' : 'text-primary'" href="#">{{ $t("browse") }}</a>
         </p>
-        <p class="text-xs mt-1 font-semibold">
+        <p class="text-xs mt-1 font-semibold" :class="theme === 'dark' ? 'text-neutral' : 'text-secondary'">
           {{ $t("extensions") }} {{ $t("extensionsFileTypes") }}
         </p>
       </div>
@@ -76,6 +76,7 @@ import { useAlerts } from '~/stores/alerts/alerts.js'
 
 const storeAlerts = useAlerts()
 const mainStore = useMainStore()
+const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 let file = reactive([])
 const allowedFileExtentions = ['html', 'txt', 'htm', 'json']
@@ -142,8 +143,12 @@ function changeContentInUploadBox () {
 
 <style lang="scss" scoped>
 .upload-box {
-  background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23F2EFEF' stroke-width='3' stroke-dasharray='20%2c 20' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 8px;
+}
+
+.upload-box-dark {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%236c5dd3' stroke-width='3' stroke-dasharray='20%2c 20' stroke-dashoffset='23' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 8px;
 }
 </style>
