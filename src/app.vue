@@ -8,6 +8,7 @@
 import { provide } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useMainStore } from './stores/index.js'
+import { set } from 'idb-keyval'
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
 const i18n = useI18n()
@@ -28,12 +29,9 @@ onMounted(() => {
 
 function userHandler () {
   if (!localStorage.getItem('register')) {
+    registerUser()
+    registerIndexDB()
     // create profile for new user
-    const userData = {}
-    userData.userId = new Date().getTime()
-    userData.userDevice = navigator.userAgent
-    userData.userLanguage = navigator.language
-    localStorage.setItem('register', JSON.stringify(userData))
     useMainStore().setDefaultSettingOnLocaleStorage()
     // redirect to welcome page
     useRouter().push('/welcome')
@@ -78,6 +76,19 @@ function applayTheme (themes) {
       body.setAttribute('data-theme', theme.name === 'defaultMode' ? systemTheme : theme.name.toLocaleLowerCase().split('mode')[0])
     }
   })
+}
+
+function registerUser () {
+  const userData = {}
+  userData.userId = new Date().getTime()
+  userData.userDevice = navigator.userAgent
+  userData.userLanguage = navigator.language
+  localStorage.setItem('register', JSON.stringify(userData))
+}
+
+function registerIndexDB () {
+  set('currentUploadedFile', JSON.stringify({})) // for current uploaded file
+  set('allUploadedFiles', JSON.stringify({})) // store all uploaded file in indexDB
 }
 
 provide('isUserDeviceSupported', isUserDeviceSupported)

@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { set } from 'idb-keyval'
+import { get, set } from 'idb-keyval'
 import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
 import { useI18n } from 'vue-i18n'
@@ -127,7 +127,8 @@ async function updateFileStatus () {
   // prevent to update file when user upload repetive file
   if (mainStore.$state.file.fileSize !== file.size) {
     mainStore.fileUpdate(file)
-    set('file', JSON.stringify(await file.text())) // add file to DB
+
+    setUploadedFileInIndexDB()
   }
 }
 
@@ -139,6 +140,17 @@ function changeContentInUploadBox () {
 }
 
 /* IndexDB section */
+async function setUploadedFileInIndexDB () {
+  const newFile = await file.text()
+  set('currentUploadedFile', JSON.stringify(newFile)) // set inside indexDB
+  storeUploadedFileInIndexDB(newFile)
+}
+
+async function storeUploadedFileInIndexDB (fileContent) {
+  const files = await get('allUploadedFiles').then(val => JSON.parse(val))
+  files[useFileNameSplitter(file.name, 'name').value] = fileContent
+  set('allUploadedFiles', JSON.stringify(files))
+}
 
 </script>
 

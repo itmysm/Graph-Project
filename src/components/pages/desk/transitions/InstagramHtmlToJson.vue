@@ -25,7 +25,7 @@ const data = {
 onMounted(async () => {
   if (fileInfo.application === 'instagram') {
     temp = document.querySelector('.instagram--temp')
-    content = await get('file').then((val) => JSON.parse(val))
+    content = await get('currentUploadedFile').then((val) => JSON.parse(val))
     injectionIntoDOM()
   }
 })

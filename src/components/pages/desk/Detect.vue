@@ -15,7 +15,7 @@ const minLimit = 3 // min 4 sec
 checkFile()
 
 async function checkFile () {
-  const file = await get('file').then((val) => JSON.parse(val))
+  const file = await get('currentUploadedFile').then((val) => JSON.parse(val))
   let app
 
   if (file.includes('height="28" alt="Instagram"')) {
