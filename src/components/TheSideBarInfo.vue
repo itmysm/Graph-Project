@@ -4,41 +4,41 @@
       <i class="material-symbols-rounded text-white transition-all rtl:rotate-180 text-[20px] text-2xl" :class="sidebarInfoIsOpen ? 'rotate-180' : 'rotate-360'">arrow_left</i>
     </a>
     <div class="flex flex-col items-center justify-center h-full relative" :class="[sidebarInfoIsOpen ?'show--content': '', isFileExists ? 'animate--up' : '' ]" v-if="false">
-      <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.png" alt="" width="100">
+      <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.webp" alt="" width="100">
       <h3 class="text-secondary text-center mt-2">{{$t('infoSidebarNoFile')}}</h3>
     </div>
 
     <div class="h-full flex flex-col justify-end py-4" v-if="sidebarInfoIsOpen">
       <div class="mb-10">
-        <p class="text-xs font-bold">File name:</p>
+        <p class="text-xs font-bold">{{ $t('fileName') }}:</p>
         <h6 class="text-sm"> {{ file.fileName}} </h6>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <div class="col-span-2"><h5 class="text-md font-medium">File information</h5></div>
+        <div class="col-span-2"><h5 class="text-md font-medium">{{ $t('fileInformation') }}</h5></div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-white' : 'border-light text-secondary'">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg ltr:border-r rtl:border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-white' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Description</i></span>
-          <h5 class="text-[13px] fw-bold mt-1">File name</h5>
+          <h5 class="text-[13px] fw-bold mt-1">{{ $t('fileName') }}</h5>
           <p class="text-[12px] text-neutral">{{file.fileName}}</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg ltr:border-l rtl:border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Downloading</i></span>
-          <h5 class="text-[13px] fw-bold mt-1">File size</h5>
+          <h5 class="text-[13px] fw-bold mt-1">{{ $t('fileSize') }}</h5>
           <p class="text-[12px] text-neutral">{{ getSize() }}</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg ltr:border-r rtl:border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Extension</i></span>
-          <h5 class="text-[13px] fw-bold mt-1">Social media</h5>
+          <h5 class="text-[13px] fw-bold mt-1">{{ $t('socialMedia') }}</h5>
           <p class="text-[12px] text-neutral">Telegram</p>
         </div>
 
-        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg border-l cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
+        <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg ltr:border-l rtl:border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Schedule</i></span>
-          <h5 class="text-[13px] fw-bold mt-1">Last Modified</h5>
-          <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified) }}</p>
+          <h5 class="text-[13px] fw-bold mt-1">{{ $t('lastModified') }}</h5>
+          <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified).split(' ')[0] }} {{ $t(fromNow(file.fileLastModified).split(' ')[1]) }}</p>
         </div>
       </div>
     </div>

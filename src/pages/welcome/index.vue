@@ -9,6 +9,7 @@
       px-16
       bg-base-100!
     "
+    :style="theme === 'dark' ? 'background-color:#101425;' : ''"
   >
     <div class="d-flex flex-column relative bottom-16">
       <h1 class="text text-4xl xl:text-6xl text-primary-focus capitalize font-bold pb-1">
@@ -25,10 +26,10 @@
         let's start
       </button>
     </div>
-    <img v-if="theme === 'Dark'" class="max-w-[400px] xl:max-w-[490px] 2xl:max-w-fit" src="~/assets/media/banners/s-9f7685ac9540833d5.jpg" alt="Welcome to graph">
+    <img v-if="theme === 'dark'" class="max-w-[490px] xl:max-w-[520px] 2xl:max-w-fit" src="~/assets/media/banners/a6d9b11f0743cb162023738146143f16.webp" alt="Welcome to graph">
     <img
       v-else
-      src="~/assets/media/banners/309c2dee518ba070f5f88ce6811fcd05.png"
+      src="~/assets/media/banners/s-9f7685ac9540833d5.webp"
       alt="Welcome to graph"
     />
   </div>

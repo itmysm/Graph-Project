@@ -7,7 +7,7 @@
           :key="data">
           <div class="overflow-hidden rounded-md relative">
             <img class="group-hover:blur-[2px] transition-all duration-500"
-              src="~/assets/media/banners/socials/s-bf3594e61940024a1b16bffcada0c4a0.png" alt="">
+              src="~/assets/media/banners/socials/s-bf3594e61940024a1b16bffcada0c4a0.webp" alt="">
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>
           </div>
           <p class="mt-2 group-hover:text-primary transition-all duration-500">
