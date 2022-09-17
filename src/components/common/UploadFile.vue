@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col items-center">
     <div class="w-full mb-8">
-      <h3 class="text-2xl text-secondary">{{ $t("uploadFile") }}</h3>
+      <h3 class="text-2xl" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t("uploadFile") }}</h3>
     </div>
 
     <div
@@ -22,7 +22,7 @@
       @drop="dropHandler"
       @dragover="dragOverHandler"
       @dragleave="userIsInDropZone = false"
-      :class="[uploadFileCompeleted ? '' : theme === 'dark' ? 'upload-box-dark' : 'upload-box', theme === 'dark' ? 'border-primary !bg-secondary' : '', ]"
+      :class="[uploadFileCompleted ? '' : theme === 'dark' ? 'upload-box-dark' : 'upload-box', theme === 'dark' ? 'border-primary !bg-secondary' : '', ]"
     >
       <input
         id="dropbox"
@@ -30,12 +30,12 @@
         accept=".html,.json,.htm,.txt"
         class="opacity-[0] absolute w-[inherit] h-[inherit]"
         @change="fileUploadedFromBrowse"
-        :disabled="uploadFileCompeleted ? true : false"
-        :class="uploadFileCompeleted ? '' : 'cursor-pointer'"
+        :disabled="uploadFileCompleted ? true : false"
+        :class="uploadFileCompleted ? '' : 'cursor-pointer'"
       />
       <div
         class="flex flex-col text-lg items-center text-secondary"
-        v-if="!uploadFileCompeleted"
+        v-if="!uploadFileCompleted"
       >
         <i class="material-symbols-rounded text-6xl mb-4" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">home_storage</i>
         <p :class="theme === 'dark' ? 'text-white' : 'text-secondary'">
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { get, set } from 'idb-keyval'
+import { set } from 'idb-keyval'
 import { useMainStore } from '../../stores/index.js'
 import { useAlerts } from '~/stores/alerts/alerts.js'
 import { useI18n } from 'vue-i18n'
@@ -80,10 +80,10 @@ const mainStore = useMainStore()
 const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 let file = reactive([])
-const allowedFileExtentions = ['html', 'txt', 'htm', 'json']
+const allowedFileExtensions = ['html', 'txt', 'htm', 'json']
 const regexFileExtension = /[^\\.]+$/
 
-const uploadFileCompeleted = ref(false)
+const uploadFileCompleted = ref(false)
 const userIsInDropZone = ref(false)
 
 function dropHandler (ev) {
@@ -112,7 +112,7 @@ function checkFile (file) {
   const isFileAllowed = ref(false)
   const fileName = file.name
   // eslint-disable-next-line no-return-assign
-  allowedFileExtentions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
+  allowedFileExtensions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
   if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
     storeAlerts.addNewAlert({ title: i18n.t('alertUploadSuccessTitle'), description: i18n.t('alertUploadSuccessDescription'), type: 'success', button: false, destruction: 5000 })
@@ -124,7 +124,7 @@ function checkFile (file) {
 }
 
 async function updateFileStatus () {
-  // prevent to update file when user upload repetive file
+  // prevent to update file when user upload repetitive file
   if (mainStore.$state.file.fileSize !== file.size) {
     mainStore.fileUpdate(file)
 
@@ -133,7 +133,7 @@ async function updateFileStatus () {
 }
 
 function changeContentInUploadBox () {
-  uploadFileCompeleted.value = true
+  uploadFileCompleted.value = true
   setTimeout(() => {
     useRouter().push('/desk')
   }, 2000)
@@ -142,16 +142,8 @@ function changeContentInUploadBox () {
 /* IndexDB section */
 async function setUploadedFileInIndexDB () {
   const newFile = await file.text()
-  set('currentUploadedFile', JSON.stringify(newFile)) // set inside indexDB
-  storeUploadedFileInIndexDB(newFile)
+  set('currentUploadedFile', JSON.stringify(newFile)) // set inside indexD
 }
-
-async function storeUploadedFileInIndexDB (fileContent) {
-  const files = await get('allUploadedFiles').then(val => JSON.parse(val))
-  files[useFileNameSplitter(file.name, 'name').value] = fileContent
-  set('allUploadedFiles', JSON.stringify(files))
-}
-
 </script>
 
 <style lang="scss" scoped>

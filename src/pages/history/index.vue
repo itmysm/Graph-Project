@@ -1,3 +1,3 @@
 <template>
-  <div class="w-full">Test</div>
+  <div class="w-full hideJustScrollBar">Test</div>
 </template>

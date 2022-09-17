@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-center items-center">
+  <div class="hideJustScrollBar w-full flex justify-center items-center">
     <TheLoading class="opacity-75 bg-white" v-show="false"/>
     <div class="flex flex-col items-center justify-center h-full relative" v-if="!isFileExists">
       <img class="group-hover:blur-[2px] transition-all duration-500" :src=" theme === 'dark' ? '../../assets/media/banners/symbols/empty-folder-light.webp' : '../../assets/media/banners/symbols/empty-folder.webp'" alt="" width="100">

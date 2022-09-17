@@ -9,9 +9,11 @@ import { provide } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useMainStore } from './stores/index.js'
 import { set } from 'idb-keyval'
+
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
 const i18n = useI18n()
+const { data: defaultChats } = await useAsyncData('examples', () => queryContent('/examples').find())
 
 onBeforeMount(() => {
   userHandler()
@@ -86,11 +88,25 @@ function registerUser () {
   localStorage.setItem('register', JSON.stringify(userData))
 }
 
-function registerIndexDB () {
+async function registerIndexDB () {
   set('currentUploadedFile', JSON.stringify({})) // for current uploaded file
-  set('allUploadedFiles', JSON.stringify({})) // store all uploaded file in indexDB
+  set('allUploadedFiles', setDefaultDataInIndexDB()) // store all uploaded file in indexDB
 }
 
+function setDefaultDataInIndexDB () {
+  const object = {}
+  // eslint-disable-next-line array-callback-return
+  defaultChats.value.map(item => {
+    object[item.title] = {
+      name: item.title.toLowerCase() + '.' + item._extension,
+      application: item.title.toLowerCase(),
+      lastModified: new Date().getTime(),
+      content: item.description,
+      size: 400
+    }
+  })
+  return JSON.stringify(object)
+}
 provide('isUserDeviceSupported', isUserDeviceSupported)
 </script>
 
@@ -99,5 +115,13 @@ html,
 body {
   max-height: 100vh;
   overflow: hidden;
+}
+
+.hideJustScrollBar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
 }
 </style>
