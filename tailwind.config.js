@@ -7,7 +7,8 @@ module.exports = {
     "./src/layouts/**/*.vue",
     "./src/pages/**/*.vue",
     "./src/pages/*.vue",
-    "./src/plugins/**/*.{js,ts}"
+    "./src/plugins/**/*.{js,ts}",
+    "./src/*.vue"
   ],
   darkMode: 'media',
   theme: {

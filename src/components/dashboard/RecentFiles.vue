@@ -32,7 +32,11 @@ const imgApps = {
   instagram: '../../assets/media/banners/socials/s-472969569bced37cb7e70d29596279e2.jpg'
 }
 onMounted(async () => {
-  recentFiles.value = await get('allUploadedFiles').then(val => Object.values(JSON.parse(val)))
+  try {
+    recentFiles.value = await get('allUploadedFiles').then(val => Object.values(JSON.parse(val)))
+  } catch (error) {
+    useRouter().push('/_privateTab')
+  }
   console.log(recentFiles.value)
 })
 
