@@ -104,6 +104,8 @@ function setDefaultDataInIndexDB () {
       content: item.description,
       size: 400
     }
+
+    console.log(item.description)
   })
   return JSON.stringify(object)
 }

@@ -34,17 +34,18 @@ async function checkFile () {
 
 async function storeUploadedFileInIndexDB (fileContent, app) {
   const file = mainStore.$state.file
-
-  // I create a file template and after this push information to it
-  const tempFile = { name: file.fileName, size: file.fileSize, application: app, lastModified: file.fileLastModified, content: fileContent }
-  // Get files from IndexDB
-  const files = await get('allUploadedFiles').then(val => JSON.parse(val))
-  // Add our file into files
-  console.log(files)
-  files[useFileNameSplitter(file.fileName, 'name').value + '_' + file.fileSize + '_' + file.fileLastModified] = tempFile
-  console.log(files, tempFile)
-  // Set files into IndexDB
-  console.log('now?')
-  set('allUploadedFiles', JSON.stringify(files))
+  if (!file.isFileExistInRecents) {
+    // I create a file template and after this push information to it
+    const tempFile = { name: file.fileName, size: file.fileSize, application: app, lastModified: file.fileLastModified, content: fileContent }
+    // Get files from IndexDB
+    const files = await get('allUploadedFiles').then(val => JSON.parse(val))
+    // Add our file into files
+    console.log(files)
+    files[useFileNameSplitter(file.fileName, 'name').value + '_' + file.fileSize + '_' + file.fileLastModified] = tempFile
+    console.log(files, tempFile)
+    // Set files into IndexDB
+    console.log('now?')
+    set('allUploadedFiles', JSON.stringify(files))
+  }
 }
 </script>
