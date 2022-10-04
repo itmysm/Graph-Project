@@ -22,7 +22,7 @@
 
 <script setup>
 import { get, set } from 'idb-keyval'
-import { fromNow } from '~/scripts/fromNow'
+// import { fromNow } from '~/scripts/fromNow'
 import { textShortener } from '~/scripts/textShortener'
 import { useMainStore } from '~/stores/index.js'
 
@@ -48,6 +48,14 @@ function openFile (index) {
   fileInfo.isRecentFile = true
   mainStore.fileUpdate(fileInfo)
   set('currentUploadedFile', JSON.stringify(fileInfo.content)) // set inside indexD
+
+  goToDesk()
+}
+
+function goToDesk () {
+  setTimeout(() => {
+    useRouter().push('/desk')
+  }, 500)
 }
 
 const theme = ref(document.querySelector('body').getAttribute('data-theme'))

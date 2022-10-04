@@ -38,7 +38,7 @@
         <div class="w-full flex flex-col items-center py-3 shadow-[0_35px_35px_-15px_rgba(100,100,100,0.1)] rounded-lg ltr:border-l rtl:border-r cursor-default" :class="theme === 'dark' ? 'border-primary text-whit' : 'border-light text-secondary'">
           <span class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-primary"><i class="material-symbols-rounded text-[25px] text-white">Schedule</i></span>
           <h5 class="text-[13px] fw-bold mt-1">{{ $t('lastModified') }}</h5>
-          <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified).split(' ')[0] }} {{ $t(fromNow(file.fileLastModified).split(' ')[1]) }}</p>
+          <!-- <p class="text-[12px] text-neutral"> {{ fromNow(file.fileLastModified).split(' ')[0] }} {{ $t(fromNow(file.fileLastModified).split(' ')[1]) }}</p> -->
         </div>
       </div>
     </div>
@@ -59,6 +59,7 @@ const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 onUpdated(() => {
   isFileExists.value = mainStore.fileStatus.isFileUploaded
+  console.log(mainStore.$state.file)
 })
 
 function sidebar (redeclare) {

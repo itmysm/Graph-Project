@@ -38,5 +38,9 @@ function getChangesFromChildren (key, changes) {
 function applayChanges () {
   localStorage.setItem('settings', JSON.stringify(setting))
   saveSetting.animation = false
+
+  setTimeout(() => {
+    location.reload()
+  }, 300)
 }
 </script>
