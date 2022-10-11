@@ -5,8 +5,12 @@
 <script setup>
 import { get, set } from 'idb-keyval'
 import { useMainStore } from '~/stores/index.js'
+import { useAlerts } from '~/stores/alerts/alerts.js'
+import { useI18n } from 'vue-i18n'
 
+const i18n = useI18n()
 const mainStore = useMainStore()
+const storeAlerts = useAlerts()
 const startTime = performance.now()
 
 const emit = defineEmits(['status'])
@@ -24,10 +28,11 @@ async function checkFile () {
     app = 'whatsapp'
   } else if (file.includes('"Here is the data you requested. Remember: Telegram is ad free,')) {
     app = 'telegram'
+  } else {
+    app = false
   }
 
-  storeUploadedFileInIndexDB(file, app)
-  localStorage.setItem('temporaryInfoFile', JSON.stringify({ application: app, extension: mainStore.$state.file.fileType }))
+  app ? storeUploadedFileInIndexDB(file, app) : fileItsTrash()
   const endTime = performance.now()
   emit('status', { limit: minLimit, time: Math.round((endTime - startTime) / 1000) })
 }
@@ -37,15 +42,31 @@ async function storeUploadedFileInIndexDB (fileContent, app) {
   if (!file.isFileExistInRecents) {
     // I create a file template and after this push information to it
     const tempFile = { name: file.fileName, size: file.fileSize, application: app, lastModified: file.fileLastModified, content: fileContent }
+
     // Get files from IndexDB
     const files = await get('allUploadedFiles').then(val => JSON.parse(val))
+
     // Add our file into files
     console.log(files)
     files[useFileNameSplitter(file.fileName, 'name').value + '_' + file.fileSize + '_' + file.fileLastModified] = tempFile
     console.log(files, tempFile)
+
     // Set files into IndexDB
     console.log('now?')
     set('allUploadedFiles', JSON.stringify(files))
+
+    // set file in temp localstorage
+    localStorage.setItem('temporaryInfoFile', JSON.stringify({ application: app, extension: mainStore.$state.file.fileType }))
   }
+}
+
+// This function is executed when user uploads a wrong file
+function fileItsTrash () {
+  storeAlerts.addNewAlert({ title: i18n.t('alertError'), description: i18n.t('alertErrorDescription'), type: 'error', button: false, destruction: 12000 })
+  mainStore.resetFileValues()
+
+  setTimeout(() => {
+    useRouter().push('./')
+  }, 3000)
 }
 </script>

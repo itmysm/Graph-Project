@@ -50,6 +50,8 @@
   "alertUploadErrorDescription": "فرمت فایل آپلود شده مجاز نیست. لطفا فایل دیگیری آپلود کنید",
   "alertAttentionTitle": "توجه!",
   "alertAttentionDescription": "لطفا تا زمان اتمام عملیات از این صفحه خارج نشوید.",
+  "alertErrorTitle": "ارور",
+  "alertErrorDescription": "ساختار این فایل پشتیبانی نمیشود. یا فایل خراب است.",
   "fileInformation": "اطلاعات فایل",
   "fileName": "اسم فایل",
   "lastModified": "آخرین ویرایش",

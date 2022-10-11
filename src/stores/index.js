@@ -61,6 +61,19 @@ export const useMainStore = defineStore('mainStore', {
     },
     setSettingsOnState () {
       this.setting = JSON.parse(localStorage.getItem('settings'))
+    },
+
+    // this func reset all data's in file object values
+    resetFileValues () {
+      this.file.isFileUploaded = false
+      this.file.isFileExistInRecents = false
+      this.file.fileName = 'undefined'
+      this.file.fileSize = 0
+      this.file.fileType = 'none'
+      this.file.fileLastModified = 'September 1, 2002 23:54:00'
+      this.file.fileLines = '0'
+      this.file.content = null
+      this.file.dateUploaded = null
     }
   }
 })

@@ -50,6 +50,8 @@
   "alertUploadErrorDescription": "The file format is not allowed. Please try another file",
   "alertAttentionTitle": "Attention!",
   "alertAttentionDescription": "Please do not leave this page until the results are fully displayed",
+  "alertErrorTitle": "Error!",
+  "alertErrorDescription": "The structure of this file is not supported. or the file is corrupted.",
   "fileInformation": "File information",
   "fileName": "File name",
   "lastModified": "Last modified",
