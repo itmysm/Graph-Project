@@ -46,7 +46,6 @@ export const useMainStore = defineStore('mainStore', {
 
   actions: {
     async fileUpdate (file) {
-      console.log(file.available)
       this.file.fileType = file.name.match(/[^\\.]+$/)[0]
       this.file.isFileExistInRecents = file.isRecentFile
       this.file.content = null

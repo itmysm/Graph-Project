@@ -1,7 +1,7 @@
 <template>
   <div class="w-[400px] h-20 relative rounded-lg py-5 px-4 h-fit ltr:font-sans rtl:font-persian" :class="theme === 'dark' ? 'border-accent' : 'bg-secondary'">
     <button class="btn btn-xs border-none bg-transparent hover:bg-transparent absolute top-2 right-2"
-      @click.once="$emit('close', true)">
+      @click.once="$emit('close', true)" v-show="false">
       <i class="material-symbols-rounded text-[20px] text-accent" :class="close ? '' : 'animate-wiggle'">Close</i>
     </button>
     <div class="grid grid-cols-7 gap-4">
@@ -56,6 +56,7 @@ const progressBar = ref(0)
 
 onMounted(() => {
   const timerInterVal = ref(100)
+
   setInterval(() => {
     progressBar.value < 100 ? progressBar.value++ : timerInterVal.value = false
   }, timerInterVal)

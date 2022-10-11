@@ -11,8 +11,8 @@ export const useAlerts = defineStore('index', {
 
   actions: {
     addNewAlert (alert) {
+      alert.key = new Date().getTime() + Math.random()
       this.alerts.push(alert)
-      console.log(alert)
     }
   }
 })
