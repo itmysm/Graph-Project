@@ -1,7 +1,7 @@
 <!-- This file extracts the information from the text file and converts it into an object/json -->
 
 <template>
-  <div class="instagram--temp"></div>
+  <div class="whatsapp--temp"></div>
 </template>
 
 <script setup>
@@ -11,50 +11,52 @@ const startTime = performance.now()
 const emit = defineEmits(['status'])
 
 const fileInfo = JSON.parse(localStorage.getItem('temporaryInfoFile'))
-const minLimit = fileInfo.application === 'instagram' ? 5 : 1
+const minLimit = fileInfo.application === 'whatsapp' ? 5 : 1
 
 let content = reactive([])
-const date = new Date()
-let temp = reactive({})
 
-const data = {
+// eslint-disable-next-line no-useless-escape
+const regxDate = /([0-9]{1,2}[\/][0-9]{1,2}[\/][0-9]{1,4})/
+const regxTime = /([0-9]{1,2}:[0-9]{1,2}) \w\w/
+// eslint-disable-next-line no-useless-escape
+const regexDateAndTime = /([0-9]{1,2}[\/][0-9]{1,2}[\/][0-9]{1,4}), ([0-9]{1,2}:[0-9]{1,2}) \w\w - /
+const regexName = /([a-z0-9 \S]+?:)/
+// eslint-disable-next-line no-useless-escape
+const regexDateAndTimeAndName = /([0-9]{1,2}[\/][0-9]{1,2}[\/][0-9]{1,4}), ([0-9]{1,2}:[0-9]{1,2}) \w\w - ([a-z0-9 \S]+?:) /
+const regexMessage = /([a-z0-9 \S]+)/
+
+const data = reactive({
   chatName: '',
   type: '',
   messages: []
-}
+})
 
 onMounted(async () => {
-  if (fileInfo.application === 'instagram') {
-    temp = document.querySelector('.instagram--temp')
+  if (fileInfo.application === 'whatsapp') {
     content = await get('currentUploadedFile').then((val) => JSON.parse(val))
-    injectionIntoDOM()
+    content = content.split('\n')
+    turnToJson(content)
   }
 })
 
-function injectionIntoDOM () {
-  content = content.replaceAll('src=', 'alt=') // prevent to load files doesn't exist
-  temp.innerHTML = content
-  exportDataFromDOM()
+function turnToJson (content) {
+  for (let index = 0; index < content.length; index++) {
+    data.messages.push({
+      date: content[index].match(regxDate)?.[0],
+      time: content[index].match(regxTime)?.[0],
+      name: content[index].replace(regexDateAndTime, '').match(regexName)?.[0].replace(':', ''),
+      message: content[index].replace(regexDateAndTimeAndName, '').match(regexMessage)?.[0]
+    })
+  }
+
+  // eslint-disable-next-line no-unused-expressions
+  content ? data.chatName = 'mysm' : 'test'
+  // eslint-disable-next-line no-unused-expressions
+  content ? data.type = 'private' : 'group'
+  finish()
 }
 
-function exportDataFromDOM () {
-  const messages = [...temp.querySelectorAll('.pam')] // every message have a .pam class
-  data.chatName = temp.querySelector('._a70e').innerText
-  data.type = document.querySelectorAll('._a6-h')[0].innerText.split(' ')[0] === 'Participants:' ? 'group' : 'private'
-
-  // find & push exported items to data var
-  // eslint-disable-next-line array-callback-return
-  messages.map((msg) => {
-    if (msg.querySelector('._a6-o').innerText !== '') {
-      data.messages.push({ name: msg.querySelector('._2pim')?.innerText, date: date.getTime(msg.querySelector('._a6-o')?.innerText), message: msg.querySelector('._a6-p div :nth-child(2)')?.innerText }) // stable for english lang not another
-    }
-  })
-
-  cleanDOM()
-}
-
-function cleanDOM () {
-  temp.innerHTML = ''
+function finish () {
   set('file', JSON.stringify(data))
   const endTime = performance.now()
   emit('status', { limit: minLimit, time: Math.round((endTime - startTime) / 1000) })

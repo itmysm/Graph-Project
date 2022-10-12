@@ -14,6 +14,7 @@
 
     <pagesDeskDetect @status="stepsRunner($event)" v-if="activeIndex" />
     <pagesDeskTransitionsInstagramHtmlToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
+    <PagesDeskTransitionsWhatsappTextToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
   </div>
 </template>
 

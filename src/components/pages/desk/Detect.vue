@@ -54,10 +54,9 @@ async function storeUploadedFileInIndexDB (fileContent, app) {
     // Set files into IndexDB
     console.log('now?')
     set('allUploadedFiles', JSON.stringify(files))
-
-    // set file in temp localstorage
-    localStorage.setItem('temporaryInfoFile', JSON.stringify({ application: app, extension: mainStore.$state.file.fileType }))
   }
+  // set file in temp localstorage
+  localStorage.setItem('temporaryInfoFile', JSON.stringify({ application: app, extension: mainStore.$state.file.fileType }))
 }
 
 // This function is executed when user uploads a wrong file
