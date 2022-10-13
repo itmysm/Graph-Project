@@ -18,10 +18,10 @@
           :key="i" @click="selectedItem = i">
           <NuxtLink :to="item.path"
             class="group w-full flex items-center hover:bg-primary rounded-lg transition-all duration-300 mb-2"
-            :class="[selectedItem === i ? 'bg-primary' : '!bg-transparent', isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
-            <i class="material-symbols-rounded text-neutral group-hover:text-white transition-all duration-300"
+            :class="[selectedItem === i ? 'bg-primary' : 'bg-transparent', isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
+            <i class="material-symbols-rounded text-neutral group-hover:!text-white transition-all duration-300"
               :class="selectedItem == i ? '!text-white' : '!text-neutral'">{{ item.icon }}</i>
-            <p class="xl:block ltr:ml-3 rtl:mr-3 text-neutral group-hover:text-white transition-all duration-300"
+            <p class="xl:block ltr:ml-3 rtl:mr-3 text-neutral group-hover:!text-white transition-all duration-300"
               :class="selectedItem === i ? '!text-white' : '!text-neutral'" v-if="isSidebarOpen">{{ item.name }}</p>
           </NuxtLink>
         </li>
@@ -62,7 +62,6 @@ const menuItems = reactive([
   { name: i18n.t('menuDashboard'), icon: 'dashboard', path: '/' },
   { name: i18n.t('menuDesk'), icon: 'Bar_Chart', path: '/desk' },
   { name: i18n.t('menuResult'), icon: 'Flash_On', path: '/result' },
-  { name: i18n.t('menuHistory'), icon: 'history', path: '/history' },
   { name: i18n.t('menuSetting'), icon: 'settings', path: '/settings' }
 ])
 
@@ -76,8 +75,14 @@ watch(() => props.sideBarInfo, (newValue) => {
 })
 
 watch(() => useRoute().path, (newPath) => {
-  // eslint-disable-next-line no-return-assign
-  menuItems.map((item, index) => item.path === newPath ? selectedItem.value = index : selectedItem.value = -1)
+  const indexByPath = ref(null)
+  menuItems.forEach((element, index) => {
+    if (menuItems.path === newPath) {
+      selectedItem.value = index
+    }
+  })
+
+  if (indexByPath.value == null) selectedItem.value = -1
   path.value = newPath
 })
 

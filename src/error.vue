@@ -9,16 +9,21 @@ definePageMeta({
   layout: 'start'
 })
 
+const errors = ['_privateTab', '_underMaintenance']
+const matchedItem = []
 let section
 
 onMounted(() => {
-  const fullPath = useRoute().fullPath
   section = document.querySelector('#section')
-  switch (fullPath) {
-    case '/_privateTab':
+  for (let index = 0; index < errors.length; index++) {
+    document.location.href.includes(errors[index]) ? matchedItem.push(errors[index]) : index++
+  }
+
+  switch (matchedItem[0]) {
+    case '_privateTab':
       privateTabError()
       break
-    case '/undefined':
+    case '_underMaintenance':
       privateTabError()
       break
     default:

@@ -45,7 +45,15 @@ function stepsRunner (dataComponent = { limit: 2, time: 2 }) {
       stepsQueue[activeIndex.value].process = true
       activeIndex.value++
     }
+
+    if (activeIndex.value === stepsQueue.length) redirection()
   }, (minLimit - timeSpend) * 1000)
+}
+
+function redirection () {
+  setTimeout(() => {
+    useRouter().push('/result')
+  }, 2000)
 }
 
 </script>
