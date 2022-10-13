@@ -18,11 +18,24 @@
           :key="i" @click="selectedItem = i">
           <NuxtLink :to="item.path"
             class="group w-full flex items-center hover:bg-primary rounded-lg transition-all duration-300 mb-2"
-            :class="[selectedItem === i ? 'bg-primary' : false, isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
+            :class="[selectedItem === i ? 'bg-primary' : '!bg-transparent', isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-2 px-4']">
             <i class="material-symbols-rounded text-neutral group-hover:text-white transition-all duration-300"
-              :class="selectedItem == i ? '!text-white' : ''">{{ item.icon }}</i>
+              :class="selectedItem == i ? '!text-white' : '!text-neutral'">{{ item.icon }}</i>
             <p class="xl:block ltr:ml-3 rtl:mr-3 text-neutral group-hover:text-white transition-all duration-300"
-              :class="selectedItem === i ? '!text-white' : false" v-if="isSidebarOpen">{{ item.name }}</p>
+              :class="selectedItem === i ? '!text-white' : '!text-neutral'" v-if="isSidebarOpen">{{ item.name }}</p>
+          </NuxtLink>
+        </li>
+      </ul>
+
+      <ul class="px-0 absolute bottom-0 w-full h-fit">
+        <li class="w-full overflow-hidden" :class="isSidebarOpen ? 'px-2' : 'px-4'">
+          <NuxtLink to="/about"
+            :class="[isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-[10px] px-4', path === '/about' ? 'bg-primary' : '']"
+            class="group w-full flex items-center hover:bg-primary rounded-lg transition-all duration-300 mb-2 py-4">
+            <i class="material-symbols-rounded text-neutral group-hover:text-white transition-all duration-300"
+              :class="path === '/about' ? '!text-white' : ''">Code</i>
+            <p class="xl:block ltr:ml-3 rtl:mr-3 text-neutral group-hover:text-white transition-all duration-300"
+              v-if="isSidebarOpen" :class="path === '/about' ? '!text-white' : ''">{{ $t('menuAbout') }}</p>
           </NuxtLink>
         </li>
       </ul>
@@ -42,11 +55,13 @@ definePageMeta({
 const props = defineProps(['sideBarInfo'])
 const isSidebarOpen = ref(true)
 const selectedItem = ref(0)
+const path = ref('')
 const i18n = useI18n()
 
 const menuItems = reactive([
   { name: i18n.t('menuDashboard'), icon: 'dashboard', path: '/' },
   { name: i18n.t('menuDesk'), icon: 'Bar_Chart', path: '/desk' },
+  { name: i18n.t('menuResult'), icon: 'Flash_On', path: '/result' },
   { name: i18n.t('menuHistory'), icon: 'history', path: '/history' },
   { name: i18n.t('menuSetting'), icon: 'settings', path: '/settings' }
 ])
@@ -62,7 +77,8 @@ watch(() => props.sideBarInfo, (newValue) => {
 
 watch(() => useRoute().path, (newPath) => {
   // eslint-disable-next-line no-return-assign
-  menuItems.map((item, index) => item.path === newPath ? selectedItem.value = index : false)
+  menuItems.map((item, index) => item.path === newPath ? selectedItem.value = index : selectedItem.value = -1)
+  path.value = newPath
 })
 
 </script>
