@@ -11,10 +11,11 @@
         'Hourglass_Empty' }}</i>
       </li>
     </ul>
-
     <pagesDeskDetect @status="stepsRunner($event)" v-if="activeIndex" />
     <pagesDeskTransitionsInstagramHtmlToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
     <PagesDeskTransitionsWhatsappTextToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
+    <PagesDeskCalculateJson @status="stepsRunner($event)" v-if="activeIndex === 3" />
+    <PagesDeskResultPreparingResults @status="stepsRunner($event)" v-if="activeIndex === 4" />
   </div>
 </template>
 
@@ -40,9 +41,10 @@ function stepsRunner (dataComponent = { limit: 2, time: 2 }) {
       stepsQueue[activeIndex.value - 1].complete = true
     }
 
-    stepsQueue[activeIndex.value].process = true
-
-    if (activeIndex.value < stepsQueue.length) activeIndex.value++
+    if (activeIndex.value < stepsQueue.length) {
+      stepsQueue[activeIndex.value].process = true
+      activeIndex.value++
+    }
   }, (minLimit - timeSpend) * 1000)
 }
 
