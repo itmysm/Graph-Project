@@ -1,12 +1,25 @@
-# Graph 📈
+Graph-Project
+=========
 
-## Commit Messages
-List of all commit messages used in this project
+An open-source Web-App for your Social media.
+Graph-Project was made for check the statistics of your messages in social media.
 
-| Commit | Meaning |
-| ------ | ------ |
-| feat | Used when a feature created / added |
-| fix | Used when a bug fixed |
-| half | Used when a feature is being created and not complete |
-| chore | Used when a package or library added to project |
-| md | Used when README file is updated or changed |
+![Graph-Project](https://i.postimg.cc/FsXWnsh8/graph.png)
+
+
+
+## Features
+
+* 📊 Creating different graphs based on the number of messages, sending time and..
+* 👾 Support apps like Telegram, WhatsApp, Instagram
+* 🦾 Work without internet connection
+* 🔐 All your data is stored on your computer and nothing is sent to our servers!
+
+## Task lists
+
+- [x] Complete the Desk page 
+- [ ] Complete the Result page
+- [ ] Ability to output the results
+
+## Contributing
+If you want to contribute to the project, great! let's talk [Email](mailto:dev.mysm@gmail.com) | [Telegram](https://t.me/itmysm)
