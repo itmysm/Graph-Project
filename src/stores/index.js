@@ -1,3 +1,4 @@
+// storeAlerts.addNewAlert({ title: i18n.t(''), description: i18n.t(''), type:, button: , duration: , alertType:})
 import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('mainStore', {

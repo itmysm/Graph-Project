@@ -41,6 +41,6 @@ function applayChanges () {
 
   setTimeout(() => {
     location.reload()
-  }, 300)
+  }, 700)
 }
 </script>

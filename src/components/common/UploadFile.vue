@@ -115,11 +115,11 @@ function checkFile (file) {
   allowedFileExtensions.map(x => fileName.match(regexFileExtension)[0] === x ? isFileAllowed.value = true : false)
   if (isFileAllowed.value) {
     changeContentInUploadBox(fileName)
-    storeAlerts.addNewAlert({ title: i18n.t('alertUploadSuccessTitle'), description: i18n.t('alertUploadSuccessDescription'), type: 'success', button: false, duration: 5000 })
+    storeAlerts.addNewAlert({ title: i18n.t('alertUploadSuccessTitle'), description: i18n.t('alertUploadSuccessDescription'), type: 'success', button: false, duration: 5000, alertType: 0 })
     file.available = true
     updateFileStatus(file)
   } else {
-    storeAlerts.addNewAlert({ title: i18n.t('alertUploadErrorTitle'), description: 'alertUploadErrorDescription', type: 'error', button: false, duration: 5000 })
+    storeAlerts.addNewAlert({ title: i18n.t('alertUploadErrorTitle'), description: 'alertUploadErrorDescription', type: 'error', button: false, duration: 5000, alertType: 0 })
   }
 }
 

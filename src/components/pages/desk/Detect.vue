@@ -61,7 +61,7 @@ async function storeUploadedFileInIndexDB (fileContent, app) {
 
 // This function is executed when user uploads a wrong file
 function fileItsTrash () {
-  storeAlerts.addNewAlert({ title: i18n.t('alertError'), description: i18n.t('alertErrorDescription'), type: 'error', button: false, duration: 12000 })
+  storeAlerts.addNewAlert({ title: i18n.t('alertError'), description: i18n.t('alertErrorDescription'), type: 'error', button: false, duration: 12000, alertType: 0 })
   mainStore.resetFileValues()
 
   setTimeout(() => {

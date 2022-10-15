@@ -25,7 +25,7 @@ import { useI18n } from 'vue-i18n'
 const storeAlerts = useAlerts()
 const i18n = useI18n()
 
-storeAlerts.addNewAlert({ title: i18n.t('alertAttentionTitle'), description: i18n.t('alertAttentionDescription'), type: 'warning', button: false, duration: 12000 })
+storeAlerts.addNewAlert({ title: i18n.t('alertAttentionTitle'), description: i18n.t('alertAttentionDescription'), type: 'warning', button: false, duration: 12000, alertType: 0 })
 
 const stepsQueue = reactive([{ name: i18n.t('progressStepDetect'), process: true, complete: false }, { name: i18n.t('progressStepTransition'), process: false, complete: false }, { name: i18n.t('progressStepCalculate'), process: false, complete: false }, { name: i18n.t('progressStepPreparing'), process: false, complete: false }])
 const activeIndex = ref(0)

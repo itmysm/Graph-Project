@@ -11,8 +11,11 @@ export const useAlerts = defineStore('index', {
 
   actions: {
     addNewAlert (alert) {
-      alert.key = new Date().getTime() + Math.random()
-      this.alerts.push(alert)
+      const alertsStatus = JSON.parse(localStorage.getItem('settings')).notifications
+      if (alertsStatus[alert.alertType].default) {
+        alert.key = new Date().getTime() + Math.random()
+        this.alerts.push(alert)
+      }
     }
   }
 })
