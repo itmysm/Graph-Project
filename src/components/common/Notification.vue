@@ -6,7 +6,7 @@
     </button>
     <div class="grid grid-cols-7 gap-4">
       <div class="col-span-1 flex justify-center items-center pb-4">
-        <img :src="'../../assets/media/icons/' + notification.type + '.webp'" :alt="notification.type" width="33">
+        <img :src="useMediaBaseApi().value + 'icons/' + notification.type + '.webp'" :alt="notification.type" width="33">
       </div>
       <div class="col-span-6">
         <div>

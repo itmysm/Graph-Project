@@ -4,7 +4,7 @@
       <i class="material-symbols-rounded text-white transition-all rtl:rotate-180 text-[20px] text-2xl" :class="sidebarInfoIsOpen ? 'rotate-180' : 'rotate-360'">arrow_left</i>
     </a>
     <div class="flex flex-col items-center justify-center h-full relative" :class="[sidebarInfoIsOpen ?'show--content': '', isFileExists ? 'animate--up' : '' ]" v-if="false">
-      <img class="group-hover:blur-[2px] transition-all duration-500" src="~/assets/media/banners/symbols/empty-folder.webp" alt="" width="100">
+      <img class="group-hover:blur-[2px] transition-all duration-500" :src=" useMediaBaseApi().value + 'banners/empty-folder.webp'" alt="" width="100">
       <h3 class="text-secondary text-center mt-2">{{$t('infoSidebarNoFile')}}</h3>
     </div>
 

@@ -7,7 +7,7 @@
           :key="index">
           <div class="overflow-hidden rounded-md relative">
             <img class="group-hover:blur-[2px] transition-all duration-500"
-              :src="imgApps[file.application]" alt="">
+              :src=" useMediaBaseApi().value + imgApps[file.application]" alt="">
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>
           </div>
           <p class="mt-2 group-hover:text-primary transition-all duration-500">
@@ -29,9 +29,9 @@ import { useMainStore } from '~/stores/index.js'
 const mainStore = useMainStore()
 const recentFiles = ref()
 const imgApps = {
-  whatsapp: '../../assets/media/banners/socials/s-bf3594e61940024a1b16bffcada0c4a0.webp',
-  telegram: '../../assets/media/banners/socials/s-315269569bced37cb7e70d29596279e2.webp',
-  instagram: '../../assets/media/banners/socials/s-472969569bced37cb7e70d29596279e2.jpg'
+  whatsapp: 'banners/whatsapp.webp',
+  telegram: 'banners/telegram.webp',
+  instagram: 'banners/instagram.webp'
 }
 
 onMounted(async () => {

@@ -26,10 +26,10 @@
         let's start
       </button>
     </div>
-    <img v-if="theme === 'dark'" class="max-w-[490px] xl:max-w-[520px] 2xl:max-w-fit" src="~/assets/media/banners/a6d9b11f0743cb162023738146143f16.webp" alt="Welcome to graph">
+    <img v-if="theme === 'dark'" class="max-w-[490px] xl:max-w-[520px] 2xl:max-w-fit" :src="useMediaBaseApi().value + 'banners/welcome%20page/dark.webp'" alt="Welcome to graph">
     <img
       v-else
-      src="~/assets/media/banners/s-9f7685ac9540833d5.webp"
+      :src="useMediaBaseApi().value + 'banners/welcome%20page/light.webp'"
       alt="Welcome to graph"
     />
   </div>
