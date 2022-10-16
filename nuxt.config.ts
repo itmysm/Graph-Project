@@ -13,6 +13,8 @@ export default defineNuxtConfig({
         },
       },
     },
+
+    transpile: ['echarts/core.d.ts']
   },
 
   css: ["~/assets/css/tailwind.css", "~/assets/css/main.css"],
