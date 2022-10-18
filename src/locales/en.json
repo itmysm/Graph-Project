@@ -16,6 +16,7 @@
   "infoSidebarNoFile": "No files found. Upload a file to get started.",
   "settings": "Settings",
   "BaseDataTitle": "Basic analysis",
+  
   "askSave": "Do you want to save the changes?",
   "save": "Save",
   "cancel": "Cancel",
@@ -67,5 +68,6 @@
   "resultPageSortByDate": "By Date",
   "resultPageSortByName": "By Name",
   "resultPageSortTheMost": "The Most",
-  "resultPageSortTheLeast": "The Least"
+  "resultPageSortTheLeast": "The Least",
+  "resultPageTitleAllMessagesChart": "Messages charting"
 }

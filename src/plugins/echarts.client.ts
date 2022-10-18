@@ -3,7 +3,7 @@ import { use } from 'echarts/core'
 
 // import ECharts modules manually to reduce bundle size
 import {
-  CanvasRenderer
+  SVGRenderer
 } from 'echarts/renderers'
 import {
   BarChart
@@ -19,7 +19,7 @@ import { TitleComponent } from 'echarts/components';
 
 export default defineNuxtPlugin(({ vueApp }) => {
   use([
-    CanvasRenderer,
+    SVGRenderer,
     BarChart,
     GridComponent,
     TooltipComponent,

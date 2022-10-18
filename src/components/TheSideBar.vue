@@ -75,14 +75,16 @@ watch(() => props.sideBarInfo, (newValue) => {
 })
 
 watch(() => useRoute().path, (newPath) => {
-  const indexByPath = ref(null)
+  const IndexFound = ref(false)
   menuItems.forEach((element, index) => {
-    if (menuItems.path === newPath) {
+    if (element.path === newPath) {
+      IndexFound.value = true
       selectedItem.value = index
     }
   })
 
-  if (indexByPath.value == null) selectedItem.value = -1
+  if (IndexFound.value === false) selectedItem.value = -1
+
   path.value = newPath
 })
 
