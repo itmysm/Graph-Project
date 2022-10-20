@@ -1,18 +1,14 @@
 <template>
-  <section class="w-full" >
+  <section class="w-full overflow-hidden" >
     <div class="max-w-full mt-14 px-10 overflow-hidden">
       <div class="w-full flex items-center mb-5 justify-between">
         <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('BaseDataTitle') }}</h3>
       </div>
-      <section class="flex hideJustScrollBar">
-        <div class="mr-10"><PagesResultButtons :data="{name: $t('resultPageBaseDataAllMessages'), value: result.numberOfMessages, shapeIndex: 0 }" /></div>
-        <div class="mr-10" v-for="(item, i) in result.numberOfMessagesPerPerson" :key="i"><PagesResultButtons :data="{ name: i, value: item, shapeIndex: i} " /></div>
-      </section>
+      <PagesResultTopList />
     </div>
-
-    <div class="max-w-full mt-14 px-10 overflow-hidden">
+    <!-- <div class="max-w-full mt-14 px-10 overflow-hidden">
       <div class="w-full flex items-center mb-5 justify-between">
-        <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('BaseDataTitle') }}</h3>
+        <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('professionalDataTitle') }}</h3>
       </div>
 
       <div class="grid grid-cols-2 gap-4 h-80">
@@ -24,7 +20,7 @@
           <v-chart class="max-w-[500px]" :option="pieOptions" v-if="isDOMReady" />
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -48,7 +44,7 @@ const option = ref({
   xAxis: [
     {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: result.numberOfMessagesPerPerson.map(person => person.name),
       axisTick: {
         alignWithLabel: true
       }
@@ -64,7 +60,7 @@ const option = ref({
       name: 'Direct',
       type: 'bar',
       barWidth: '60%',
-      data: [10, 52, 200, 334, 390, 330, 220]
+      data: result.numberOfMessagesPerPerson.map(person => person.numOfMessages)
     }
   ]
 })
@@ -75,7 +71,7 @@ const pieOptions = {
   },
   series: [
     {
-      name: 'Access From',
+      name: 'Messages',
       type: 'pie',
       radius: ['40%', '70%'],
       avoidLabelOverlap: false,
@@ -98,13 +94,9 @@ const pieOptions = {
       labelLine: {
         show: false
       },
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
+      data: result.numberOfMessagesPerPerson.map(val => {
+        return {value: val.numOfMessages, name: val.name}
+      })
     }
   ]
 };

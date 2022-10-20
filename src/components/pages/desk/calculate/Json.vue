@@ -30,13 +30,18 @@ function countMessages () {
 }
 
 function numberOfMessagesPerPerson () {
-  const persons = {}
+  const countingMessage = {}
+  const persons = []
+
   dataChat.messages.forEach(person => {
-    persons[person.name] === undefined ? persons[person.name] = 1 : persons[person.name]++
+    countingMessage[person.name] === undefined ? countingMessage[person.name] = 1 : countingMessage[person.name]++
+  })
+
+  Object.keys(countingMessage).forEach(personName => {
+    persons.push({name:personName, numOfMessages: countingMessage[personName]})
   })
 
   result.numberOfMessagesPerPerson = persons
-  console.log(result)
   finish()
 }
 

@@ -1,8 +1,8 @@
 <template>
   <button class="w-64 flex flex-col h-48 btn bg-[#edf1fc] hover:bg-[#edf1fc] border-none flex flex-col normal-case font-bold relative overflow-hidden">
-    <p class="text-5xl h-14 w-24 flex justify-center items-center text-primary">{{ props.data.value }}</p>
+    <p class="text-5xl h-14 w-24 flex justify-center items-center text-primary">{{ props.data.numOfMessages }}</p>
     <p class="text-sm mt-2 capitalize text-secondary">{{ props.data.name === 'undefined' ? $t('resultPageBaseDataUnknown') : props.data.name }}</p>
-
+  
     <div v-if="randomIndex == 1" class="shapes-1 w-full h-full absolute">
       <div class="first-child bg-primary opacity-25 absolute top-[-15px] w-16 h-16 right-[-20px]"></div>
       <div class="second-child bg-warning opacity-25 absolute bottom-[-10px] w-20 h-20 left-[-40px]"></div>
@@ -26,7 +26,7 @@
     <div v-if="randomIndex == 5" class="shapes-4 w-full h-full absolute">
       <div class="first-child bg-primary opacity-25 absolute bottom-[-15px] w-24 h-20 left-[-40px]"></div>
       <div class="second-child bg-warning opacity-25 absolute top-[-20px] w-24 h-24 right-[-30px]"></div>
-    </div>
+    </div> 
   </button>
 </template>
 
