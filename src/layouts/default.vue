@@ -20,7 +20,9 @@ const sideBar = ref(true)
 const sideBarInfo = ref(false)
 
 onMounted(() => {
-  loading.value = false
+  setTimeout(() => {
+    loading.value = false
+  }, 3000);
 })
 </script>
 

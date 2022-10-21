@@ -1,16 +1,16 @@
 <template>
   <div class="">
     <h3 class="text-2xl" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{$t('recentFiles')}}</h3>
-    <div class="flex">
+    <div class="flex drag-items overflow-x-scroll hideJustScrollBar select-none" @mousedown="mouseDownHandler">
       <ul class="flex mt-6">
         <li class="w-52 mb-4 group cursor-pointer rtl:ml-5 ltr:mr-5" @click="openFile(index)" v-for="(file, index) in recentFiles"
           :key="index">
-          <div class="overflow-hidden rounded-md relative">
-            <img class="group-hover:blur-[2px] transition-all duration-500"
+          <div class="overflow-hidden btn px-0 py-0 h-fit bg-transparent hover:bg-transparent border-none rounded-md relative">
+            <img class="group-hover:blur-[2px] h-[156px] transition-all duration-500"
               :src=" useMediaBaseApi().value + imgApps[file.application]" alt="">
             <NuxtLink class="absolute top-[40%] left-[29%] rounded-full"></NuxtLink>
           </div>
-          <p class="mt-2 group-hover:text-primary transition-all duration-500">
+          <p class="px-1 mt-2 group-hover:text-primary transition-all duration-500">
             {{textShortener(file.name.toLowerCase(), 16)}}
           </p>
           <!-- <p class="text-xs text-neutral group-hover:text-primary transition-all duration-500"> {{ fromNow(file.lastModified).split(' ')[0] }} {{ $t(fromNow(file.lastModified).split(' ')[1]) }}</p> -->
@@ -31,8 +31,10 @@ const recentFiles = ref()
 const imgApps = {
   whatsapp: 'banners/whatsapp.webp',
   telegram: 'banners/telegram.webp',
-  instagram: 'banners/instagram.webp'
+  instagram: 'banners/instagram.jpg'
 }
+const theme = ref(document.querySelector('body').getAttribute('data-theme'))
+let pos = reactive({ top: 0, left: 0, x: 0, y: 0 })
 
 onMounted(async () => {
   try {
@@ -58,5 +60,33 @@ function goToDesk () {
   }, 500)
 }
 
-const theme = ref(document.querySelector('body').getAttribute('data-theme'))
+function mouseDownHandler (e) {
+  const ele = document.querySelector('.drag-items');
+  pos.left = ele.scrollLeft
+  pos.top = ele.scrollTop
+  pos.x = e.clientX
+  pos.y = e.clientY
+
+  document.addEventListener('mousemove', mouseMoveHandler)
+  document.addEventListener('mouseup', mouseUpHandler)
+};
+
+function mouseUpHandler (e) {
+  const ele = document.querySelector('.drag-items');
+  document.removeEventListener('mousemove', mouseMoveHandler)
+  document.removeEventListener('mouseup', mouseUpHandler)
+
+  ele.style.cursor = 'grab';
+  ele.style.removeProperty('user-select');
+};
+
+function mouseMoveHandler (e) {
+  const ele = document.querySelector('.drag-items');
+
+  const dx = e.clientX - pos.x;
+  const dy = e.clientY - pos.y;
+
+  ele.scrollTop = pos.top - dy;
+  ele.scrollLeft = pos.left - dx;
+}
 </script>

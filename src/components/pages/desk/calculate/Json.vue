@@ -41,6 +41,7 @@ function numberOfMessagesPerPerson () {
     persons.push({name:personName, numOfMessages: countingMessage[personName]})
   })
 
+  console.log(dataChat.messages)
   result.numberOfMessagesPerPerson = persons
   finish()
 }
