@@ -22,7 +22,7 @@ const sideBarInfo = ref(false)
 onMounted(() => {
   setTimeout(() => {
     loading.value = false
-  }, 3000);
+  }, 3000)
 })
 </script>
 
