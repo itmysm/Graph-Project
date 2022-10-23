@@ -1,6 +1,5 @@
 {
   "private": true,
-  
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -31,6 +30,7 @@
     "echarts": "^5.4.0",
     "idb-keyval": "^6.2.0",
     "pinia": "^2.0.21",
+    "vue-countup-v3": "^1.0.14",
     "vue-echarts": "^6.2.3"
   }
 }
