@@ -8,6 +8,9 @@
         <p class="my-0 mr-2">{{tab.name}}</p>
       </a>
     </div>
+    <div class="w-full border border-accent mt-8 px-4 py-4 rounded-md drop-shadow-md">
+      <PagesResultTabsDetails :messagesPerPerson="result.numberOfMessagesPerPerson" />
+    </div>
     <!-- <section class="" v-if="result === null"></section>
 
     <section class="w-full" v-else>
@@ -42,7 +45,7 @@
 </template>
 
 <script setup>
-// const result = JSON.parse(localStorage.getItem('result'))
+const result = JSON.parse(localStorage.getItem('result'))
 const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 // const isDOMReady = ref(false)
 // const windowResized = ref('false')
