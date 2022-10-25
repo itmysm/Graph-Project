@@ -1,52 +1,33 @@
-<!-- This file extracts the information from the html file and converts it into an object -->
-
 <template>
   <div class="instagram--temp"></div>
 </template>
 
 <script setup>
 import { get, set } from 'idb-keyval'
+import { countMessages } from '~~/src/scripts/calculations/countMessages'
+import { timeSentMessagesFunc } from '~~/src/scripts/calculations/timeSentMessages'
+
 const startTime = performance.now()
 const emit = defineEmits(['status'])
 
 let dataChat = reactive({})
 const result = reactive({})
-const fileInfo = JSON.parse(localStorage.getItem('temporaryInfoFile'))
+// const fileInfo = JSON.parse(localStorage.getItem('temporaryInfoFile'))
 const minLimit = 4
 
 onMounted(async () => {
   dataChat = await get('file').then((val) => JSON.parse(val))
-  countMessages()
+  countAllMessages()
 })
 
-function countMessages () {
-  let numberOfMessages = 0
-  console.log(dataChat)
-  dataChat.messages.forEach(element => {
-    numberOfMessages++
-  })
-  result.numberOfMessages = numberOfMessages
-  numberOfMessagesPerPerson()
+function countAllMessages () {
+  result.messages = countMessages(dataChat)
+  timeSentMessages() // call next func
 }
 
-function numberOfMessagesPerPerson () {
-  const countingMessage = {}
-  const persons = []
-
-  dataChat.messages.forEach(person => {
-    countingMessage[person.name] === undefined ? countingMessage[person.name] = 1 : countingMessage[person.name]++
-  })
-
-  Object.keys(countingMessage).forEach(personName => {
-    persons.push({name:personName, numOfMessages: countingMessage[personName]})
-  })
-
-  console.log(dataChat.messages)
-  result.numberOfMessagesPerPerson = persons
-  finish()
-}
-
-function exportDataFromDOM () {
+// Calculate the time of sending messages
+function timeSentMessages () {
+  timeSentMessagesFunc(dataChat)
   finish()
 }
 
