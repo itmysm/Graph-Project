@@ -8,8 +8,8 @@
         <p class="my-0 mr-2">{{tab.name}}</p>
       </a>
     </div>
-    <div class="w-full border border-accent mt-8 px-4 py-4 rounded-md drop-shadow-md">
-      <PagesResultTabsDetails :messagesPerPerson="result.numberOfMessagesPerPerson" />
+    <div class="w-full">
+      <PagesResultTabsDetails :messages="result.messages" />
     </div>
     <!-- <section class="" v-if="result === null"></section>
 
