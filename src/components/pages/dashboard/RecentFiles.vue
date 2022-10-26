@@ -60,6 +60,7 @@ function goToDesk () {
   }, 500)
 }
 
+
 function mouseDownHandler (e) {
   const ele = document.querySelector('.drag-items');
   pos.left = ele.scrollLeft

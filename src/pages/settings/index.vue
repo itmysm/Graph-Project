@@ -6,9 +6,9 @@
     </div>
 
     <div class="flex flex-col 2xl:grid 2xl:grid-cols-2">
-      <settingsTheme class="mt-8 ltr:2xl:border-r" @languagesChange="getChangesFromChildren('languages', $event)" @themesChange="getChangesFromChildren('themes', $event)" />
+      <PagesSettingsTheme class="mt-8 ltr:2xl:border-r" @languagesChange="getChangesFromChildren('languages', $event)" @themesChange="getChangesFromChildren('themes', $event)" />
       <hr class="w-full 2xl:hidden my-8">
-      <settingsNotifications class="xl:mt-8 rtr:2xl:border-l" @notifications="getChangesFromChildren('notifications', $event)" />
+      <PagesSettingsNotifications class="xl:mt-8 rtr:2xl:border-l" @notifications="getChangesFromChildren('notifications', $event)" />
     </div>
 
     <div class="absolute flex items-center py-5 px-4 left-2/4 bottom-12 w-fit rounded-2xl drop-shadow-lg" :class="[saveSetting.animation ? 'bounceInUp' : 'bounceOutDown', theme === 'dark' ? 'bg-secondary border border-primary' : 'bg-white']" v-show="saveSetting.visible">

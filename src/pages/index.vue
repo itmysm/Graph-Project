@@ -1,6 +1,6 @@
 <template>
   <div class="hideJustScrollBar max-w-[100%] w-full overflow-x-hidden mt-14 px-10">
-    <dashboardRecentFiles />
+    <PagesDashboardRecentFiles />
     <commonUploadFile class="mt-5" />
   </div>
 </template>
