@@ -1,5 +1,5 @@
 <template>
-  <div class="hideJustScrollBar max-w-[100%] w-full overflow-x-hidden mt-14 px-10">
+  <div class="hideJustScrollBar max-w-[100%] w-full overflow-x-hidden mt-14 px-10" v-if="result">
     <h3 class="text-2xl relative flex items-center" :class="theme === 'dark' ? 'text-white' : 'text-secondary'"> <i class="material-symbols-rounded">Flash_On</i> {{ $t('ResultPageTitle') }}</h3>
 
     <div class="tabs mt-5 border-b border-accent">
@@ -11,36 +11,6 @@
     <div class="w-full">
       <PagesResultTabsDetails :messages="result.messages" />
     </div>
-    <!-- <section class="" v-if="result === null"></section>
-
-    <section class="w-full" v-else>
-      <div class="max-w-full">
-        <div class="w-full flex items-center mb-5 justify-between">
-          <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('BaseDataTitle') }}</h3>
-        </div>
-        <PagesResultTopList />
-      </div>
-
-      <div class="max-w-full mt-14">
-        <div class="w-full flex items-center mb-5 justify-between">
-          <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('professionalDataTitle') }}</h3>
-        </div>
-
-        <div class="grid grid-cols-2 2xl:grid-cols-3 gap-4 min-h-80">
-          <div class="flex col-span-1 justify-center bg-accent rounded-lg h-80">
-            <PagesResultChartsBar :data="result.numberOfMessagesPerPerson" v-if="isDOMReady && windowResized" />
-          </div>
-
-          <div class="flex col-span-1 justify-center bg-accent rounded-lg h-80">
-            <PagesResultChartsPie :data="result.numberOfMessagesPerPerson" v-if="isDOMReady && windowResized"  />
-          </div>
-
-          <div class="flex justify-center bg-accent rounded-lg h-80">
-            <PagesResultChartsPie :data="result.numberOfMessagesPerPerson" v-if="isDOMReady && windowResized" />
-          </div>
-        </div>
-      </div>
-    </section> -->
   </div>
 </template>
 
