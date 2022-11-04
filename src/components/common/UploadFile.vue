@@ -4,26 +4,10 @@
       <h3 class="text-2xl" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t("uploadFile") }}</h3>
     </div>
 
-    <div
-      id="drop_zone"
-      class="
-        shadow-md
-        group
-        w-full
-        flex
-        justify-center
-        items-center
-        2xl:w-[900px]
-        h-[300px]
-        overflow-hidden
-        relative
-        z-10
-      "
-      @drop="dropHandler"
-      @dragover="dragOverHandler"
-      @dragleave="userIsInDropZone = false"
-      :class="[uploadFileCompleted ? '' : theme === 'dark' ? 'upload-box-dark' : 'upload-box', theme === 'dark' ? 'border-primary !bg-secondary' : '', ]"
-    >
+    <div id="drop_zone" class="shadow-md group w-full flex justify-center items-center 2xl:w-[900px] h-[300px] overflow-hidden relative z-10"
+      @drop="dropHandler" @dragover="dragOverHandler" @dragleave="userIsInDropZone = false" 
+      :class="[uploadFileCompleted ? '' : theme === 'dark' ? 'upload-box-dark' : 'upload-box', theme === 'dark' ? 'border-primary !bg-secondary' : '', ]">
+      
       <input
         id="dropbox"
         type="file"
@@ -33,39 +17,28 @@
         :disabled="uploadFileCompleted ? true : false"
         :class="uploadFileCompleted ? '' : 'cursor-pointer'"
       />
-      <div
-        class="flex flex-col text-lg items-center text-secondary"
-        v-if="!uploadFileCompleted"
-      >
+
+      <div class="flex flex-col text-lg items-center text-secondary" v-if="!uploadFileCompleted">
         <i class="material-symbols-rounded text-6xl mb-4" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">home_storage</i>
+        
         <p :class="theme === 'dark' ? 'text-white' : 'text-secondary'">
           {{ $t("dropBox") }}
           <a class="text-primary" :class="theme === 'dark' ? 'text-info' : 'text-primary'" href="#">{{ $t("browse") }}</a>
         </p>
+
         <p class="text-xs mt-1 font-semibold" :class="theme === 'dark' ? 'text-neutral' : 'text-secondary'">
           {{ $t("extensions") }} {{ $t("extensionsFileTypes") }}
         </p>
       </div>
 
-      <div
-        class="bg-light w-full h-full flex flex-col justify-center items-center"
-        v-else
-      >
+      <div class="bg-light w-full h-full flex flex-col justify-center items-center" v-else >
         <animationsSuccessfully />
         Your File Uploaded Completely
       </div>
     </div>
 
-    <div
-      class="
-        min-w-[100vw] min-h-[100vh]
-        absolute
-        bg-secondary/[.4]
-        top-0
-        left-0
-      "
-      v-show="userIsInDropZone"
-    ></div>
+    <div class=" min-w-[100vw] min-h-[100vh] absolute bg-secondary/[.4] top-0 left-0" v-show="userIsInDropZone">
+    </div>
   </div>
 </template>
 
