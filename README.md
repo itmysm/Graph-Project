@@ -18,8 +18,12 @@ Graph-Project was made for check the statistics of your messages in social media
 ## Task lists
 
 - [x] Complete the Desk page 
-- [ ] Complete the Result page
-- [ ] Ability to output the results
+- [ ] Support telegram files/data
+- [ ] Complete the Result page and show all graphes
+- [ ] Complete the help page and about us
+- [ ] Ability to output the results as JSON file
+- [ ] Full Persian/English support
+- [ ] Full support for dark and light themes
 
 ## Contributing
 If you want to contribute to the project, great! let's talk [Email](mailto:dev.mysm@gmail.com) | [Telegram](https://t.me/itmysm)
