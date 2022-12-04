@@ -101,11 +101,9 @@ function setDefaultDataInIndexDB () {
       name: item.title.toLowerCase() + '.' + item._extension,
       application: item.title.toLowerCase(),
       lastModified: new Date().getTime(),
-      content: item.description,
-      size: 400
+      content: item.description === undefined ? item : item.description,
+      size: Math.floor(Math.random() * 999)
     }
-
-    console.log(item.description)
   })
   return JSON.stringify(object)
 }
