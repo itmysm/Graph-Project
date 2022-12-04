@@ -59,7 +59,11 @@
   "lastModified": "آخرین ویرایش",
   "fileSize": "اندازه فایل",
   "socialMedia": "برنامه",
-  "undefined": "نامشخص"
-  
-
+  "undefined": "نامشخص",
+  "telegramChatListTitleBox": "لیست پیام‌ها",
+  "telegramChatListMessage": "پیام‌",
+  "alertSelectChatTitle": "همم لیست رو ببین!",
+  "alertSelectChat": "برای ادامه یکی از چت‌های داخل لیست را انتخاب کنید",
+  "alertChangeStageToDeskTitle": "ایول!!",
+  "alertChangeStageToDesk": "برای ادامه مراحل تا چند لحضه دیگر به صفحه میزکار خواهید رفت"
 }

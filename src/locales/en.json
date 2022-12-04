@@ -50,6 +50,10 @@
   "alertUploadSuccessDescription": "Your file was successfully upload. You can start righ now",
   "alertUploadErrorTitle": "Oops! file format is not allowed",
   "alertUploadErrorDescription": "The file format is not allowed. Please try another file",
+  "alertSelectChatTitle": "Umm look the box! ",
+  "alertSelectChat": "Choose one of the chats in this list to continue",
+  "alertChangeStageToDeskTitle": "well done!",
+  "alertChangeStageToDesk": "To continue the process, we will go to the desk page in a few seconds",
   "alertAttentionTitle": "Attention!",
   "alertAttentionDescription": "Please do not leave this page until the results are fully displayed",
   "alertErrorTitle": "Error!",
@@ -70,5 +74,7 @@
   "resultPageTitleAllMessagesChart": "Messages charting",
   "ResultPageTitle": "Results",
   "BaseDataTitle": "Basic analysis",
-  "professionalDataTitle": "Professional analysis"
+  "professionalDataTitle": "Professional analysis",
+  "telegramChatListTitleBox": "Chat list",
+  "telegramChatListMessage": "Message"
 }
