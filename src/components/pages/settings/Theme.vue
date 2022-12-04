@@ -11,7 +11,7 @@
         <i class="material-symbols-rounded normal-case text-[20px] ltr:mr-2 rtl:ml-2">Dark_Mode</i>
         {{ $t('settingsThemes') }}
       </h4>
-      <commonSelectDrodown :items="themes" @newChanges="changeSetting('themes', $event)" />
+      <commonSelectDropdown :items="themes" @newChanges="changeSetting('themes', $event)" />
     </div>
 
     <div class="flex items-center justify-between mt-5">
@@ -20,7 +20,7 @@
         {{ $t('settingsLanguages') }}
       </h4>
 
-      <commonSelectDrodown :items="languages" @newChanges="changeSetting('languages', $event)"/>
+      <commonSelectDropdown :items="languages" @newChanges="changeSetting('languages', $event)"/>
     </div>
   </div>
 </template>
