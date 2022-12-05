@@ -1,12 +1,12 @@
 <template>
   <div class="flex justify-center items-center w-[100vw] h-[100vh] top-0 left-0 backdrop-blur-md absolute z-[10]" v-if="isActive">
-      <div id="telegramChatsListBox" class="w-96 bg-base-100 h-[600px] border border-accent rounded-md bounceIn">
-        <h2 class="text-xl font-semibold my-4 px-4">{{$t('telegramChatListTitleBox') }}</h2>
-        <ul class="">
+      <div id="telegramChatsListBox" class="w-96 bg-base-100 h-[600px] border border-accent rounded-md bounceIn overflow-hidden">
+        <h2 class="text-xl font-semibold h-[60px] flex items-center px-4">{{$t('telegramChatListTitleBox') }}</h2>
+        <ul class="list overflow-y-scroll overflow-x-hidden h-[calc(100%-60px)]">
           <li class="flex mb-1 hover:bg-accent py-3 px-4 cursor-pointer select-none" v-for="(chat, i) in typeof chatList === 'string' ? JSON.parse(chatList).chats.list : chatList.chats.list" :key="i" @click="closePopUp(i)">
             <img  class="bg-secondary rounded-full p-[1px]" :src="'https://avatars.dicebear.com/api/human/' + Math.floor(Math.random() * 999) + '.svg?background=%23ffff'" width="55" height="55" />
             <div class="flex flex-col justify-between px-5 py-1">
-              <p class="text-md">{{chatNameFixer(chat.name, chat.type)}}</p>
+              <p class="text-md h-6 overflow-hidden">{{chatNameFixer(chat.name, chat.type)}}</p>
               <p class="pb-0 text-sm">{{ chat.messages.length }} {{$t('telegramChatListMessage')}}</p>
             </div>
           </li>
@@ -57,6 +57,28 @@ function closePopUp (selectedItemIndex) {
 </script>
 
 <styles lang="scss">
+
+.list {
+  scrollbar-width: thin;
+  scrollbar-color: blue transparent;
+
+  /* Works on Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #bda6a6;
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
+}
+
+// animations
 .bounceIn {
   animation-duration: 1s;
   animation-name: bounceIn;

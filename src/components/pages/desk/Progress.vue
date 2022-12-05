@@ -16,7 +16,7 @@
     <!-- Transition components -->
     <pagesDeskTransitionsInstagramHtmlToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
     <PagesDeskTransitionsWhatsappTextToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
-    <PagesDeskTransitionsTelegramSelectChat @status="stepsRunner($event)" v-if="activeIndex === 2" />
+    <PagesDeskTransitionsTelegramToJson @status="stepsRunner($event)" v-if="activeIndex === 2" />
     <!-- Result  -->
     <PagesDeskCalculateJson @status="stepsRunner($event)" v-if="activeIndex === 3" />
     <PagesDeskResultPreparingResults @status="stepsRunner($event)" v-if="activeIndex === 4" />

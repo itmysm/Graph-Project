@@ -16,13 +16,21 @@ let data = reactive({})
 
 onMounted(async () => {
   if (fileInfo.application === 'telegram') {
-    data = await get('currentUploadedFile').then((val) => JSON.parse(JSON.parse(val)))
-    data = content.chats.list[+localStorage.getItem('telegramSelectedChatIndex')]
+    data = await get('currentUploadedFile').then((val) => JSON.parse(val))
+
+    if (typeof data === 'string') {
+      data = JSON.parse(data)
+    }
+
+    data = data.chats.list[+localStorage.getItem('telegramSelectedChatIndex')]
   }
   finish()
 })
 
 function finish () {
+  // remove telegramSelectedChatIndex from local
+  localStorage.removeItem('telegramSelectedChatIndex')
+
   set('file', JSON.stringify(data))
   const endTime = performance.now()
   emit('status', { limit: minLimit, time: Math.round((endTime - startTime) / 1000) })

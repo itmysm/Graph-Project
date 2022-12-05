@@ -21,12 +21,11 @@ checkFile()
 async function checkFile () {
   const file = await get('currentUploadedFile').then((val) => JSON.parse(val))
   let app
-
-  if (file.includes('height="28" alt="Instagram"')) {
+  if (JSON.stringify(file).includes('height="28" alt="Instagram"')) {
     app = 'instagram'
-  } else if (file.includes('Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.')) {
+  } else if (JSON.stringify(file).includes('Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.')) {
     app = 'whatsapp'
-  } else if (file.includes('"Here is the data you requested. Remember: Telegram is ad free,')) {
+  } else if (JSON.stringify(file).includes('"Here is the data you requested. Remember: Telegram is ad free,')) {
     app = 'telegram'
   } else {
     app = false
@@ -47,9 +46,7 @@ async function storeUploadedFileInIndexDB (fileContent, app) {
     const files = await get('allUploadedFiles').then(val => JSON.parse(val))
 
     // Add our file into files
-    console.log(files)
     files[useFileNameSplitter(file.fileName, 'name').value + '_' + file.fileSize + '_' + file.fileLastModified] = tempFile
-    console.log(files, tempFile)
 
     // Set files into IndexDB
     console.log('now?')
@@ -66,6 +63,6 @@ function fileItsTrash () {
 
   setTimeout(() => {
     useRouter().push('./')
-  }, 3000)
+  }, 1000)
 }
 </script>

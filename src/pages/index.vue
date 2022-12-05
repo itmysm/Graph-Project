@@ -27,8 +27,8 @@ const telegramChatsList = ref(false)
 function notificationSender (isFileAllowed) {
   if (isFileAllowed) {
     storeAlerts.addNewAlert({ title: i18n.t('alertUploadSuccessTitle'), description: i18n.t('alertUploadSuccessDescription'), type: 'success', button: false, duration: 2000, alertType: 0 })
-    isUploadedFileForTelegram()
     updateFileStatusInStore()
+    isUploadedFileForTelegram()
   } else {
     storeAlerts.addNewAlert({ title: i18n.t('alertUploadErrorTitle'), description: 'alertUploadErrorDescription', type: 'error', button: false, duration: 5000, alertType: 0 })
   }
@@ -47,6 +47,7 @@ async function updateFileStatusInStore () {
   // prevent to update file when user upload repetitive file
   if (mainStore.$state.file.fileSize !== file.size) {
     mainStore.fileUpdate(file)
+    console.log(file.lastModifiedDate !== undefined)
     if (file.lastModifiedDate !== undefined) setUploadedFileInIndexDB() // lastModifiedDate just exist in uploaded file not rewcent files
   }
   isUploadedFileForTelegram()
