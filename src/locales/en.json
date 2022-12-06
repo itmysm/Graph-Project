@@ -64,7 +64,6 @@
   "fileSize": "File size",
   "socialMedia": "Social media",
   "undefined": "Undefined",
-  "resultPageBaseDataAllMessages": "All messages",
   "resultPageBaseDataUnknown": "Unknown",
   "resultPageSort": "Sort",
   "resultPageSortByDate": "By Date",
@@ -76,5 +75,9 @@
   "BaseDataTitle": "Basic analysis",
   "professionalDataTitle": "Professional analysis",
   "telegramChatListTitleBox": "Chat list",
-  "telegramChatListMessage": "Message"
+  "telegramChatListMessage": "Message",
+  "resultPageDetailsMessagesBoxAllMessages": "All messages",
+  "resultPageDetailsMessagesBoxMessage": "Message",
+  "resultPageDetailsMessagesBoxNameUndefined": "System Messages",
+  "resultPageDetailsMessagesBoxPercentageTotalMessages": "Percentage of total messages"
 }

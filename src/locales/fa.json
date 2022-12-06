@@ -65,5 +65,9 @@
   "alertSelectChatTitle": "همم لیست رو ببین!",
   "alertSelectChat": "برای ادامه یکی از چت‌های داخل لیست را انتخاب کنید",
   "alertChangeStageToDeskTitle": "ایول!!",
-  "alertChangeStageToDesk": "برای ادامه مراحل تا چند لحضه دیگر به صفحه میزکار خواهید رفت"
+  "alertChangeStageToDesk": "برای ادامه مراحل تا چند لحضه دیگر به صفحه میزکار خواهید رفت",
+  "resultPageDetailsMessagesBoxAllMessages" : "همه‌ی پیام‌ها",
+  "resultPageDetailsMessagesBoxMessage": "پیام",
+  "resultPageDetailsMessagesBoxNameUndefined": "پیام سیستم",
+  "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها"
 }
