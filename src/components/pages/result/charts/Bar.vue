@@ -1,5 +1,5 @@
 <template>
-  <v-chart class="max-w-[500px]" :option="option" />
+<v-chart class="w-full h-[400px]" :option="option" v-if="active" />
 </template>
 
 <script setup>
@@ -9,45 +9,36 @@ const props = defineProps({
   }
 })
 
-const option = ref({
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow'
-    }
+const active = ref(false)
+
+const option = {
+  xAxis: {
+    type: 'category',
+    data: Object.keys(props.data).map((key) => key.length > 5 ? key.slice(0, 5) : key)
   },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
+  yAxis: {
+    type: 'value'
   },
-  xAxis: [
-    {
-      type: 'category',
-      data: props.data.map(person => person.name),
-      axisTick: {
-        alignWithLabel: true
-      }
-    }
-  ],
-  yAxis: [
-    {
-      type: 'value'
-    }
-  ],
   series: [
     {
-      name: 'Direct',
-      type: 'bar',
-      barWidth: '60%',
-      data: props.data.map(person => person.numOfMessages)
+      data: Object.keys(props.data).map((key) => props.data[key].length),
+      type: 'bar'
     }
-  ]
-})
+  ],
+
+  grid: {
+    right: '10px',
+    left: '10px',
+    width: '100%'
+
+  }
+}
 
 onMounted(() => {
-  console.log('test')
+  setTimeout(() => {
+    console.log(Object.keys(props.data).map((key) => props.data[key].length))
+    active.value = true
+  }, 500)
 })
 
 </script>
