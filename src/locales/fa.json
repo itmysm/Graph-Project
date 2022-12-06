@@ -69,5 +69,6 @@
   "resultPageDetailsMessagesBoxAllMessages" : "همه‌ی پیام‌ها",
   "resultPageDetailsMessagesBoxMessage": "پیام",
   "resultPageDetailsMessagesBoxNameUndefined": "پیام سیستم",
-  "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها"
+  "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها",
+  "resultPageDetailsMessagesBoxChartPerPersonMessage": "نمودار تعداد پیام‌های هر شخص"
 }

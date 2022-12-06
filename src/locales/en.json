@@ -79,5 +79,6 @@
   "resultPageDetailsMessagesBoxAllMessages": "All messages",
   "resultPageDetailsMessagesBoxMessage": "Message",
   "resultPageDetailsMessagesBoxNameUndefined": "System Messages",
-  "resultPageDetailsMessagesBoxPercentageTotalMessages": "Percentage of total messages"
+  "resultPageDetailsMessagesBoxPercentageTotalMessages": "Percentage of total messages",
+  "resultPageDetailsMessagesBoxChartPerPersonMessage": "Chart of each person's messages"
 }
