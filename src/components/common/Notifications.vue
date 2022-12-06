@@ -32,7 +32,8 @@ class DestroyAlert {
     if (direction === 'rtl') {
       document.getElementsByClassName('alert')[indexResult].classList.replace('rtl:animate-alertCameRtl', 'animate-alertOutRtl')
     } else {
-      document.getElementsByClassName('alert')[indexResult].classList.replace('ltr:animate-alertCameRtl', 'animate-alertOutRtl')
+      console.log('test')
+      document.getElementsByClassName('alert')[indexResult].classList.replace('ltr:animate-alertCame', 'animate-alertOut')
     }
   }
 
