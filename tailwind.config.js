@@ -16,7 +16,9 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 2s linear infinite',
         alertCame: 'alertCame 1s ease-out both',
-        alertOut: 'alertOut .5s ease-in both'
+        alertOut: 'alertOut .5s ease-in both',
+        alertCameRtl: 'alertCameRtl 1s ease-out both',
+        alertOutRtl: 'alertOutRtl .5s ease-in both'
       },
       keyframes: {
         wiggle: {
@@ -28,10 +30,23 @@ module.exports = {
           '90%': { transform: 'translate(-10px)' },
           '100%': { transform: 'translate(0px)' }
         },
+
+        alertCameRtl: {
+          '0%': { transform: 'translate(-500px)' },
+          '90%': { transform: 'translate(-10px)' },
+          '100%': { transform: 'translate(0px)' }
+        },
+
         alertOut: {
           '0%': { transform: 'translate(0px)' },
           '10%': { transform: 'translate(-10px)' },
           '100%': { transform: 'translate(500px)' }
+        },
+
+        alertOutRtl: {
+          '0%': { transform: 'translate(0px)' },
+          '10%': { transform: 'translate(-10px)' },
+          '100%': { transform: 'translate(-500px)' }
         }
       }
     },
