@@ -2,8 +2,14 @@ function countMessages (data) {
   const messages = { all: [] }
 
   data.messages.forEach(msg => {
-    messages.all.push(msg)
-    messages[msg.name] === undefined ? messages[msg.name] = [msg] : messages[msg.name].push(msg)
+    const app = JSON.parse(localStorage.getItem('temporaryInfoFile'))
+    if (app.application === 'telegram') {
+      messages[msg.from] === undefined ? messages[msg.from] = [msg] : messages[msg.from].push(msg)
+    } else if (app.application === 'whatsapp') {
+      messages[msg.name] === undefined ? messages[msg.name] = [msg] : messages[msg.name].push(msg)
+    }
+
+    messages.all.push(msg) // this is for count all messages
   })
 
   return messages
