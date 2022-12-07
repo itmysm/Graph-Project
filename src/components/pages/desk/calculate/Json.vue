@@ -17,6 +17,7 @@ const minLimit = 4
 
 onMounted(async () => {
   dataChat = await get('file').then((val) => JSON.parse(val))
+  console.log(dataChat)
   countAllMessages()
 })
 

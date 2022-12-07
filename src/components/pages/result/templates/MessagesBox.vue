@@ -46,7 +46,7 @@ const collapseStatus = ref(true)
 function nameFixer (chat) {
   if (app.application === 'telegram') {
     return chat.from === undefined ? i18n.t('resultPageDetailsMessagesBoxNameUndefined') : chat.from
-  } else if (app.application === 'whatsapp') {
+  } else if (app.application === 'whatsapp' || app.application === 'instagram') {
     return chat.name === undefined ? i18n.t('resultPageDetailsMessagesBoxNameUndefined') : chat.name
   }
 }
@@ -54,7 +54,7 @@ function nameFixer (chat) {
 function iconFinder (chat) {
   if (app.application === 'telegram') {
     return chat.from === undefined ? 'Verified' : 'Person'
-  } else if (app.application === 'whatsapp') {
+  } else if (app.application === 'whatsapp' || app.application === 'instagram') {
     return chat.name === undefined ? 'Verified' : 'Person'
   }
 }

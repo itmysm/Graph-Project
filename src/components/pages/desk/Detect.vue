@@ -21,7 +21,7 @@ checkFile()
 async function checkFile () {
   const file = await get('currentUploadedFile').then((val) => JSON.parse(val))
   let app
-  if (JSON.stringify(file).includes('height="28" alt="Instagram"')) {
+  if (file.includes('height="28" alt="Instagram"')) {
     app = 'instagram'
   } else if (JSON.stringify(file).includes('Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.')) {
     app = 'whatsapp'
