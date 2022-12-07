@@ -47,7 +47,7 @@
 
 <script setup>
 import { useMainStore } from '~/stores/index.js'
-import { fromNow } from '~/scripts/fromNow'
+// import { fromNow } from '~/scripts/fromNow'
 const mainStore = useMainStore()
 const file = mainStore.$state.file
 const isFileExists = ref(false)
@@ -59,7 +59,6 @@ const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 onUpdated(() => {
   isFileExists.value = mainStore.fileStatus.isFileUploaded
-  console.log(mainStore.$state.file)
 })
 
 function sidebar (redeclare) {
@@ -71,7 +70,6 @@ function getSize () {
   const bytes = file.fileSize
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
   if (bytes === 0) return '0 Byte'
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
 }
 

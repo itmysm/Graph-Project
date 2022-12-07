@@ -39,7 +39,6 @@ const option = {
 
 onMounted(() => {
   setTimeout(() => {
-    console.log(Object.keys(props.data).map((key) => props.data[key].length))
     active.value = true
   }, 500)
 })

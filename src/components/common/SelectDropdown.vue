@@ -29,11 +29,11 @@ const emit = defineEmits(['newChanges'])
 const theme = ref(document.querySelector('body').getAttribute('data-theme'))
 
 const showList = ref(false)
-let selectedItem = reactive()
+const selectedItem = ref()
 
 // eslint-disable-next-line array-callback-return
 props.items.map(item => {
-  if (item.default) selectedItem = item
+  if (item.default) selectedItem.value = item
 }) // find default item
 
 function dropDownChange (index) {

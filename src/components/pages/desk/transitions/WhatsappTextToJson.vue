@@ -62,7 +62,6 @@ function cleanerResult () {
     if (el.date === undefined && el.time === undefined) {
       data.messages.splice(index, 1)
     }
-    console.log(el)
   })
 
   finish()

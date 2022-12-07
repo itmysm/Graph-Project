@@ -1,7 +1,7 @@
 <template>
   <section id="msgBox" class="w-full pt-8 relative pb-16 openUp">
     <ul class="collapsible grid grid-cols-3 gap-10">
-      <li class="flex flex-col items-start border border-accent px-4 py-3 w-full rounded-md" v-for="(person, i) in messages" :key="i" v-show="checkRules(person[0])">
+      <li class="flex flex-col items-start border border-accent px-4 py-3 w-full rounded-md" v-for="(person, i) in props.messages" :key="i" v-show="checkRules(person[0])">
         <div class="flex items-center justify-center w-[50px] h-[50px] bg-warning/50 rounded-full mt-2">
           <span class="flex items-center justify-center bg-warning/75 w-[40px] h-[40px] rounded-full">
             <i class="material-symbols-rounded text-[23px] text-base-100">
@@ -47,7 +47,6 @@ function nameFixer (chat) {
   if (app.application === 'telegram') {
     return chat.from === undefined ? i18n.t('resultPageDetailsMessagesBoxNameUndefined') : chat.from
   } else if (app.application === 'whatsapp') {
-    console.log(chat.name)
     return chat.name === undefined ? i18n.t('resultPageDetailsMessagesBoxNameUndefined') : chat.name
   }
 }
@@ -67,10 +66,6 @@ function checkRules (chat) {
     return true
   }
 }
-
-onMounted(() => {
-  console.log(props.messages.length)
-})
 
 // collapse codes section...
 

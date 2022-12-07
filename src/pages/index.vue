@@ -47,7 +47,6 @@ async function updateFileStatusInStore () {
   // prevent to update file when user upload repetitive file
   if (mainStore.$state.file.fileSize !== file.size) {
     mainStore.fileUpdate(file)
-    console.log(file.lastModifiedDate !== undefined)
     if (file.lastModifiedDate !== undefined) setUploadedFileInIndexDB() // lastModifiedDate just exist in uploaded file not rewcent files
   }
   isUploadedFileForTelegram()

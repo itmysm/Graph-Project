@@ -48,11 +48,10 @@ async function storeUploadedFileInIndexDB (fileContent, app) {
     // Add our file into files
     files[useFileNameSplitter(file.fileName, 'name').value + '_' + file.fileSize + '_' + file.fileLastModified] = tempFile
 
-    // Set files into IndexDB
-    console.log('now?')
+    // Set files into IndexD
     set('allUploadedFiles', JSON.stringify(files))
   }
-  // set file in temp localstorage
+  // set file in temp local storage
   localStorage.setItem('temporaryInfoFile', JSON.stringify({ application: app, extension: mainStore.$state.file.fileType }))
 }
 

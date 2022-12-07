@@ -1,6 +1,6 @@
 <template>
   <div class="w-[100vw] absolute top-0 left-0 flex justify-center items-center min-h-full bg-[#12181e] z-[10]">
-    <ul class="w-fit">
+    <ul class="w-fit select-none">
       <li class="flex items-center mb-5 relative transition-all duration-500"
         :class="[step.complete ? 'complete' : '', step.process ? 'in-Process' : 'in-queue']"
         v-for="(step, i) in stepsQueue" :key="i">

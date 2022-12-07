@@ -1,6 +1,6 @@
 <template>
   <div class="px-5">
-    <h3 class="text-2xl flex items-center" :class="theme ? 'text-white' : 'text-secondary'">
+    <h3 class="text-2xl flex items-center" :class="theme ? 'text-secondary' : 'text-white'">
        <i class="material-symbols-rounded normal-case ltr:mr-2 rtl:ml-2">Laptop_Mac</i>
        {{ $t('settingsDisplayTitle') }}
     </h3>
