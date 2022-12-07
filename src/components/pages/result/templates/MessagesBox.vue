@@ -22,9 +22,9 @@
         </div>
       </li>
     </ul>
-    <div class="collapse-control flex flex-col items-center justify-center w-full absolute bottom-[-20px]" v-if="(Object.keys(messages).length > 5)">
-      <span class="flex items-center justify-center bg-primary w-[30px] h-[30px] rounded-full z-[12]" @click="buttonClicked">
-        <i class="material-symbols-rounded text-[26px] text-base-100">Keyboard_Arrow_Down</i>
+    <div class="collapse-control flex flex-col items-center justify-center w-full absolute bottom-[-20px] select-none" v-if="(Object.keys(messages).length > 5)">
+      <span class="flex items-center justify-center bg-primary w-[30px] h-[30px] rounded-full z-[12] cursor-pointer" @click="buttonClicked">
+        <i class="material-symbols-rounded text-[26px] text-white">{{collapseStatus ? 'Keyboard_Arrow_Down' : 'Keyboard_Arrow_Up'}}</i>
       </span>
     </div>
   </section>
@@ -41,6 +41,7 @@ const props = defineProps({
 })
 
 const app = JSON.parse(localStorage.getItem('temporaryInfoFile'))
+const collapseStatus = ref(true)
 
 function nameFixer (chat) {
   if (app.application === 'telegram') {
@@ -71,7 +72,10 @@ onMounted(() => {
   console.log(props.messages.length)
 })
 
+// collapse codes section...
+
 function collapseSection (element) {
+  collapseStatus.value = true
   const sectionHeight = element.scrollHeight
 
   const elementTransition = element.style.transition
@@ -91,6 +95,7 @@ function collapseSection (element) {
 }
 
 function expandSection (element) {
+  collapseStatus.value = false
   const sectionHeight = element.scrollHeight
 
   element.style.height = sectionHeight + 'px'

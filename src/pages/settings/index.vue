@@ -1,14 +1,16 @@
 <template>
   <div class="main--content hideJustScrollBar w-full mt-14 px-10">
     <div class="pb-5 border-b-2 border-b border-accent mb-5">
-      <h3 class="text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{ $t('settings') }}</h3>
+      <h3 class="flex items-center text-2xl relative" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">
+        <i class="material-symbols-rounded text-[26px] ltr:mr-2 rtl:ml-2">Settings</i>
+        {{ $t('settings') }}
+      </h3>
       <p class="mt-2 font-light text-neutral">{{ $t("descriptionSetting") }}</p>
     </div>
 
-    <div class="flex flex-col 2xl:grid 2xl:grid-cols-2">
-      <PagesSettingsTheme class="mt-8 ltr:2xl:border-r" @languagesChange="getChangesFromChildren('languages', $event)" @themesChange="getChangesFromChildren('themes', $event)" />
-      <hr class="w-full 2xl:hidden my-8">
-      <PagesSettingsNotifications class="xl:mt-8 rtr:2xl:border-l" @notifications="getChangesFromChildren('notifications', $event)" />
+    <div class="grid grid-cols-1 2xl:grid-cols-2 gap-10">
+      <PagesSettingsTheme class="mt-8" @languagesChange="getChangesFromChildren('languages', $event)" @themesChange="getChangesFromChildren('themes', $event)" />
+      <PagesSettingsNotifications class="mt-8 pl-16" @notifications="getChangesFromChildren('notifications', $event)" />
     </div>
 
     <div class="absolute flex items-center py-5 px-4 left-2/4 bottom-12 w-fit rounded-2xl drop-shadow-lg" :class="[saveSetting.animation ? 'bounceInUp' : 'bounceOutDown', theme === 'dark' ? 'bg-secondary border border-primary' : 'bg-white']" v-show="saveSetting.visible">

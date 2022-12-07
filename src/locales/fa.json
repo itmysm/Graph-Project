@@ -60,6 +60,7 @@
   "fileSize": "اندازه فایل",
   "socialMedia": "برنامه",
   "undefined": "نامشخص",
+  "ResultPageTitle": "نتایج",
   "telegramChatListTitleBox": "لیست پیام‌ها",
   "telegramChatListMessage": "پیام‌",
   "alertSelectChatTitle": "همم لیست رو ببین!",
@@ -68,7 +69,7 @@
   "alertChangeStageToDesk": "برای ادامه مراحل تا چند لحضه دیگر به صفحه میزکار خواهید رفت",
   "resultPageDetailsMessagesBoxAllMessages" : "همه‌ی پیام‌ها",
   "resultPageDetailsMessagesBoxMessage": "پیام",
-  "resultPageDetailsMessagesBoxNameUndefined": "پیام سیستم",
+  "resultPageDetailsMessagesBoxNameUndefined": "پیام‌های سیستم",
   "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها",
   "resultPageDetailsMessagesBoxChartPerPersonMessage": "نمودار تعداد پیام‌های هر شخص"
 }
