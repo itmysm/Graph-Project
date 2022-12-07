@@ -1,5 +1,5 @@
 <template>
-  <div class="hideJustScrollBar max-w-[100%] w-full overflow-x-hidden mt-14 px-10" v-if="result">
+  <div class="page max-w-[100%] w-full overflow-x-hidden mt-14 px-10" v-if="result">
     <h3 class="text-2xl relative flex items-center" :class="theme === 'dark' ? 'text-white' : 'text-secondary'"> <i class="material-symbols-rounded">Flash_On</i> {{ $t('ResultPageTitle') }}</h3>
 
     <div class="tabs mt-5 border-b border-accent">
@@ -25,8 +25,29 @@ const activeTabIndex = ref(0)
 </script>
 
 <style lang="scss">
- canvas {
-   max-width: 300px;
-   max-height: 300px;
- }
+
+.page {
+  scrollbar-width: thin;
+  scrollbar-color: blue transparent;
+
+  /* Works on Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #bda6a6;
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
+}
+
+canvas {
+  max-width: 300px;
+  max-height: 300px;
+}
 </style>
