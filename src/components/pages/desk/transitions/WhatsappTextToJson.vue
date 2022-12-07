@@ -53,6 +53,18 @@ function turnToJson (content) {
   content ? data.chatName = 'mysm' : 'test'
   // eslint-disable-next-line no-unused-expressions
   content ? data.type = 'private' : 'group'
+  cleanerResult()
+  // finish()
+}
+
+function cleanerResult () {
+  data.messages.forEach((el, index) => {
+    if (el.date === undefined && el.time === undefined) {
+      data.messages.splice(index, 1)
+    }
+    console.log(el)
+  })
+
   finish()
 }
 

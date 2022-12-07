@@ -1,7 +1,7 @@
 <template>
   <section class="w-full pt-8">
     <ul class="grid grid-cols-3 gap-10">
-      <li class="flex flex-col items-start border border-accent px-4 py-3 w-full rounded-md" v-for="(person, i) in messages" :key="i">
+      <li class="flex flex-col items-start border border-accent px-4 py-3 w-full rounded-md" v-for="(person, i) in messages" :key="i" v-show="(app.application === 'whatsapp' && person[0].date !== undefined)">
         <div class="flex items-center justify-center w-[50px] h-[50px] bg-warning/50 rounded-full mt-2">
           <span class="flex items-center justify-center bg-warning/75 w-[40px] h-[40px] rounded-full"><i class="material-symbols-rounded text-[23px] text-base-100">{{i == 'all' ? 'Group' : 'Person'}}</i></span>
         </div>
@@ -43,7 +43,7 @@ function nameFixer (chat) {
 }
 
 onMounted(() => {
-  console.log(props)
+  console.log(props.messages)
 })
 
 </script>
