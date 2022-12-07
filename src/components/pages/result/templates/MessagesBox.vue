@@ -134,6 +134,6 @@ function buttonClicked () {
 .collapse-control {
   height: 90px;
   background: rgb(255,255,255);
-  background: linear-gradient(360deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(360deg, theme('colors.base-100') 60%, rgba(255,255,255,0) 100%);
 }
 </style>
