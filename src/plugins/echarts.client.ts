@@ -6,7 +6,8 @@ import {
   SVGRenderer
 } from 'echarts/renderers'
 import {
-  BarChart
+  BarChart,
+  LineChart,
 } from 'echarts/charts'
 import {
   GridComponent,
@@ -20,6 +21,7 @@ import { TitleComponent } from 'echarts/components';
 export default defineNuxtPlugin(({ vueApp }) => {
   use([
     SVGRenderer,
+    LineChart,
     BarChart,
     GridComponent,
     TooltipComponent,
