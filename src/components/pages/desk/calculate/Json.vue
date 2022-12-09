@@ -5,7 +5,7 @@
 <script setup>
 import { get } from 'idb-keyval'
 import { countMessages } from '~~/src/scripts/calculations/countMessages'
-import { timeSentMessagesFunc } from '~~/src/scripts/calculations/timeSentMessages'
+import { getDates } from '~~/src/scripts/calculations/dateMessagesSent'
 
 const startTime = performance.now()
 const emit = defineEmits(['status'])
@@ -23,12 +23,13 @@ onMounted(async () => {
 
 function countAllMessages () {
   result.messages = countMessages(dataChat)
-  timeSentMessages() // call next func
+  console.log(dataChat)
+  dateMessagesSent() // call next func
 }
 
 // Calculate the time of sending messages
-function timeSentMessages () {
-  timeSentMessagesFunc(dataChat)
+function dateMessagesSent () {
+  result.messagesInMonths = getDates(dataChat)
   finish()
 }
 
