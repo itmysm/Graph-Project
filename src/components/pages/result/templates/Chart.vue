@@ -49,7 +49,7 @@ const chartTypes = {
   pie: { name: 'Pie', icon: 'Pie_Chart', status: false },
   horizontalBar: { name: 'Horizontal Bar', icon: 'Align_Horizontal_Right', status: false }
 }
-const activeIndex = ref(1)
+const activeIndex = ref(0)
 const active = ref(false)
 
 function returnIndexOfSpecifiedChart (specifiedChart) {
@@ -61,8 +61,6 @@ function returnIndexOfSpecifiedChart (specifiedChart) {
   return i
 }
 
-console.log(props.data)
-
 watch(() => activeIndex.value, () => {
   active.value = false
   setTimeout(() => {
@@ -73,6 +71,10 @@ watch(() => activeIndex.value, () => {
 onMounted(() => {
   setTimeout(() => {
     active.value = true
+    console.log(props.data)
+    Object.keys(props.data).map(val => {
+      console.log(props.data[val], val)
+    })
   }, 300)
 })
 </script>

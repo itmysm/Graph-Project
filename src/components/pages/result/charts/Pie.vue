@@ -15,14 +15,14 @@ const option = {
   },
   series: [
     {
-      name: 'Access From',
+      name: '',
       type: 'pie',
       radius: '70%',
 
       // eslint-disable-next-line array-callback-return
       data: Object.keys(props.data).map(val => {
         if (val !== 'all') {
-          return { value: props.data[val].length, name: val }
+          return { value: props.data[val], name: val }
         } // This value(all) includes all the messages and does not create an interesting view for this graph, so we leave this value out of the loop.
       }),
 
@@ -39,4 +39,10 @@ const option = {
     }
   ]
 }
+
+onMounted(() => {
+  Object.keys(props.data).map(val => {
+    console.log(props.data[val].length, val)
+  })
+})
 </script>

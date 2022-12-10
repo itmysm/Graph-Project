@@ -9,7 +9,7 @@
       </a>
     </div>
     <div class="w-full">
-      <PagesResultTabsDetails :messages="result.messages" :messagesInMonths="result.messagesInMonths" />
+      <PagesResultTabsDetails :messages="result.messages" :sortedMessages="result.sortedMessages" :messagesInMonths="result.messagesInMonths" />
     </div>
   </div>
 </template>

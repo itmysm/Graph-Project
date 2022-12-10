@@ -4,6 +4,7 @@
 
 <script setup>
 import { get } from 'idb-keyval'
+import { sortMessages } from '~~/src/scripts/calculations/sortMessages'
 import { countMessages } from '~~/src/scripts/calculations/countMessages'
 import { getDates } from '~~/src/scripts/calculations/dateMessagesSent'
 
@@ -19,11 +20,17 @@ onMounted(async () => {
   dataChat = await get('file').then((val) => JSON.parse(val))
   console.log(dataChat)
   countAllMessages()
+  sortAllMessages()
 })
+
+function sortAllMessages () {
+  result.sortedMessages = sortMessages(dataChat)
+  console.log(result.sortedMessages)
+  countAllMessages() // call next func
+}
 
 function countAllMessages () {
   result.messages = countMessages(dataChat)
-  console.log(dataChat)
   dateMessagesSent() // call next func
 }
 
