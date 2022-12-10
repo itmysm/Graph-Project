@@ -21,8 +21,6 @@ const props = defineProps({
   }
 })
 
-console.log(props.sortedMessages)
-
 const chartTypes = {
   type1: ['pie', 'bar', 'horizontalBar'],
   type2: ['pie', 'horizontalBar', 'simpleLine']

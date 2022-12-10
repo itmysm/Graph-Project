@@ -26,7 +26,6 @@
         </div>
 
         <AnimationsMainLoading class="w-full h-[400px] bg-primary" v-if="!active" />
-
     </section>
   </div>
 </template>
@@ -44,6 +43,7 @@ const props = defineProps({
   }
 })
 
+const screenValue = ref(0)
 const chartTypes = {
   line: { name: 'Line', icon: 'Stacked_Line_Chart', status: false },
   bar: { name: 'Bar', icon: 'Bar_Chart', status: false },
@@ -73,11 +73,18 @@ watch(() => activeIndex.value, () => {
 onMounted(() => {
   setTimeout(() => {
     active.value = true
-    console.log(props.data)
-    // eslint-disable-next-line array-callback-return
-    Object.keys(props.data).map(val => {
-      console.log(props.data[val], val)
-    })
   }, 300)
+
+  window.addEventListener('resize', () => {
+    screenValue.value++
+    if (screenValue.value === 1) screenSizeChanged()
+  })
 })
+function screenSizeChanged () {
+  active.value = false
+  setTimeout(() => {
+    screenValue.value = 0
+    active.value = true
+  }, 3000)
+}
 </script>
