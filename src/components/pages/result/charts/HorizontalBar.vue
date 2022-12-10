@@ -42,7 +42,7 @@ const option = {
       // eslint-disable-next-line array-callback-return
       data: Object.keys(props.data).map(val => {
         if (val !== 'all') {
-          return props.data[val].length
+          return props.data[val]
         } // This value(all) includes all the messages and does not create an interesting view for this graph, so we leave this value out of the loop.
       })
     }

@@ -19,7 +19,7 @@ const option = {
   },
   series: [
     {
-      data: Object.keys(props.data).map((key) => props.data[key].length),
+      data: Object.keys(props.data).map((key) => props.data[key]),
       type: 'bar'
     }
   ],
