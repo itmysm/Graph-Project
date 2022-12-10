@@ -22,6 +22,7 @@
           <PagesResultChartsBar v-if="chartTypes.bar.status && activeIndex === returnIndexOfSpecifiedChart('bar')" :data="props.data" />
           <PagesResultChartsPie v-if="chartTypes.pie.status && activeIndex === returnIndexOfSpecifiedChart('pie')" :data="props.data" />
           <PagesResultChartsHorizontalBar v-if="chartTypes.horizontalBar.status && activeIndex === returnIndexOfSpecifiedChart('horizontalBar')" :data="props.data" />
+          <PagesResultChartsSimpleLine v-if="chartTypes.simpleLine.status && activeIndex === returnIndexOfSpecifiedChart('simpleLine')" :data="props.data" />
         </div>
 
         <AnimationsMainLoading class="w-full h-[400px] bg-primary" v-if="!active" />
@@ -47,7 +48,8 @@ const chartTypes = {
   line: { name: 'Line', icon: 'Stacked_Line_Chart', status: false },
   bar: { name: 'Bar', icon: 'Bar_Chart', status: false },
   pie: { name: 'Pie', icon: 'Pie_Chart', status: false },
-  horizontalBar: { name: 'Horizontal Bar', icon: 'Align_Horizontal_Right', status: false }
+  horizontalBar: { name: 'Horizontal Bar', icon: 'Align_Horizontal_Right', status: false },
+  simpleLine: { name: 'Line', icon: 'Line_Axis', status: false }
 }
 const activeIndex = ref(0)
 const active = ref(false)
@@ -72,6 +74,7 @@ onMounted(() => {
   setTimeout(() => {
     active.value = true
     console.log(props.data)
+    // eslint-disable-next-line array-callback-return
     Object.keys(props.data).map(val => {
       console.log(props.data[val], val)
     })

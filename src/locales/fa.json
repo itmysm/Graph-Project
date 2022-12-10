@@ -71,5 +71,6 @@
   "resultPageDetailsMessagesBoxMessage": "پیام",
   "resultPageDetailsMessagesBoxNameUndefined": "پیام‌های سیستم",
   "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها",
-  "resultPageDetailsMessagesBoxChartPerPersonMessage": "نمودار تعداد پیام‌های هر شخص"
+  "resultPageDetailsMessagesBoxChartPerPersonMessage": "تعداد پیام‌های هر شخص",
+  "resultPageDetailsMessagesBoxChartPerMonth": "پیام‌های ارسال شده در هر ماه"
 }

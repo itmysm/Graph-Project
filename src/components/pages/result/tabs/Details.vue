@@ -3,7 +3,7 @@
     <PagesResultTemplatesMessagesBox :messages="props.sortedMessages" />
     <div id="test1" class="grid grid-cols-1 xl:grid-cols-1 gap-10 w-full mt-6 mb-6">
       <PagesResultTemplatesChart :title="'resultPageDetailsMessagesBoxChartPerPersonMessage'" :data="messages" :activeCharts="chartTypes.type1" />
-      <PagesResultTemplatesChart :title="'resultPageDetailsMessagesBoxChartPerPersonMessage'" :data="messagesInMonths" :activeCharts="chartTypes.type2" />
+      <PagesResultTemplatesChart :title="'resultPageDetailsMessagesBoxChartPerMonth'" :data="messagesInMonths" :activeCharts="chartTypes.type2" />
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ console.log(props.sortedMessages)
 
 const chartTypes = {
   type1: ['pie', 'bar', 'horizontalBar'],
-  type2: ['pie']
+  type2: ['pie', 'horizontalBar', 'simpleLine']
 }
 
 </script>
