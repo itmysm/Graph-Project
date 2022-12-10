@@ -1,8 +1,5 @@
 <template>
-  <v-chart class="w-full h-[400px]" :option="option" v-if="active" />
-  <div class="flex justify-center items-center h-40" v-if="!active">
-    <AnimationsLoading class="w-full bg-primary" />
-  </div>
+  <v-chart class="w-full h-[400px]" :option="option" />
 </template>
 
 <script setup>
@@ -11,7 +8,7 @@ const props = defineProps({
     required: true
   }
 })
-const active = ref(false)
+
 const option = {
   tooltip: {
     trigger: 'item'
@@ -29,6 +26,9 @@ const option = {
         } // This value(all) includes all the messages and does not create an interesting view for this graph, so we leave this value out of the loop.
       }),
 
+      label: {
+        color: document.querySelector('body').getAttribute('data-theme') === 'dark' ? '#fff' : '#11142d'
+      },
       emphasis: {
         itemStyle: {
           shadowBlur: 10,
@@ -39,13 +39,4 @@ const option = {
     }
   ]
 }
-
-onMounted(() => {
-  setTimeout(() => {
-    active.value = true
-  }, 500)
-  console.log(Object.keys(props.data).map(val => {
-    return { value: props.data[val], name: val }
-  }))
-})
 </script>

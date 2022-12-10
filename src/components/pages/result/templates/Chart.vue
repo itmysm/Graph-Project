@@ -24,6 +24,8 @@
           <PagesResultChartsHorizontalBar v-if="chartTypes.horizontalBar.status && activeIndex === returnIndexOfSpecifiedChart('horizontalBar')" :data="props.data" />
         </div>
 
+        <AnimationsMainLoading class="w-full h-[400px] bg-primary" v-if="!active" />
+
     </section>
   </div>
 </template>
@@ -45,10 +47,10 @@ const chartTypes = {
   line: { name: 'Line', icon: 'Stacked_Line_Chart', status: false },
   bar: { name: 'Bar', icon: 'Bar_Chart', status: false },
   pie: { name: 'Pie', icon: 'Pie_Chart', status: false },
-  horizontalBar: { name: 'Horizontal Bar', icon: 'Pie_Chart', status: false }
+  horizontalBar: { name: 'Horizontal Bar', icon: 'Align_Horizontal_Right', status: false }
 }
 const activeIndex = ref(1)
-const active = ref(true)
+const active = ref(false)
 
 function returnIndexOfSpecifiedChart (specifiedChart) {
   let i = 0
@@ -65,7 +67,12 @@ watch(() => activeIndex.value, () => {
   active.value = false
   setTimeout(() => {
     active.value = true
-  }, 200)
+  }, (Math.floor(Math.random() * 5) + 1) * 1000)
 })
 
+onMounted(() => {
+  setTimeout(() => {
+    active.value = true
+  }, 300)
+})
 </script>
