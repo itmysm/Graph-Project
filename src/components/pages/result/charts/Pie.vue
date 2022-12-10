@@ -22,6 +22,7 @@ const option = {
       type: 'pie',
       radius: '70%',
 
+      // eslint-disable-next-line array-callback-return
       data: Object.keys(props.data).map(val => {
         if (val !== 'all') {
           return { value: props.data[val].length, name: val }

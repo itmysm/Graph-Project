@@ -8,7 +8,7 @@
         :="chartTypes[chart].status = true">
 
         <span class=""><i class="material-symbols-rounded text-[20px]">{{chartTypes[chart].icon}}</i></span>
-        <p class="text-sm ltr:ml-1 rtl:mr-1">{{chart}}</p>
+        <p class="text-sm ltr:ml-1 rtl:mr-1">{{chartTypes[chart].name}}</p>
 
       </li>
     </ul>
@@ -21,6 +21,7 @@
         <div v-if="active">
           <PagesResultChartsBar v-if="chartTypes.bar.status && activeIndex === returnIndexOfSpecifiedChart('bar')" :data="props.data" />
           <PagesResultChartsPie v-if="chartTypes.pie.status && activeIndex === returnIndexOfSpecifiedChart('pie')" :data="props.data" />
+          <PagesResultChartsHorizontalBar v-if="chartTypes.horizontalBar.status && activeIndex === returnIndexOfSpecifiedChart('horizontalBar')" :data="props.data" />
         </div>
 
     </section>
@@ -39,8 +40,13 @@ const props = defineProps({
     require: true
   }
 })
-const theme = ref(document.querySelector('body').getAttribute('data-theme'))
-const chartTypes = { line: { icon: 'Stacked_Line_Chart', status: false }, bar: { icon: 'Bar_Chart', status: false }, pie: { icon: 'Pie_Chart', status: false } }
+
+const chartTypes = {
+  line: { name: 'Line', icon: 'Stacked_Line_Chart', status: false },
+  bar: { name: 'Bar', icon: 'Bar_Chart', status: false },
+  pie: { name: 'Pie', icon: 'Pie_Chart', status: false },
+  horizontalBar: { name: 'Horizontal Bar', icon: 'Pie_Chart', status: false }
+}
 const activeIndex = ref(1)
 const active = ref(true)
 

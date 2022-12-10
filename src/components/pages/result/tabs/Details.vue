@@ -34,7 +34,7 @@ const props = defineProps({
 })
 
 const chartTypes = {
-  type1: ['pie', 'bar'],
+  type1: ['pie', 'bar', 'horizontalBar'],
   type2: ['pie', 'bar', 'line']
 }
 
