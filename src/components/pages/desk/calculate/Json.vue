@@ -8,6 +8,7 @@ import { sortMessages } from '~~/src/scripts/calculations/sortMessages'
 import { countMessages } from '~~/src/scripts/calculations/countMessages'
 import { getDates } from '~~/src/scripts/calculations/dateMessagesSent'
 import { whichTimeOfDay } from '~~/src/scripts/calculations/time/timeOfDay'
+import { whichHoursOfDay } from '~~/src/scripts/calculations/time/hoursOfDay'
 
 const startTime = performance.now()
 const emit = defineEmits(['status'])
@@ -39,11 +40,17 @@ function countAllMessages () {
 function dateMessagesSent () {
   result.messagesInMonths = getDates(dataChat)
   console.log(result.messagesInMonths)
-  WhatTimeOfDayMessagesSent()
+  whatTimeOfDayMessagesSent()
 }
 
-function WhatTimeOfDayMessagesSent () {
+function whatTimeOfDayMessagesSent () {
   result.time = { timeOfDay: whichTimeOfDay(dataChat) }
+  console.log(result.time)
+  whatHoursOfDayMessagesSent()
+}
+
+function whatHoursOfDayMessagesSent () {
+  result.time = { hoursOfDay: whichHoursOfDay(dataChat) }
   console.log(result.time)
   finish()
 }
