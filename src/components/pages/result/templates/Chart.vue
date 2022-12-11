@@ -31,6 +31,9 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+
+const i18n = useI18n()
 const props = defineProps({
   title: {
     require: true
@@ -45,11 +48,11 @@ const props = defineProps({
 
 const screenValue = ref(0)
 const chartTypes = {
-  line: { name: 'Line', icon: 'Stacked_Line_Chart', status: false },
-  bar: { name: 'Bar', icon: 'Bar_Chart', status: false },
-  pie: { name: 'Pie', icon: 'Pie_Chart', status: false },
-  horizontalBar: { name: 'Horizontal Bar', icon: 'Align_Horizontal_Right', status: false },
-  simpleLine: { name: 'Line', icon: 'Line_Axis', status: false }
+  line: { name: i18n.t('simpleLineChart'), icon: 'Stacked_Line_Chart', status: false },
+  bar: { name: i18n.t('barChart'), icon: 'Bar_Chart', status: false },
+  pie: { name: i18n.t('pieChart'), icon: 'Pie_Chart', status: false },
+  horizontalBar: { name: i18n.t('horizontalBarChart'), icon: 'Align_Horizontal_Right', status: false },
+  simpleLine: { name: i18n.t('simpleLineChart'), icon: 'Line_Axis', status: false }
 }
 const activeIndex = ref(0)
 const active = ref(false)
