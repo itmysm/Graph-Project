@@ -14,7 +14,7 @@ const startTime = performance.now()
 const emit = defineEmits(['status'])
 
 let dataChat = reactive({})
-const result = reactive({})
+const result = reactive({ time: {} })
 // const fileInfo = JSON.parse(localStorage.getItem('temporaryInfoFile'))
 const minLimit = 4
 
@@ -44,14 +44,14 @@ function dateMessagesSent () {
 }
 
 function whatTimeOfDayMessagesSent () {
-  result.time = { timeOfDay: whichTimeOfDay(dataChat) }
-  console.log(result.time)
+  result.time.timeOfDay = whichTimeOfDay(dataChat)
+  console.log(result.time.timeOfDay)
   whatHoursOfDayMessagesSent()
 }
 
 function whatHoursOfDayMessagesSent () {
-  result.time = { hoursOfDay: whichHoursOfDay(dataChat) }
-  console.log(result.time)
+  result.time.hoursOfDay = whichHoursOfDay(dataChat)
+  console.log(result.time.hoursOfDay)
   finish()
 }
 

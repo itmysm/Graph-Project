@@ -1,5 +1,5 @@
 <template>
-<v-chart class="w-full h-[400px]" :option="option" />
+<v-chart class="w-full h-[400px]" :option="option" dir="rtl"/>
 </template>
 
 <script setup>
