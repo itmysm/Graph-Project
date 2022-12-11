@@ -81,5 +81,8 @@
   "resultPageDetailsMessagesBoxNameUndefined": "System Messages",
   "resultPageDetailsMessagesBoxPercentageTotalMessages": "Percentage of total messages",
   "resultPageDetailsMessagesBoxChartPerPersonMessage": "each person's messages",
-  "resultPageDetailsMessagesBoxChartPerMonth": "number of messages sent per month"
+  "resultPageDetailsMessagesBoxChartPerMonth": "Number of messages sent per month",
+  "resultPageDetailsMessagesBoxChartTimeOfDay": "Messages sent per day",
+  "resultPageDetailsMessagesBoxChartHoursOfDay": "Messages sent per hour of the day"
+  
 }

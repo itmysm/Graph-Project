@@ -72,5 +72,7 @@
   "resultPageDetailsMessagesBoxNameUndefined": "پیام‌های سیستم",
   "resultPageDetailsMessagesBoxPercentageTotalMessages": "درصد از کل پیام‌ها",
   "resultPageDetailsMessagesBoxChartPerPersonMessage": "تعداد پیام‌های هر شخص",
-  "resultPageDetailsMessagesBoxChartPerMonth": "پیام‌های ارسال شده در هر ماه"
+  "resultPageDetailsMessagesBoxChartPerMonth": "پیام‌های ارسال شده در هر ماه",
+  "resultPageDetailsMessagesBoxChartTimeOfDay": "پیام‌های ارسال شده در هر روز",
+  "resultPageDetailsMessagesBoxChartHoursOfDay": "پیام‌های ارسال شده در هر ساعت از روز"
 }
