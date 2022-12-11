@@ -7,6 +7,7 @@ import { get } from 'idb-keyval'
 import { sortMessages } from '~~/src/scripts/calculations/sortMessages'
 import { countMessages } from '~~/src/scripts/calculations/countMessages'
 import { getDates } from '~~/src/scripts/calculations/dateMessagesSent'
+import { whichTimeOfDay } from '~~/src/scripts/calculations/time/timeOfDay'
 
 const startTime = performance.now()
 const emit = defineEmits(['status'])
@@ -37,6 +38,13 @@ function countAllMessages () {
 // Calculate the time of sending messages
 function dateMessagesSent () {
   result.messagesInMonths = getDates(dataChat)
+  console.log(result.messagesInMonths)
+  WhatTimeOfDayMessagesSent()
+}
+
+function WhatTimeOfDayMessagesSent () {
+  result.time = { timeOfDay: whichTimeOfDay(dataChat) }
+  console.log(result.time)
   finish()
 }
 
