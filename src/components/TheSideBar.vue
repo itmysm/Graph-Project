@@ -8,8 +8,10 @@
 
     <div class="w-[inherit] flex flex-col items-center py-5">
       <ul class="px-0">
-        <li>
-          <NuxtLink to="/">Logo</NuxtLink>
+        <li class="overflow-hideen">
+          <NuxtLink to="/">
+            <AnimationsLogo/>
+          </NuxtLink>
         </li>
       </ul>
 
