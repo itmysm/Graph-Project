@@ -15,7 +15,7 @@ function getDates (data) {
       dateToMonth(msg.date) === 'undefined' ? trash.push(msg.date) : months[dateToMonth(msg.date)] += 1
     }
   })
-  console.log(months)
+
   return months
 }
 
