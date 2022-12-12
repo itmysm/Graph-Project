@@ -2,7 +2,7 @@ let times = {}
 
 function whichTimeOfDay (data) {
   times = { morning: 0, afternoon: 0, evening: 0, night: 0 }
-  // 06 - 12 morning | 12-18 afternoon | 18 - 21 evening | 21 - 06 night
+  // 04 - 12 morning | 12-18 afternoon | 18 - 21 evening | 21 - 03 night
 
   const app = JSON.parse(localStorage.getItem('temporaryInfoFile'))
   if (app.application === 'telegram') {
@@ -24,11 +24,12 @@ function unixTimeTransition (data, keyTime) {
   })
 }
 
-function detectTime (time) {
-  if (time >= 6 && time < 12) times.morning += 1
+function detectTime (strTime) {
+  const time = +strTime
+  if (time >= 4 && time < 12) times.morning += 1
   else if (time >= 12 && time < 18) times.afternoon += 1
   else if (time >= 18 && time < 21) times.evening += 1
-  else if (time >= 21 && time < 6) times.night += 1
+  else if (time >= 21 || time <= 3) times.night += 1
 }
 
 function convertTime12To24 (data, keyTime) {
