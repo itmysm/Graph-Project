@@ -10,6 +10,12 @@ const props = defineProps({
 })
 
 const option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
   xAxis: {
     type: 'category',
     data: Object.keys(props.data).map(key => key)

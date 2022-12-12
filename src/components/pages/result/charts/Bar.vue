@@ -10,25 +10,42 @@ const props = defineProps({
 })
 
 const option = {
-  xAxis: {
-    type: 'category',
-    data: Object.keys(props.data).map((key) => key.length > 5 ? key.slice(0, 5) : key)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: Object.keys(props.data).map((key) => props.data[key]),
-      type: 'bar'
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
     }
-  ],
-
+  },
   grid: {
     right: '10px',
     left: '10px',
-    width: '100%'
-
-  }
+    width: '100%',
+    tooltip: {
+      show: true,
+      direction: 'ltr'
+    }
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: Object.keys(props.data).map((key) => key.length > 5 ? key.slice(0, 5) : key),
+      axisTick: {
+        alignWithLabel: true
+      }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'value',
+      type: 'bar',
+      barWidth: '60%',
+      data: Object.keys(props.data).map((key) => props.data[key])
+    }
+  ]
 }
 </script>
