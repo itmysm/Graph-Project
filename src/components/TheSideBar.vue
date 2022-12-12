@@ -10,7 +10,7 @@
       <ul class="px-0">
         <li class="overflow-hideen">
           <NuxtLink to="/">
-            <AnimationsLogo/>
+            LOGO
           </NuxtLink>
         </li>
       </ul>
