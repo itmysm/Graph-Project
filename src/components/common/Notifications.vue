@@ -34,6 +34,10 @@ class DestroyAlert {
     } else {
       document.getElementsByClassName('alert')[indexResult].classList.replace('ltr:animate-alertCame', 'animate-alertOut')
     }
+
+    setTimeout(() => {
+      document.getElementsByClassName('alert')[indexResult].remove()
+    }, 1000)
   }
 
   findIndex (mainKey) {
