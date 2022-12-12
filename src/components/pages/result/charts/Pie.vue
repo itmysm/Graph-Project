@@ -43,7 +43,7 @@ const option = {
 onMounted(() => {
   // eslint-disable-next-line array-callback-return
   Object.keys(props.data).map(val => {
-    console.log(props.data[val].length, val)
+    console.log(props.data[val], val)
   })
 })
 </script>
