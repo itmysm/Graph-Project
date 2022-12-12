@@ -33,15 +33,17 @@ function detectTime (time) {
 
 function convertTime12To24 (data, keyTime) {
   data.messages.forEach(msg => {
-    const time = msg[keyTime]
-    let hours = Number(time.match(/^(\d+)/)[1])
-    const AMPM = time.match(/\s(.*)$/)[1]
-    if (AMPM === 'PM' && hours < 12) hours = hours + 12
-    if (AMPM === 'AM' && hours === 12) hours = hours - 12
-    let sHours = hours.toString()
-    if (hours < 10) sHours = '0' + sHours
+    if (msg[keyTime]) {
+      const time = msg[keyTime]
+      let hours = Number(time.match(/^(\d+)/)[1])
+      const AMPM = time.match(/\s(.*)$/)[1]
+      if (AMPM === 'PM' && hours < 12) hours = hours + 12
+      if (AMPM === 'AM' && hours === 12) hours = hours - 12
+      let sHours = hours.toString()
+      if (hours < 10) sHours = '0' + sHours
 
-    detectTime(sHours)
+      detectTime(sHours)
+    }
   })
 }
 

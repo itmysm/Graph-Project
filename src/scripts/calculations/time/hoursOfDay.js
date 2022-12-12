@@ -26,14 +26,16 @@ function unixTimeTransition (data, keyTime) {
 
 function convertTime12To24 (data, keyTime) {
   data.messages.forEach(msg => {
-    const time = msg[keyTime]
-    let sHours = Number(time.match(/^(\d+)/)[1])
-    const AMPM = time.match(/\s(.*)$/)[1]
-    if (AMPM === 'PM' && sHours < 12) sHours = sHours + 12
-    if (AMPM === 'AM' && sHours === 12) sHours = sHours - 12
-    const mHours = sHours.toString()
+    if (msg[keyTime]) {
+      const time = msg[keyTime]
+      let sHours = Number(time.match(/^(\d+)/)[1])
+      const AMPM = time.match(/\s(.*)$/)[1]
+      if (AMPM === 'PM' && sHours < 12) sHours = sHours + 12
+      if (AMPM === 'AM' && sHours === 12) sHours = sHours - 12
+      const mHours = sHours.toString()
 
-    hours['' + mHours] += 1
+      hours['' + mHours] += 1
+    }
   })
 }
 
