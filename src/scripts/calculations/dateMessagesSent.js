@@ -15,8 +15,8 @@ function getDates (data) {
       dateToMonth(msg.date) === 'undefined' ? trash.push(msg.date) : months[dateToMonth(msg.date)] += 1
     }
   })
-
-  return months
+  return Object.keys(months).length > 12 ? delete months[Object.keys(months)[12]] : months /* Sometimes an unknown key is created and since the number of months 
+  of the year is always 12, here if the length of the object is more than 12, we remove the extra values. */
 }
 
 function convertUnixToMonth (dateMsg) {
@@ -25,6 +25,7 @@ function convertUnixToMonth (dateMsg) {
     const unix = dateMsg * 1000
     let month = new Date(unix).toLocaleDateString()
     month = new Date(month).getMonth()
+    console.log(monthNames[month])
     return monthNames[month]
   }
 }
