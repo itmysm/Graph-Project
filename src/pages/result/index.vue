@@ -12,6 +12,13 @@
       <PagesResultTabsDetails :messages="result.messages" :sortedMessages="result.sortedMessages" :messagesInMonths="result.messagesInMonths" :timeMessages="result.time" />
     </div>
   </div>
+
+  <div class="w-full" v-else>
+    <div class="flex flex-col items-center justify-center h-full relative">
+      <img class="group-hover:blur-[2px] transition-all duration-500" :src=" theme === 'dark' ? useMediaBaseApi().value + 'icons/empty-folder-light.webp' : useMediaBaseApi().value + 'icons/empty-folder.webp'" alt="" width="100">
+      <h3 class="text-center mt-2" :class="theme === 'dark' ? 'text-white' : 'text-secondary'">{{$t('noResult')}}</h3>
+    </div>
+  </div>
 </template>
 
 <script setup>
