@@ -29,7 +29,7 @@
         </li>
       </ul>
 
-      <ul class="px-0 absolute bottom-0 w-full h-fit">
+      <ul class="px-0 absolute bottom-0 w-full h-fit hidden">
         <li class="w-full overflow-hidden" :class="isSidebarOpen ? 'px-2' : 'px-4'">
           <NuxtLink to="/about"
             :class="[isSidebarOpen ? 'justify-start py-4 px-2' : 'justify-center py-[10px] px-4', path === '/about' ? 'bg-primary' : '']"
