@@ -1,6 +1,5 @@
 <template>
   <div class="hideJustScrollBar max-w-[100%] w-full overflow-x-hidden mt-14 px-10">
-    {{telegramChatsList}}
     <PagesDashboardRecentFiles @recent-file="setUploadedFileInIndexDB($event); updateFile($event); updateFileStatusInStore($event);" />
     <commonUploadFile class="mt-5" @fileUpdated="updateFile" @is-file-allowed="notificationSender($event)" />
     <PagesDashboardTelegramChatsList @deactivate-component="nextStage"  v-if="telegramChatsList"/>
