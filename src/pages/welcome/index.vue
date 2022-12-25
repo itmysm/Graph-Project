@@ -16,10 +16,7 @@
         the graph project
       </h1>
       <p class="text-lg text-neutral w-2/3 font-normal mt-4">
-        Graph is the must powerful tools for checking activities based on
-        messages sent in social media.
-        <a class="link text-info hover:text-info-content">Click here</a>
-        to see the full list of features.
+        A powerful web app for analyzing messages sent in social media and drawing different graphs based on it
       </p>
 
       <button class="btn btn-primary border px-5 py-3 mt-10 text-white" @click="useRouter().push('/')">
