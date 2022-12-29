@@ -4,7 +4,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "@nuxt/content": "^2.0.1",
@@ -30,6 +31,7 @@
     "echarts": "^5.4.0",
     "idb-keyval": "^6.2.0",
     "pinia": "^2.0.21",
+    "push-dir": "^0.4.1",
     "vue-countup-v3": "^1.0.14",
     "vue-echarts": "^6.2.3"
   }
