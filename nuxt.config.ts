@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   ssr: false,
   target: 'static',
   router: {
-    base: '/Graph-Project/'
+    base: '/graph-project/'
   },
   srcDir: 'src',
   modules: ['@nuxt/content',  '@pinia/nuxt',],
