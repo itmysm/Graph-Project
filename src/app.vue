@@ -13,7 +13,9 @@ import { set } from 'idb-keyval'
 const minimumScreenSize = 992 // px
 const isUserDeviceSupported = ref(true)
 const i18n = useI18n()
-const { data: defaultChats } = await useAsyncData('examples', () => queryContent('/examples').find())
+const { data: defaultChats } = await useAsyncData(
+  'examples',
+  () => queryContent('/examples').find())
 
 onBeforeMount(() => {
   userHandler()
@@ -36,7 +38,7 @@ function userHandler () {
     // create profile for new user
     useMainStore().setDefaultSettingOnLocaleStorage()
     // redirect to welcome page
-    useRouter().push('/welcome')
+    useRouter().push('/')
   } else {
     useMainStore().setSettingsOnState()
     useRouter().push('/')
@@ -95,6 +97,7 @@ async function registerIndexDB () {
 
 function setDefaultDataInIndexDB () {
   const object = {}
+  console.log(defaultChats)
   // eslint-disable-next-line array-callback-return
   defaultChats.value.map(item => {
     object[item.title] = {
