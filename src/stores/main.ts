@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { defaultTheme } from '@/utils/Appearance/getBrowserDefaults'
+import { defaultTheme } from '@/utils/appearance/getBrowserDefaults'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
