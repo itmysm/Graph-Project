@@ -11,5 +11,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <RouterView />
+  <div>
+    {{ $t('start') }}
+    <RouterView />
+  </div>
 </template>
