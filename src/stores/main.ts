@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
 import { defaultTheme } from '@/utils/appearance/getBrowserDefaults'
+import { register } from '@/utils/registerNewUser'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
+    newUser: true,
     theme: '',
+    language: '',
     assetsBaseURL: ''
   }),
 
@@ -12,6 +15,14 @@ export const useMainStore = defineStore('main', {
   },
 
   actions: {
+    registerUser() {
+      this.newUser = localStorage.getItem('appearance') == null ? true : false
+
+      if (this.newUser) {
+        register()
+      }
+    },
+
     setTheme() {
       const appearance = localStorage.getItem('appearance')
 
@@ -24,13 +35,6 @@ export const useMainStore = defineStore('main', {
       this.setThemeInDOM()
     },
 
-    setThemeInDOM() {
-      const defaultThemeBrowser = defaultTheme() // this line get default theme system
-
-      document.querySelector('body')?.setAttribute('data-theme',
-        this.theme === 'default' ? defaultThemeBrowser : this.theme)
-    },
-
     setAssetsBaseURL() {
       console.log('2')
       const userInfo = JSON.parse(localStorage.getItem('userInfo') || "{ country_code: 'IR' }")
@@ -40,6 +44,23 @@ export const useMainStore = defineStore('main', {
       } else {
         this.assetsBaseURL = '/'
       }
+    },
+
+    setLanguage() {
+      const appearance = localStorage.getItem('appearance')
+
+      if (appearance) {
+        this.language = JSON.parse(appearance).language
+      } else {
+        this.theme = 'en' // set as default language
+      }
+    },
+
+    setThemeInDOM() {
+      const defaultThemeBrowser = defaultTheme() // this line get default theme system
+
+      document.querySelector('body')?.setAttribute('data-theme',
+        this.theme === 'default' ? defaultThemeBrowser : this.theme)
     }
   },
 })
