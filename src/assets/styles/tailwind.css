@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  [data-theme="light"] {
+    --color-transparent: transparent;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-background: #fff;
+    --color-primary: #007CFF;
+    --color-primary-content: #D1E9F1;
+    --color-primary-active: #8260F4;
+    --color-secondary: #000;
+    --color-secondary-content: #000;
+    --color-info: #009BE5;
+    --color-info-content: #D1E9F1;
+    --color-info-active: #8260F4;
+    --color-neutral: #629fae;
+    --color-neutral-content: #fff;
+    --color-neutral-active: #427b8a;
+    --color-bermuda: #F9F871;
+    --color-error: #f43f5e;
+    --color-warning: #facc15;
+  }
+
+  [data-theme="dark"] {
+    --color-transparent: transparent;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-background: #212121;
+    --color-primary: #007CFF;
+    --color-primary-content: #D1E9F1;
+    --color-primary-active: #8260F4;
+    --color-secondary: #000;
+    --color-secondary-content: #000;
+    --color-info: #009BE5;
+    --color-info-content: #D1E9F1;
+    --color-info-active: #8260F4;
+    --color-neutral: #629fae;
+    --color-neutral-content: #fff;
+    --color-neutral-active: #427b8a;
+    --color-bermuda: #F9F871;
+    --color-error: #f43f5e;
+    --color-warning: #facc15;
+  }
+}
