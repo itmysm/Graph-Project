@@ -18,3 +18,7 @@ onMounted(async () => {
     <RouterView />
   </div>
 </template>
+
+<style>
+  @import './assets/styles/main.css';
+</style>
