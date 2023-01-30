@@ -14,6 +14,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.8",
     "feather-icons": "^4.29.0",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
