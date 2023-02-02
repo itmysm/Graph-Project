@@ -14,7 +14,7 @@
         class="absolute z-10 -ml-4 mt-3 w-fit drop-shadow-lg transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
 
         <div class="overflow-hidden rounded-lg shadow-lg w-fit">
-          <div class="relative w-fit min-w-[200px] grid bg-white py-4">
+          <div class="relative w-fit min-w-[200px] grid bg-white py-2">
             <a v-for="item in props.items" :key="item.name" :href="item.path"
               class="flex items-center py-2 px-2 my-1 hover:bg-def/10 transition-colors">
               <vue-feather :type="item.icon" class="ml-1 flex-shrink-0" size="16" aria-hidden="true" />
