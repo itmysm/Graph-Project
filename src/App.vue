@@ -14,7 +14,6 @@ onMounted(async () => {
 
 <template>
   <div>
-    {{ $t('start') }}
     <RouterView />
   </div>
 </template>
