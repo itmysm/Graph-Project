@@ -14,8 +14,12 @@
         discover important and interesting information
       </p>
 
-      <Button class="bg-info-active/90 hover:bg-info-active text-main mt-6 rounded-md md:w-[200px] py-[10px] md:py-[13px] text-md md:text-lg" :name="'Get Started'" :icon="'chevron-right'" />
+      <Button
+        class="bg-info-active/90 hover:bg-info-active text-main mt-6 rounded-md md:w-[200px] py-[10px] md:py-[13px] text-md md:text-lg shadow-[0_20px_25px_-5px_rgba(130,96,244,0.3)]"
+        :name="'Get Started'" :icon="'chevron-right'" />
     </div>
+
+    <Features class="mt-16" />
 
     <TheFooter />
   </section>
@@ -26,4 +30,5 @@
 import TheHeader from "../../components/TheHeader.vue"
 import TheFooter from "../../components/TheFooter.vue"
 import Button from "../../components/UI/Common/Button.vue"
+import Features from '@/components/Views/Info/Features.vue'
 </script>
