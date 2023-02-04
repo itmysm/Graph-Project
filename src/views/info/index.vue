@@ -11,7 +11,7 @@
       <p class="text-lg md:text-xl text-center">
         Analyze your own chats in social media and
         <br>
-        discover important and interesting information
+        discover interesting and funny information
       </p>
 
       <Button
@@ -22,6 +22,7 @@
     <Features class="mt-16" />
     <How class="mt-16 flex" />
     <GetStarted />
+    <Resources />
 
     <TheFooter />
   </section>
@@ -35,4 +36,5 @@ import Button from "../../components/UI/Common/Button.vue"
 import Features from '@/components/Views/Info/Features.vue'
 import How from "@/components/Views/Info/How.vue";
 import GetStarted from "@/components/Views/Info/GetStarted.vue";
+import Resources from "@/components/Views/Info/Resources.vue";
 </script>
