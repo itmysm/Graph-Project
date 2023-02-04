@@ -1,11 +1,11 @@
 <template>
-  <section class="flex justify-center border-y border-black/10 py-20">
+  <section class="flex justify-center border-y border-black/10 py-10 md:py-20">
     <div class="flex flex-col items-center max-w-[1200px]">
-      <h2 class="text-2xl font-semibold text-def/80 mb-16">How to create a video online</h2>
+      <h2 class="text-2xl font-semibold text-def/80 mb-10 md:mb-16">How to create a video online</h2>
 
-      <div class="grid grid-cols-2 gap-x-10 px-10">
-        <ul>
-          <li class="flex px-5 rounded-md py-3 lg:py-7 mb-5" v-for="(step, index) in steps" :key="index"
+      <div class="grid grid-cols-1 grid-flow-dense md:grid-cols-2 gap-x-10 px-10">
+        <ul class="order-last mt-8 md:mt-0 md:order-first">
+          <li class="flex px-5 rounded-md py-5 lg:py-7 mb-5" v-for="(step, index) in steps" :key="index"
             @click="currentIndex = index"
             :class="currentIndex !== index ? 'bg-[#f6f6f7] cursor-pointer items-center' : 'border border-black/20 items-start'">
             <div class="text-sm lg:text-md mr-5 lg:mr-7 shrink-0 text-warning/70 text-[#0c8]">{{ step.step }}</div>

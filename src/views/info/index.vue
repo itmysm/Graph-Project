@@ -20,7 +20,8 @@
     </div>
 
     <Features class="mt-16" />
-    <How class="mt-16 hidden md:flex" />
+    <How class="mt-16 flex" />
+    <GetStarted />
 
     <TheFooter />
   </section>
@@ -33,4 +34,5 @@ import TheFooter from "../../components/TheFooter.vue"
 import Button from "../../components/UI/Common/Button.vue"
 import Features from '@/components/Views/Info/Features.vue'
 import How from "@/components/Views/Info/How.vue";
+import GetStarted from "@/components/Views/Info/GetStarted.vue";
 </script>

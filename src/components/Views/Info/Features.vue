@@ -2,8 +2,8 @@
   <section class="flex justify-center">
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-[1200px]">
       <li class="flex flex-col items-center px-5 md:px-10 mb-16" v-for="(feature, index) in features" :key="index">
-        <vue-feather class="relative bottom-[2px] mr-2" :type="feature.icon" size="40" stroke-width="1.2" aria-hidden="true" />
-        <h2 class="font-semibold my-3">{{ feature.title }}</h2>
+        <vue-feather class="relative bottom-[2px] mr-2 text-def/70" :type="feature.icon" size="40" stroke-width="1.2" aria-hidden="true" />
+        <h2 class="font-semibold my-3 text-def/70">{{ feature.title }}</h2>
         <p class="font-light text-center">{{ feature.description }}</p>
       </li>
     </ul>
