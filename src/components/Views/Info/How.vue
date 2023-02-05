@@ -3,7 +3,7 @@
     <div class="flex flex-col items-center max-w-[1200px]">
       <h2 class="text-2xl font-semibold text-def/80 mb-10 md:mb-16">How to create a video online</h2>
 
-      <div class="grid grid-cols-1 grid-flow-dense md:grid-cols-2 gap-x-10 px-10">
+      <div class="grid grid-cols-1 grid-flow-dense justify-items-start md:grid-cols-2 gap-x-10 px-10">
         <ul class="order-last mt-8 md:mt-0 md:order-first">
           <li class="flex px-5 rounded-md py-5 lg:py-7 mb-5" v-for="(step, index) in steps" :key="index"
             @click="currentIndex = index"
