@@ -2,7 +2,7 @@
   <Menu as="div" class="relative inline-block text-left">
     <div class="transition-colors">
       <MenuButton class="inline-flex w-full justify-center bg-white py-2 text-sm font-small text-def hover:bg-gray-50 focus:outline-none hover:text-def/50 capitalize">
-        <vue-feather class="-ml-1 mr-2 h-5 w-5" :type="props.name[1]" stroke-width="2" aria-hidden="true"></vue-feather>
+        <vue-feather class="-ml-1 mr-2 h-5 w-5" :type="props.name[1]" stroke-width="2" aria-hidden="true" />
         {{ props.name[0] }}
       </MenuButton>
     </div>
@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
-const emits = defineEmits('selectedItem')
+const emits = defineEmits(['selectedItem'])
 const props = defineProps({
   name: {
     type: [Array],
