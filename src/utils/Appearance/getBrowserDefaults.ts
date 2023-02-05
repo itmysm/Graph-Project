@@ -4,8 +4,8 @@ const defaultTheme = () => {
 
 const systemInfo = () => {
   return { 
-    platform: window.navigator?.userAgentData?.platform, 
-    isMobile: window.navigator?.userAgentData?.mobile 
+    // platform: window.navigator?.userAgentData?.platform, 
+    // isMobile: window.navigator?.userAgentData?.mobile 
   }
 }
 

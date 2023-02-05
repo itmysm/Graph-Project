@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { defaultTheme } from '@/utils/appearance/getBrowserDefaults'
-import { register } from '@/utils/registerNewUser'
+import { defaultTheme } from '../utils/appearance/getBrowserDefaults'
+import { register } from '../utils/registerNewUser'
 
 export const useMainStore = defineStore('main', {
   state: () => ({

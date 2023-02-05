@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex flex-col-reverse lg:flex-row lg:justify-between md:items-center pt-6 md:py-3 mt-10 px-4 md:px-6 lg:px-10 border-t border-def/10">
+  <footer class="flex flex-col-reverse lg:flex-row lg:justify-between md:items-center pt-6 md:py-3 px-4 md:px-6 lg:px-10 border-t border-def/10">
     <h6 class="text-sm font-normal my-8 md:my-4">© 2022–{{ new Date().getFullYear() }} Softo ltd. All rights reserved.</h6>
 
     <ul class="flex flex-col md:flex-row-reverse md:items-center justify-center">

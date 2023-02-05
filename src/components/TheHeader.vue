@@ -1,15 +1,17 @@
 <template>
-  <Popover class="relative bg-white">
+  <Popover class="header bg-white transition-all duration-300" :class="[status == 'true' ? 'w-full fixed -top-1 translate-y-1' : '', ]">
     <div class="px-4 md:px-10 border-b border-def/10">
       <div class="flex items-center justify-between py-3 md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <a class="flex items-center" href="/">
-            <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              alt="" />
             <span class="text-def text-2xl font-bold ml-3">Graph</span>
           </a>
         </div>
         <div class="-my-2 -mr-2 md:hidden">
-          <PopoverButton class="inline-flex items-center justify-center rounded-md bg-main p-2 text-def hover:text-info-active focus:outline-none">
+          <PopoverButton
+            class="inline-flex items-center justify-center rounded-md bg-main p-2 text-def hover:text-info-active focus:outline-none">
             <span class="sr-only">Open menu</span>
             <vue-feather class="h-6 w-6" type="menu" aria-hidden="true" />
           </PopoverButton>
@@ -24,17 +26,21 @@
       </div>
     </div>
 
-    <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
+    <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95"
+      enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in"
+      leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
       <PopoverPanel focus class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden z-[100]">
         <div class="divide-y divide-def/10 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <div class="px-5 pt-5 pb-6">
             <div class="flex items-center justify-between">
               <a class="flex items-center" href="/">
-                <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  alt="" />
                 <span class="text-def font-medium ml-3">Graph</span>
               </a>
               <div class="-mr-2">
-                <PopoverButton class="inline-flex items-center justify-center rounded-md bg-main p-2 text-def hover:text-info-active focus:outline-none">
+                <PopoverButton
+                  class="inline-flex items-center justify-center rounded-md bg-main p-2 text-def hover:text-info-active focus:outline-none">
                   <span class="sr-only">Close menu</span>
                   <vue-feather type="x" class="h-6 w-6" aria-hidden="true" />
                 </PopoverButton>
@@ -42,7 +48,8 @@
             </div>
             <div class="mt-6">
               <nav class="grid gap-y-8">
-                <a v-for="item in resources" :key="item.name" :href="item.path" class="-m-3 flex items-center rounded-md py-3 px-4 hover:bg-def/10">
+                <a v-for="item in resources" :key="item.name" :href="item.path"
+                  class="-m-3 flex items-center rounded-md py-3 px-4 hover:bg-def/10">
                   <!-- <vue-feather class="relative bottom-[2px] mr-2" :type="item.icon" size="20" aria-hidden="true" /> -->
                   <span class="text-base font-medium text-def">{{ item.name }}</span>
                 </a>
@@ -51,11 +58,14 @@
           </div>
           <div class="space-y-6 py-6 px-5">
             <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-              <a v-for="(item, index) in tools" :key="index" :href="item.path" class="text-base font-medium text-def hover:text-info-active">{{ item.name }}</a>
+              <a v-for="(item, index) in tools" :key="index" :href="item.path"
+                class="text-base font-medium text-def hover:text-info-active">{{ item.name }}</a>
             </div>
             <div>
-              <a :href="largeBtnMenuMobile.path" class="flex w-full items-center justify-center rounded-md border border-transparent bg-info px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-info-active">
-                <vue-feather class="relative bottom-[2px] mr-2" :type="largeBtnMenuMobile.icon" size="24" aria-hidden="true" />
+              <a :href="largeBtnMenuMobile.path"
+                class="flex w-full items-center justify-center rounded-md border border-transparent bg-info px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-info-active">
+                <vue-feather class="relative bottom-[2px] mr-2" :type="largeBtnMenuMobile.icon" size="24"
+                  aria-hidden="true" />
                 {{ largeBtnMenuMobile.name }}
               </a>
             </div>
@@ -68,8 +78,20 @@
 
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
+import { onMounted, ref } from 'vue';
 import PopoverComponent from './UI/Common/Popover.vue'
 
+const status = ref('false')
+
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0
+    const scrollY = window.scrollY
+    if (scrollY - headerHeight >= 170) status.value = 'true'
+    // if (scrollY - headerHeight < 100 && scrollY - headerHeight > 0) status.value = 'ready'
+    if (scrollY - headerHeight == -headerHeight) status.value = 'false'
+  })
+})
 
 const largeBtnMenuMobile = {
   name: 'Github Repo',
@@ -118,10 +140,5 @@ const resources = [
     name: 'Privacy and Policy',
     path: '/'
   },
-]
-const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
 ]
 </script>
