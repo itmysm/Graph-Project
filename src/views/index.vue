@@ -30,9 +30,9 @@
 
 
 <script setup lang="ts">
-import TheHeader from "../../components/TheHeader.vue"
-import TheFooter from "../../components/TheFooter.vue"
-import Button from "../../components/UI/Common/Button.vue"
+import TheHeader from "@/components/TheHeader.vue"
+import TheFooter from "@/components/TheFooter.vue"
+import Button from "@/components/UI/Common/Button.vue"
 import Features from '@/components/Views/Info/Features.vue'
 import How from "@/components/Views/Info/How.vue";
 import GetStarted from "@/components/Views/Info/GetStarted.vue";
