@@ -1,9 +1,12 @@
 <template>
-  <footer class="flex flex-col-reverse lg:flex-row lg:justify-between md:items-center pt-6 md:py-3 px-4 md:px-6 lg:px-10 border-t border-def/10">
-    <h6 class="text-sm font-normal my-8 md:my-4">© 2022–{{ new Date().getFullYear() }} Softo ltd. All rights reserved.</h6>
+  <footer
+    class="flex flex-col-reverse lg:flex-row lg:justify-between md:items-center pt-6 md:py-3 px-4 md:px-6 lg:px-10 border-t border-def/10">
+    <h6 class="text-sm font-normal my-8 md:my-4">© 2022–{{ new Date().getFullYear() }} Softo ltd. All rights reserved.
+    </h6>
 
     <ul class="flex flex-col md:flex-row-reverse md:items-center justify-center">
-      <Dropdown class="w-fit mb-6 md:mb-0" :name="[$i18n.locale, 'globe']" :items="['English', 'Persian', 'Korean', 'Arabic', 'Detacth']" @selected-item="'func'"/>
+      <Dropdown class="w-fit mb-6 md:mb-0" :name="[$i18n.locale, 'globe']" :items="languages"
+        @selected-item="changeAppLanguage" />
 
       <p class="hidden md:block w-[1px] h-[30px] bg-def/10 mr-4"></p>
 
@@ -17,7 +20,20 @@
 </template>
 
 <script setup lang="ts">
+import { useMainStore } from '@/stores/main'
 import Dropdown from '@/components/UI/Common/Dropdown.vue'
 
-const itmes = [{name: 'Terms of Use', path: '/'}, {name: 'Privacy Policy', path: '/'}, {name: 'Report', path: '/'}, {name: 'Github', path: '/'}]
+import { ref, onMounted } from 'vue';
+
+const languages = ref([])
+
+onMounted(() => {
+  languages.value = JSON.parse(localStorage.getItem('available') || '{}').languages.map((lang: { name: String }) => lang?.name)
+})
+
+function changeAppLanguage(key: string) {
+  useMainStore().changeLanguage(key)
+}
+
+const itmes = [{ name: 'Terms of Use', path: '/' }, { name: 'Privacy Policy', path: '/' }, { name: 'Report', path: '/' }, { name: 'Github', path: '/' }]
 </script>

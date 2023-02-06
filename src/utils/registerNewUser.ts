@@ -7,11 +7,15 @@ const register = async () => {
   const appearance = {
     theme: defaultTheme(),
     language: checkDefaultLanguageIsSupported(),
+  }
+
+  const availableOptions = {
     themes: availableThemes,
     languages: availableLanguages,
   }
   
   localStorage.setItem('appearance', JSON.stringify(appearance))
+  localStorage.setItem('available', JSON.stringify(availableOptions))
 }
 
 

@@ -7,7 +7,8 @@ export const useMainStore = defineStore('main', {
     newUser: true,
     theme: '',
     language: '',
-    assetsBaseURL: ''
+    assetsBaseURL: '',
+    appearance: {} as any
   }),
 
   getters: {
@@ -21,24 +22,13 @@ export const useMainStore = defineStore('main', {
       if (this.newUser) {
         register()
       }
-    },
-
-    setTheme() {
-      const appearance = localStorage.getItem('appearance')
-
-      if (appearance) {
-        this.theme = JSON.parse(appearance).theme
-      } else {
-        this.theme = 'default'
-      }
-
-      this.setThemeInDOM()
+      
+      this.setAppearance()
     },
 
     setAssetsBaseURL() {
-      console.log('2')
       const userInfo = JSON.parse(localStorage.getItem('userInfo') || "{ country_code: 'IR' }")
-      
+
       if (userInfo.country_code == 'IR') {
         this.assetsBaseURL = ''
       } else {
@@ -46,21 +36,28 @@ export const useMainStore = defineStore('main', {
       }
     },
 
-    setLanguage() {
-      const appearance = localStorage.getItem('appearance')
-
-      if (appearance) {
-        this.language = JSON.parse(appearance).language
-      } else {
-        this.theme = 'en' // set as default language
-      }
+    setAppearance() {
+      const html = document.querySelector('html')
+      const body = document.querySelector('body')
+      const appearance = JSON.parse(localStorage.getItem('appearance') || "{}") 
+    
+      
+      html?.setAttribute('data-theme', appearance.theme) // set theme
+      html?.setAttribute('lang', appearance.language.code) // set lang
+      body?.setAttribute('dir', appearance.language.dir) // set lang
     },
 
-    setThemeInDOM() {
-      const defaultThemeBrowser = defaultTheme() // this line get default theme system
 
-      document.querySelector('body')?.setAttribute('data-theme',
-        this.theme === 'default' ? defaultThemeBrowser : this.theme)
-    }
+    changeLanguage(key: string) {
+      const appearance = JSON.parse(localStorage.getItem('appearance') || '{}')
+      const languages = JSON.parse(localStorage.getItem('available') || '{}').languages
+
+      if (appearance?.language?.name !== languages[key].name) {
+        appearance.language = languages[key]
+        localStorage.setItem('appearance', JSON.stringify(appearance))
+
+        this.setAppearance()
+      }
+    },
   },
 })
