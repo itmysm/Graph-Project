@@ -1,22 +1,23 @@
 import { defaultTheme, defaultLanguage } from "./appearance/getBrowserDefaults"
 
 const availableThemes = [{ name: 'dark' }, { name: 'light' }]
-const availableLanguages = [{ name: 'English', code: 'en', flag: '' }, { name: 'Persian', code: 'fa', flag: '' }]
+const availableLanguages = [{ name: 'English', code: 'en', dir: 'ltr' ,flag: '' }, { name: 'Persian', code: 'fa', dir: 'rtl', flag: '' }]
 
-const register = () => {
+const register = async () => {
   const appearance = {
     theme: defaultTheme(),
     language: checkDefaultLanguageIsSupported(),
     themes: availableThemes,
     languages: availableLanguages,
   }
-
+  
   localStorage.setItem('appearance', JSON.stringify(appearance))
 }
 
 
 function checkDefaultLanguageIsSupported() {
-  availableLanguages.find((lang) => {
+  
+  return availableLanguages.find((lang) => {
     if (lang.code === defaultLanguage().split('-')[0]) return lang
   }) || availableLanguages[0] // if default lang is unsupported select english
 
