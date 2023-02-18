@@ -6,8 +6,6 @@ import { createPinia } from 'pinia'
 import router from './router'
 import VueFeather from 'vue-feather';
 
-
-
 // styles
 import './assets/styles/tailwind.css' // tailwind styles
 

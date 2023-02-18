@@ -1,7 +1,10 @@
 import { defaultTheme, defaultLanguage } from "./appearance/getBrowserDefaults"
 
 const availableThemes = [{ name: 'dark' }, { name: 'light' }]
-const availableLanguages = [{ name: 'English', code: 'en', dir: 'ltr' ,flag: '' }, { name: 'Persian', code: 'fa', dir: 'rtl', flag: '' }]
+const availableLanguages = [
+  { name: 'English', code: 'en', dir: 'ltr' ,flag: '' },
+  { name: 'Russian', code: 'ru', dir: 'ltr', flag: '' }
+]
 
 const register = async () => {
   const appearance = {

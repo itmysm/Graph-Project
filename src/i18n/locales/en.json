@@ -1,3 +1,14 @@
 {
-  "start": "Hi"
+  "_Comment": "HEADER SECTION",
+  "headerResourcesPrivacy": "Privacy and Policy",
+  "headerResourcesReport": "Report",
+  "headerResourcesTerm": "Term of Use",
+  "headerResources": "Documents",
+  "HeaderTools": "Tools",
+  "HeaderToolsGraph": "Graph Project",
+  "HeaderToolsTodo": "Todo App",
+  "HeaderToolsStory": "Story Downloader",
+  "HeaderToolsMusic": "Music Downloader",
+  "HeaderMainItemsPrices": "Prices",
+  "HeaderMainItemsDocs": "Docs"
 }

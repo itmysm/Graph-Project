@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { i18n } from '@/i18n/i18n';
 import { useMainStore } from '@/stores/main'
 import Dropdown from '@/components/UI/Common/Dropdown.vue'
-
-import { ref, onMounted } from 'vue';
 
 const languages = ref([])
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { defaultTheme } from '../utils/appearance/getBrowserDefaults'
 import { register } from '../utils/registerNewUser'
+import { changeLocale } from '@/i18n/i18n'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
@@ -55,6 +55,7 @@ export const useMainStore = defineStore('main', {
       if (appearance?.language?.name !== languages[key].name) {
         appearance.language = languages[key]
         localStorage.setItem('appearance', JSON.stringify(appearance))
+        changeLocale(languages[key].name.toLowerCase())
 
         this.setAppearance()
       }

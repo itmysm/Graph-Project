@@ -1,5 +1,6 @@
 <template>
-  <Popover class="header bg-white transition-all duration-300" :class="[status == 'true' ? 'w-full fixed -top-1 translate-y-1' : '', ]">
+  <Popover class="header bg-white transition-all duration-300"
+    :class="[status == 'true' ? 'w-full fixed -top-1 translate-y-1' : '',]">
     <div class="px-4 md:px-10 border-b border-def/10">
       <div class="flex items-center justify-between py-3 md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -19,8 +20,9 @@
 
         <PopoverGroup as="nav" class="hidden space-x-6 md:flex">
           <PopoverComponent :name="toolsName" :items="tools" />
-          <a href="/" class="text-sm font-medium text-def/75 hover:text-info-active">Pricing</a>
-          <a href="/" class="text-sm font-medium text-def/75 hover:text-info-active">Docs</a>
+
+          <router-link :to="mainItem.path" class="text-sm font-medium text-def/75 hover:text-info-active"
+            v-for="(mainItem, index) in mainItems" :key="index">{{ mainItem.name }}</router-link>
 
         </PopoverGroup>
       </div>
@@ -49,7 +51,7 @@
             <div class="mt-6">
               <nav class="grid gap-y-8">
                 <a v-for="item in resources" :key="item.name" :href="item.path"
-                  class="-m-3 flex items-center rounded-md py-3 px-4 hover:bg-def/10">
+                  class="-m-3 flex items-center rounded-md py-3 px-4 hover:bg-def/10 rtl:">
                   <!-- <vue-feather class="relative bottom-[2px] mr-2" :type="item.icon" size="20" aria-hidden="true" /> -->
                   <span class="text-base font-medium text-def">{{ item.name }}</span>
                 </a>
@@ -77,10 +79,12 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
 import { onMounted, ref } from 'vue';
 import PopoverComponent from './UI/Common/Popover.vue'
 
+const { t } = useI18n(/*{ useScope: 'global' }*/)
 const status = ref('false')
 
 onMounted(() => {
@@ -117,7 +121,7 @@ const tools = [
     icon: 'instagram',
   },
   {
-    name: 'Spotify Downloader',
+    name: 'Music Downloader',
     path: '/',
     icon: 'music',
   },
@@ -125,20 +129,32 @@ const tools = [
 
 const resources = [
   {
-    name: 'Documents',
+    name: t('HeaderMainItemsDocs'),
     path: '/'
   },
   {
-    name: 'Terms of Use',
+    name: t('headerResourcesTerm'),
     path: '/'
   },
   {
-    name: 'Report',
+    name: t('headerResourcesReport'),
     path: '/'
   },
   {
-    name: 'Privacy and Policy',
+    name: t('headerResourcesPrivacy'),
     path: '/'
   },
+]
+
+const mainItems = [
+  {
+    name: t('HeaderMainItemsPrices'),
+    path: "/",
+  },
+
+  {
+    name: t('HeaderMainItemsDocs'),
+    path: "/",
+  }
 ]
 </script>
