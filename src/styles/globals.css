@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,4 +26,66 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  [data-theme="light"] {
+    --color-transparent: transparent;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-gray: #808080;
+    --color-yellow: #FBBF24;
+    --colors-blue: #3B82F6;
+    --color-indigo: #6366F1;
+    --color-purple: #8B5CF6;
+    --color-green: #10B981;
+    --color-red: #EF4444;
+    --color-teal: #14B8A6;
+
+    --color-primary: '#fff';
+    --color-primary-hover: '#fff';
+    --color-primary-active: '#fff';
+
+    --color-secondary: '#fff';
+    --color-secondary-hover: '#fff';
+    --color-secondary-active: '#fff';
+
+    --color-info: '#fff';
+    --color-info-hover: '#fff';
+    --color-info-active: '#fff';
+
+    --color-error: '#fff';
+    --color-warning: '#fff';
+    --color-success: '#fff';
+  }
+
+  [data-theme="dark"] {
+    --color-transparent: transparent;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-gray: #808080;
+    --color-yellow: #FBBF24;
+    --colors-blue: #3B82F6;
+    --color-indigo: #6366F1;
+    --color-purple: #8B5CF6;
+    --color-green: #10B981;
+    --color-red: #EF4444;
+    --color-teal: #14B8A6;
+
+    --color-primary: '#fff';
+    --color-primary-hover: '#fff';
+    --color-primary-active: '#fff';
+
+    --color-secondary: '#fff';
+    --color-secondary-hover: '#fff';
+    --color-secondary-active: '#fff';
+
+    --color-info: '#fff';
+    --color-info-hover: '#fff';
+    --color-info-active: '#fff';
+
+    --color-error: '#fff';
+    --color-warning: '#fff';
+    --color-success: '#fff';
+  }
 }
