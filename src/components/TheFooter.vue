@@ -21,8 +21,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { i18n } from '@/i18n/i18n';
-import { useMainStore } from '@/stores/main'
+import { useSettersStore } from '@/stores/setters'
 import Dropdown from '@/components/UI/Common/Dropdown.vue'
 
 const languages = ref([])
@@ -31,8 +30,8 @@ onMounted(() => {
   languages.value = JSON.parse(localStorage.getItem('available') || '{}').languages.map((lang: { name: String }) => lang?.name)
 })
 
-function changeAppLanguage(key: string) {
-  useMainStore().changeLanguage(key)
+function changeAppLanguage(key: string) {  
+  useSettersStore().changeLanguage(key)
 }
 
 const itmes = [{ name: 'Terms of Use', path: '/' }, { name: 'Privacy Policy', path: '/' }, { name: 'Report', path: '/' }, { name: 'Github', path: '/' }]

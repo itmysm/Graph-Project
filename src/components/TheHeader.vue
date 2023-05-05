@@ -7,7 +7,7 @@
           <a class="flex items-center" href="/">
             <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt="" />
-            <span class="text-def text-2xl font-bold ml-3">Graph</span>
+            <span class="text-def text-2xl font-bold ml-3">{{ t('headerResourcesPrivacy') }}</span>
           </a>
         </div>
         <div class="-my-2 -mr-2 md:hidden">
@@ -121,7 +121,7 @@ const tools = [
     icon: 'instagram',
   },
   {
-    name: 'Music Downloader',
+    name: t('HeaderToolsMusic'),
     path: '/',
     icon: 'music',
   },

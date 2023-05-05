@@ -22,8 +22,20 @@ const register = async () => {
 }
 
 
-function checkDefaultLanguageIsSupported() {
+const setAppearance = () => {
+  const html = document.querySelector('html')
+  const body = document.querySelector('body')
+  const appearance = JSON.parse(localStorage.getItem('appearance') || "{}") 
+  console.log(html, body, appearance);
   
+  
+  html?.setAttribute('data-theme', appearance?.theme) // set theme
+  html?.setAttribute('lang', appearance?.language?.code) // set lang
+  body?.setAttribute('dir', appearance?.language?.dir) // set lang
+}
+
+
+function checkDefaultLanguageIsSupported() {
   return availableLanguages.find((lang) => {
     if (lang.code === defaultLanguage().split('-')[0]) return lang
   }) || availableLanguages[0] // if default lang is unsupported select english
@@ -34,4 +46,4 @@ function checkDefaultLanguageIsSupported() {
    */
 }
 
-export { register }
+export { register, setAppearance }
