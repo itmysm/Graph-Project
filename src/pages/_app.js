@@ -1,3 +1,5 @@
+import { appWithTranslation } from 'next-i18next'
+
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
 import '@/styles/globals.css'
@@ -7,7 +9,7 @@ const layouts = {
   Default: Default
 }
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   const Layout = layouts[Component.layout] || Default;
   return (
     <Layout>
@@ -15,3 +17,5 @@ export default function App({ Component, pageProps }) {
     </Layout>
   )
 }
+
+export default appWithTranslation(App)
