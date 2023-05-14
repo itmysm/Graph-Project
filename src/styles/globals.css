@@ -31,61 +31,53 @@ body {
 @layer base {
   [data-theme="light"] {
     --color-transparent: transparent;
-    --color-black: #000;
-    --color-white: #fff;
-    --color-gray: #808080;
-    --color-yellow: #FBBF24;
-    --colors-blue: #3B82F6;
-    --color-indigo: #6366F1;
-    --color-purple: #8B5CF6;
-    --color-green: #10B981;
-    --color-red: #EF4444;
-    --color-teal: #14B8A6;
-
-    --color-primary: '#fff';
-    --color-primary-hover: '#fff';
-    --color-primary-active: '#fff';
-
-    --color-secondary: '#fff';
-    --color-secondary-hover: '#fff';
-    --color-secondary-active: '#fff';
-
-    --color-info: '#fff';
-    --color-info-hover: '#fff';
-    --color-info-active: '#fff';
-
-    --color-error: '#fff';
-    --color-warning: '#fff';
-    --color-success: '#fff';
+    --color-black: 0 0 0;
+    --color-white: 255 255 255;
+    --color-gray: 128 128 128;
+    --color-yellow: 251 191 36;
+    --colors-blue: 59 130 246;
+    --color-indigo: 99 102 241;
+    --color-purple: 139 92 246;
+    --color-green: 16 185 129;
+    --color-red: 239 68 68;
+    --color-teal: 20 184 166;
+    --color-primary: 255 255 255;
+    --color-primary-hover: 255 255 255;
+    --color-primary-active: 255 255 255;
+    --color-secondary: 255 255 255;
+    --color-secondary-hover: 255 255 255;
+    --color-secondary-active: 255 255 255;
+    --color-info: 255 255 255;
+    --color-info-hover: 255 255 255;
+    --color-info-active: 255 255 255;
+    --color-error: 255 255 255;
+    --color-warning: 255 255 255;
+    --color-success: 255 255 255;
   }
 
   [data-theme="dark"] {
     --color-transparent: transparent;
-    --color-black: #000;
-    --color-white: #fff;
-    --color-gray: #808080;
-    --color-yellow: #FBBF24;
-    --colors-blue: #3B82F6;
-    --color-indigo: #6366F1;
-    --color-purple: #8B5CF6;
-    --color-green: #10B981;
-    --color-red: #EF4444;
-    --color-teal: #14B8A6;
-
-    --color-primary: '#fff';
-    --color-primary-hover: '#fff';
-    --color-primary-active: '#fff';
-
-    --color-secondary: '#fff';
-    --color-secondary-hover: '#fff';
-    --color-secondary-active: '#fff';
-
-    --color-info: '#fff';
-    --color-info-hover: '#fff';
-    --color-info-active: '#fff';
-
-    --color-error: '#fff';
-    --color-warning: '#fff';
-    --color-success: '#fff';
+    --color-black: 49 35 35;
+    --color-white: 255 255 255;
+    --color-gray: 128 128 128;
+    --color-yellow: 237 245 147;
+    --colors-blue: 59 130 246;
+    --color-indigo: 99 102 241;
+    --color-purple: 139 92 246;
+    --color-green: 16 185 129;
+    --color-red: 239 68 68;
+    --color-teal: 97 209 172;
+    --color-primary: 227 228 232;
+    --color-primary-hover: 255 255 255;
+    --color-primary-active: 161 164 170;
+    --color-secondary: 14 16 21;
+    --color-secondary-hover: 30 32 41;
+    --color-secondary-active: 255 255 255;
+    --color-info: 145 140 242;
+    --color-info-hover: 255 255 255;
+    --color-info-active: 145 140 237;
+    --color-error: 255 255 255;
+    --color-warning: 255 255 255;
+    --color-success: 255 255 255;
   }
 }

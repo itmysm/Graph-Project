@@ -1,9 +1,10 @@
 import { appWithI18Next, useSyncLanguage } from "ni18n";
 import { ni18nConfig } from "../../ni18n.config";
+import { useEffect, useState } from 'react';
 
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
-import '@/styles/globals.css'
+import '../styles/globals.css'
 
 const layouts = {
   App: Application,
@@ -14,7 +15,14 @@ function App({ Component, pageProps }) {
   const Layout = layouts[Component.layout] || Default;
   const settings = getSettings()
   useSyncLanguage(settings.locale)
-  configDirection(settings.locale)
+
+  const [dir, setDir] = useState(settings.locale === 'fa' ? 'rtl' : 'ltr');
+  const theme = settings.theme
+
+  useEffect(() => {
+    document.querySelector('body').setAttribute('dir', dir);
+    document.querySelector('html').setAttribute('data-theme', theme);
+  }, [dir, theme])
 
   return (
     <Layout>
@@ -27,16 +35,8 @@ function App({ Component, pageProps }) {
 function getSettings() {
   return {
     theme: 'dark',
-    locale: 'fa',
+    locale: 'en',
   }
 } // must be dynamic later
-
-function configDirection(locale) {
-  if (locale == 'fa') {
-    document.querySelector('body').setAttribute('dir', 'rtl')
-  } else {
-    document.querySelector('body').setAttribute('dir', 'ltr')
-  }
-}
 
 export default appWithI18Next(App, ni18nConfig)

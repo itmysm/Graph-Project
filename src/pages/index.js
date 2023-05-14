@@ -3,11 +3,11 @@ import { useTranslation } from 'next-i18next'
 
 export default function Home() {
   const { t } = useTranslation()
-  return(
+  return (
     <main
-      className={`flex min-h-screen w-full font-inter`}>
-        <p>{t('start')}</p>
-        <br />
+      className={`min-h-screen w-full font-inter bg-secondary`}>
+      {/* <p>{t('start')}</p>
+        <br /> */}
     </main>
   )
 }
