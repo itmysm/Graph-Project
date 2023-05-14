@@ -27,7 +27,7 @@ module.exports = {
       'primary-active': 'rgb(var(--color-primary-active) / <alpha-value>)',
 
       secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
-      'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)var(--color-secondary-content)',
+      'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)',
       'secondary-active': 'rgb(var(--color-secondary-active) / <alpha-value>)',
 
       info: 'rgb(var(--color-info) / <alpha-value>)',
