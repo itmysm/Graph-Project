@@ -1,43 +1,50 @@
 /** @type {import('tailwindcss').Config} */
-// eslint-disable-next-line no-undef
 module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./src/**/**/*.{vue,js,ts,jsx,tsx}",
-    "./src/**/**/**/*.{vue,js,ts,jsx,tsx}",
-    
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      inter: ['Inter', 'sans-serif']
+    },
     colors: {
       transparent: 'var(--color-transparent)',
       white: 'rgb(var(--color-white) / <alpha-value>)',
       black: 'rgb(var(--color-black) / <alpha-value>)',
-      background: 'rgb(var(--color-background) / <alpha-value>)',
-      def: 'rgb(var(--color-def) / <alpha-value>)',
-      main: 'rgb(var(--color-main) / <alpha-value>)',
+      gray: 'rgb(var(--color-gray) / <alpha-value>)',
+      yellow: 'rgb(var(--color-yellow) / <alpha-value>)',
+      blue: 'rgb(var(--color-blue) / <alpha-value>)',
+      indigo: 'rgb(var(--color-indigo) / <alpha-value>)',
+      purple: 'rgb(var(--color-purple) / <alpha-value>)',
+      green: 'rgb(var(--color-green) / <alpha-value>)',
+      red: 'rgb(var(--color-red) / <alpha-value>)',
+      teal: 'rgb(var(--color-teal) / <alpha-value>)',
 
       primary: 'rgb(var(--color-primary) / <alpha-value>)',
-      'primary-content': 'rgb(var(--color-primary-content) / <alpha-value>)',
+      'primary-hover': 'rgb(var(--color-primary-hover) / <alpha-value>)',
       'primary-active': 'rgb(var(--color-primary-active) / <alpha-value>)',
 
       secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
-      'secondary-content': 'rgb(var(--color-secondary-content) / <alpha-value>)var(--color-secondary-content)',
+      'secondary-hover': 'rgb(var(--color-secondary-hover) / <alpha-value>)',
       'secondary-active': 'rgb(var(--color-secondary-active) / <alpha-value>)',
 
       info: 'rgb(var(--color-info) / <alpha-value>)',
-      'info-content': 'rgb(var(--color-info-content) / <alpha-value>)',
+      'info-hover': 'rgb(var(--color-info-hover) / <alpha-value>)',
       'info-active': 'rgb(var(--color-info-active) / <alpha-value>)',
 
-      neutral: 'rgb(var(--color-neutral) / <alpha-value>)',
-      'neutral-content': 'rgb(var(--color-neutral-content) / <alpha-value>)',
-      'neutral-active': 'rgb(var(--color-neutral-active) / <alpha-value>)',
-
-      bermuda: 'rgb(var(--color-bermuda) / <alpha-value>)',
       error: 'rgb(var(--color-error) / <alpha-value>)',
       warning: 'rgb(var(--color-warning) / <alpha-value>)',
+      success: 'rgb(var(--color-success) / <alpha-value>)',
     },
-    extend: {},
-  },
-  plugins: [],
+
+    extend: {
+      boxShadow: {
+        'light': '0px 0px 70px 2px rgba(255,255,255,0.08)',
+      }
+    },
+
+    plugins: [],
+  }
 }
