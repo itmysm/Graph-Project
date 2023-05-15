@@ -39,6 +39,12 @@ module.exports = {
       success: 'rgb(var(--color-success) / <alpha-value>)',
     },
 
+    extend: {
+      boxShadow: {
+        'light': '0px 0px 70px 2px rgba(255,255,255,0.08)',
+      }
+    },
+
     plugins: [],
   }
 }
