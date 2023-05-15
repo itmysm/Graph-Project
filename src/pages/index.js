@@ -6,6 +6,8 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { FiGrid, FiKey, FiPenTool, FiWifiOff } from 'react-icons/fi';
+
 
 
 export default function Home() {
@@ -15,6 +17,13 @@ export default function Home() {
 		});
 	}, [])
 	const { t } = useTranslation()
+
+	const features = [
+		{ title: 'Secure & Open Source', icon: <FiKey />},
+		{ title: 'Responsive For Mobile', icon: <FiGrid /> },
+		{ title: 'Customizable', icon: <FiPenTool /> },
+		{ title: 'No Need To internet', icon: <FiWifiOff /> }
+	];
 
 	return (
 		<main
@@ -57,6 +66,19 @@ export default function Home() {
 							<p className='md:w-4/6 lg:w-3/6 xl:w-4/6 text-3xl lg:text-4xl font-black text-center mt-6'>What makes Compact so special?</p>
 							<p className='text-primary text-sm mt-5 text-center'>There are plenty of benefits when using Compact template. We tried to list some of them out.</p>
 						</div>
+
+						<ul className='w-full flex justify-between mt-32'>
+							{features.map((item, index) => (
+								<li className='flex flex-col items-center' key={index}>
+									<span className='w-14 h-14 flex justify-center items-center text-2xl bg-secondary-active rounded-xl'>
+										{item.icon}
+									</span>
+
+									<p className='mt-4 text-primary'>{item.title}</p>
+									<p className='text-sm text-primary-active font-light text-center mt-3'>You don't have to spend thousands of dollars to get a nice website just to launch your product.</p>
+								</li>
+							))}
+						</ul>
 					</div>
 				</section>
 			</div>
