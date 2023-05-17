@@ -6,7 +6,8 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { FiGrid, FiKey, FiPenTool, FiWifiOff } from 'react-icons/fi';
+import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend } from 'react-icons/fi';
+import { Collapse, Text } from "@nextui-org/react";
 
 export default function Home() {
 	useEffect(() => {
@@ -23,9 +24,25 @@ export default function Home() {
 		{ title: 'No Need To internet', description: 'Graph also offers a PWA that allows you to access it offline, ensuring convenient availability and enhanced security measures.', icon: <FiWifiOff style={{ color: '#edf593', size: '50px' }} /> }
 	];
 
+	const faq = [
+		{ title: 'Which apps does Graph support?', description: 'It has been tried as much as possible to support the exported data of all famous social media in the world. But currently Graph supports Telegram, WhatsApp and Instagram' },
+		{ title: 'Are my uploaded chats on the graph stored on your servers?', description: 'No! As mentioned above, all calculations and analyzes are performed on your device and no data is sent from users to the server.' },
+		{ title: 'Can I contribute to this project?', description: 'Yes! We welcome any kind of cooperation on this project and we welcome your cooperation.' }
+	]
+
+	const socialMedia = [
+		{ title: 'Github', icon: <FiGithub style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.github.com/itmysm' },
+
+		{ title: 'Twitter', icon: <FiTwitter style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.twitter.com/itmysm' },
+
+		{ title: 'Codepen', icon: <FiCodepen style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.codepen.com/itmysm' },
+
+		{ title: 'Telegram', icon: <FiSend style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.t.me/itmysm' }
+	]
+
 	return (
 		<main
-			className={`min-h-screen w-full flex justify-center font-inter bg-secondary px-5 md:px-10 xl:px-0 py-10`}>
+			className={`min-h-screen w-full flex justify-center font-inter !bg-secondary px-5 md:px-10 xl:px-0 py-10`}>
 			<div className='w-full xl:max-w-[1200px]'>
 
 				<header className='flex justify-between'>
@@ -80,7 +97,7 @@ export default function Home() {
 						</ul>
 					</div>
 
-					<div className='h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-48'>
+					<div className='h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-20 md:mt-36 lg:mt-48'>
 						<div className='bg-gradient-to-t from-secondary-active rounded-xl relative col-span-12 md:col-span-6 h-[260px] lg:h-[400px]'>
 							<img src='/media/banners/shot-3.svg' className='absolute w-[170px] lg:w-[240px] xl:w-[270px] xl:w-[270px] bottom-5 left-4 md:left-6 md:bottom-6' data-aos="fade-up-right" />
 							<img src='/media/banners/shot-2.svg' className='absolute w-[170px] lg:w-[240px] xl:w-[270px] top-5 right-4 md:right-6 md:top-6' data-aos="fade-down-left" />
@@ -92,7 +109,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div className='h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-48'>
+					<div className='h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-20 md:mt-36 lg:mt-48'>
 						<div className='bg-gradient-to-t from-secondary-active rounded-xl relative col-span-12 md:col-span-6 h-[260px] lg:h-[400px] md:order-last'>
 							<img src='/media/banners/shot-4.svg' className='absolute w-[200px] lg:w-[300px] xl:w-[370px] xl:w-[270px] bottom-5 left-10 md:left-6 md:bottom-6' data-aos="fade-up-right" />
 							<img src='/media/banners/shot-5.svg' className='absolute w-[70px] lg:w-[100px] xl:w-[140px] top-5 right-10 md:right-6 md:top-6' data-aos="fade-down-left" />
@@ -105,16 +122,47 @@ export default function Home() {
 					</div>
 				</section>
 
-				<section className='mt-48'>
+				<section className='mt-20 md:mt-32 lg:mt-48'>
 					<div className='flex flex-col items-center tetx-center'>
 						<p className='text-xs text-teal uppercase text-center font-semibold tracking-widest'>FAQ</p>
-						<h3 className='text-info text-4xl font-semibold mt-8'>Got questions?</h3>
+						<h3 className='text-primary text-5xl font-semibold mt-8'>Got questions?</h3>
 						<span className='flex text-sm md:text-base mt-6'>
 							<p className='text-primary-active'>If you have any other questions - please get in touch at &nbsp;</p>
 							<a className='text-primary hover:text-info transition' href='mailto:dev.mysm@gmail.com'>dev.mysm@gmail.com</a>
 						</span>
+
+						<Collapse.Group className='mt-12 md:mt-20 max-w-[700px]'>
+							{faq.map((item, index) => (
+								<Collapse title={item.title} className='bg-secondary text-primary text-lg md:text-xl font-semibold' key={index}>
+									<Text className='text-primary-active'>
+										{item.description}
+									</Text>
+								</Collapse>
+							))}
+						</Collapse.Group>
 					</div>
 				</section>
+
+				<footer className='flex flex-col justify-center items-center mt-20 md:mt-32 lg:mt-40 transition-all'>
+					<h2 className='text-xl text-info font-semibold tracking-widest'>Graph Project</h2>
+					<div className='mt-8'>
+						<a className='text-primary hover:text-info mr-5 font-semibold' href='#'>Privacy Policy</a>
+						<a className='text-primary hover:text-info ml-5 font-semibold' href='#'>Terms of Service</a>
+					</div>
+
+					<ul className='flex my-8'>
+						{socialMedia.map((item, index) => (
+							<li className='mr-4' key={index}>
+								<a className='w-10 h-10' href={item.link} target='_blank'>{item.icon}</a>
+							</li>
+						))}
+					</ul>
+
+					<span className='flex items-center font-semibold text-sm'>
+						<p className='text-primary-active'>Developed by &nbsp;</p>
+						<a className='text-primary hover:text-info' href="#">Mysm</a>
+					</span>
+				</footer>
 			</div>
 		</main>
 	)
