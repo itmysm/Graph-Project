@@ -7,15 +7,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend } from 'react-icons/fi';
-import { Collapse, Text } from "@nextui-org/react";
+import { Collapse, Modal, useModal, Button, Text } from "@nextui-org/react";
+
 
 export default function Home() {
+	const { setVisible, bindings } = useModal();
+	const { t } = useTranslation()
+
 	useEffect(() => {
 		AOS.init({
 			duration: 600
 		});
 	}, [])
-	const { t } = useTranslation()
 
 	const features = [
 		{ title: 'Secure & Open Source', description: 'Graph is an open-source project with its source code available on GitHub, ensuring high security as it operates entirely client-side, with no data being sent to the server.', icon: <FiKey style={{ color: '#918ced', size: '50px' }} /> },
@@ -47,7 +50,60 @@ export default function Home() {
 
 				<header className='flex justify-between'>
 					<Link href="/" className='font-semibold text-xl text-info'>Graph Project</Link>
-					<NBtn custom="text-sm font-semibold text-primary bg-secondary-hover hover:bg-secondary rounded-lg" size="md">What is Graph?</NBtn>
+					<Button className="text-sm font-semibold text-primary bg-secondary-hover hover:bg-secondary rounded-lg" auto onPress={() => setVisible(true)}>
+						What Is Graph?
+					</Button>
+
+					<Modal
+						className='bg-secondary-active'
+						scroll
+						width="600px"
+						aria-labelledby="modal-title"
+						aria-describedby="modal-description"
+						{...bindings}
+					>
+						<Modal.Header>
+						</Modal.Header>
+						<Modal.Body>
+							<Text id="modal-description">
+								Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+								dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+								ac consectetur ac, vestibulum at eros. Praesent commodo cursus
+								magna, vel scelerisque nisl consectetur et. Cras mattis consectetur
+								purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
+								egestas eget quam. Morbi leo risus, porta ac consectetur ac,
+								vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
+								nisl consectetur et. Cras mattis consectetur purus sit amet
+								fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
+								quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+								Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+								Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+								dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+								ac consectetur ac, vestibulum at eros. Praesent commodo cursus
+								magna, vel scelerisque nisl consectetur et. Cras mattis consectetur
+								purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
+								egestas eget quam. Morbi leo risus, porta ac consectetur ac,
+								vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
+								nisl consectetur et. Cras mattis consectetur purus sit amet
+								fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
+								quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+								Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+								Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+								dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+								ac consectetur ac, vestibulum at eros. Praesent commodo cursus
+								magna, vel scelerisque nisl consectetur et. Cras mattis consectetur
+								purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
+								nisl consectetur et.
+							</Text>
+						</Modal.Body>
+						<Modal.Footer>
+							<hr className='w-full h-[1px] bg-gray/25 mb-5' />
+
+							<Button className='border-info hover:bg-info text-primary mt-0' bordered auto onPress={() => setVisible(false)}>
+								Get Start
+							</Button>
+						</Modal.Footer>
+					</Modal>
 				</header>
 
 				<div className="mt-28 flex flex-col items-center justify-center" data-aos="fade-up">
@@ -126,14 +182,14 @@ export default function Home() {
 					<div className='flex flex-col items-center tetx-center'>
 						<p className='text-xs text-teal uppercase text-center font-semibold tracking-widest'>FAQ</p>
 						<h3 className='text-primary text-5xl font-semibold mt-8'>Got questions?</h3>
-						<span className='flex text-sm md:text-base mt-6'>
-							<p className='text-primary-active'>If you have any other questions - please get in touch at &nbsp;</p>
-							<a className='text-primary hover:text-info transition' href='mailto:dev.mysm@gmail.com'>dev.mysm@gmail.com</a>
-						</span>
+						<div className='flex flex-col text-center text-sm md:text-base text-primary-active mt-6'>
+							<p>If you have any other questions - please get in touch at &nbsp;</p>
+							<a className='text-primary hover:text-info transition mt-1' href='mailto:dev.mysm@gmail.com'>dev.mysm@gmail.com</a>
+						</div>
 
 						<Collapse.Group className='mt-12 md:mt-20 max-w-[700px]'>
 							{faq.map((item, index) => (
-								<Collapse title={item.title} className='bg-secondary text-primary text-lg md:text-xl font-semibold' key={index}>
+								<Collapse title={item.title} className='bg-secondary text-primary text-base sm:text-lg md:text-xl font-semibold' key={index}>
 									<Text className='text-primary-active'>
 										{item.description}
 									</Text>
@@ -145,15 +201,15 @@ export default function Home() {
 
 				<footer className='flex flex-col justify-center items-center mt-20 md:mt-32 lg:mt-40 transition-all'>
 					<h2 className='text-xl text-info font-semibold tracking-widest'>Graph Project</h2>
-					<div className='mt-8'>
-						<a className='text-primary hover:text-info mr-5 font-semibold' href='#'>Privacy Policy</a>
-						<a className='text-primary hover:text-info ml-5 font-semibold' href='#'>Terms of Service</a>
+					<div className='flex justify-center mt-8'>
+						<a className='text-primary hover:text-info font-semibold mr-5' href='#'>Privacy Policy</a>
+						<a className='text-primary hover:text-info font-semibold ml-5' href='#'>Terms of Service</a>
 					</div>
 
 					<ul className='flex my-8'>
 						{socialMedia.map((item, index) => (
-							<li className='mr-4' key={index}>
-								<a className='w-10 h-10' href={item.link} target='_blank'>{item.icon}</a>
+							<li className='mb-0' key={index}>
+								<a className='flex justify-center items-center w-10 h-10' href={item.link} target='_blank'>{item.icon}</a>
 							</li>
 						))}
 					</ul>
