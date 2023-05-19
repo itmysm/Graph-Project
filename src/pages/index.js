@@ -5,26 +5,30 @@ import NBtn from '@/components/UI/Btn';
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect } from 'react';
-import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend } from 'react-icons/fi';
-import { Collapse, Modal, useModal, Button, Text } from "@nextui-org/react";
-
+import { useEffect, useState } from 'react';
+import { Collapse, Modal, useModal, Button, Text, Switch } from "@nextui-org/react";
+import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend, FiMoon, FiSun } from 'react-icons/fi';
+import { toggleTheme } from '@/utils/theme';
 
 export default function Home() {
 	const { setVisible, bindings } = useModal();
 	const { t } = useTranslation()
 
+	const [settings, setSettings] = useState({})
 	useEffect(() => {
 		AOS.init({
 			duration: 600
 		});
+
+		const defaults = JSON.parse(localStorage.getItem('settings'))
+		setSettings(defaults)
 	}, [])
 
 	const features = [
-		{ title: 'Secure & Open Source', description: 'Graph is an open-source project with its source code available on GitHub, ensuring high security as it operates entirely client-side, with no data being sent to the server.', icon: <FiKey style={{ color: '#918ced', size: '50px' }} /> },
-		{ title: 'Responsive For Mobile', description: 'The website is designed to be highly responsive, ensuring a seamless user experience across various browsers and devices, prioritizing optimal functionality and user satisfaction.', icon: <FiGrid style={{ color: '#65d1ae', size: '50px' }} /> },
+		{ title: 'Secure & Open Source', description: 'Graph is an open-source project with its source code available on GitHub, ensuring high security as it operates entirely client-side, with no data being sent to the server.', icon: <FiKey style={{ color: 'rgb(var(--color-yellow))', size: '50px' }} /> },
+		{ title: 'Responsive For Mobile', description: 'The website is designed to be highly responsive, ensuring a seamless user experience across various browsers and devices, prioritizing optimal functionality and user satisfaction.', icon: <FiGrid style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, },
 		{ title: 'Customizable', description: "Graph provides extensive customization options, empowering users to personalize their experience by adjusting the program's language, theme, and more to suit their preferences and needs.", icon: <FiPenTool style={{ color: '#eb92d5', size: '50px' }} /> },
-		{ title: 'No Need To internet', description: 'Graph also offers a PWA that allows you to access it offline, ensuring convenient availability and enhanced security measures.', icon: <FiWifiOff style={{ color: '#edf593', size: '50px' }} /> }
+		{ title: 'No Need To internet', description: 'Graph also offers a PWA that allows you to access it offline, ensuring convenient availability and enhanced security measures.', icon: <FiWifiOff style={{ color: 'rgb(var(--color-info))', size: '50px' }} /> }
 	];
 
 	const faq = [
@@ -34,23 +38,24 @@ export default function Home() {
 	]
 
 	const socialMedia = [
-		{ title: 'Github', icon: <FiGithub style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.github.com/itmysm' },
-
-		{ title: 'Twitter', icon: <FiTwitter style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.twitter.com/itmysm' },
-
-		{ title: 'Codepen', icon: <FiCodepen style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.codepen.com/itmysm' },
-
-		{ title: 'Telegram', icon: <FiSend style={{ color: '#edf593', size: '50px' }} />, link: 'https://www.t.me/itmysm' }
+		{ title: 'Github', icon: <FiGithub style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.github.com/itmysm' },
+		{ title: 'Twitter', icon: <FiTwitter style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.twitter.com/itmysm' },
+		{ title: 'Codepen', icon: <FiCodepen style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.codepen.com/itmysm' },
+		{ title: 'Telegram', icon: <FiSend style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.t.me/itmysm' }
 	]
+
+	const handelThemeChange = () => {
+		setSettings(toggleTheme())
+	}
 
 	return (
 		<main
-			className={`min-h-screen w-full flex justify-center font-inter !bg-secondary px-5 md:px-10 xl:px-0 py-10`}>
+			className={`selection:bg-gray-text selection:text-white min-h-screen w-full flex justify-center font-inter !bg-secondary px-5 md:px-10 xl:px-0 py-10 transition-colors`}>
 			<div className='w-full xl:max-w-[1200px]'>
 
 				<header className='flex justify-between'>
 					<Link href="/" className='font-semibold text-xl text-info'>Graph Project</Link>
-					<Button className="text-sm font-semibold text-primary bg-secondary-hover hover:bg-secondary rounded-lg" auto onPress={() => setVisible(true)}>
+					<Button className="text-sm font-semibold text-primary-active bg-secondary-hover hover:bg-secondary-active rounded-lg" auto onPress={() => setVisible(true)}>
 						What Is Graph?
 					</Button>
 
@@ -112,9 +117,9 @@ export default function Home() {
 						with Graph Project
 					</p>
 
-					<p className='text-sm md:text-md text-center mt-5 text-primary'>Customize to fit your brand and impress your customers with a professional online presence.</p>
+					<p className='text-base md:text-md text-center mt-5 text-primary-hover tracking-wider'>Customize to fit your brand and impress your customers with a professional online presence.</p>
 
-					<NBtn custom="text-sm font-semibold text-secondary bg-primary hover:bg-info hover:text-primary rounded-lg mt-10" size="lg">Start Analyzing</NBtn>
+					<NBtn custom="text-sm font-semibold text-secondary bg-primary hover:bg-primary-active rounded-lg mt-10" size="lg">Start Analyzing</NBtn>
 
 					<div className='flex mt-8'>
 						{Array.from({ length: 3 }).map((_, index) => (
@@ -123,11 +128,11 @@ export default function Home() {
 						))}
 					</div>
 
-					<p className='text-teal font-semibold text-xs tracking-widest mt-6'>ALREADY LIKED BY 100+ DEVELOPERS!</p>
+					<p className='text-teal font-semibold text-sm tracking-widest mt-6'>ALREADY LIKED BY 100+ DEVELOPERS!</p>
 
 					<div className='w-full h-full relative mt-12 md:mt-32'>
 						{/* eslint-disable-next-line @next/next/no-img-element */}
-						<img className='shadow-light' src="/media/banners/shot-1.svg" alt='test' />
+						<img className='shadow-light rounded-xl' src="/media/banners/shot-1.svg" alt='test' />
 					</div>
 				</div>
 
@@ -146,8 +151,8 @@ export default function Home() {
 										{item.icon}
 									</span>
 
-									<p className='mt-4 text-primary tracking-widest font-semibold'>{item.title}</p>
-									<p className='text-sm text-primary-active font-light text-center mt-3'>{item.description}</p>
+									<p className='mt-4 text-primary md:text-lg font-semibold'>{item.title}</p>
+									<p className='text-sm text-gray-text font-normal tracking-wider text-center mt-3'>{item.description}</p>
 								</li>
 							))}
 						</ul>
@@ -160,8 +165,8 @@ export default function Home() {
 						</div>
 
 						<div className='lg:flex flex-col justify-center col-span-12 md:col-span-6 text-center md:text-left mt-8 md:mt-0 xl:px-10'>
-							<h3 className='text-info text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold'>Animations & effects</h3>
-							<p className='text-sm lg:text-base text-primary-active mt-4 xl:mt-8 font-light'>Pre-built animations and effects such as scroll transforms, appear animation, component interactions and more. Benefits? A more dynamic and engaging website that encourages users to explore the site further.</p>
+							<h3 className='text-primary text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold'>Animations & effects</h3>
+							<p className='text-sm md:text-base text-gray-text font-normal tracking-wider mt-4 xl:mt-8'>Pre-built animations and effects such as scroll transforms, appear animation, component interactions and more. Benefits? A more dynamic and engaging website that encourages users to explore the site further.</p>
 						</div>
 					</div>
 
@@ -172,8 +177,8 @@ export default function Home() {
 						</div>
 
 						<div className='lg:flex flex-col justify-center col-span-12 md:col-span-6 text-center md:text-left mt-8 md:mt-0 xl:px-10'>
-							<h3 className='text-info text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold'>Desktop, tablet & phone breakpoints</h3>
-							<p className='text-sm lg:text-base text-primary-active mt-4 xl:mt-8 font-light'>We made sure that this template is optimized for viewing on any device, providing a consistent and optimal experience for users regardless of the device they are using.</p>
+							<h3 className='text-primary text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold'>Desktop, tablet & phone breakpoints</h3>
+							<p className='text-sm md:text-base text-gray-text font-normal tracking-wider mt-4 xl:mt-8'>We made sure that this template is optimized for viewing on any device, providing a consistent and optimal experience for users regardless of the device they are using.</p>
 						</div>
 					</div>
 				</section>
@@ -216,10 +221,19 @@ export default function Home() {
 
 					<span className='flex items-center font-semibold text-sm'>
 						<p className='text-primary-active'>Developed by &nbsp;</p>
-						<a className='text-primary hover:text-info' href="#">Mysm</a>
+						<a className='text-primary hover:text-info mt-[3px]' href="#">Mysm</a>
 					</span>
 				</footer>
 			</div>
+
+			<Switch
+				className={`fixed bottom-6 left-4 ${settings.theme == 'dark' ? ' [&>div]:bg-secondary-active' : '[&>div]:bg-primary'}`}
+				onChange={handelThemeChange}
+				checked={settings.theme == 'dark' ? true : false}
+				size="xl"
+				iconOn={<FiMoon style={{ color: 'rgb(var(--color-primary)' }} filled />}
+				iconOff={<FiSun style={{ color: 'rgb(var(--color-yellow)' }} filled />}
+			/>
 		</main>
 	)
 }

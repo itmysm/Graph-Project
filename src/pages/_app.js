@@ -3,7 +3,6 @@ import { ni18nConfig } from "../../ni18n.config";
 import { useEffect, useState } from 'react';
 import { createTheme, NextUIProvider } from '@nextui-org/react';
 
-
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
 import '../styles/globals.css'
@@ -15,7 +14,14 @@ const layouts = {
 
 function App({ Component, pageProps }) {
   const Layout = layouts[Component.layout] || Default;
-  const settings = getSettings()
+
+  const [settings, setSettings] = useState({})
+
+  useEffect(() => {
+    const defaults = JSON.parse(localStorage.getItem('settings')) || getSettings() 
+    setSettings(defaults)
+  }, [])
+  
   useSyncLanguage(settings.locale)
 
   const [dir, setDir] = useState(settings.locale === 'fa' ? 'rtl' : 'ltr');
@@ -25,7 +31,6 @@ function App({ Component, pageProps }) {
     document.querySelector('body').setAttribute('dir', dir);
     document.querySelector('html').setAttribute('data-theme', theme);
   }, [dir, theme])
-
 
   const nextUITheme = createTheme({
     type: "dark", // it could be "light" or "dark"
@@ -71,12 +76,14 @@ function App({ Component, pageProps }) {
   )
 }
 
-
 function getSettings() {
-  return {
+  const settings = {
     theme: 'dark',
     locale: 'en',
   }
+
+  localStorage.setItem('settings', JSON.stringify(settings))
+  return settings
 } // must be dynamic later
 
 export default appWithI18Next(App, ni18nConfig)
