@@ -47,6 +47,9 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/itmysm/Graph-Project
 
+# Clone this repository
+$ git checkout v1
+
 # Go into the repository
 $ cd Graph-Project
 
