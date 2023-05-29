@@ -2,7 +2,9 @@ import { Button } from "@nextui-org/react";
 import { useState, useEffect, useRef } from "react";
 import { FiUploadCloud } from 'react-icons/fi'
 import FileProgress from "./FileProgress";
+
 export default function FileBox() {
+
   const [file, setFile] = useState(null)
   const [inZone, setInZone] = useState(null)
   const fileInputRef = useRef(null);
@@ -10,6 +12,7 @@ export default function FileBox() {
   useEffect(() => {
     console.log(file);
   }, [file]);
+
 
   const dropHandler = (ev) => {
     ev.preventDefault();
@@ -45,7 +48,7 @@ export default function FileBox() {
     <>
       {
         <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 py-8 rounded-xl px-10">
-          <div className="col-span-2 md:col-span-1 flex flex-col">
+          <div className="hidden md:flex col-span-2 md:col-span-1 flex flex-col">
             <h3 className="text-xl font-semibold">Upload File</h3>
             <div className="w-full my-10 h-60">
               <FileProgress file={file} />
@@ -61,11 +64,12 @@ export default function FileBox() {
           </div>
 
           <div
-            className={`hidden md:flex col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-gray-text ${inZone ? 'border-info' : 'border-primary/20'}`}
+            className={`md:flex col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-gray-text ${inZone ? 'border-info' : 'border-primary/20'}`}
             onDragOver={dragOverHandler}
             onDrop={dropHandler}
-            onDragLeave={onMouseLeaveHandler}>
-            <p className="font-semibold text-center">Drag and drop your file here to get start <br /> or <span className="underline" onClick={onHandelOpenBrowser}>chose from your computer</span></p>
+            onDragLeave={onMouseLeaveHandler}
+            onClick={onHandelOpenBrowser}>
+            <p className="font-semibold text-center">Drag and drop your file here to get start <br /> or <span className="underline">chose from your device</span></p>
             <FiUploadCloud className="mt-4" size="25" />
           </div>
         </div>
