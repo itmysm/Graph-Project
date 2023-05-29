@@ -22,7 +22,8 @@ function App({ Component, pageProps }) {
     setSettings(defaults)
   }, [])
   
-  useSyncLanguage(settings.locale)
+  console.log(settings.locale);
+  useSyncLanguage('en')
 
   const [dir, setDir] = useState(settings.locale === 'fa' ? 'rtl' : 'ltr');
   const theme = settings.theme
