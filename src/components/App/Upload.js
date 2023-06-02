@@ -9,7 +9,6 @@ export default function Upload() {
     dispatch({ type: NEW_FILE, payload: { name: file.name, size: file.size, type: file.type } });
   };
 
-
   return (<div className="w-full h-[100vh] flex flex-col justify-center items-center backdrop-blur-md">
     <FileBox onUploadFile={handleUploadFile} />
   </div>)

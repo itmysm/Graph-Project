@@ -1,12 +1,19 @@
 import { Button } from "@nextui-org/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FiUploadCloud } from 'react-icons/fi'
 import FileProgress from "./FileProgress";
+import { useSelector } from "react-redux";
 
 export default function FileBox({ onUploadFile }) {
   const [file, setFile] = useState(null)
   const [inZone, setInZone] = useState(null)
   const fileInputRef = useRef(null);
+  const fileStatus = useSelector((state) => state.file.reference)
+
+  useEffect(() => {
+    if(fileStatus?.reference == null) fileInputRef.current.value = ""
+  }, [fileStatus])
+
 
   const dropHandler = (ev) => {
     ev.preventDefault();
@@ -46,7 +53,7 @@ export default function FileBox({ onUploadFile }) {
     <>
       {
         <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 py-8 rounded-xl px-10">
-          <div className="hidden md:flex col-span-2 md:col-span-1 flex flex-col">
+          <div className={`col-span-2 md:col-span-1 flex flex-col ${fileStatus == null && 'hidden'} md:flex`}>
             <h3 className="text-primary text-xl font-semibold">Upload File</h3>
             <div className="w-full my-10 h-60">
               <FileProgress file={file} />
@@ -62,7 +69,7 @@ export default function FileBox({ onUploadFile }) {
           </div>
 
           <div
-            className={`md:flex col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-gray-text ${inZone ? 'border-info' : 'border-primary/20'}`}
+            className={`col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-gray-text ${inZone ? 'border-info' : 'border-primary/20'} ${fileStatus?.name && 'hidden'} md:flex`}
             onDragOver={dragOverHandler}
             onDrop={dropHandler}
             onDragLeave={onMouseLeaveHandler}
