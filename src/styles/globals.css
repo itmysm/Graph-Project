@@ -49,7 +49,7 @@ body {
     --color-secondary-hover: 237 239 242;
     --color-secondary-active: 235 235 240;
     --color-info: 145 140 242;
-    --color-info-hover: 255 255 255;
+    --color-info-hover: 0 189 254;
     --color-info-active: 145 140 237;
     --color-error: 255 255 255;
     --color-warning: 255 255 255;
@@ -61,7 +61,7 @@ body {
     --color-black: 49 35 35;
     --color-white: 255 255 255;
     --color-gray: 128 128 128;
-    --color-gray-text: 103 109 126;
+    --color-gray-text: 163 162 171;
     --color-yellow: 237 245 147;
     --colors-blue: 59 130 246;
     --color-indigo: 99 102 241;
@@ -76,7 +76,7 @@ body {
     --color-secondary-hover: 20 23 31;
     --color-secondary-active: 23 26 34;
     --color-info: 145 140 242;
-    --color-info-hover: 255 255 255;
+    --color-info-hover: 0 189 254;
     --color-info-active: 145 140 237;
     --color-error: 255 255 255;
     --color-warning: 255 255 255;

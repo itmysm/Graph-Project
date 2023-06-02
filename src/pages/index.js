@@ -1,27 +1,22 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import NBtn from '@/components/UI/Btn';
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Collapse, Modal, useModal, Button, Text, Switch } from "@nextui-org/react";
+import { useEffect } from 'react';
+import { Collapse, Modal, useModal, Button, Text } from "@nextui-org/react";
 import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend, FiMoon, FiSun } from 'react-icons/fi';
-import { toggleTheme } from '@/utils/theme';
+import ThemeSwitcher from '@/components/App/ThemeSwitcher';
 
 export default function Home() {
 	const { setVisible, bindings } = useModal();
 	const { t } = useTranslation()
 
-	const [settings, setSettings] = useState({})
 	useEffect(() => {
 		AOS.init({
 			duration: 600
 		});
-
-		const defaults = JSON.parse(localStorage.getItem('settings'))
-		setSettings(defaults)
 	}, [])
 
 	const features = [
@@ -43,10 +38,6 @@ export default function Home() {
 		{ title: 'Codepen', icon: <FiCodepen style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.codepen.com/itmysm' },
 		{ title: 'Telegram', icon: <FiSend style={{ color: 'rgb(var(--color-teal))', size: '50px' }} />, link: 'https://www.t.me/itmysm' }
 	]
-
-	const handelThemeChange = () => {
-		setSettings(toggleTheme())
-	}
 
 	return (
 		<main
@@ -70,7 +61,7 @@ export default function Home() {
 						<Modal.Header>
 						</Modal.Header>
 						<Modal.Body>
-							<Text id="modal-description">
+							<Text className='text-primary' id="modal-description">
 								Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
 								dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
 								ac consectetur ac, vestibulum at eros. Praesent commodo cursus
@@ -119,7 +110,11 @@ export default function Home() {
 
 					<p className='text-base md:text-md text-center mt-5 text-primary-hover tracking-wider'>Customize to fit your brand and impress your customers with a professional online presence.</p>
 
-					<NBtn custom="text-sm font-semibold text-secondary bg-primary hover:bg-primary-active rounded-lg mt-10" size="lg">Start Analyzing</NBtn>
+					<Link href="/app">
+						<Button className='text-secondary bg-primary hover:bg-primary-active rounded-lg mt-10' size="lg" auto onPress={() => setVisible(false)}>
+							Start Analyzing
+						</Button>
+					</Link>
 
 					<div className='flex mt-8'>
 						{Array.from({ length: 3 }).map((_, index) => (
@@ -226,14 +221,7 @@ export default function Home() {
 				</footer>
 			</div>
 
-			<Switch
-				className={`fixed bottom-6 left-4 ${settings.theme == 'dark' ? ' [&>div]:bg-secondary-active' : '[&>div]:bg-primary'}`}
-				onChange={handelThemeChange}
-				checked={settings.theme == 'dark' ? true : false}
-				size="xl"
-				iconOn={<FiMoon style={{ color: 'rgb(var(--color-primary)' }} filled />}
-				iconOff={<FiSun style={{ color: 'rgb(var(--color-yellow)' }} filled />}
-			/>
+			<ThemeSwitcher />
 		</main>
 	)
 }
