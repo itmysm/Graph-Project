@@ -1,21 +1,45 @@
+// I found this structure from this video: https://youtu.be/fn9Y76Naw_U && https://github.com/erikras/ducks-modular-redux
+
+export const NEW_FILE = 'graph/file/NEW_FILE'
+export const DEL_FILE = 'graph/file/DELETE_FILE'
+
 const initialState = {
   isFileUploaded: false,
   isFileSizeToBig: false,
-  isExtensionValid: true,
-  context: null,
+  isExtensionValid: false,
+  reference: null
 }
 
-const fileReducer = (state = initialState, action) => {
-  switch (key) {
-    case 'FETCH_NEW_FILE':
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case NEW_FILE:
       return {
         ...state,
-        context: action.payload,
-        isFileUploaded: true
+        isFileUploaded: true,
+        reference: action
       }
       break;
-  
-    default:
+
+    case DEL_FILE:
+      return {
+        isFileUploaded: false,
+        isFileSizeToBig: false,
+        isExtensionValid: false,
+        reference: null
+      }
       break;
+
+    default:
+      return state;
   }
 }
+
+// actions
+export const fetchNewFile = (file) => ({
+  type: NEW_FILE,
+  payload: file,
+});
+
+export const deleteFile = () => ({
+  type: DEL_FILE,
+});

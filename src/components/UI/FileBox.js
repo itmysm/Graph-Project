@@ -1,18 +1,12 @@
 import { Button } from "@nextui-org/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { FiUploadCloud } from 'react-icons/fi'
 import FileProgress from "./FileProgress";
 
-export default function FileBox() {
-
+export default function FileBox({ onUploadFile }) {
   const [file, setFile] = useState(null)
   const [inZone, setInZone] = useState(null)
   const fileInputRef = useRef(null);
-
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
-
 
   const dropHandler = (ev) => {
     ev.preventDefault();
@@ -21,12 +15,16 @@ export default function FileBox() {
       [...ev.dataTransfer.items].forEach((item, i) => {
         if (item.kind === "file") {
           setFile(item.getAsFile())
+          onUploadFile(ev.target?.files[0]);
         }
       });
     }
 
     if (ev.target?.files) {
       setFile(ev.target?.files[0])
+      // const chunker = new Chunks(ev.target?.files[0])
+      // chunker.process()
+      onUploadFile(ev.target?.files[0]);
     }
   }
 
@@ -49,14 +47,14 @@ export default function FileBox() {
       {
         <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 py-8 rounded-xl px-10">
           <div className="hidden md:flex col-span-2 md:col-span-1 flex flex-col">
-            <h3 className="text-xl font-semibold">Upload File</h3>
+            <h3 className="text-primary text-xl font-semibold">Upload File</h3>
             <div className="w-full my-10 h-60">
               <FileProgress file={file} />
             </div>
 
 
             <div className="flex flex-col items-start">
-              <Button className="w-1/2 hidden md:flex bg-info rounded-xl" auto>
+              <Button className="text-primary w-1/2 hidden md:flex bg-info rounded-xl" auto>
                 Browse File
                 <input ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" />
               </Button>

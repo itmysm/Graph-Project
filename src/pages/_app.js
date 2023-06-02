@@ -2,6 +2,8 @@ import { appWithI18Next, useSyncLanguage } from "ni18n";
 import { ni18nConfig } from "../../ni18n.config";
 import { useEffect, useState } from 'react';
 import { createTheme, NextUIProvider } from '@nextui-org/react';
+import { Provider } from 'react-redux';
+import store from "@/stores";
 
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
@@ -18,10 +20,10 @@ function App({ Component, pageProps }) {
   const [settings, setSettings] = useState({})
 
   useEffect(() => {
-    const defaults = JSON.parse(localStorage.getItem('settings')) || getSettings() 
+    const defaults = JSON.parse(localStorage.getItem('settings')) || getSettings()
     setSettings(defaults)
   }, [])
-  
+
   console.log(settings.locale);
   useSyncLanguage('en')
 
@@ -70,9 +72,11 @@ function App({ Component, pageProps }) {
 
   return (
     <Layout>
-      <NextUIProvider theme={nextUITheme}>
-        <Component {...pageProps} />
-      </NextUIProvider>
+      <Provider store={store}>
+        <NextUIProvider theme={nextUITheme}>
+          <Component {...pageProps} />
+        </NextUIProvider>
+      </Provider>
     </Layout>
   )
 }
