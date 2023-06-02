@@ -52,7 +52,7 @@ export default function FileBox({ onUploadFile }) {
   return (
     <>
       {
-        <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 py-8 rounded-xl px-10">
+        <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 rounded-xl px-4 py-4 md:px-10 md:py-8">
           <div className={`col-span-2 md:col-span-1 flex flex-col ${fileStatus == null && 'hidden'} md:flex`}>
             <h3 className="text-primary text-xl font-semibold">Upload File</h3>
             <div className="w-full my-10 h-60">

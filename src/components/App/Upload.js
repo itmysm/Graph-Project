@@ -13,3 +13,13 @@ export default function Upload() {
     <FileBox onUploadFile={handleUploadFile} />
   </div>)
 }
+
+
+/*
+guard utils job:
+
+step 1 => check extension name 
+step 2 => check uploaded file is supported or not
+step 3 => break-down the file into small chunks
+step 4 => turn data to standard and useful format(json)
+*/
