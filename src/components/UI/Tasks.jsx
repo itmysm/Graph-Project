@@ -1,10 +1,7 @@
-import { Loading } from "@nextui-org/react";
 import { useSelector } from "react-redux"
 
 export default function Tasks(props) {
   const currentStep = useSelector((state) => state.process.step)
-  console.log(currentStep);
-
   return (
     <div className="flex items-center justify-center w-full h-full absolute z-10">
       <ul className="flex flex-col items-center justify-center">

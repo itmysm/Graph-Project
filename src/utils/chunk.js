@@ -47,16 +47,16 @@ export default class Chunks {
     const decoder = new TextDecoder();
     const chunkData = decoder.decode(chunk);
   
-    console.log('Chunk content:', chunkData);
+    // console.log('Chunk content:', chunkData);
 
     // do the operation here
     setTimeout(() => {
-      console.log('done');
+      // console.log('done');
       callback(); // Call the callback to proceed to the next chunk
     }, 4000);
   }
 
   onReadComplete() {
-    console.log('File reading complete');
+    // console.log('File reading complete');
   }
 }
