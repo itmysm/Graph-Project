@@ -8,6 +8,7 @@ import store from "@/stores";
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
 import '../styles/globals.css'
+import '../styles/animations.css'
 
 const layouts = {
   App: Application,
@@ -24,7 +25,6 @@ function App({ Component, pageProps }) {
     setSettings(defaults)
   }, [])
 
-  console.log(settings.locale);
   useSyncLanguage('en')
 
   const [dir, setDir] = useState(settings.locale === 'fa' ? 'rtl' : 'ltr');

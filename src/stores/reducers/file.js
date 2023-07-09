@@ -4,7 +4,7 @@ export const NEW_FILE = 'graph/file/NEW_FILE'
 export const DEL_FILE = 'graph/file/DELETE_FILE'
 
 const initialState = {
-  id: new Date().getTime(),
+  id: null,
   isFileUploaded: false,
   isFileSizeToBig: false,
   isExtensionValid: false,
@@ -24,7 +24,7 @@ export default function fileReducer(state = initialState, action) {
 
     case DEL_FILE:
       return {
-        id: new Date().getTime(),
+        id: null,
         isFileUploaded: false,
         isFileSizeToBig: false,
         isExtensionValid: false,

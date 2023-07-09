@@ -6,7 +6,6 @@ export const toggleTheme = () => {
   }
 
   document.querySelector('html').setAttribute('data-theme', updatedSettings.theme)
-  console.log(document.querySelector('html').getAttribute('data-theme'));
   localStorage.setItem('settings', JSON.stringify(updatedSettings));
 
   return updatedSettings

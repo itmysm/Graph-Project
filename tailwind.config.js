@@ -7,6 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
+      roboto: ['Roboto', 'Inter'],
       inter: ['Inter', 'sans-serif']
     },
     colors: {
