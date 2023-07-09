@@ -28,7 +28,7 @@ export default function Processor() {
   }
 
   return (
-    <div className={`flex flex-col md:flex-row md:items-center justify-between bg-secondary-active w-10/12 sm:w-8/12 md:w-[750px] animate__animated ${proccessLoading ? 'animate__fadeInDown' : 'animate__fadeOutUp'} rounded-xl mt-3 py-4 px-4 z-[7]`}>
+    <div className={`flex flex-col md:flex-row md:items-center justify-between bg-secondary-active text-white w-10/12 sm:w-8/12 md:w-[750px] animate__animated ${proccessLoading ? 'animate__fadeInDown' : 'animate__fadeOutUp'} rounded-xl mt-3 py-4 px-4 z-[7]`}>
       <div>
         <p className="text-base tracking-wider dot">
           {getTitles()[currentStep].name}

@@ -60,8 +60,8 @@ export default function FileBox({ onUploadFile }) {
           col-span-2 p-4 md:p-0 md:col-span-1 flex flex-col 
           ${processLoading && 'opacity-5'} md:flex 
         `}>
-          <h3 className="text-primary text-xl font-semibold">Upload File</h3>
-          <div className="w-full my-10 h-60 md:pr-6">
+          <h3 className="text-primary text-xl font-semibold">Upload Chat</h3>
+          <div className="w-full my-10 h-fit md:h-60 md:pr-6">
             {!fileStatus && <InfoBox />}
             <FileProgress file={file} />
           </div>

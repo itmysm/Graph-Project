@@ -12,8 +12,8 @@ export default function InfoBox() {
   }, [quotes.length]);
 
   return (
-    <div className="rounded-xl bg-gradient-to-r from-info to-info/50 p-3">
-      <p className="font-semibold">{quotes[randomIndex]}</p>
+    <div className="rounded-xl bg-gradient-to-r from-success/80 to-yellow/50 p-3">
+      <p className="font-semibold text-white">{quotes[randomIndex]}</p>
     </div>
   )
 }
