@@ -16,7 +16,7 @@ export default function proccessReducer(state = initialState, action) {
     case START:
       return {
         ...state,
-        step: 1,
+        step: 0,
         loading: true
       }
       break;
@@ -24,7 +24,7 @@ export default function proccessReducer(state = initialState, action) {
     case CHECK_EXTENSION:
       return {
         ...state,
-        step: 2,
+        step: 1,
         isValidExtension: action.payload
       }
       break;
@@ -32,7 +32,7 @@ export default function proccessReducer(state = initialState, action) {
     case DETECT_APP:
       return {
         ...state,
-        step: 3,
+        step: 2,
         app: action.payload
       }
       break;

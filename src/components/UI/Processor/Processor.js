@@ -28,7 +28,7 @@ export default function Processor() {
   }
 
   return (
-    <div className={`flex flex-col md:flex-row md:items-center justify-between bg-secondary-active w-10/12 sm:w-8/12 md:w-[750px] animate__animated ${proccessLoading ? 'animate__fadeInDown' : 'animate__fadeOutUp'} rounded-xl mt-3 py-4 px-4`}>
+    <div className={`flex flex-col md:flex-row md:items-center justify-between bg-secondary-active w-10/12 sm:w-8/12 md:w-[750px] animate__animated ${proccessLoading ? 'animate__fadeInDown' : 'animate__fadeOutUp'} rounded-xl mt-3 py-4 px-4 z-[7]`}>
       <div>
         <p className="text-base tracking-wider dot">
           {getTitles()[currentStep].name}
@@ -36,7 +36,7 @@ export default function Processor() {
       </div>
 
       <div className="flex justify-between items-center mt-3 md:mt-0">
-        <p className="font-semibold text-center text-sm mr-3 w-[30px]">{currentStep} / {getTitles().length + 1} </p>
+        <p className="font-semibold text-center text-sm mr-3 w-[30px]">{currentStep + 1} / {getTitles().length + 1} </p>
         <Button className="text-primary w-fit bg-red rounded-lg relative z-[9] py-3 md:p-auto" size="sm" onPress={onHandelVisibleConfirm} auto>
           Cancel
         </Button>
@@ -50,8 +50,9 @@ export default function Processor() {
 
 const getTitles = () => {
   return [
-    { name: 'Check the file extension', step: 1 },
-    { name: 'Identify the data structure', step: 2 },
+    { name: 'Getting the file', step: 1 },
+    { name: 'Check the file extension', step: 2 },
+    { name: 'Identify the data structure', step: 3 },
     { name: 'Data conversion to standard format', step: 3 },
     { name: 'Start analyzing and calculating data', step: 4 },
     { name: 'Preparing the results', step: 5 },

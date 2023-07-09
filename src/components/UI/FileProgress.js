@@ -10,7 +10,7 @@ export default function FileProgress(props) {
   const dispatch = useDispatch();
 
   const handleRemoveFile = () => {
-    // dispatch({ type: DEL_FILE });
+    dispatch({ type: DEL_FILE });
   };
 
   return file.reference != null && (

@@ -53,7 +53,7 @@ export default function FileBox({ onUploadFile }) {
 
   return (
     <>
-      <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 rounded-xl px-4 py-4 md:px-10 md:py-8 relative">
+      <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 rounded-xl px-4 py-4 md:px-10 md:py-8 relative z-[8]">
         {/* {processLoading && <Tasks titles={getTitles()} />} */}
 
         <div className={`
@@ -71,7 +71,7 @@ export default function FileBox({ onUploadFile }) {
           <div className="flex flex-col items-start">
             <Button disabled={processLoading} className="text-primary w-full md:w-1/2 bg-info rounded-xl relative z-[9] py-6 md:p-auto" auto>
               Browse File
-              <input ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" />
+              <input ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" accept=".htm,.html,.json,.txt" />
             </Button>
           </div>
         </div>
