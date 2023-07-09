@@ -8,6 +8,7 @@ import store from "@/stores";
 import Application from '@/layouts/Application'
 import Default from '@/layouts/Default'
 import '../styles/globals.css'
+import '../styles/animations.css'
 
 const layouts = {
   App: Application,

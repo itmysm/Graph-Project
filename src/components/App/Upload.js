@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { NEW_FILE } from '@/stores/reducers/file';
 
 import FileBox from "../UI/FileBox";
+import Processor from '../UI/Processor/Processor';
 
 export default function Upload({ handelProccess }) {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function Upload({ handelProccess }) {
 
   return (<div className="w-full h-[100vh] flex flex-col justify-center items-center backdrop-blur-md">
     <FileBox onUploadFile={handleUploadFile} />
+    <Processor />
   </div>)
 }
 

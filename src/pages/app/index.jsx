@@ -6,7 +6,7 @@ import delay from "@/utils/tools/delay";
 
 import Upload from "@/components/App/Upload";
 import ThemeSwitcher from "@/components/App/ThemeSwitcher";
-import AlertUi from '@/components/UI/Alert';
+import Processor from '@/components/UI/Processor/Processor';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ export default function App() {
 
   return (
     <main className="w-full bg-secondary min-h-[100vh] relative">
-      <AlertUi title="this is a title" description="this is a description for all of people read this message" />
       <Upload handelProccess={onProccessFile} />
       <ThemeSwitcher />
     </main>

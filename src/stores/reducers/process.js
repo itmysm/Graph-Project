@@ -1,6 +1,7 @@
 export const START = 'graph/process/START'
 export const CHECK_EXTENSION = 'graph/process/CHECK_EXTENSION'
 export const DETECT_APP = 'graph/process/DETECT_APP'
+export const DESTROY_OPERATION = 'graph/process/DESTROY_OPERATION'
 
 const initialState = {
   step: 0,
@@ -35,6 +36,17 @@ export default function proccessReducer(state = initialState, action) {
         app: action.payload
       }
       break;
+
+    case DESTROY_OPERATION:
+      return {
+        step: 0,
+        app: null,
+        isValidExtension: null,
+        isSupportedFormat: null,
+        loading: false,
+      }
+      break;
+
     default:
       return state;
   }

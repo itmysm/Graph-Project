@@ -1,0 +1,22 @@
+.dot::after {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  content: '';
+  animation: dot-animation 2s infinite ease-in-out;
+}
+
+@keyframes dot-animation {
+  0% {
+    content: ' .';
+  }
+  33% {
+    content: ' . .';
+  }
+  66% {
+    content: ' . . .';
+  }
+  100% {
+    content: ' .';
+  }
+}
