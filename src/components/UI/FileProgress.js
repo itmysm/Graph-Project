@@ -21,7 +21,7 @@ export default function FileProgress(props) {
         <p className="text-sm lowercase mb-1 text-gray-text">{abbreviateText(file.reference.name, 20)}</p>
         <Progress size="xs" className="bg-gray-text [&>*]:bg-info" value={100} />
       </div>
-      <FiX onClick={handleRemoveFile} className="text-gray-text relative top-2 hover:text-info cursor-pointer" size="30" />
+      <FiX onClick={handleRemoveFile} className="text-gray-text relative top-2 hover:text-red cursor-pointer" size="30" />
     </div>
   );
 }
