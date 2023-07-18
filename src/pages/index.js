@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { Collapse, Modal, useModal, Button, Text } from "@nextui-org/react";
+import { Modal, useModal, Button, Text } from "@nextui-org/react";
 import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend, FiMoon, FiSun } from 'react-icons/fi';
 import ThemeSwitcher from '@/components/App/ThemeSwitcher';
 
@@ -187,15 +187,15 @@ export default function Home() {
 							<a className='text-primary hover:text-info transition mt-1' href='mailto:dev.mysm@gmail.com'>dev.mysm@gmail.com</a>
 						</div>
 
-						<Collapse.Group className='mt-12 md:mt-20 max-w-[700px]'>
+						{/* <Collapse.Group className='mt-12 md:mt-20 max-w-[700px]'>
 							{faq.map((item, index) => (
-								<Collapse title={item.title} className='bg-secondary text-primary text-base sm:text-lg md:text-xl font-semibold' key={index}>
+								<Collapse title={item.title}  aria-controls={window.location.href} className='bg-secondary text-primary text-base sm:text-lg md:text-xl font-semibold' key={index}>
 									<Text className='text-primary-active'>
 										{item.description}
 									</Text>
 								</Collapse>
 							))}
-						</Collapse.Group>
+						</Collapse.Group> */}
 					</div>
 				</section>
 

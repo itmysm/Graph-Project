@@ -6,17 +6,20 @@ import { FiMoon, FiSun } from 'react-icons/fi';
 
 export default function ThemeSwitcher() {
   const [settings, setSettings] = useState({})
-  
+
+  console.log(settings);
+
   const handelThemeChange = () => {
-		setSettings(toggleTheme())
-	}
- 
+    setSettings(toggleTheme())
+  }
+
   useEffect(() => {
-		const defaults = JSON.parse(localStorage.getItem('settings'))
-		setSettings(defaults)
-	}, [])
+    const defaults = JSON.parse(localStorage.getItem('settings'))
+    setSettings(defaults)
+  }, [])
 
   return (
+    settings?.theme != undefined &&
     <>
       <Switch
         className={`fixed bottom-6 left-4 ${settings.theme == "dark"

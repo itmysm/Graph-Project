@@ -69,7 +69,7 @@ export default function FileBox({ onUploadFile }) {
 
 
           <div className="flex flex-col items-start">
-            <Button disabled={processLoading} className="text-primary w-full md:w-1/2 bg-info rounded-xl relative z-[9] py-6 md:p-auto" auto>
+            <Button disabled={processLoading} className="text-white w-full md:w-1/2 bg-info rounded-xl relative z-[9] py-6 md:p-auto" auto>
               Browse File
               <input ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" accept=".htm,.html,.json,.txt" />
             </Button>
