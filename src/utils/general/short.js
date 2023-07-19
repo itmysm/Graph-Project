@@ -1,3 +1,5 @@
+// This script is responsible for shortening long names 
+
 import { exportExtension } from "./exportExtension"
 
 export const shortText = (text, length = 10) => {
