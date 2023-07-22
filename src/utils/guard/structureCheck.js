@@ -18,6 +18,7 @@ function checkFirstLineOfData (line) {
     typeOfData = 'whatsapp'
     return true
   } else {
+    typeOfData = null
     return true
   }
 }
