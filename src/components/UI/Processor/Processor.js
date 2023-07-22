@@ -18,7 +18,6 @@ export default function Processor() {
   }
 
   const onHandelVisibleConfirm = () => {
-    console.log(visibleConfirm);
     setVisibleConfirm(current => !current)
   }
 

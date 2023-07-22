@@ -6,17 +6,61 @@
   animation: dot-animation 2s infinite ease-in-out;
 }
 
+.text-loading {
+  animation: fade 2s infinite;
+}
+
+.stick {
+  width: 30px;
+  height: 3px;
+  display: inline-block;
+  margin-left: -4px;
+  background-color: #fff;
+}
+
+.stick:nth-child(n) {
+  transform: rotate(30deg);
+  animation: fall 2s infinite;
+
+}
+
+.stick:nth-child(2n) {
+  transform: rotate(-30deg);
+  animation: rise 2s infinite;
+
+}
+
 @keyframes dot-animation {
   0% {
     content: ' .';
   }
+
   33% {
     content: ' . .';
   }
+
   66% {
     content: ' . . .';
   }
+
   100% {
     content: ' .';
   }
+}
+
+@keyframes rise {
+  50% {
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes fall {
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+
+@keyframes fade {
+  50%{opacity:0.5}
+ 100%{opacity:1}
 }

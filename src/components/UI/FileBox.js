@@ -5,6 +5,8 @@ import FileProgress from "./FileProgress";
 import { useSelector } from "react-redux";
 import Tasks from "./Tasks";
 import InfoBox from "./Alert/InfoBox";
+import StickLoading from "@/components/UI/Preloading/stick";
+
 
 export default function FileBox({ onUploadFile }) {
   const [file, setFile] = useState(null)
@@ -54,8 +56,6 @@ export default function FileBox({ onUploadFile }) {
   return (
     <>
       <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active grid grid-cols-2 rounded-xl px-4 py-4 md:px-10 md:py-8 relative z-[8]">
-        {/* {processLoading && <Tasks titles={getTitles()} />} */}
-
         <div className={`
           col-span-2 p-4 md:p-0 md:col-span-1 flex flex-col 
           ${processLoading && 'opacity-5'} md:flex 
@@ -92,6 +92,8 @@ export default function FileBox({ onUploadFile }) {
           <p className="font-semibold text-center">Drag and drop your file here to get start <br /> or <span className="underline">chose from your device</span></p>
           <FiUploadCloud className="mt-4" size="25" />
         </div>
+
+        {processLoading && <StickLoading />}
       </div>
     </>
   )
