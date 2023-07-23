@@ -21,8 +21,9 @@ export default function Box({ startProccess }) {
 
       <div className="w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active rounded-xl px-4 py-4 md:px-10 md:py-8 relative z-[8]">
         <h3 className="text-primary text-xl font-semibold">{titleOfBox}</h3>
-        {loading && <StickLoading />}
+        
         <FileBox startProccess={startProccess} />
+        {loading && <StickLoading />}
       </div>
       
       <Processor />
