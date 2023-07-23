@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from "react";
 import { FiUploadCloud } from 'react-icons/fi'
 import FileProgress from "./FileProgress";
 import { useSelector } from "react-redux";
-import Tasks from "./Tasks";
-import InfoBox from "./Alert/InfoBox";
 import StickLoading from "@/components/UI/Preloading/stick";
+import InfoBox from "@/components/UI/Alert/InfoBox";
+
 
 
 export default function FileBox({ onUploadFile }) {

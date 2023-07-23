@@ -9,8 +9,8 @@ import {
 import typeCheck from "@/utils/guard/typeCheck";
 import delay from "@/utils/tools/delay";
 
-import Upload from "@/components/App/Upload";
-import ThemeSwitcher from "@/components/App/ThemeSwitcher";
+import Upload from "@/components/Pages/App/Upload";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useState } from "react";
 import AlertProvider from "@/components/UI/Alert/AlertProvider";
 import { NEW_ALERT } from "@/stores/reducers/alert";

@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { NEW_FILE } from '@/stores/reducers/file';
 
-import FileBox from "../UI/FileBox";
-import Processor from '../UI/Processor/Processor';
+import FileBox from "./FileBox";
+import Processor from '../../UI/Processor/Processor';
 
 export default function Upload({ handelProccess }) {
   const dispatch = useDispatch();

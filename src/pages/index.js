@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { Modal, useModal, Button, Text } from "@nextui-org/react";
 import { FiGrid, FiKey, FiPenTool, FiWifiOff, FiGithub, FiTwitter, FiCodepen, FiSend, FiMoon, FiSun } from 'react-icons/fi';
-import ThemeSwitcher from '@/components/App/ThemeSwitcher';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 export default function Home() {
 	const { setVisible, bindings } = useModal();
