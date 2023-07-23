@@ -55,7 +55,7 @@ body {
     --color-info-hover: 0 189 254;
     --color-info-active: 145 140 237;
     --color-error: 239 68 68;
-    --color-warning: 255 255 255;
+    --color-warning: 253 224 71;
     --color-success: 16 185 129;
   }
 
@@ -82,7 +82,7 @@ body {
     --color-info-hover: 0 189 254;
     --color-info-active: 145 140 237;
     --color-error: 239 68 68;
-    --color-warning: 255 255 255;
+    --color-warning: 253 224 71;
     --color-success: 16 185 129;
   }
 }

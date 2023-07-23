@@ -76,26 +76,18 @@ export default function App() {
 
   const onProccessFile = async (file) => {
     onHandelStartProccess(file);
-    await delay(3000);
+    await delay(1000);
 
     const status = typeCheck(file.name);
     onHandelExtensionTypeCheck(status);
-    await delay(6000);
+    await delay(1000);
 
     onCheckStructure(file);
-    await delay(2000);
+    await delay(1000);
   };
 
   const onRemoveFile = () => {
     dispatch({ type: DEL_FILE });
-
-    dispatch({
-      type: NEW_ALERT,
-      payload: {
-        type: "info",
-        title: typeAlerts.fileRemoved,
-      },
-    });
   };
 
   return (

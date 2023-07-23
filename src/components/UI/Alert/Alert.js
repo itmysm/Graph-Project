@@ -10,9 +10,10 @@ export default function Alert({ alert }) {
   const [onVisible, setOnVisible] = useState(true)
 
   const alertTypes = {
-    error: { bg: 'red', icon: '' },
-    success: { bg: 'success' },
-    info: { bg: 'info' },
+    error: { bg: 'red',text: 'white',  icon: '' },
+    success: { bg: 'success', text: 'white' },
+    info: { bg: 'info', text: 'white' },
+    warning: { bg: 'warning', text: 'red' },
   }
 
   const onHandelClose = () => {
@@ -27,8 +28,8 @@ export default function Alert({ alert }) {
   }, defaultTimeout);
 
   return (
-    <div className={`flex justify-between items-center min-w-[300px] ${'bg-' + alertTypes[alert.type].bg} px-3 py-5 rounded-xl transition-all animate__animated ${onVisible ? 'animate__fadeInDown' : 'animate__fadeOutUp'}`}>
-      <p className="tracking-wide leading-relaxed">{alert.title}</p>
+    <div className={`${`flex justify-between items-center min-w-[300px] bg-` + alertTypes[alert.type].bg} px-3 py-5 rounded-xl transition-all animate__animated ${onVisible ? 'animate__fadeInDown' : 'animate__fadeOutUp'}`}>
+      <p className={`${`tracking-wide leading-relaxed text-` + alertTypes[alert.type].text} `}>{alert.title}</p>
       <FiX className="ml-3 cursor-pointer hover:text-white/80" size={20} onClick={onHandelClose} />
     </div>
   )
