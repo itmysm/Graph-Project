@@ -14,10 +14,10 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useState } from "react";
 import AlertProvider from "@/components/UI/Alert/AlertProvider";
 import { NEW_ALERT } from "@/stores/reducers/alert";
-import typeAlerts from "@/utils/typeAlerts";
 import ReadFile from "@/utils/general/readFile";
 import { checkStructure } from "@/utils/guard/structureCheck";
 import { DEL_FILE } from "@/stores/reducers/file";
+import typeAlerts from "@/utils/types/alerts";
 
 export default function App() {
   const dispatch = useDispatch();

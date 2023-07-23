@@ -1,8 +1,10 @@
+/* This script guesses the name of the application
+  by reading a few lines of the content of the uploaded file and matching it with the keys in detectKeys.
+*/
+
 import ReadFile from "../general/readFile"
+import { detectKeys } from "../types/platforms"
 const readFile = new ReadFile()
-const detectKeys = {
-  wa: 'Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.'
-}
 
 let typeOfData = undefined
 
@@ -13,8 +15,8 @@ export const checkStructure = async (file) => {
   return typeOfData
 }
 
-function checkFirstLineOfData (line) {
-  if (line.includes(detectKeys.wa)) {
+function checkFirstLineOfData(line) {
+  if (line.includes(detectKeys.whatsapp)) {
     typeOfData = 'whatsapp'
     return true
   } else {

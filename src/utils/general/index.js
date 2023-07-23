@@ -1,2 +1,2 @@
-export * from './short'
+export * from './shortener'
 export * from './exportExtension'
