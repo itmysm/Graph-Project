@@ -1,3 +1,5 @@
+// this class read the content of uploaded file in different
+
 class ReadFile {
   async lineByLine(file, doSomething) {
     const fileStream = file.stream().getReader()

@@ -9,7 +9,6 @@ import {
 import typeCheck from "@/utils/guard/typeCheck";
 import delay from "@/utils/tools/delay";
 
-import Upload from "@/components/Pages/App/Upload";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useState } from "react";
 import AlertProvider from "@/components/UI/Alert/AlertProvider";
@@ -18,6 +17,7 @@ import ReadFile from "@/utils/general/readFile";
 import { checkStructure } from "@/utils/guard/structureCheck";
 import { DEL_FILE } from "@/stores/reducers/file";
 import typeAlerts from "@/utils/types/alerts";
+import Box from "@/components/Pages/App/Box";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ export default function App() {
     }
   };
 
-  const onProccessFile = async (file) => {
+  const onStartProccess = async (file) => {
     onHandelStartProccess(file);
     await delay(1000);
 
@@ -92,7 +92,8 @@ export default function App() {
 
   return (
     <main className="w-full bg-secondary min-h-[100vh] relative">
-      <Upload handelProccess={onProccessFile} />
+      <Box startProccess={onStartProccess} />
+
       <ThemeSwitcher />
       <AlertProvider />
     </main>
