@@ -18,6 +18,7 @@ import { checkStructure } from "@/utils/guard/structureCheck";
 import { DEL_FILE } from "@/stores/reducers/file";
 import typeAlerts from "@/utils/types/alerts";
 import Box from "@/components/Pages/App/Box";
+import { whatsapp } from "@/utils/general";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -84,6 +85,8 @@ export default function App() {
 
     onCheckStructure(file);
     await delay(1000);
+
+    whatsapp(file)
   };
 
   const onRemoveFile = () => {

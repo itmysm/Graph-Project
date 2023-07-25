@@ -26,7 +26,7 @@ class ReadFile {
       }
 
     } catch (error) {
-      console.log('A strange problem occurred! Contact the developer');
+      console.log(error, 'A strange problem occurred! Contact the developer');
     }
   }
 }
