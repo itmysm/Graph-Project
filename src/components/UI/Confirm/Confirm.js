@@ -6,7 +6,6 @@ export default function ConfirmAlert({ onConfirmAnswer, showModal, title }) {
   const [visible, setVisible] = useState(false);
 
   const closeHandler = (status = false) => {
-    console.log(status);
     onConfirmAnswer(status)
     setVisible(false);
   };

@@ -7,8 +7,6 @@ import { FiMoon, FiSun } from 'react-icons/fi';
 export default function ThemeSwitcher() {
   const [settings, setSettings] = useState({})
 
-  console.log(settings);
-
   const handelThemeChange = () => {
     setSettings(toggleTheme())
   }

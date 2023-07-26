@@ -4,6 +4,6 @@
 
 export const detectKeys = {
   whatsapp: 'Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.',
-  telegram: '',
+  telegram: 'Remember: Telegram is ad free,',
   instagram: '',
 }

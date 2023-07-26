@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NEW_FILE } from "@/stores/reducers/file";
 
@@ -6,9 +6,11 @@ import { FiUploadCloud } from 'react-icons/fi'
 import { Button } from "@nextui-org/react";
 import FileProgress from "./FileProgress";
 import InfoBox from "@/components/UI/Alert/InfoBox";
+import { FileContext } from "../FileContext";
 
-export default function FileBox({ startProccess }) {
+export default function FileBox() {
   const dispatch = useDispatch()
+  const { setSelectedFile } = useContext(FileContext);
   const [file, setFile] = useState(null)
   const [inZone, setInZone] = useState(null)
   const fileInputRef = useRef(null);
@@ -16,8 +18,11 @@ export default function FileBox({ startProccess }) {
   const processLoading = useSelector((state) => state.process.loading)
 
   useEffect(() => {
-    if (fileStatus?.reference == null) fileInputRef.current.value = ""
-  }, [fileStatus])
+    if (fileStatus?.reference == null) {
+      fileInputRef.current.value = ""
+      setSelectedFile(null)
+    }
+  }, [fileStatus, setSelectedFile])
 
   const dropHandler = (ev) => {
     ev.preventDefault();
@@ -52,8 +57,10 @@ export default function FileBox({ startProccess }) {
   }
 
   const handleUploadFile = (file) => {
-    dispatch({ type: NEW_FILE, payload: { name: file.name, size: file.size, type: file.type } });
-    startProccess(file)
+    if (file.name != fileStatus?.name) {
+      dispatch({ type: NEW_FILE, payload: { name: file.name, size: file.size, type: file.type } });
+      setSelectedFile(file)
+    }
   };
 
   return (
@@ -67,13 +74,11 @@ export default function FileBox({ startProccess }) {
           <FileProgress file={file} />
         </div>
 
-
-
         <div className="flex flex-col items-start">
           <Button disabled={processLoading} className="text-white w-full md:w-1/2 bg-info rounded-xl relative z-[9] py-6 md:p-auto" auto>
             Browse File
             <FiUploadCloud className="ml-4 md:hidden" size="20" />
-            <input ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" accept=".htm,.html,.json,.txt" />
+            <input id="fileUpload" ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" accept=".htm,.html,.json,.txt" />
           </Button>
         </div>
       </div>
