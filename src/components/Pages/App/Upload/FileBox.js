@@ -75,7 +75,7 @@ export default function FileBox() {
         </div>
 
         <div className="flex flex-col items-start">
-          <Button disabled={processLoading} className="text-white w-full md:w-1/2 bg-info rounded-xl relative z-[9] py-6 md:p-auto" auto>
+          <Button color={"primary"} disabled={processLoading} className="text-white w-full md:w-1/2 rounded-xl relative z-[9] py-6 md:p-auto" auto>
             Browse File
             <FiUploadCloud className="ml-4 md:hidden" size="20" />
             <input id="fileUpload" ref={fileInputRef} onChange={dropHandler} className="absolute opacity-0 cursor-pointer" type="file" accept=".htm,.html,.json,.txt" />

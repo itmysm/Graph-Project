@@ -10,9 +10,6 @@ export default function Box() {
   const [titleOfBox, setTitleOfBox] = useState('Upload File')
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    onHandelLoading(processLoading)
-  }, [processLoading])
   const onHandelLoading = (status) => {
     setLoading(status)
   }
@@ -25,7 +22,7 @@ export default function Box() {
 
         <FileBox />
         {/* <ChatList chatList={file} /> */}
-        {loading && <StickLoading />}
+        {(loading || processLoading) && <StickLoading />}
       </div>
 
       <Processor />

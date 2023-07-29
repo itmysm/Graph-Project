@@ -12,8 +12,11 @@ import { FileContext } from "./FileContext";
 
 export default function Operation() {
   const { selectedFile } = useContext(FileContext)
-  const fileStatusInStore = useSelector((state) => state.file.reference)
-  const [application, setApplication] = useState(null)
+  let application = null
+
+  useEffect(() => {
+    startProccess(selectedFile)
+  }, [])
 
   const dispatch = useDispatch();
   const readFile = new ReadFile();
@@ -47,7 +50,7 @@ export default function Operation() {
 
   const onCheckStructure = async (file) => {
     const status = await checkStructure(file)
-    setApplication(status)
+    application = status
 
     if (!!status) {
       dispatch({
@@ -81,10 +84,6 @@ export default function Operation() {
 
     onCheckStructure(file);
     await delay(1000)
-  }
-
-  if (selectedFile != null && fileStatusInStore) {
-    startProccess(selectedFile)
   }
   return (<></>)
 }
