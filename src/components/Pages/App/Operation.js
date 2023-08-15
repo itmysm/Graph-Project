@@ -9,17 +9,23 @@ import delay from "@/utils/tools/delay";
 import typeAlerts from "@/utils/types/alerts";
 import typeCheck from "@/utils/guard/typeCheck";
 import { FileContext } from "./FileContext";
+import { whatsapp } from "@/utils/general";
 
 export default function Operation() {
   const { selectedFile } = useContext(FileContext)
+  const [file, setFile] = useState(null)
+  const dispatch = useDispatch();
+  const readFile = new ReadFile();
   let application = null
 
   useEffect(() => {
-    startProccess(selectedFile)
-  }, [])
+    selectedFile !== null && setFile(selectedFile)
 
-  const dispatch = useDispatch();
-  const readFile = new ReadFile();
+  }, [selectedFile])
+
+  useEffect(() => {
+    file && startProccess(file)
+  }, [file])
 
   const onHandelStartProccess = () => {
     dispatch({ type: START });
@@ -50,12 +56,12 @@ export default function Operation() {
 
   const onCheckStructure = async (file) => {
     const status = await checkStructure(file)
-    application = status
+    application = status 
 
-    if (!!status) {
+    if (application) {
       dispatch({
         type: CHECK_STRUCTURE,
-        payload: { app: status, isValidStructure: !!status },
+        payload: { app: application, isValidStructure: !!application },
       });
     } else {
       dispatch({ type: DESTROY_OPERATION });
@@ -68,6 +74,7 @@ export default function Operation() {
       });
       onRemoveFile();
     }
+
   };
 
   const onRemoveFile = () => {
@@ -84,6 +91,16 @@ export default function Operation() {
 
     onCheckStructure(file);
     await delay(1000)
+
+    switch (application) {
+      case 'whatsapp':
+        whatsapp(file)
+        break;
+    
+      default:
+        console.log('oops');
+        break;
+    }
   }
   return (<></>)
 }

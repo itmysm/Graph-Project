@@ -10,23 +10,26 @@ let typeOfData = null
 let limitLineRead = 0
 
 export const checkStructure = async (file) => {
+  limitLineRead = 0
   await readFile.lineByLine(file, checkFirstLineOfData)
-  limitLineRead += 1
-  
-  if (typeOfData) {
-    console.log(typeOfData);
-    return typeOfData
-  } else if (limitLineRead > 70) {
-    return typeOfData
-  }
+  return typeOfData
 }
 
 function checkFirstLineOfData(line) {
+  console.log(limitLineRead);
+  if (limitLineRead > 20) {
+    typeOfData = null
+    return true
+  }
+
   if (line.includes(detectKeys.whatsapp)) {
     typeOfData = 'whatsapp'
     return true
-  } else if (line.search(detectKeys.telegram)) {
-    typeOfData = 'telegram'
-    return true
   }
+  //  else if (line.includes(detectKeys.telegram)) {
+  //   typeOfData = 'telegram'
+  //   return true
+  // }
+
+  limitLineRead += 1
 }
