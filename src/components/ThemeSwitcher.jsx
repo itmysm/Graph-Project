@@ -1,5 +1,5 @@
 import { toggleTheme } from '@/utils/theme';
-import { Switch } from "@nextui-org/react";
+import { Switch } from "@nextui-org/switch";
 import { useEffect, useRef } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 

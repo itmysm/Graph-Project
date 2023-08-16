@@ -1,6 +1,5 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { CssBaseline } from '@nextui-org/react';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -20,7 +19,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head />
         <body>
-          <CssBaseline />
           <Main />
           <NextScript />
         </body>

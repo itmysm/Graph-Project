@@ -5,7 +5,7 @@ import { CHECK_EXTENSION, CHECK_STRUCTURE, DESTROY_OPERATION, START } from "@/st
 import { NEW_ALERT } from "@/stores/reducers/alert";
 import { checkStructure } from "@/utils/guard/structureCheck";
 import ReadFile from "@/utils/general/readFile";
-import delay from "@/utils/tools/delay";
+import delay from "../../../utils/tools/delay";
 import typeAlerts from "@/utils/types/alerts";
 import typeCheck from "@/utils/guard/typeCheck";
 import { FileContext } from "./FileContext";

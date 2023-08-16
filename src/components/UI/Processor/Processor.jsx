@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import { DEL_FILE } from "@/stores/reducers/file";
 import { DESTROY_OPERATION } from "@/stores/reducers/process";
-import { Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 import { useDispatch, useSelector } from "react-redux"
 import ConfirmAlert from "../Confirm/Confirm";
-import { useState } from "react";
 
 export default function Processor() {
   const dispatch = useDispatch()

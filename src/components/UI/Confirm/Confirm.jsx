@@ -1,5 +1,8 @@
 
-import { Modal, Button, Text, Input, Row, Checkbox } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
+import { Modal, ModalBody, ModalFooter } from "@nextui-org/modal";
+
+
 import { useEffect, useState } from "react";
 
 export default function ConfirmAlert({ onConfirmAnswer, showModal, title }) {
@@ -22,21 +25,21 @@ export default function ConfirmAlert({ onConfirmAnswer, showModal, title }) {
       open={visible}
       onClose={() => closeHandler(false)}
     >
-      <Modal.Body>
-        <Row justify="space-between">
-          <Text id="modal-title" size={18}>
+      <ModalBody>
+        <div className="flex justify-between">
+          <p className="text-base" id="modal-title">
             {title || 'Are you sure you want to do this?'}
-          </Text>
-        </Row>
-      </Modal.Body>
-      <Modal.Footer>
+          </p>
+        </div>
+      </ModalBody>
+      <ModalFooter>
         <Button className='bg-red text-white' auto flat onPress={() => closeHandler(false)}>
           Cancel
         </Button>
         <Button className="bg-info" auto onPress={() => closeHandler(true)}>
           Yes
         </Button>
-      </Modal.Footer>
+      </ModalFooter>
     </Modal>
   )
 }

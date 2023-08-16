@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { NEW_FILE } from "@/stores/reducers/file";
 
 import { FiUploadCloud } from 'react-icons/fi'
-import { Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 import FileProgress from "./FileProgress";
-import InfoBox from "@/components/UI/Alert/InfoBox";
+import InfoBox from "../../../UI/Alert/InfoBox";
 import { FileContext } from "../FileContext";
 
 export default function FileBox() {
