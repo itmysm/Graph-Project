@@ -3,7 +3,8 @@ import AlertProvider from "../../components/UI/Alert/AlertProvider";
 import Box from "../../components/Pages/App/Box.jsx";
 import Operation from "../../components/Pages/App/Operation";
 import { FileProvider } from "../../components/Pages/App/FileContext";
-import Results from "../../components/Pages/App/Results";
+import Results from "src/components/Pages/App/Results";
+
 export default function App() {
   
   return (

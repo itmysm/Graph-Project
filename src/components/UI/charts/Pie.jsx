@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-import { Card } from "@nextui-org/card";
-import { Divider } from "@nextui-org/divider";
-import { Button } from "@nextui-org/button";
+import React, { useEffect, useState } from "react";
 import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "../../../utils/tools/extractColorFromClass";
-import { FiMaximize, FiMinimize } from "react-icons/fi";
 
-const options = {
-  backgroundColor: extractColorFromClass("bg-secondary-active"),
+const initialOptions = {
+  backgroundColor: 'transparent',
   tooltip: {
     trigger: "item",
   },
@@ -48,9 +44,18 @@ const options = {
 };
 
 function Pie(props) {
+  const [options, setOptions] = useState(initialOptions);
+
+  useEffect(() => {
+    const color = extractColorFromClass("bg-secondary-active");
+
+    setOptions((prevOptions) => ({
+      ...prevOptions,
+      backgroundColor: color,
+    }));
+  }, []);
   return (
     <ReactEcharts
-      // option={...(options, (options.series[0].data = props.info.data))}
       option={options}
       style={{ width: "100%", height: "280px" }}
     ></ReactEcharts>

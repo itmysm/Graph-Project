@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactEcharts from "echarts-for-react";
-import extractColorFromClass from "../../../utils/tools/extractColorFromClass";
+import extractColorFromClass from "src/utils/tools/extractColorFromClass";
 
-/** @type EChartsOption **/
-
-const options = {
-  backgroundColor: extractColorFromClass("bg-secondary-active"),
+const initialOptions = {
+  backgroundColor: "transparent",
   grid: {
     left: "15%",
     right: "12%",
@@ -32,11 +30,21 @@ const options = {
 };
 
 export default function LineSmooth(props) {
+  const [options, setOptions] = useState(initialOptions);
+
+  useEffect(() => {
+    const color = extractColorFromClass("bg-secondary-active");
+
+    setOptions((prevOptions) => ({
+      ...prevOptions,
+      backgroundColor: color,
+    }));
+  }, []);
+
   return (
     <ReactEcharts
-      // option={...(options, (options.series[0].data = props.data))}
       option={options}
       style={{ width: "100%", height: "280px" }}
-    ></ReactEcharts>
+    />
   );
 }

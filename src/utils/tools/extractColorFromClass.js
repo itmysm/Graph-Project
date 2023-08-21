@@ -3,7 +3,7 @@ export default function extractColorFromClass(className) {
     const element = document.createElement("b");
     element.className = className;
     document.body.appendChild(element);
-    const color = getComputedStyle(element).backgroundColor;
+    const color = getComputedStyle(element).backgroundColor || '#fff';
     document.body.removeChild(element);
     return color;
   }, 4000);
