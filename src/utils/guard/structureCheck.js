@@ -16,7 +16,6 @@ export const checkStructure = async (file) => {
 }
 
 function checkFirstLineOfData(line) {
-  console.log(limitLineRead);
   if (limitLineRead > 20) {
     typeOfData = null
     return true

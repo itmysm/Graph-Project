@@ -1,45 +1,48 @@
+import React, { useEffect } from "react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
 
-import { Button } from "@nextui-org/button";
-import { Modal, ModalBody, ModalFooter } from "@nextui-org/modal";
-
-
-import { useEffect, useState } from "react";
-
-export default function ConfirmAlert({ onConfirmAnswer, showModal, title }) {
-  const [visible, setVisible] = useState(false);
-
-  const closeHandler = (status = false) => {
-    onConfirmAnswer(status)
-    setVisible(false);
-  };
+export default function App({ onConfirmAnswer, showModal }) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
-    setVisible(showModal)
-  }, [showModal])
+    console.log(showModal);
+    if (showModal) onOpen;
+  }, [showModal]);
 
   return (
-    <Modal
-      className="bg-secondary-active border border-gray-text/10 shadow-none drop-shadow-none	"
-      closeButton
-      aria-labelledby="modal-title"
-      open={visible}
-      onClose={() => closeHandler(false)}
-    >
-      <ModalBody>
-        <div className="flex justify-between">
-          <p className="text-base" id="modal-title">
-            {title || 'Are you sure you want to do this?'}
-          </p>
-        </div>
-      </ModalBody>
-      <ModalFooter>
-        <Button className='bg-red text-white' auto flat onPress={() => closeHandler(false)}>
-          Cancel
-        </Button>
-        <Button className="bg-info" auto onPress={() => closeHandler(true)}>
-          Yes
-        </Button>
-      </ModalFooter>
-    </Modal>
-  )
+    <>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Cancel Operation
+              </ModalHeader>
+              <ModalBody>
+                <div className="flex py-2 px-1 justify-between">
+                  <p>Are you sure you want close operation?</p>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="flat" onPress={onClose}>
+                  No
+                </Button>
+                <Button color="primary" onPress={[onClose, onConfirm(true)]}>
+                  Yes
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
+  );
 }

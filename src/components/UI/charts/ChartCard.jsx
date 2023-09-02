@@ -69,7 +69,7 @@ function ChartCard(props) {
           ))}
         </div>
 
-        {support && (
+        {!support && (
           <div className="w-full h-full flex flex-col justify-center items-center absolute support bg-secondary-active/90 px-14 text-center text-gray">
             <FiXOctagon className="text-warning mb-2" size={32} />
             <p className="tracking-wide text-warning font-semibold">

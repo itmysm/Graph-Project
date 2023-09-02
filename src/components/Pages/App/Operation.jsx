@@ -1,31 +1,36 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DEL_FILE } from "@/stores/reducers/file";
-import { CHECK_EXTENSION, CHECK_STRUCTURE, DESTROY_OPERATION, START } from "@/stores/reducers/process";
-import { NEW_ALERT } from "@/stores/reducers/alert";
-import { checkStructure } from "@/utils/guard/structureCheck";
-import ReadFile from "@/utils/general/readFile";
-import delay from "../../../utils/tools/delay";
-import typeAlerts from "@/utils/types/alerts";
-import typeCheck from "@/utils/guard/typeCheck";
+import { DEL_FILE } from "src/stores/reducers/file";
+import {
+  CHECK_EXTENSION,
+  CHECK_STRUCTURE,
+  DESTROY_OPERATION,
+  START,
+} from "src/stores/reducers/process";
+import { NEW_ALERT } from "src/stores/reducers/alert";
+import { checkStructure } from "src/utils/guard/structureCheck";
+import ReadFile from "src/utils/general/readFile";
+import delay from "src/utils/tools/delay";
+import typeAlerts from "src/utils/types/alerts";
+import typeCheck from "src/utils/guard/typeCheck";
 import { FileContext } from "./FileContext";
-import { whatsapp } from "@/utils/general";
+import { whatsapp } from "src/utils/general";
+import { DETECT_APP } from "../../../stores/reducers/process";
 
 export default function Operation() {
-  const { selectedFile } = useContext(FileContext)
-  const [file, setFile] = useState(null)
+  const { selectedFile } = useContext(FileContext);
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
   const readFile = new ReadFile();
-  let application = null
+  let application = null;
 
   useEffect(() => {
-    selectedFile !== null && setFile(selectedFile)
-
-  }, [selectedFile])
+    selectedFile !== null && setFile(selectedFile);
+  }, [selectedFile]);
 
   useEffect(() => {
-    file && startProccess(file)
-  }, [file])
+    file && startProccess(file);
+  }, [file]);
 
   const onHandelStartProccess = () => {
     dispatch({ type: START });
@@ -55,8 +60,8 @@ export default function Operation() {
   };
 
   const onCheckStructure = async (file) => {
-    const status = await checkStructure(file)
-    application = status 
+    const status = await checkStructure(file);
+    application = status;
 
     if (application) {
       dispatch({
@@ -74,7 +79,19 @@ export default function Operation() {
       });
       onRemoveFile();
     }
+  };
 
+  const onDetectApplication = async (app) => {
+    dispatch({ type: DETECT_APP });
+    switch (app) {
+      case "whatsapp":
+        whatsapp(file)
+        break;
+
+      default:
+        return null;
+        break;
+    }
   };
 
   const onRemoveFile = () => {
@@ -90,17 +107,9 @@ export default function Operation() {
     await delay(1000);
 
     onCheckStructure(file);
-    await delay(1000)
+    await delay(1000);
 
-    switch (application) {
-      case 'whatsapp':
-        whatsapp(file)
-        break;
-    
-      default:
-        console.log('oops');
-        break;
-    }
-  }
-  return (<></>)
+    onDetectApplication(application);
+  };
+  return <></>;
 }

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { FiHelpCircle, FiUploadCloud, FiUsers } from "react-icons/fi";
+import { Divider } from "@nextui-org/divider";
+import { Tabs, Tab } from "@nextui-org/tabs";
+import { Button } from "@nextui-org/button";
+import ChartCard from "../../UI/Charts/ChartCard";
 import Pie from "../../UI/Charts/Pie";
 import LineSmooth from "../../UI/Charts/LineSmooth";
-import { Tabs, Tab } from "@nextui-org/react";
-import ChartCard from "../../UI/Charts/ChartCard";
 import StickLoading from "../../UI/Preloading/stick";
+import Board from "../../UI/Board/Board";
+import CustomDropDown from "../../UI/Dropdown";
+import HeaderApp from "src/components/Pages/App/Header";
 
 export default function Results() {
   const [loading, setLoading] = useState(false);
@@ -13,15 +19,19 @@ export default function Results() {
       title: "General",
     },
     {
+      title: "Facts",
+    },
+    {
       title: "AI",
     },
-    {
-      title: "Test",
-    },
-    {
-      title: "Test 2",
-    },
   ];
+
+  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["text"]));
+
+  const selectedValue = React.useMemo(
+    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
+    [selectedKeys]
+  );
 
   function handelChangeCategoryProccess(index) {
     setSelectedTab(categories[index].title);
@@ -33,39 +43,47 @@ export default function Results() {
 
   return (
     <>
-      <div className="w-full p-4 md:p-5 lg:p-10">
-        <div className="flex flex-col items-center md:items-start justify-center my-8 md:mt-0">
-          <h1 className="text-3xl mb-0 tracking-wide">Results</h1>
-          <p className="text-gray font-semibold tracking-wide	">
-            There is some results i create for you
-          </p>
+      <div className="w-full py-5">
+        <HeaderApp />
+        <Divider className="mt-5 mb-8" />
+
+        <div className="flex w-full justify-center">
+          <Tabs
+            className="mb-5"
+            variant="underlined"
+            aria-label="Tabs variants"
+            onSelectionChange={handelChangeCategoryProccess}
+          >
+            {categories.map((item, index) => (
+              <Tab
+                className="text-md font-semibold tracking-wide"
+                key={index}
+                title={item.title}
+              />
+            ))}
+          </Tabs>
         </div>
 
-        <Tabs
-          className="mb-5"
-          variant="underlined"
-          aria-label="Tabs variants"
-          onSelectionChange={handelChangeCategoryProccess}
-        >
-          {categories.map((item, index) => (
-            <Tab key={index} title={item.title} />
-          ))}
-        </Tabs>
-
         {selectedTab == "General" && (
-          <div className="w-full flex flex-row flex-wrap">
-            <ChartCard
-              responsive={"w-full md:w-1/2 lg:max-w-[400px] m-3"}
-              info={{ title: "Each Person" }}
-            >
-              <Pie />
-            </ChartCard>
-            <ChartCard
-              responsive={"w-full md:w-1/2 lg:max-w-[400px] m-3"}
-              info={{ title: "Each Person" }}
-            >
-              <LineSmooth />
-            </ChartCard>
+          <div className="flex flex-col items-center px-5">
+            <div className="w-full flex justify-center">{/* <Board /> */}</div>
+
+            <div className="w-full flex flex-row flex-wrap justify-center md:justify-start">
+              <ChartCard
+                key="1"
+                responsive={"w-10/12 md:w-1/2 lg:max-w-[350px] m-3"}
+                info={{ title: "Each Person" }}
+              >
+                <Pie />
+              </ChartCard>
+              <ChartCard
+                key="2"
+                responsive={"w-10/12 md:w-1/2 lg:max-w-[350px] m-3"}
+                info={{ title: "Each Person" }}
+              >
+                <LineSmooth />
+              </ChartCard>
+            </div>
           </div>
         )}
       </div>

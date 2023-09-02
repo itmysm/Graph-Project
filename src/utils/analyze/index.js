@@ -45,6 +45,7 @@ class Analyzer {
       this.data.info.dateOfTheFirstMessage = message.date
     }
 
+    // Here I am checking whether I can use the user's original name as the object key name or should I create a random name for this user.
     if (message.owner.match(patterns.objectProperty) == null) {
       const standardName = makeValidNameProperty(message.owner)
       this.countMessageByPerson(message, standardName)
@@ -56,7 +57,7 @@ class Analyzer {
   }
 
   countMessageByPerson(message, prop) {
-    if(message.owner == 'null') {
+    if (message.owner == 'null') {
       // this.data.systemMessage.push(message)
       this.data.log.push(message)
     } else if (this.data.messagesByPerson[prop]) {
@@ -67,8 +68,10 @@ class Analyzer {
         count: 0
       }
     }
-
-    console.log(this.data);
+  }
+  
+  done() {
+    return this.data
   }
 }
 

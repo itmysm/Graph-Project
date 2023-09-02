@@ -42,8 +42,7 @@ export default function proccessReducer(state = initialState, action) {
     case DETECT_APP:
       return {
         ...state,
-        step: 3,
-        app: action.payload
+        step: 3
       }
       break;
 

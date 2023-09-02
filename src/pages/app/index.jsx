@@ -10,12 +10,12 @@ export default function App() {
   return (
     <main className="w-full bg-secondary min-h-[100vh] relative backdrop-blur-md">
       <Results />
-      {/* <FileProvider className="absolute">
+      <FileProvider className="absolute">
         <Box />
         <Operation />
       </FileProvider>
       <ThemeSwitcher />
-      <AlertProvider /> */}
+      <AlertProvider />
     </main>
   );
 }

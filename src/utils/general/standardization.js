@@ -9,6 +9,7 @@ const analyzer = new Analyzer()
 
 export function whatsapp(file) {
   readFile.lineByLine(file, convertToStandardFormatWhatsapp)
+  return analyzer.done()
 }
 
 function convertToStandardFormatWhatsapp(oneLineOfData) {
