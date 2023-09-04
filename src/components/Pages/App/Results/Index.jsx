@@ -3,13 +3,13 @@ import { FiHelpCircle, FiUploadCloud, FiUsers } from "react-icons/fi";
 import { Divider } from "@nextui-org/divider";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import { Button } from "@nextui-org/button";
-import ChartCard from "../../UI/Charts/ChartCard";
-import Pie from "../../UI/Charts/Pie";
-import LineSmooth from "../../UI/Charts/LineSmooth";
-import StickLoading from "../../UI/Preloading/stick";
-import Board from "../../UI/Board/Board";
-import CustomDropDown from "../../UI/Dropdown";
-import HeaderApp from "src/components/Pages/App/Header";
+import ChartCard from "../../../UI/Charts/ChartCard";
+import Pie from "../../../UI/Charts/Pie";
+import LineSmooth from "../../../UI/Charts/LineSmooth";
+import StickLoading from "../../../UI/Preloading/stick";
+import Board from "../../../UI/Board/Board";
+import CustomDropDown from "../../../UI/Dropdown";
+import HeaderApp from "src/components/Pages/App/Results/Header";
 
 export default function Results() {
   const [loading, setLoading] = useState(false);

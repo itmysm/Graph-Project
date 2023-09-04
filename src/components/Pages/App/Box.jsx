@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import FileBox from "./Upload/FileBox";
+import FileBox from "./Uploader/FileBox";
 import StickLoading from "../../UI/Preloading/stick";
-import Processor from "../../UI/Processor/Processor";
 import { useSelector } from "react-redux";
 import ChatList from "../../UI/Chats/Index";
 
@@ -23,8 +22,6 @@ export default function Box() {
         {/* <ChatList chatList={file} /> */}
         {(loading || processLoading) && <StickLoading />}
       </div>
-
-      <Processor />
     </div>
   )
 }

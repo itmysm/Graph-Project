@@ -1,4 +1,4 @@
-import { DEL_ALERT_BY_ID } from "@/stores/reducers/alert"
+import { DEL_ALERT_BY_ID } from "src/stores/reducers/alert"
 import { useEffect, useState } from "react"
 import { FiFile, FiX } from "react-icons/fi"
 import { useDispatch } from "react-redux"

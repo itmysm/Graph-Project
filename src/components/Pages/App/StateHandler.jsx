@@ -17,7 +17,7 @@ import { FileContext } from "./FileContext";
 import { whatsapp } from "src/utils/general";
 import { DETECT_APP } from "../../../stores/reducers/process";
 
-export default function Operation() {
+export default function StateHandler() {
   const { selectedFile } = useContext(FileContext);
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();

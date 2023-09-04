@@ -1,7 +1,7 @@
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 import AlertProvider from "../../components/UI/Alert/AlertProvider";
 import Box from "../../components/Pages/App/Box.jsx";
-import Operation from "../../components/Pages/App/Operation";
+import Operation from "src/components/Pages/App/StateHandler";
 import { FileProvider } from "../../components/Pages/App/FileContext";
 import Results from "src/components/Pages/App/Results";
 

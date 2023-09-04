@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NEW_FILE } from "@/stores/reducers/file";
+import { NEW_FILE } from "src/stores/reducers/file";
 
 import { FiUploadCloud } from "react-icons/fi";
 import { Button } from "@nextui-org/button";
@@ -81,9 +81,8 @@ export default function FileBox() {
 
         <div className="flex flex-col items-start">
           <Button
-            color="primary"
             disabled={processLoading}
-            className="text-white w-full md:w-1/2 rounded-xl relative z-[9] py-6 md:p-auto"
+            className="text-white bg-blue text-white w-full md:w-1/2 rounded-xl relative z-[9] py-6 md:p-auto"
             auto
           >
             Browse File
