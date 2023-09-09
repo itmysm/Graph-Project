@@ -83,20 +83,13 @@ export default function FileBox() {
 
         <div className="flex flex-col items-start">
           <Button
+            onClick={onHandelOpenBrowser}
             disabled={processLoading}
             className="text-white bg-blue text-white w-full md:w-1/2 rounded-xl relative z-[9] py-6 md:p-auto"
             auto
           >
             Browse File
             <FiUploadCloud className="ml-4 md:hidden" size="20" />
-            <input
-              id="fileUpload"
-              ref={fileInputRef}
-              onChange={dropHandler}
-              className="absolute opacity-0 cursor-pointer"
-              type="file"
-              accept=".htm,.html,.json,.txt"
-            />
           </Button>
         </div>
       </div>
@@ -120,6 +113,15 @@ export default function FileBox() {
         </p>
         <FiUploadCloud className="mt-4" size="25" />
       </div>
+
+      <input
+        id="fileUpload"
+        ref={fileInputRef}
+        onChange={dropHandler}
+        className="hidden cursor-pointer"
+        type="file"
+        accept=".htm,.html,.json,.txt"
+      />
     </div>
   );
 }
