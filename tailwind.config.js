@@ -60,7 +60,6 @@ module.exports = {
     themes: {
       light: {
         colors: {
-          transparent: 'var(--color-transparent)',
           white: '#FFFFFF', // Converted from rgb(255, 255, 255)
           black: '#000000', // Converted from rgb(0, 0, 0)
           gray: '#808080', // Converted from rgb(128, 128, 128)
@@ -88,7 +87,6 @@ module.exports = {
       },
       dark: {
         colors: {
-          transparent: 'var(--color-transparent)',
           white: '#FFFFFF', // Converted from rgb(255, 255, 255)
           black: '#312323', // Converted from rgb(49, 35, 35)
           gray: '#808080', // Converted from rgb(128, 128, 128)
