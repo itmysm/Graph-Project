@@ -5,6 +5,7 @@ import {
   CHECK_EXTENSION,
   CHECK_STRUCTURE,
   DESTROY_OPERATION,
+  PREPARATION_RESULT,
   START,
 } from "src/stores/reducers/process";
 import { NEW_ALERT } from "src/stores/reducers/alert";
@@ -15,14 +16,18 @@ import typeAlerts from "src/utils/types/alerts";
 import typeCheck from "src/utils/guard/typeCheck";
 import { FileContext } from "./FileContext";
 import { whatsapp } from "src/utils/general";
-import { DETECT_APP } from "../../../stores/reducers/process";
+import {
+  ANALYZE_DATA,
+  DETECT_APP,
+  END_OPERATION,
+} from "../../../stores/reducers/process";
 
 export default function StateHandler() {
   const { selectedFile } = useContext(FileContext);
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
-  const readFile = new ReadFile();
   let application = null;
+  let result = null;
 
   useEffect(() => {
     selectedFile !== null && setFile(selectedFile);
@@ -85,7 +90,7 @@ export default function StateHandler() {
     dispatch({ type: DETECT_APP });
     switch (app) {
       case "whatsapp":
-        whatsapp(file)
+        whatsapp(file);
         break;
 
       default:
@@ -96,6 +101,15 @@ export default function StateHandler() {
 
   const onRemoveFile = () => {
     dispatch({ type: DEL_FILE });
+  };
+
+  const onHandelWhatsappAnalyzer = async (file) => {
+    dispatch({ type: ANALYZE_DATA });
+    result = await whatsapp(file);
+    await delay(1000);
+
+    dispatch({ type: PREPARATION_RESULT });
+    showResult();
   };
 
   const startProccess = async (file) => {
@@ -110,6 +124,24 @@ export default function StateHandler() {
     await delay(1000);
 
     onDetectApplication(application);
+    await delay(1000);
+
+    // Call different methods base the application name
+    switch (application) {
+      case "whatsapp":
+        onHandelWhatsappAnalyzer(file);
+        break;
+
+      default:
+        console.log("show alert");
+        break;
+    }
   };
+
+  async function showResult() {
+    await delay(2000);
+    dispatch({ type: END_OPERATION });
+  }
+
   return <></>;
 }

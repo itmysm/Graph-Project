@@ -3,12 +3,16 @@ export const CHECK_EXTENSION = 'graph/process/CHECK_EXTENSION'
 export const CHECK_STRUCTURE = 'graph/process/CHECK_STRUCTURE'
 export const DETECT_APP = 'graph/process/DETECT_APP'
 export const DESTROY_OPERATION = 'graph/process/DESTROY_OPERATION'
+export const ANALYZE_DATA = 'graph/process/ANALYZE_DATA'
+export const PREPARATION_RESULT = 'graph/process/PREPARATION_RESULT'
+export const END_OPERATION = 'graph/process/END_OPERATION'
 
 const initialState = {
   step: 0,
   app: null,
   isValidExtension: null,
   isValidStructure: null,
+  status: null,
   loading: false,
 }
 
@@ -18,6 +22,7 @@ export default function proccessReducer(state = initialState, action) {
       return {
         ...state,
         step: 0,
+        status: 'start',
         loading: true
       }
       break;
@@ -45,7 +50,25 @@ export default function proccessReducer(state = initialState, action) {
         step: 3
       }
       break;
-
+    case ANALYZE_DATA:
+      return {
+        ...state,
+        step: 5
+      }
+    case PREPARATION_RESULT:
+      return {
+        ...state,
+        step: 6
+      }
+      break;
+    case END_OPERATION:
+      return {
+        ...state,
+        loading: false,
+        step: 7,
+        status: 'done'
+      }
+      break;
     case DESTROY_OPERATION:
       return {
         step: 0,

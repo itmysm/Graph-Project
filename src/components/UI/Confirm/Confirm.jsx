@@ -1,41 +1,28 @@
-import React, { useEffect } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@nextui-org/react";
+import React from "react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
-export default function App({ onConfirmAnswer, showModal }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-  useEffect(() => {
-    console.log(showModal);
-    if (showModal) onOpen;
-  }, [showModal]);
+export default function App({onConfirm, onCancel}) {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Button color="danger" onPress={onOpen}>Cancel</Button>
+      
+      <Modal 
+        isOpen={isOpen} 
+        onOpenChange={onOpenChange}
+        placement="top-center"
+        className="bg-secondary-active"
+      >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Cancel Operation
-              </ModalHeader>
-              <ModalBody>
-                <div className="flex py-2 px-1 justify-between">
-                  <p>Are you sure you want close operation?</p>
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
+              <ModalBody className="flex my-3">Are You Sure?</ModalBody>
+              <ModalFooter className="mt-0 pt-0">
+                <Button color="danger" onPress={onClose} onClick={onCancel}>
                   No
                 </Button>
-                <Button color="primary" onPress={[onClose, onConfirm(true)]}>
+                <Button className="bg-blue text-white" onPress={onClose} onClick={onConfirm}>
                   Yes
                 </Button>
               </ModalFooter>
