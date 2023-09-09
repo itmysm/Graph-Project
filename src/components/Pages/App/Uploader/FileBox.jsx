@@ -57,6 +57,8 @@ export default function FileBox() {
   };
 
   const handleUploadFile = (file) => {
+    console.log('file uploaded ', file);
+
     if (file.name != fileStatus?.name) {
       dispatch({
         type: NEW_FILE,

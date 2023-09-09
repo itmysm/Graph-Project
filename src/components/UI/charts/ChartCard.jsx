@@ -15,8 +15,8 @@ const timeFormats = [
 function ChartCard(props) {
   const [support, setSupport] = useState(true);
 
-  function handelNotSupport () {
-    setSupport(true)
+  function handelNotSupport() {
+    setSupport(true);
   }
 
   return (
@@ -50,12 +50,11 @@ function ChartCard(props) {
           }`}
         >
           {timeFormats.map((item, index) => (
-            <>
+            <div className="flex items-center" key={index}>
               {index > 0 && (
                 <Divider className="mx-1 !h-5" orientation="vertical" />
               )}
               <Button
-                key={index}
                 isDisabled={true}
                 isIconOnly
                 color="warning"
@@ -65,7 +64,7 @@ function ChartCard(props) {
               >
                 {item.title}
               </Button>
-            </>
+            </div>
           ))}
         </div>
 
