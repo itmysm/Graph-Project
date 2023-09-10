@@ -3,7 +3,7 @@ import AlertProvider from "../../components/UI/Alert/AlertProvider";
 import Box from "../../components/Pages/App/Box.jsx";
 import StateHandler from "src/components/Pages/App/StateHandler";
 import { FileProvider } from "../../components/Pages/App/FileContext";
-import Results from "../../components/Pages/App/Results";
+import Results from "../../components/Pages/App/Results/Index";
 
 export default function App() {
   return (
