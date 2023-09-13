@@ -1,26 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DEL_FILE } from "src/stores/reducers/file";
+import { DEL_FILE } from "@/stores/reducers/file";
+
 import {
   CHECK_EXTENSION,
   CHECK_STRUCTURE,
   DESTROY_OPERATION,
   PREPARATION_RESULT,
   START,
-} from "src/stores/reducers/process";
-import { NEW_ALERT } from "src/stores/reducers/alert";
-import { checkStructure } from "src/utils/guard/structureCheck";
-import ReadFile from "src/utils/general/readFile";
-import delay from "src/utils/tools/delay";
-import typeAlerts from "src/utils/types/alerts";
-import typeCheck from "src/utils/guard/typeCheck";
-import { FileContext } from "./FileContext";
-import { whatsapp } from "src/utils/general";
+} from "@/stores/reducers/process";
+import { NEW_ALERT } from "@/stores/reducers/alert";
+import { checkStructure } from "@/utils/guard/structureCheck";
+import ReadFile from "@/utils/general/readFile";
+import delay from "@/utils/tools/delay";
+import typeAlerts from "@/utils/types/alerts";
+import typeCheck from "@/utils/guard/typeCheck";
+import { FileContext } from "@/components/Pages/App/FileContext";
+import { whatsapp } from "@/utils/general";
 import {
   ANALYZE_DATA,
   DETECT_APP,
   END_OPERATION,
-} from "../../../stores/reducers/process";
+} from "@/stores/reducers/process";
+
+import { get, set } from 'idb-keyval';
 
 export default function StateHandler() {
   const { selectedFile } = useContext(FileContext);
@@ -106,10 +109,11 @@ export default function StateHandler() {
   const onHandelWhatsappAnalyzer = async (file) => {
     dispatch({ type: ANALYZE_DATA });
     result = await whatsapp(file);
+    
     await delay(1000);
 
     dispatch({ type: PREPARATION_RESULT });
-    showResult();
+    onSaveResultInDB();
   };
 
   const startProccess = async (file) => {
@@ -137,6 +141,21 @@ export default function StateHandler() {
         break;
     }
   };
+
+  function onSaveResultInDB() {
+    set('result', result)
+
+    dispatch({
+      type: NEW_ALERT,
+      payload: {
+        type: "success",
+        title: typeAlerts.resultsReady,
+      },
+    });
+
+    showResult()
+  }
+
 
   async function showResult() {
     await delay(2000);

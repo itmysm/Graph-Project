@@ -2,9 +2,9 @@
   by reading a few lines of the content of the uploaded file and matching it with the keys in detectKeys.
 */
 
-import ReadFile from "../general/readFile"
-import { detectKeys } from "../types/platforms"
-const readFile = new ReadFile()
+import { ReadFile } from '@/utils/general/readFile'
+import { DetectKeys } from "@/utils/types"
+const readFile = new ReadFile
 
 let typeOfData;
 let limitLineRead = 0
@@ -23,7 +23,7 @@ function checkFirstLineOfData(line) {
     return true
   }
   
-  if (line.includes(detectKeys.whatsapp)) {
+  if (line.includes(DetectKeys.whatsapp)) {
     typeOfData = 'whatsapp'
     return true
   }

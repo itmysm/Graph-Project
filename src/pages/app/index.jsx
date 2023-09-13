@@ -1,9 +1,12 @@
-import ThemeSwitcher from "../../components/ThemeSwitcher";
-import AlertProvider from "../../components/UI/Alert/AlertProvider";
-import Box from "../../components/Pages/App/Box.jsx";
-import StateHandler from "src/components/Pages/App/StateHandler";
-import { FileProvider } from "../../components/Pages/App/FileContext";
-import Results from "../../components/Pages/App/Results/Index";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import AlertProvider from "@/components/UI/Alert/AlertProvider";
+// import Box from "@/components/Pages/App/Box.jsx";
+import Box from "@/components/Pages/App/Box";
+import StateHandler from "@/components/Pages/App/StateHandler";
+
+import { FileProvider } from "@/components/Pages/App/FileContext";
+import Results from "@/components/Pages/App/Results/Index";
+import Button from '@/components/button'
 
 export default function App() {
   return (

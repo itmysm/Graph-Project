@@ -35,6 +35,19 @@
   },
   "devDependencies": {
     "@types/node": "20.6.0",
+    "husky": "^8.0.3",
+    "install": "^0.13.0",
+    "lint-staged": "^14.0.1",
+    "npm": "^10.1.0",
     "typescript": "5.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js, *.jsx, *.tsx, *.ts": ["eslint --fix", "git add"]
   }
+  
 }

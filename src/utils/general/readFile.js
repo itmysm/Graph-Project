@@ -1,6 +1,8 @@
 // this class read the content of uploaded file in different
 
-class ReadFile {
+export class ReadFile {
+  constructor() {}
+
   async lineByLine(file, doSomething) {
     const fileStream = file.stream().getReader()
     const decoder = new TextDecoder();
@@ -30,5 +32,3 @@ class ReadFile {
     }
   }
 }
-
-export default ReadFile;

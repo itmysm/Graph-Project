@@ -17,7 +17,7 @@ import {
   FiCodepen,
   FiSend,
 } from "react-icons/fi";
-import ThemeSwitcher from "../components/ThemeSwitcher";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export default function Home() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();

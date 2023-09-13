@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { DEL_FILE } from "src/stores/reducers/file";
-import { DESTROY_OPERATION } from "src/stores/reducers/process";
+import { DEL_FILE } from "@/stores/reducers/file";
+import { DESTROY_OPERATION } from "@/stores/reducers/process";
 import { Button } from "@nextui-org/button";
 import { useDispatch, useSelector } from "react-redux";
-import ConfirmAlert from "src/components/UI/Confirm/Confirm";
+import ConfirmAlert from "@/components/UI/Confirm/Confirm";
 
 export default function ProgressBar() {
   const dispatch = useDispatch();

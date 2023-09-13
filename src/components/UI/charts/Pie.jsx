@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactEcharts from "echarts-for-react";
-import extractColorFromClass from "../../../utils/tools/extractColorFromClass";
+import extractColorFromClass from "@/utils/tools/extractColorFromClass";
 
 const initialOptions = {
   backgroundColor: 'transparent',

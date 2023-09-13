@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Progress } from "@nextui-org/progress";
 import { FiFile, FiX } from "react-icons/fi";
-import { DEL_FILE } from "src/stores/reducers/file";
-import { shortener } from "src/utils/general";
+import { DEL_FILE } from "@/stores/reducers/file";
+import { shortener } from "@/utils/general";
 
 export default function FileProgress(props) {
   const file = useSelector((state) => state.file);

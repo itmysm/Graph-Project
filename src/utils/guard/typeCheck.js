@@ -1,6 +1,6 @@
 // This script checks the format of uploaded files and has the task of not allowing unauthorized formats to continue
 
-import { exportExtension } from "../general"
+import { exportExtension } from "@/utils/general"
 
 const defaultExtension = ['htm', 'html', 'json', 'txt']
 

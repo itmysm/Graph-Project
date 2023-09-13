@@ -1,13 +1,13 @@
-import "../styles/globals.css";
-import "../styles/animations.css";
+import "@/styles/global.css";
+import "@/styles/animations.css";
 
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { appWithI18Next } from "ni18n";
 import { ni18nConfig } from "../../ni18n.config";
-import store from "src/stores";
-import Application from "../layouts/Application";
-import Default from "../layouts/Default";
+import store from "../stores";
+import Application from "@/layouts/Application";
+import Default from "@/layouts/Default";
 
 import { NextUIProvider } from "@nextui-org/react";
 

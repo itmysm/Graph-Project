@@ -1,10 +1,9 @@
 // these scripts get content of the file and covert them into a readable object
+import {Analyzer } from '@/utils/analyze'
+import { ReadFile } from '@/utils/general/readFile';
 
-import Analyzer from "../analyze";
-import { patterns } from "../general";
-import ReadFile from "./readFile";
-
-const readFile = new ReadFile()
+import { patterns } from "@/utils/general";
+const readFile = new ReadFile
 const analyzer = new Analyzer()
 
 export function whatsapp(file) {

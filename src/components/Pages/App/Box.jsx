@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import FileBox from "./Uploader/FileBox";
-import StickLoading from "../../UI/Preloading/stick";
+import FileBox from "./BoxUpload/FileBox";
+import StickLoading from "@/components/UI/Preloading/stick";
 import { useSelector } from "react-redux";
-import ProgressBar from "./Uploader/ProgressBar";
-import ChatList from "../../UI/Chats/Index";
+import ProgressBar from "./BoxUpload/ProgressBar";
+import ChatList from "@/components/UI/Chats/Index";
 
 export default function Box() {
   const processLoading = useSelector((state) => state.process.loading);

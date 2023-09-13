@@ -1,5 +1,5 @@
-const { makeValidNameProperty } = require("../general")
-import { patterns } from "../general";
+const { makeValidNameProperty } = require("@/utils/general")
+import { patterns } from "@/utils/general";
 
 const dataModel = {
   info: {
@@ -34,7 +34,7 @@ const dataModel = {
   log: []
 }
 
-class Analyzer {
+export class Analyzer {
   constructor() {
     this.data = dataModel
   }
@@ -74,5 +74,3 @@ class Analyzer {
     return this.data
   }
 }
-
-export default Analyzer;

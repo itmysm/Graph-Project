@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NEW_FILE } from "src/stores/reducers/file";
+import { NEW_FILE } from "@/stores/reducers/file";
 
 import { FiUploadCloud } from "react-icons/fi";
 import { Button } from "@nextui-org/button";
 import FileProgress from "./FileProgress";
-import InfoBox from "../../../UI/Alert/InfoBox";
-import { FileContext } from "../FileContext";
+import InfoBox from "@/components/UI/Alert/InfoBox";
+import { FileContext } from "@/components/Pages/App/FileContext";
 
 export default function FileBox() {
   const dispatch = useDispatch();
