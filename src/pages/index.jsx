@@ -398,7 +398,6 @@ export default function Home() {
           </span>
         </footer>
       </div>
-
       <ThemeSwitcher />
     </main>
   );

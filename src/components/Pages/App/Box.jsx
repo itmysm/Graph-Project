@@ -21,16 +21,14 @@ export default function Box() {
 
   return (
     <div
-      className={`w-full h-[100vh] max-h-[100vh] flex flex-col justify-center items-center overflow-hidden absolute top-0 backdrop-blur-[8px] ${
-        !visibility ? "hidden" : ""
-      }`}
+      className={`w-full h-[100vh] max-h-[100vh] flex flex-col justify-center items-center overflow-hidden absolute top-0 backdrop-blur-[8px] ${!visibility ? "hidden" : ""
+        }`}
     >
       <div
-        className={`w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active rounded-xl px-4 py-4 md:px-10 md:py-8 relative z-[8] animate__animated ${
-          !processLoading && operationStatus === "done"
-            ? "animate__fadeOut"
-            : ""
-        }`}
+        className={`w-10/12 sm:w-8/12 md:w-[750px] bg-secondary-active rounded-xl px-4 py-4 md:px-10 md:py-8 relative z-[8] animate__animated border border-solid border-black/20 shadow ${!processLoading && operationStatus === "done"
+          ? "animate__fadeOut"
+          : ""
+          }`}
       >
         <h3 className="text-primary text-xl font-semibold">{titleOfBox}</h3>
 

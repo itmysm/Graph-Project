@@ -1,15 +1,15 @@
 import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-export default function App({onConfirm, onCancel}) {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+export default function App({ onConfirm, onCancel }) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <Button color="danger" onPress={onOpen}>Cancel</Button>
-      
-      <Modal 
-        isOpen={isOpen} 
+
+      <Modal
+        isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement="top-center"
         className="bg-secondary-active"

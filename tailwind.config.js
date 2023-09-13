@@ -55,61 +55,27 @@ module.exports = {
   darkMode: "class",
   plugins: [nextui({
     layout: {
-      disabledOpacity: "0.3", // opacity-[0.3]
+      disabledOpacity: "0.3"
     },
     themes: {
       light: {
         colors: {
-          white: '#FFFFFF', // Converted from rgb(255, 255, 255)
-          black: '#000000', // Converted from rgb(0, 0, 0)
-          gray: '#808080', // Converted from rgb(128, 128, 128)
-          'gray-text': '#676D7E', // Converted from rgb(103, 109, 126)
-          yellow: '#FBBF24', // Converted from rgb(251, 191, 36)
-          blue: '#3B82F6', // Converted from rgb(59, 130, 246)
-          indigo: '#6366F1', // Converted from rgb(99, 102, 241)
-          purple: '#8B5CF6', // Converted from rgb(139, 92, 246)
-          green: '#10B981', // Converted from rgb(16, 185, 129)
-          red: '#EF4444', // Converted from rgb(239, 68, 68)
-          teal: '#4EA286', // Converted from rgb(78, 162, 134)
-          primary: '#16181D', // Converted from rgb(22, 24, 29)
-          'primary-hover': '#22242A', // Converted from rgb(34, 36, 42)
-          'primary-active': '#45494E', // Converted from rgb(69, 73, 84)
-          secondary: '#FCFCFD', // Converted from rgb(252, 252, 253)
-          'secondary-hover': '#EDEFF2', // Converted from rgb(237, 239, 242)
-          'secondary-active': '#EBEBF0', // Converted from rgb(235, 235, 240)
-          info: '#918CF2', // Converted from rgb(145, 140, 242)
-          'info-hover': '#00BDFE', // Converted from rgb(0, 189, 254)
-          'info-active': '#918CED', // Converted from rgb(145, 140, 237)
-          error: '#EF4444', // Converted from rgb(239, 68, 68)
-          warning: '#FDE047', // Converted from rgb(253, 224, 71)
-          success: '#10B981', // Converted from rgb(16, 185, 129)
+          primary: '#16181D',
+          secondary: '#FCFCFD',
+          blue: '#918CF2',
+          danger: '#EF4444',
+          warning: '#FDE047',
+          success: '#10B981',
         },
       },
       dark: {
         colors: {
-          white: '#FFFFFF', // Converted from rgb(255, 255, 255)
-          black: '#312323', // Converted from rgb(49, 35, 35)
-          gray: '#808080', // Converted from rgb(128, 128, 128)
-          'gray-text': '#A3A2AB', // Converted from rgb(163, 162, 171)
-          yellow: '#EDF593', // Converted from rgb(237, 245, 147)
-          blue: '#3B82F6', // Converted from rgb(59, 130, 246)
-          indigo: '#6366F1', // Converted from rgb(99, 102, 241)
-          purple: '#8B5CF6', // Converted from rgb(139, 92, 246)
-          green: '#10B981', // Converted from rgb(16, 185, 129)
-          red: '#EF4444', // Converted from rgb(239, 68, 68)
-          teal: '#61D1AC', // Converted from rgb(97, 209, 172)
-          primary: '#E3E4E8', // Converted from rgb(227, 228, 232)
-          'primary-hover': '#FFFFFF', // Converted from rgb(255, 255, 255)
-          'primary-active': '#A1A4AA', // Converted from rgb(161, 164, 170)
-          secondary: '#0E1015', // Converted from rgb(14, 16, 21)
-          'secondary-hover': '#14171F', // Converted from rgb(20, 23, 31)
-          'secondary-active': '#171A22', // Converted from rgb(23, 26, 34)
-          info: '#918CF2', // Converted from rgb(145, 140, 242)
-          'info-hover': '#00BDFE', // Converted from rgb(0, 189, 254)
-          'info-active': '#918CED', // Converted from rgb(145, 140, 237)
-          error: '#EF4444', // Converted from rgb(239, 68, 68)
-          warning: '#FDE047', // Converted from rgb(253, 224, 71)
-          success: '#10B981', // Converted from rgb(16, 185, 129)
+          primary: '#E3E4E8',
+          secondary: '#0E1015',
+          Blue: '#918CF2',
+          danger: '#EF4444',
+          warning: '#FDE047',
+          success: '#10B981'
         },
       },
     },

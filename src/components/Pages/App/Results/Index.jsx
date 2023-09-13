@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FiHelpCircle, FiUploadCloud, FiUsers } from "react-icons/fi";
 import { Divider } from "@nextui-org/divider";
 import { Tabs, Tab } from "@nextui-org/tabs";
-import { Button } from "@nextui-org/button";
 import ChartCard from "@/components/UI/Charts/ChartCard";
 import Pie from "@/components/UI/Charts/Pie";
 import LineSmooth from "@/components/UI/Charts/LineSmooth";
 import StickLoading from "@/components/UI/Preloading/stick";
-import Board from "@/components/UI/Board/Board";
-import CustomDropDown from "@/components/UI/Dropdown";
 import HeaderApp from "@/components/Pages/App/Results/Header";
 
 export default function Results() {

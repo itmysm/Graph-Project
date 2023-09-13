@@ -15,7 +15,7 @@
   height: 3px;
   display: inline-block;
   margin-left: -4px;
-  background-color: #fff;
+  background-color: var(--color-primary)
 }
 
 .stick:nth-child(n) {

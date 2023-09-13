@@ -97,7 +97,8 @@ export default function FileBox() {
       <div
         className={`
           hidden md:flex
-          col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-gray-text 
+          col-span-2 md:col-span-1 h-96 flex flex-col justify-center items-center border border-dashed rounded-xl text-primary px-3
+          cursor-pointer
           ${inZone ? "border-info" : "border-primary/20"} 
           ${fileStatus?.name && "hidden md:flex"}
           ${processLoading && "opacity-5"} 

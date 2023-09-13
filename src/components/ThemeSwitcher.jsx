@@ -13,15 +13,16 @@ export default function ThemeSwitcher() {
 
   useEffect(() => {
     const defaults = JSON.parse(localStorage.getItem("settings"));
-    setTheme(settingsRef.current = defaults || {})
+    settingsRef.current = defaults.theme || {}
+    setTheme(settingsRef.current)
   }, []);
 
   return (
     theme !== undefined && (
-      <>
+      <div className="!fixed !bottom-3 left-4">
         <Switch
           defaultSelected
-          className={`absolute bottom-6 left-4 ${theme === "dark"
+          className={`${theme === "dark"
             ? "[&>div]:bg-secondary-active"
             : "[&>div]:bg-primary"
             }`}
@@ -31,7 +32,7 @@ export default function ThemeSwitcher() {
           startContent={<FiMoon style={{ color: "rgb(var(--color-white))" }} />}
           endContent={<FiSun style={{ color: "rgb(var(--color-yellow))" }} />}
         />
-      </>
+      </div>
     )
   );
 }
