@@ -69,7 +69,7 @@ export class Analyzer {
       }
     }
   }
-  
+
   done() {
     return this.data
   }
