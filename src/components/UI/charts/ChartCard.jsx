@@ -12,21 +12,21 @@ const timeFormats = [
   { title: "1y", key: "" },
 ];
 
-function ChartCard(props) {
+function ChartCard({ data, responsive, children }) {
   const [support, setSupport] = useState(true);
 
   function handelNotSupport() {
     setSupport(true);
   }
 
-  return (
+  return responsive && (
     <>
       <Card
-        className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${props.responsive}`}
+        className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${responsive}`}
       >
         <div className="flex justify-between items-center px-5">
           <p className="text-xl font-semibold text-light tracking-wide">
-            {props.info.title}
+            {data.title}
           </p>
 
           <Button
@@ -42,12 +42,11 @@ function ChartCard(props) {
           </Button>
         </div>
 
-        {props.children}
+        {children}
 
         <div
-          className={`flex items-center justify-start px-4 ${
-            timeFormats.length < 1 ? "opacity-0" : ""
-          }`}
+          className={`flex items-center justify-start px-4 ${timeFormats.length < 1 ? "opacity-0" : ""
+            }`}
         >
           {timeFormats.map((item, index) => (
             <div className="flex items-center" key={index}>

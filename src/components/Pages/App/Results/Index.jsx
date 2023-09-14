@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Divider } from "@nextui-org/divider";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import ChartCard from "@/components/UI/Charts/ChartCard";
-import Pie from "@/components/UI/Charts/Pie";
+import Pie from "@/components/UI/charts/Pie";
 import LineSmooth from "@/components/UI/Charts/LineSmooth";
 import StickLoading from "@/components/UI/Preloading/stick";
 import HeaderApp from "@/components/Pages/App/Results/Header";
+
+const responsiveSettingForChartCards = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3'
 
 export default function Results() {
   const [loading, setLoading] = useState(false);
@@ -67,15 +69,15 @@ export default function Results() {
             <div className="w-full flex flex-row flex-wrap justify-center md:justify-start">
               <ChartCard
                 key="1"
-                responsive={"w-10/12 md:w-1/2 lg:max-w-[350px] m-3"}
-                info={{ title: "Each Person" }}
+                responsive={responsiveSettingForChartCards}
+                data={{ title: "Each Person" }}
               >
                 <Pie />
               </ChartCard>
               <ChartCard
                 key="2"
-                responsive={"w-10/12 md:w-1/2 lg:max-w-[350px] m-3"}
-                info={{ title: "Each Person" }}
+                responsive={responsiveSettingForChartCards}
+                data={{ title: "Each Person" }}
               >
                 <LineSmooth />
               </ChartCard>
