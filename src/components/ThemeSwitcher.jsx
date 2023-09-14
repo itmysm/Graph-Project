@@ -1,21 +1,21 @@
-import { toggleTheme } from "@/utils/theme";
+import { NEW_SETTINGS } from "@/stores/reducers/app";
 import { Switch } from "@nextui-org/switch";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ThemeSwitcher() {
-  const settingsRef = useRef({});
+  const savedTheme = useSelector((state) => state.settings);
+  const dispatch = useDispatch()
   const [theme, setTheme] = useState(null)
 
-  const handleThemeChange = () => {
-    settingsRef.current = toggleTheme();
-  };
-
   useEffect(() => {
-    const defaults = JSON.parse(localStorage.getItem("settings"));
-    settingsRef.current = defaults.theme || {}
-    setTheme(settingsRef.current)
-  }, []);
+    setTheme(savedTheme.theme)
+  }, [savedTheme])
+
+  const handleThemeChange = () => {
+    dispatch({ type: NEW_SETTINGS, payload: { ...savedTheme, theme: theme == 'dark' ? 'light' : 'dark' } })
+  };
 
   return (
     theme !== undefined && (
