@@ -228,13 +228,9 @@ export default function Home() {
             ALREADY LIKED BY 100+ DEVELOPERS!
           </p>
 
-          <div className="w-full h-full relative mt-12 md:mt-32">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="shadow-light rounded-xl"
-              src="/media/banners/shot-1.svg"
-              alt="test"
-            />
+          <div className="image-container relative mt-12 md:mt-32 overflow-hidden rounded-lg">
+            <Image src="/media/banners/shot-1.svg" className="image shadow-light rounded-lg"
+              fill={true} alt="Main" />
           </div>
         </div>
 
@@ -273,16 +269,15 @@ export default function Home() {
 
           <div className="h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-20 md:mt-36 lg:mt-48">
             <div className="bg-gradient-to-t from-secondary-active rounded-xl relative col-span-12 md:col-span-6 h-[260px] lg:h-[400px]">
-              <img
-                src="/media/banners/shot-3.svg"
-                className="absolute w-[170px] lg:w-[240px] xl:w-[270px] xl:w-[270px] bottom-5 left-4 md:left-6 md:bottom-6"
-                data-aos="fade-up-right"
-              />
-              <img
-                src="/media/banners/shot-2.svg"
-                className="absolute w-[170px] lg:w-[240px] xl:w-[270px] top-5 right-4 md:right-6 md:top-6"
-                data-aos="fade-down-left"
-              />
+              <div className="image-container absolute w-[170px] lg:w-[240px] xl:w-[270px] xl:w-[270px] bottom-5 left-4 md:left-6 md:bottom-6 overflow-hidden">
+                <Image src="/media/banners/shot-3.svg" className="image shadow-light"
+                  fill={true} alt="small" data-aos="fade-up-right" />
+              </div>
+
+              <div className="image-container absolute w-[170px] lg:w-[240px] xl:w-[270px] top-5 right-4 md:right-6 md:top-6 overflow-hidden">
+                <Image src="/media/banners/shot-2.svg" className="image shadow-light"
+                  fill={true} alt="small" data-aos="fade-down-left" />
+              </div>
             </div>
 
             <div className="lg:flex flex-col justify-center col-span-12 md:col-span-6 text-center md:text-left mt-8 md:mt-0 xl:px-10">
@@ -300,16 +295,15 @@ export default function Home() {
 
           <div className="h-[450px] flex flex-col w-[400px] md:w-full md:grid grid-cols-12 md:gap-x-10 lg:gap-x-20 justify-center mt-20 md:mt-36 lg:mt-48">
             <div className="bg-gradient-to-t from-secondary-active rounded-xl relative col-span-12 md:col-span-6 h-[260px] lg:h-[400px] md:order-last">
-              <img
-                src="/media/banners/shot-4.svg"
-                className="absolute w-[200px] lg:w-[300px] xl:w-[370px] xl:w-[270px] bottom-5 left-10 md:left-6 md:bottom-6"
-                data-aos="fade-up-right"
-              />
-              <img
-                src="/media/banners/shot-5.svg"
-                className="absolute w-[70px] lg:w-[100px] xl:w-[140px] top-5 right-10 md:right-6 md:top-6"
-                data-aos="fade-down-left"
-              />
+              <div className="image-container absolute w-[170px] w-[200px] lg:w-[300px] xl:w-[370px] xl:w-[270px] bottom-5 left-10 md:left-6 md:bottom-6 overflow-hidden">
+                <Image src="/media/banners/shot-4.svg" className="image shadow-light"
+                  fill={true} alt="small" data-aos="fade-up-right" />
+              </div>
+
+              <div className="image-container absolute w-[70px] lg:w-[100px] xl:w-[140px] top-5 right-10 md:right-6 md:top-6 overflow-hidden">
+                <Image src="/media/banners/shot-5.svg" className="image shadow-light"
+                  fill={true} alt="small" data-aos="fade-down-left" />
+              </div>
             </div>
 
             <div className="lg:flex flex-col justify-center col-span-12 md:col-span-6 text-center md:text-left mt-8 md:mt-0 xl:px-10">
@@ -397,8 +391,8 @@ export default function Home() {
             </a>
           </span>
         </footer>
-      </div>
+      </div >
       <ThemeSwitcher />
-    </main>
+    </main >
   );
 }
