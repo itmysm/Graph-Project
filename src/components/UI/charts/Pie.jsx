@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "@/utils/tools/extractColorFromClass";
 
@@ -43,20 +43,27 @@ const initialOptions = {
   ],
 };
 
-function Pie(props) {
-  const [options, setOptions] = useState(initialOptions);
+function Pie({ data, identifier }) {
+  const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
     const color = extractColorFromClass("bg-secondary-active");
-
-    setOptions((prevOptions) => ({
-      ...prevOptions,
-      backgroundColor: color,
-    }));
+    setBackgroundColor(color);
   }, []);
+
+  const chartOptions = useMemo(() => {
+    if (!data) return initialOptions;
+
+    const updatedOptions = { ...initialOptions };
+    updatedOptions.backgroundColor = backgroundColor;
+    updatedOptions.series[0].data = Object.values(data[identifier]);
+
+    return updatedOptions;
+  }, [data, backgroundColor, identifier]);
+
   return (
     <ReactEcharts
-      option={options}
+      option={chartOptions}
       style={{ width: "100%", height: "280px" }}
     ></ReactEcharts>
   );

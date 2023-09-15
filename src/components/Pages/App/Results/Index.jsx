@@ -6,11 +6,15 @@ import Pie from "@/components/UI/charts/Pie";
 import LineSmooth from "@/components/UI/Charts/LineSmooth";
 import StickLoading from "@/components/UI/Preloading/stick";
 import HeaderApp from "@/components/Pages/App/Results/Header";
+import { useSelector } from "react-redux";
+import { get } from 'idb-keyval';
 
 const responsiveSettingForChartCards = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3'
 
 export default function Results() {
+  const resultsStatus = useSelector((state) => state.process.status)
   const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState(null)
   const [selectedTab, setSelectedTab] = useState("General");
   const categories = [
     {
@@ -31,12 +35,29 @@ export default function Results() {
     [selectedKeys]
   );
 
+  useEffect(() => {
+    if (resultsStatus == 'done') {
+      getResultFromIndexDB()
+    }
+  }, [resultsStatus])
+
   function handelChangeCategoryProccess(index) {
     setSelectedTab(categories[index].title);
     // setLoading(true);
     // setTimeout(() => {
     //   setLoading(false);
     // }, 2000);
+  }
+
+  const getResultFromIndexDB = async () => {
+    setLoading(true)
+    try {
+      const results = await get('result')
+      setResults(results)
+    } catch (error) {
+      console.error('Error while fetching data from IndexedDB:', error);
+    }
+    setLoading(false)
   }
 
   return (
@@ -72,24 +93,25 @@ export default function Results() {
                 responsive={responsiveSettingForChartCards}
                 data={{ title: "Each Person" }}
               >
-                <Pie />
+                <Pie data={results} identifier={'messagesByPerson'} />
               </ChartCard>
               <ChartCard
                 key="2"
                 responsive={responsiveSettingForChartCards}
-                data={{ title: "Each Person" }}
+                data={{ title: 'each person' }}
               >
-                <LineSmooth />
+                <LineSmooth data={results} identifier={'messagesByPerson'} />
               </ChartCard>
             </div>
           </div>
         )}
-      </div>
+      </div >
       {loading && (
         <div className="w-full h-full absolute top-0 left-0 bg-[#000000]/70">
           <StickLoading />
         </div>
-      )}
+      )
+      }
     </>
   );
 }
