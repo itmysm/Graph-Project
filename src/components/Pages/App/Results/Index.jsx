@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Divider } from "@nextui-org/divider";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import Pie from "@/components/UI/charts/Pie";
@@ -7,57 +7,63 @@ import StickLoading from "@/components/UI/Preloading/stick";
 import HeaderApp from "@/components/Pages/App/Results/Header";
 import { useSelector } from "react-redux";
 import { get } from 'idb-keyval';
+import { chartConfigs } from "@/utils/config/chart.config";
+import store from "@/stores/index";
 
-const responsiveSettingForChartCards = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3'
+const responsiveSettingForChartCards = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3';
+const allCharts = {
+  Pie,
+  LineSmooth
+};
 
-export default function Results() {
-  const resultsStatus = useSelector((state) => state.process.status)
+const Categories = [
+  {
+    title: "General",
+  },
+  {
+    title: "Facts",
+  },
+  {
+    title: "AI",
+  },
+];
+
+const Results = () => {
+  const resultsStatus = useSelector((state) => state.process.status);
+  const [chartConfig, setChartConfig] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState(null)
+  const [exportedResult, setExportedResult] = useState(null);
   const [selectedTab, setSelectedTab] = useState("General");
-  const categories = [
-    {
-      title: "General",
-    },
-    {
-      title: "Facts",
-    },
-    {
-      title: "AI",
-    },
-  ];
-
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["text"]));
-
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
-    [selectedKeys]
-  );
 
   useEffect(() => {
-    if (resultsStatus == 'done') {
-      getResultFromIndexDB()
+    if (resultsStatus === 'done') {
+      getResultFromIndexDB();
     }
-  }, [resultsStatus])
+  }, [resultsStatus]);
 
-  function handelChangeCategoryProccess(index) {
-    setSelectedTab(categories[index].title);
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2000);
-  }
+  useEffect(() => {
+    setRecommendedChartConfig();
+  }, [exportedResult, chartConfig]);
+
+  const handelChangeCategoryProccess = (index) => {
+    setSelectedTab(Categories[index].title);
+  };
+
+  const setRecommendedChartConfig = async () => {
+    const application = store.getState().process.app;
+    setChartConfig(chartConfigs[application]);
+  };
 
   const getResultFromIndexDB = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const results = await get('result')
-      setResults(results)
+      const newResults = await get('result');
+      setExportedResult(newResults);
     } catch (error) {
       console.error('Error while fetching data from IndexedDB:', error);
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
     <>
@@ -72,7 +78,7 @@ export default function Results() {
             aria-label="Tabs variants"
             onSelectionChange={handelChangeCategoryProccess}
           >
-            {categories.map((item, index) => (
+            {Categories.map((item, index) => (
               <Tab
                 className="text-md font-semibold tracking-wide"
                 key={index}
@@ -82,23 +88,27 @@ export default function Results() {
           </Tabs>
         </div>
 
-        {selectedTab == "General" && (
-          <div className="flex flex-col items-center px-5">
-            <div className="w-full flex justify-center">{/* <Board /> */}</div>
-
-            <div className="w-full flex flex-row flex-wrap justify-center md:justify-start">
-              <Pie data={results} responsive={responsiveSettingForChartCards} identifier={'messagesByPerson'} />
-              <LineSmooth data={results} responsive={responsiveSettingForChartCards} identifier={'messagesByPerson'} />
-            </div>
+        {selectedTab === "General" && (
+          <div className="flex items-center px-5">
+            {chartConfig && exportedResult &&
+              Object.keys(chartConfig).map((key, index) => {
+                const chartCfg = chartConfig[key];
+                const cardInfo = { title: chartCfg.title };
+                const Chart = allCharts[chartCfg.chartType];
+                const specificResult = exportedResult[chartCfg.keyNameInIndexDB]
+                return <Chart data={specificResult} cardInfo={cardInfo} responsive={responsiveSettingForChartCards} key={index} />;
+              })}
           </div>
         )}
-      </div >
+      </div>
+
       {loading && (
         <div className="w-full h-full absolute top-0 left-0 bg-[#000000]/70">
           <StickLoading />
         </div>
-      )
-      }
+      )}
     </>
   );
-}
+};
+
+export default Results;

@@ -22,7 +22,7 @@ function ChartCard({ data, responsive, children, setFormatTime }) {
   }
 
   const onSelectNewFormat = (key, index) => {
-    setTimeFormat(key)
+    setFormatTime(key)
     setSelectedFormat(index)
   }
 

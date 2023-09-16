@@ -30,7 +30,7 @@ const initialOptions = {
   ],
 };
 
-export default function LineSmooth({ data, identifier, responsive }) {
+export default function LineSmooth({ data, cardInfo, responsive }) {
   const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
@@ -43,19 +43,19 @@ export default function LineSmooth({ data, identifier, responsive }) {
 
     const updatedOptions = { ...initialOptions };
     updatedOptions.backgroundColor = backgroundColor;
-    updatedOptions.series[0].data = Object.values(data[identifier]);
+    updatedOptions.series[0].data = Object.values(data);
 
     return updatedOptions;
-  }, [data, backgroundColor, identifier]);
+  }, [data, backgroundColor]);
 
-  const switchFormatTime = (item) => {
+  const switchTimeFormat = (item) => {
     console.log(item);
   }
 
   return (
     <ChartCard responsive={responsive}
-      data={{ title: "Each Person" }}
-      setFormatTime={switchFormatTime}>
+      data={cardInfo}
+      setFormatTime={switchTimeFormat}>
       <ReactEcharts
         option={chartOptions}
         style={{ width: "100%", height: "280px" }}

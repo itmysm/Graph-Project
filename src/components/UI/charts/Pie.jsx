@@ -44,7 +44,7 @@ const initialOptions = {
   ],
 };
 
-function Pie({ data, identifier, responsive }) {
+function Pie({ data, cardInfo, responsive }) {
   const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
@@ -55,20 +55,21 @@ function Pie({ data, identifier, responsive }) {
   const chartOptions = useMemo(() => {
     if (!data) return initialOptions;
 
+
     const updatedOptions = { ...initialOptions };
     updatedOptions.backgroundColor = backgroundColor;
-    updatedOptions.series[0].data = Object.values(data[identifier]);
+    updatedOptions.series[0].data = Object.values(data);
 
     return updatedOptions;
-  }, [data, backgroundColor, identifier]);
+  }, [data, backgroundColor]);
 
-  const switchTimeFormat = (item, index) => {
-    console.log(item, index);
+  const switchTimeFormat = (item) => {
+    console.log(item);
   }
 
   return (
     <ChartCard responsive={responsive}
-      data={{ title: "Each Person" }}
+      data={cardInfo}
       setFormatTime={switchTimeFormat}>
       <ReactEcharts
         option={chartOptions}

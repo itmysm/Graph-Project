@@ -44,8 +44,7 @@ export class Analyzer {
   }
 
   msgCounter(msg) {
-    console.log(msg.owner);
-    // Here I am checking whether I can use the user's original name as the object key name or should I create a random name for this user.
+    // Here I am checking wh ether I can use the user's original name as the object key name or should I create a random name for this user.
     const standardName = makeValidNameProperty(msg.owner)
 
     const timestamp = whatsappDateToUnixTimestamp(msg.date)
@@ -64,12 +63,12 @@ export class Analyzer {
   }
 
   countMsgByPerson(msg, keyName) {
-    if (this.data.messagesByPerson[keyName]) {
-      this.data.messagesByPerson[keyName] += 1
+    if (this.data.messagesByPerson[keyName] !== undefined) {
+      this.data.messagesByPerson[keyName].value += 1
     } else {
       this.data.messagesByPerson[keyName] = {
         name: msg.owner,
-        value: 0
+        value: 1
       }
     }
   }
