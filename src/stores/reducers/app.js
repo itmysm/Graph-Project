@@ -28,7 +28,6 @@ function changeSettings(state, action) {
     ...action.payload
   }
 
-  console.log(state, action);
   localStorage.setItem('settings', JSON.stringify(newSettings))
   updateDocumentAttributes(newSettings)
 }

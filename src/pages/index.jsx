@@ -1,12 +1,11 @@
+import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
 import { Button } from "@nextui-org/button";
-import { Modal, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/modal";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+
 import {
   FiGrid,
   FiKey,
@@ -17,10 +16,8 @@ import {
   FiCodepen,
   FiSend,
 } from "react-icons/fi";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export default function Home() {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   useEffect(() => {
     AOS.init({
@@ -119,71 +116,14 @@ export default function Home() {
           <Link href="/" className="font-semibold text-xl text-info">
             Graph Project
           </Link>
-          <Button
-            className="text-sm font-semibold text-primary-active bg-secondary-hover hover:bg-secondary-active rounded-lg"
-            auto
-            onPress={onOpen}
-          >
-            What Is Graph?
-          </Button>
-
-          <Modal
-            className="bg-secondary-active"
-            scroll
-            width="600px"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            isOpen={isOpen}
-            onOpenChange={onOpenChange}
-          >
-            <ModalHeader></ModalHeader>
-            <ModalBody>
-              <p className="text-primary" id="modal-description">
-                Cras mattis consectetur purus sit amet fermentum. Cras justo
-                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
-                risus, porta ac consectetur ac, vestibulum at eros. Praesent
-                commodo cursus magna, vel scelerisque nisl consectetur et. Cras
-                mattis consectetur purus sit amet fermentum. Cras justo odio,
-                dapibus ac facilisis in, egestas eget quam. Morbi leo risus,
-                porta ac consectetur ac, vestibulum at eros. Praesent commodo
-                cursus magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Praesent commodo cursus
-                magna, vel scelerisque nisl consectetur et. Cras mattis
-                consectetur purus sit amet fermentum. Cras justo odio, dapibus
-                ac facilisis in, nisl consectetur et.
-              </p>
-            </ModalBody>
-            <ModalFooter>
-              <hr className="w-full h-[1px] bg-gray/25 mb-5" />
-
-              <Button
-                className="border-info hover:bg-info text-primary mt-0"
-                bordered
-                auto
-                onPress={onClose}
-              >
-                Get Start
-              </Button>
-            </ModalFooter>
-          </Modal>
+          <Link href="./about/">
+            <Button
+              className="text-sm font-semibold text-primary-active bg-secondary-hover hover:bg-secondary-active rounded-lg"
+              auto
+            >
+              What is Graph
+            </Button>
+          </Link>
         </header>
 
         <div
@@ -205,7 +145,6 @@ export default function Home() {
               className="text-secondary bg-primary hover:bg-primary-active rounded-lg mt-10"
               size="lg"
               auto
-              onClick={onClose}
             >
               Start Analyzing
             </Button>
@@ -386,7 +325,7 @@ export default function Home() {
 
           <span className="flex items-center font-semibold text-sm">
             <p className="text-primary-active">Developed by &nbsp;</p>
-            <a className="text-primary hover:text-info mt-[3px]" href="#">
+            <a className="text-primary hover:text-info mt-[3px]" href="https://mysm.ir" target="_blanked">
               Mysm
             </a>
           </span>

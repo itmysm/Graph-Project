@@ -109,7 +109,7 @@ export default function StateHandler() {
   const onHandelWhatsappAnalyzer = async (file) => {
     dispatch({ type: ANALYZE_DATA });
     result = await whatsapp(file);
-    
+
     await delay(1000);
 
     dispatch({ type: PREPARATION_RESULT });
@@ -142,8 +142,8 @@ export default function StateHandler() {
     }
   };
 
-  function onSaveResultInDB() {
-    set('result', result)
+  async function onSaveResultInDB() {
+    await set('result', result)
 
     dispatch({
       type: NEW_ALERT,
@@ -155,7 +155,6 @@ export default function StateHandler() {
 
     showResult()
   }
-
 
   async function showResult() {
     await delay(2000);

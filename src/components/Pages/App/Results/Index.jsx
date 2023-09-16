@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Divider } from "@nextui-org/divider";
 import { Tabs, Tab } from "@nextui-org/tabs";
-import ChartCard from "@/components/UI/Charts/ChartCard";
 import Pie from "@/components/UI/charts/Pie";
 import LineSmooth from "@/components/UI/Charts/LineSmooth";
 import StickLoading from "@/components/UI/Preloading/stick";
@@ -88,20 +87,8 @@ export default function Results() {
             <div className="w-full flex justify-center">{/* <Board /> */}</div>
 
             <div className="w-full flex flex-row flex-wrap justify-center md:justify-start">
-              <ChartCard
-                key="1"
-                responsive={responsiveSettingForChartCards}
-                data={{ title: "Each Person" }}
-              >
-                <Pie data={results} identifier={'messagesByPerson'} />
-              </ChartCard>
-              <ChartCard
-                key="2"
-                responsive={responsiveSettingForChartCards}
-                data={{ title: 'each person' }}
-              >
-                <LineSmooth data={results} identifier={'messagesByPerson'} />
-              </ChartCard>
+              <Pie data={results} responsive={responsiveSettingForChartCards} identifier={'messagesByPerson'} />
+              <LineSmooth data={results} responsive={responsiveSettingForChartCards} identifier={'messagesByPerson'} />
             </div>
           </div>
         )}
