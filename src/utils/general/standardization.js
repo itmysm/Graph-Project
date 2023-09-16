@@ -1,5 +1,5 @@
 // these scripts get content of the file and covert them into a readable object
-import {Analyzer } from '@/utils/analyze'
+import { Analyzer } from '@/utils/analyze'
 import { ReadFile } from '@/utils/general/readFile';
 
 import { patterns } from "@/utils/general";
@@ -13,11 +13,22 @@ export function whatsapp(file) {
 
 function convertToStandardFormatWhatsapp(oneLineOfData) {
   const message = {
-    date: oneLineOfData.match(patterns.date)?.[0] || "0/0/00",
-    time: oneLineOfData.match(patterns.time)?.[0] || "25:00",
-    owner: oneLineOfData.match(patterns.name)?.[0] || 'null',
-    content: oneLineOfData.match(patterns.message)?.[1] || 'null',
-    logger: oneLineOfData
+    date: oneLineOfData.match(patterns.date)?.[0] || "unauthorized",
+    time: oneLineOfData.match(patterns.time)?.[0] || "unauthorized",
+    owner: oneLineOfData.match(patterns.name)?.[0] || 'unauthorized',
+    content: oneLineOfData.match(patterns.message)?.[1] || 'unauthorized',
+    log: oneLineOfData,
+    type: undefined
   }
-  analyzer.messageCounter(message)
+
+  Object.values(message).forEach((value, index) => {
+    if (value == 'unauthorized') message.type = 'unauthorized'
+    if (Object.values(message).length - 1 == index) {
+      if (message.type !== 'unauthorized') {
+        analyzer.start(message)
+      } else {
+        analyzer.collectsErrors('unauthorized', oneLineOfData)
+      }
+    }
+  })
 }

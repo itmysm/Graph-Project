@@ -1,5 +1,5 @@
-const { makeValidNameProperty } = require("@/utils/general")
-import { patterns } from "@/utils/general";
+import { unixTimeToDays, whatsappDateToUnixTimestamp } from "@/utils/tools";
+const { makeValidNameProperty, patterns } = require("@/utils/general")
 
 const dataModel = {
   info: {
@@ -7,8 +7,8 @@ const dataModel = {
     dateOfTheLastMessage: null,
     numberOfDays: 0,
     firstMessage: null,
-    numberOfMessages: 0
   },
+  numberOfMessages: {},
   messagesByPerson: {},
   messagesInDayCycle: {
     morning: 0,
@@ -39,35 +39,43 @@ export class Analyzer {
     this.data = dataModel
   }
 
-  messageCounter(message) {
-    if (this.data.info.numberOfMessages == 0) {
-      this.data.info.firstMessage = message.content
-      this.data.info.dateOfTheFirstMessage = message.date
-    }
-
-    // Here I am checking whether I can use the user's original name as the object key name or should I create a random name for this user.
-    if (message.owner.match(patterns.objectProperty) == null) {
-      const standardName = makeValidNameProperty(message.owner)
-      this.countMessageByPerson(message, standardName)
-    } else {
-      this.countMessageByPerson(message, message.owner)
-    }
-
-    this.data.info.numberOfMessages += 1
+  start(msg) {
+    this.msgCounter(msg)
   }
 
-  countMessageByPerson(message, prop) {
-    if (message.owner == 'null') {
-      // this.data.systemMessage.push(message)
-      this.data.log.push(message)
-    } else if (this.data.messagesByPerson[prop]) {
-      this.data.messagesByPerson[prop].count += 1
+  msgCounter(msg) {
+    console.log(msg.owner);
+    // Here I am checking whether I can use the user's original name as the object key name or should I create a random name for this user.
+    const standardName = makeValidNameProperty(msg.owner)
+
+    const timestamp = whatsappDateToUnixTimestamp(msg.date)
+    const periodKey = unixTimeToDays(timestamp)
+    // console.log(unixTimeToDays(timestamp));
+
+    Object.keys(periodKey).map((key) => {
+      if (this.data.numberOfMessages[key] !== undefined) {
+        this.data.numberOfMessages[key]++
+      } else {
+        this.data.numberOfMessages[key] = 1
+      }
+    })
+
+    this.countMsgByPerson(msg, standardName)
+  }
+
+  countMsgByPerson(msg, keyName) {
+    if (this.data.messagesByPerson[keyName]) {
+      this.data.messagesByPerson[keyName] += 1
     } else {
-      this.data.messagesByPerson[prop] = {
-        displayName: message.owner,
-        count: 0
+      this.data.messagesByPerson[keyName] = {
+        name: msg.owner,
+        value: 0
       }
     }
+  }
+
+  collectsErrors(error, data) {
+    this.data.log.push({ error: error, data: data })
   }
 
   done() {

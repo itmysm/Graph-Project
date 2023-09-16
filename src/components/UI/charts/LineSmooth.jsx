@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "@/utils/tools/extractColorFromClass";
+import ChartCard from "@/components/UI/Charts/ChartCard";
 
 const initialOptions = {
   backgroundColor: "transparent",
@@ -29,22 +30,36 @@ const initialOptions = {
   ],
 };
 
-export default function LineSmooth(props) {
-  const [options, setOptions] = useState(initialOptions);
+export default function LineSmooth({ data, identifier, responsive }) {
+  const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
     const color = extractColorFromClass("bg-secondary-active");
-
-    setOptions((prevOptions) => ({
-      ...prevOptions,
-      backgroundColor: color,
-    }));
+    setBackgroundColor(color);
   }, []);
 
+  const chartOptions = useMemo(() => {
+    if (!data) return initialOptions;
+
+    const updatedOptions = { ...initialOptions };
+    updatedOptions.backgroundColor = backgroundColor;
+    updatedOptions.series[0].data = Object.values(data[identifier]);
+
+    return updatedOptions;
+  }, [data, backgroundColor, identifier]);
+
+  const switchFormatTime = (item) => {
+    console.log(item);
+  }
+
   return (
-    <ReactEcharts
-      option={options}
-      style={{ width: "100%", height: "280px" }}
-    />
+    <ChartCard responsive={responsive}
+      data={{ title: "Each Person" }}
+      setFormatTime={switchFormatTime}>
+      <ReactEcharts
+        option={chartOptions}
+        style={{ width: "100%", height: "280px" }}
+      ></ReactEcharts>
+    </ChartCard>
   );
 }

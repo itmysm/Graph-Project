@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "@/utils/tools/extractColorFromClass";
+import ChartCard from "@/components/UI/Charts/ChartCard";
 
 const initialOptions = {
   backgroundColor: 'transparent',
@@ -43,7 +44,7 @@ const initialOptions = {
   ],
 };
 
-function Pie({ data, identifier }) {
+function Pie({ data, identifier, responsive }) {
   const [backgroundColor, setBackgroundColor] = useState(null);
 
   useEffect(() => {
@@ -61,11 +62,19 @@ function Pie({ data, identifier }) {
     return updatedOptions;
   }, [data, backgroundColor, identifier]);
 
+  const switchTimeFormat = (item, index) => {
+    console.log(item, index);
+  }
+
   return (
-    <ReactEcharts
-      option={chartOptions}
-      style={{ width: "100%", height: "280px" }}
-    ></ReactEcharts>
+    <ChartCard responsive={responsive}
+      data={{ title: "Each Person" }}
+      setFormatTime={switchTimeFormat}>
+      <ReactEcharts
+        option={chartOptions}
+        style={{ width: "100%", height: "280px" }}
+      ></ReactEcharts>
+    </ChartCard>
   );
 }
 
