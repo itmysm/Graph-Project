@@ -17,22 +17,20 @@ export default function ThemeSwitcher() {
     dispatch({ type: NEW_SETTINGS, payload: { ...savedTheme, theme: theme == 'dark' ? 'light' : 'dark' } })
   };
 
-  return (
-    theme !== undefined && (
-      <div className="!fixed !bottom-3 left-4">
-        <Switch
-          defaultSelected
-          className={`${theme === "dark"
-            ? "[&>div]:bg-secondary-active"
-            : "[&>div]:bg-primary"
-            }`}
-          onChange={handleThemeChange}
-          checked={theme === "dark"}
-          size="lg"
-          startContent={<FiMoon style={{ color: "rgb(var(--color-white))" }} />}
-          endContent={<FiSun style={{ color: "rgb(var(--color-yellow))" }} />}
-        />
-      </div>
-    )
+  return theme && (
+    <div className="!fixed !bottom-3 left-4">
+      <Switch
+        defaultSelected
+        className={`${theme === "dark"
+          ? "[&>div]:bg-secondary-active"
+          : "[&>div]:bg-primary"
+          }`}
+        onChange={handleThemeChange}
+        checked={theme === "dark"}
+        size="lg"
+        startContent={<FiMoon style={{ color: "rgb(var(--color-white))" }} />}
+        endContent={<FiSun style={{ color: "rgb(var(--color-yellow))" }} />}
+      />
+    </div>
   );
 }
