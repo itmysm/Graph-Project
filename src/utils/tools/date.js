@@ -24,6 +24,30 @@ export const whatsappDateToUnixTimestamp = (whatsappDate) => {
   return Math.floor(unixTimestamp / 1000);
 }
 
+export const getTimestampInfo = (unixTimestamp) => {
+  const date = new Date(unixTimestamp * 1000);
+
+  const hours = date.getHours() % 12 || 12;
+  const amPm = date.getHours() < 12 ? 'am' : 'pm';
+
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayOfWeek = daysOfWeek[date.getDay()];
+
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+
+  const timestampInfo = {
+    hours: `${amPm}${hours}`,
+    dayOfWeek: dayOfWeek,
+    day: day,
+    month: month,
+    year: year
+  };
+
+  return timestampInfo;
+}
+
 export const unixTimeToDays = (unixTimestamp) => {
   const defaultPeriods = { all: true }
   const currentTimestamp = Math.floor(Date.now() / 1000);
