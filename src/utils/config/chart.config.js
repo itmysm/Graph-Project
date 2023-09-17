@@ -14,11 +14,3 @@ export const chartConfigs = {
     },
   }
 }
-
-
-
-let x = ['comp1', 'comp2', 'comp3']
-
-x.map((component) => {
-  <component></component>
-})
