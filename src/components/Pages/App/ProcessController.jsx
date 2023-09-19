@@ -11,9 +11,8 @@ import {
 } from "@/stores/reducers/process";
 import { NEW_ALERT } from "@/stores/reducers/alert";
 import { checkStructure } from "@/utils/guard/structureCheck";
-import ReadFile from "@/utils/core/readFile";
 import delay from "@/utils/tools/delay";
-import defaultAlertMessages from "@/utils/constants/defaultAlertMessages";
+import { defaultAlertMessages } from "@/utils/constants";
 import typeCheck from "@/utils/guard/typeCheck";
 import { FileContext } from "@/components/Pages/App/FileContext";
 import { whatsapp } from "@/utils/general";
@@ -23,9 +22,9 @@ import {
   END_OPERATION,
 } from "@/stores/reducers/process";
 
-import { get, set } from 'idb-keyval';
+import { set } from 'idb-keyval';
 
-export default function StateHandler() {
+export default function ProcessController() {
   const { selectedFile } = useContext(FileContext);
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();

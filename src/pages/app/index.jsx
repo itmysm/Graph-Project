@@ -1,13 +1,10 @@
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import AlertProvider from "@/components/UI/Alert/AlertProvider";
-// import Box from "@/components/Pages/App/Box.jsx";
 import Box from "@/components/Pages/App/Box";
-import StateHandler from "@/components/Pages/App/StateHandler";
+import ProcessController from "@/components/Pages/App/ProcessController";
 
 import { FileProvider } from "@/components/Pages/App/FileContext";
 import Results from "@/components/Pages/App/Results/Index";
-import Button from '@/components/button'
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function App() {
@@ -18,7 +15,7 @@ export default function App() {
       <Results />
       <FileProvider className="absolute">
         <Box />
-        <StateHandler />
+        <ProcessController />
       </FileProvider>
       <ThemeSwitcher />
       <AlertProvider />

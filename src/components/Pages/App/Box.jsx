@@ -3,7 +3,6 @@ import FileBox from "./BoxUpload/FileBox";
 import StickLoading from "@/components/UI/Preloading/stick";
 import { useSelector } from "react-redux";
 import ProgressBar from "./BoxUpload/ProgressBar";
-import ChatList from "@/components/UI/Chats/Index";
 
 export default function Box() {
   const processLoading = useSelector((state) => state.process.loading);
