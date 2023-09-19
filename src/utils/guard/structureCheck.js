@@ -1,9 +1,9 @@
 /* This script guesses the name of the application
-  by reading a few lines of the content of the uploaded file and matching it with the keys in detectKeys.
+  by reading a few lines of the content of the uploaded file and matching it with the keys in messengerRecognitionKeys.
 */
 
-import { ReadFile } from '@/utils/general/readFile'
-import { DetectKeys } from "@/utils/types"
+import { ReadFile } from '@/utils/core/readFile'
+import { messengerRecognitionKeys } from "@/utils/constants"
 const readFile = new ReadFile
 
 let typeOfData;
@@ -22,8 +22,8 @@ function checkFirstLineOfData(line) {
     typeOfData = null
     return true
   }
-  
-  if (line.includes(DetectKeys.whatsapp)) {
+
+  if (line.includes(messengerRecognitionKeys.whatsapp)) {
     typeOfData = 'whatsapp'
     return true
   }

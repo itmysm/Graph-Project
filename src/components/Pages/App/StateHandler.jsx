@@ -11,9 +11,9 @@ import {
 } from "@/stores/reducers/process";
 import { NEW_ALERT } from "@/stores/reducers/alert";
 import { checkStructure } from "@/utils/guard/structureCheck";
-import ReadFile from "@/utils/general/readFile";
+import ReadFile from "@/utils/core/readFile";
 import delay from "@/utils/tools/delay";
-import typeAlerts from "@/utils/types/alerts";
+import defaultAlertMessages from "@/utils/constants/defaultAlertMessages";
 import typeCheck from "@/utils/guard/typeCheck";
 import { FileContext } from "@/components/Pages/App/FileContext";
 import { whatsapp } from "@/utils/general";
@@ -59,7 +59,7 @@ export default function StateHandler() {
         type: NEW_ALERT,
         payload: {
           type: "error",
-          title: typeAlerts.fileSupport,
+          title: defaultAlertMessages.fileSupport,
         },
       });
 
@@ -82,7 +82,7 @@ export default function StateHandler() {
         type: NEW_ALERT,
         payload: {
           type: "error",
-          title: typeAlerts.fileStructure,
+          title: defaultAlertMessages.fileStructure,
         },
       });
       onRemoveFile();
@@ -149,7 +149,7 @@ export default function StateHandler() {
       type: NEW_ALERT,
       payload: {
         type: "success",
-        title: typeAlerts.resultsReady,
+        title: defaultAlertMessages.resultsReady,
       },
     });
 

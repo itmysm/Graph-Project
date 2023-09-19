@@ -1,6 +1,6 @@
 // these scripts get content of the file and covert them into a readable object
-import { Analyzer } from '@/utils/analyze'
-import { ReadFile } from '@/utils/general/readFile';
+import { Analyzer } from '@/utils/core/analyze'
+import { ReadFile } from '@/utils/core/readFile';
 
 import { patterns } from "@/utils/general";
 const readFile = new ReadFile
