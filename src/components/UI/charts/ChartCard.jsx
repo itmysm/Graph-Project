@@ -3,17 +3,9 @@ import { Card } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Button } from "@nextui-org/button";
 import { FiMaximize, FiXOctagon } from "react-icons/fi";
+import { formatTimePeriods } from "@/utils/constants";
 
-const formatTimes = {
-  all: { title: 'All', },
-  day: { title: '24h', },
-  week: { title: '1w', },
-  month: { title: '1m', },
-  sixMonth: { title: '6m', },
-  year: { title: '1y', },
-}
-
-function ChartCard({ data, responsive, children, setFormatTime }) {
+function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
   const [support, setSupport] = useState(true);
   const [selectedFormat, setSelectedFormat] = useState(0);
 
@@ -26,8 +18,13 @@ function ChartCard({ data, responsive, children, setFormatTime }) {
     setSelectedFormat(index)
   }
 
-  function onCheckSupportThisTimeFormat(key) {
-    return false
+  function onCheckSupportThisTimeFormat(periodKey) {
+    let isDisabled = true
+    Object.keys(data).forEach((key, index) => {
+      if (key === periodKey) isDisabled = false
+    })
+
+    return isDisabled
   }
 
   return responsive && (
@@ -36,7 +33,7 @@ function ChartCard({ data, responsive, children, setFormatTime }) {
     >
       <div className="flex justify-between items-center px-5">
         <p className="text-xl font-semibold text-light tracking-wide">
-          {data.title}
+          {cardInfo.title}
         </p>
 
         <Button
@@ -55,14 +52,14 @@ function ChartCard({ data, responsive, children, setFormatTime }) {
       {children}
 
       <div className={`flex items-center justify-start px-4`}>
-        {Object.keys(formatTimes).map((key, index) => (
+        {Object.keys(formatTimePeriods).map((key, index) => (
           <div className="flex items-center" key={index}>
             {index > 0 && (
               <Divider className="mx-1 !h-5" orientation="vertical" />
             )}
             <Button
               className={`${selectedFormat == index ? 'text-info' : ''}`}
-              isDisabled={onCheckSupportThisTimeFormat(formatTimes[key])}
+              isDisabled={onCheckSupportThisTimeFormat(key)}
               isIconOnly
               color="warning"
               variant="text"
@@ -70,7 +67,7 @@ function ChartCard({ data, responsive, children, setFormatTime }) {
               size="sm"
               onClick={() => onSelectNewFormat(key, index)}
             >
-              {formatTimes[key].title}
+              {formatTimePeriods[key].title}
             </Button>
           </div>
         ))}

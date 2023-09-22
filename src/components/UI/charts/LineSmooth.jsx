@@ -54,7 +54,8 @@ export default function LineSmooth({ data, cardInfo, responsive }) {
 
   return (
     <ChartCard responsive={responsive}
-      data={cardInfo}
+      data={data}
+      cardInfo={cardInfo}
       setFormatTime={switchTimeFormat}>
       <ReactEcharts
         option={chartOptions}

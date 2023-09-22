@@ -1,6 +1,6 @@
 export const periodTypes = {
   year: {
-    periods: {
+    items: {
       January: {
         name: 'January',
         shortName: 'Jan',
@@ -64,7 +64,7 @@ export const periodTypes = {
     }
   },
   sixMonth: {
-    periods: {
+    items: {
       January: {
         name: 'January',
         shortName: 'Jan',
@@ -128,7 +128,7 @@ export const periodTypes = {
     }
   },
   month: {
-    periods: {
+    items: {
       one: {
         name: '1st',
         shortName: '1',
@@ -287,7 +287,7 @@ export const periodTypes = {
     }
   },
   week: {
-    periods: {
+    items: {
       monday: {
         name: 'Monday',
         shortName: 'Mon',
@@ -326,7 +326,7 @@ export const periodTypes = {
     }
   },
   day: {
-    periods: {
+    items: {
       am0: {
         name: '12:00 AM',
         shortName: '00:00',
@@ -450,4 +450,13 @@ export const periodTypes = {
     }
 
   }
+}
+
+export const formatTimePeriods = {
+  all: { title: 'All', key: 'all' },
+  day: { title: '24h', key: 'day' },
+  week: { title: '1w', key: 'week' },
+  month: { title: '1m', key: 'month' },
+  sixMonth: { title: '6m', key: 'sixMonth' },
+  year: { title: '1y', key: 'year' },
 }

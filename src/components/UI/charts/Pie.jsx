@@ -46,6 +46,7 @@ const initialOptions = {
 
 function Pie({ data, cardInfo, responsive }) {
   const [backgroundColor, setBackgroundColor] = useState(null);
+  const [defaultPeriod, setDefaultPeriod] = useState('week')
 
   useEffect(() => {
     const color = extractColorFromClass("bg-secondary-active");
@@ -55,21 +56,21 @@ function Pie({ data, cardInfo, responsive }) {
   const chartOptions = useMemo(() => {
     if (!data) return initialOptions;
 
-
     const updatedOptions = { ...initialOptions };
     updatedOptions.backgroundColor = backgroundColor;
-    updatedOptions.series[0].data = Object.values(data);
+    updatedOptions.series[0].data = Object.values(data[defaultPeriod])
 
     return updatedOptions;
-  }, [data, backgroundColor]);
+  }, [data, backgroundColor, defaultPeriod]);
 
-  const switchTimeFormat = (item) => {
-    console.log(item);
+  const switchTimeFormat = (item = 'day') => {
+    setDefaultPeriod(item)
   }
 
   return (
     <ChartCard responsive={responsive}
-      data={cardInfo}
+      data={data}
+      cardInfo={cardInfo}
       setFormatTime={switchTimeFormat}>
       <ReactEcharts
         option={chartOptions}

@@ -18,7 +18,8 @@ export const shortener = (text, length = 24) => {
   }
 }
 
-export const makeValidNameProperty = (name) => {
+// create a random name for this message owner to create a uniq object key.
+export const makeValidNameProperty = async (name) => {
   const hash = CryptoJS.MD5(name).toString()
-  return `p_${hash.substr(0, 8)}`
+  return await `p_${hash.substr(0, 8)}`
 }
