@@ -15,7 +15,7 @@ import delay from "@/utils/tools/delay";
 import { defaultAlertMessages } from "@/utils/constants";
 import typeCheck from "@/utils/guard/typeCheck";
 import { FileContext } from "@/components/Pages/App/FileContext";
-import { whatsapp } from "@/utils/general";
+import { whatsapp } from "@/utils/core/standardization";
 import {
   ANALYZE_DATA,
   DETECT_APP,
