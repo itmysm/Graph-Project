@@ -88,3 +88,7 @@ export const unixTimeToTimePeriods = async (unixTimestamp) => {
     resolve(periods)
   })
 }
+
+export const genTimeStamp = () => {
+  return new Date().getTime()
+}

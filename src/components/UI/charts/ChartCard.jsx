@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Button } from "@nextui-org/button";
@@ -7,25 +7,34 @@ import { formatTimePeriods } from "@/utils/constants";
 
 function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
   const [support, setSupport] = useState(true);
-  const [selectedFormat, setSelectedFormat] = useState(0);
+  const [supportedFormats, setSupportedFormats] = useState({});
+  const [selectedFormat, setSelectedFormat] = useState(null);
 
-  function handelNotSupport() {
-    setSupport(true);
+  function handleNotSupport() {
+    setSupport(false);
   }
 
-  const onSelectNewFormat = (key, index) => {
-    setFormatTime(key)
-    setSelectedFormat(index)
-  }
+  useEffect(() => {
+    console.log('every time?');
+    const supportedFormatsData = Object.keys(data).reduce((formats, itemKey) => {
+      if (formatTimePeriods[itemKey].key === itemKey) {
+        formats[itemKey] = formatTimePeriods[itemKey];
 
-  function onCheckSupportThisTimeFormat(periodKey) {
-    let isDisabled = true
-    Object.keys(data).forEach((key, index) => {
-      if (key === periodKey) isDisabled = false
-    })
+        if (selectedFormat === null) {
+          setFormatTime(itemKey);
+          setSelectedFormat(itemKey);
+        }
+      }
+      return formats;
+    }, {});
 
-    return isDisabled
-  }
+    setSupportedFormats(supportedFormatsData);
+  }, [data]);
+
+  const onSelectNewFormat = (key) => {
+    setFormatTime(key);
+    setSelectedFormat(key);
+  };
 
   return responsive && (
     <Card
@@ -58,8 +67,8 @@ function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
               <Divider className="mx-1 !h-5" orientation="vertical" />
             )}
             <Button
-              className={`${selectedFormat == index ? 'text-info' : ''}`}
-              isDisabled={onCheckSupportThisTimeFormat(key)}
+              className={`${selectedFormat === key ? 'text-info' : ''}`}
+              isDisabled={!supportedFormats[key]}
               isIconOnly
               color="warning"
               variant="text"

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "@/utils/tools/extractColorFromClass";
 import ChartCard from "@/components/UI/Charts/ChartCard";
+import { genTimeStamp } from "@/utils/tools";
 
 const initialOptions = {
   backgroundColor: 'transparent',
@@ -46,7 +47,8 @@ const initialOptions = {
 
 function Pie({ data, cardInfo, responsive }) {
   const [backgroundColor, setBackgroundColor] = useState(null);
-  const [defaultPeriod, setDefaultPeriod] = useState('week')
+  const [defaultPeriod, setDefaultPeriod] = useState('year')
+  const [chartKey, setChartKey] = useState(null);
 
   useEffect(() => {
     const color = extractColorFromClass("bg-secondary-active");
@@ -60,6 +62,7 @@ function Pie({ data, cardInfo, responsive }) {
     updatedOptions.backgroundColor = backgroundColor;
     updatedOptions.series[0].data = Object.values(data[defaultPeriod])
 
+    setChartKey(genTimeStamp())
     return updatedOptions;
   }, [data, backgroundColor, defaultPeriod]);
 
@@ -73,6 +76,7 @@ function Pie({ data, cardInfo, responsive }) {
       cardInfo={cardInfo}
       setFormatTime={switchTimeFormat}>
       <ReactEcharts
+        key={chartKey}
         option={chartOptions}
         style={{ width: "100%", height: "280px" }}
       ></ReactEcharts>
