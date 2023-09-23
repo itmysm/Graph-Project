@@ -6,7 +6,6 @@ const dataModel = tempDataModel
 
 export class Analyzer {
   async start(message) {
-
     const helpers = {
       uniqKeyName: null,
       messageTimeStamp: null,

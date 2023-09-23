@@ -65,7 +65,7 @@ export const unixTimeToTimePeriods = async (unixTimestamp) => {
     const daysAgo = Math.floor(timeDifference / 86400);
     const periods = []
 
-    if (daysAgo == 1) {
+    if (daysAgo == 0 || daysAgo == 1) {
       periods.push({ key: 'day', identifier: 'hoursOfDay' })
     }
 
