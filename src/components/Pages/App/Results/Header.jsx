@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/button";
 
-import { FiHelpCircle, FiUploadCloud, FiUsers } from "react-icons/fi";
+import { FiHelpCircle, FiUploadCloud, FiRefreshCcw } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { DESTROY_OPERATION } from "@/stores/reducers/process";
+import { DEL_FILE } from "@/stores/reducers/file";
 
 export default function AppHeader() {
+  const dispatch = useDispatch()
+
+  const onHandelResetApp = () => {
+    dispatch({ type: DEL_FILE });
+    dispatch({ type: DESTROY_OPERATION })
+  }
+
   return (
     <>
       <div className="flex justify-between items-center md:mt-0 px-5 md:px-10">
@@ -16,16 +26,26 @@ export default function AppHeader() {
 
         <div className="flex">
           <Button
+            className="flex"
+            color="primary"
+            variant="shadow"
+            onClick={onHandelResetApp}
+            isIconOnly
+          >
+            <FiRefreshCcw className="text-secondary" />
+          </Button>
+
+          <Button
             className="ml-3 hidden md:flex shadow-md"
             color="primary"
             variant="shadow"
           >
             <FiUploadCloud className="text-secondary" />
-            <p className="text-secondary">Export Data</p>
+            <p className="text-secondary">Export Result</p>
           </Button>
 
           <Button
-            className="flex md:hidden"
+            className="flex ml-3 md:hidden"
             color="primary"
             variant="shadow"
             isIconOnly

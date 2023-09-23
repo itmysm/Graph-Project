@@ -15,6 +15,8 @@ export default function Box() {
       setTimeout(() => {
         setVisibility(false);
       }, 1000);
+    } else if (operationStatus === 'reset') {
+      setVisibility(true);
     }
   }, [operationStatus]);
 

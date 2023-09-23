@@ -76,6 +76,7 @@ export default function proccessReducer(state = initialState, action) {
         isValidExtension: null,
         isValidStructure: null,
         loading: false,
+        status: 'reset'
       }
       break;
 
