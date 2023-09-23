@@ -90,15 +90,6 @@ export default function ProcessController() {
 
   const onDetectApplication = async (app) => {
     dispatch({ type: DETECT_APP });
-    switch (app) {
-      case "whatsapp":
-        whatsapp(file);
-        break;
-
-      default:
-        return null;
-        break;
-    }
   };
 
   const onRemoveFile = () => {
@@ -107,7 +98,7 @@ export default function ProcessController() {
 
   const onHandelWhatsappAnalyzer = async (file) => {
     dispatch({ type: ANALYZE_DATA });
-    result = await whatsapp(file);
+    result = whatsapp(file);
 
     await delay(1000);
 
