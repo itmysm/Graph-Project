@@ -1,3 +1,5 @@
+import { storeProcessType } from "@/utils/types"
+
 export const START = 'graph/process/START'
 export const CHECK_EXTENSION = 'graph/process/CHECK_EXTENSION'
 export const CHECK_STRUCTURE = 'graph/process/CHECK_STRUCTURE'
@@ -7,9 +9,9 @@ export const ANALYZE_DATA = 'graph/process/ANALYZE_DATA'
 export const PREPARATION_RESULT = 'graph/process/PREPARATION_RESULT'
 export const END_OPERATION = 'graph/process/END_OPERATION'
 
-const initialState = {
+const initialState: storeProcessType = {
   step: 0,
-  app: null,
+  app: {},
   isValidExtension: null,
   isValidStructure: null,
   status: null,
@@ -40,7 +42,10 @@ export default function proccessReducer(state = initialState, action) {
         ...state,
         step: 2,
         isValidStructure: action.payload.isValidStructure,
-        app: action.payload.app
+        app: {
+          name: action.payload.app,
+          os: action.payload.os
+        }
       }
       break;
 

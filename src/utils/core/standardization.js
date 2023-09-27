@@ -1,7 +1,7 @@
 // these scripts get content of the file and covert them into a readable object
 import { Analyzer } from '@/utils/core/analyze'
-import { ReadFile } from '@/utils/core/readFile';
-import { patterns } from '@/utils/general';
+import { ReadFile } from '@/utils/core/readFile.ts';
+import { regexPatterns } from '@/utils/general';
 
 const readFile = new ReadFile
 const analyzer = new Analyzer()
@@ -13,10 +13,10 @@ export function whatsapp(file) {
 
 function convertToStandardFormatWhatsapp(oneLineOfData) {
   const message = {
-    date: oneLineOfData.match(patterns.date)?.[0] || "unauthorized",
-    time: oneLineOfData.match(patterns.time)?.[0] || "unauthorized",
-    owner: oneLineOfData.match(patterns.name)?.[0] || 'unauthorized',
-    content: oneLineOfData.match(patterns.message)?.[1] || 'unauthorized',
+    date: oneLineOfData.match(regexPatterns.date)?.[0] || "unauthorized",
+    time: oneLineOfData.match(regexPatterns.time)?.[0] || "unauthorized",
+    owner: oneLineOfData.match(regexPatterns.name)?.[0] || 'unauthorized',
+    content: oneLineOfData.match(regexPatterns.message)?.[1] || 'unauthorized',
     log: oneLineOfData,
     type: undefined
   }

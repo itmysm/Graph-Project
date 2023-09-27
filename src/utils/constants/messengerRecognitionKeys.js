@@ -3,7 +3,7 @@
 */
 
 export const messengerRecognitionKeys = {
-  whatsapp: 'Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.',
+  whatsapp: 'Messages and calls are end-to-end encrypted',
   telegram: 'Remember: Telegram is ad free,',
   instagram: '',
 }

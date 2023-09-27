@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/button";
 
 import { FiHelpCircle, FiUploadCloud, FiRefreshCcw } from "react-icons/fi";
 import { useDispatch } from "react-redux";
-import { DESTROY_OPERATION } from "@/stores/reducers/process";
+import { DESTROY_OPERATION } from "@/stores/reducers/process.ts";
 import { DEL_FILE } from "@/stores/reducers/file";
 
 export default function AppHeader() {

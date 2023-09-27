@@ -7,12 +7,12 @@ export const chartConfigs = {
       periodSupport: true,
       maxNumberOfXAxis: 24,
     },
-    // eachPersonMessagesLineSmooth: {
-    //   title: 'Each Person Messages',
-    //   keyNameInIndexDB: 'messagesByPerson',
-    //   chartType: 'LineSmooth',
-    //   periodSupport: true,
-    //   maxNumberOfXAxis: 12,
-    // },
+    eachPersonMessagesLineSmooth: {
+      title: 'All Messages',
+      keyNameInIndexDB: 'numberOfMessages',
+      chartType: 'LineSmooth',
+      periodSupport: true,
+      maxNumberOfXAxis: 12,
+    },
   }
 }

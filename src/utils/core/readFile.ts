@@ -7,7 +7,7 @@ export class ReadFile {
     const fileStream = file.stream().getReader()
     const decoder = new TextDecoder();
 
-    let partialLine = ''
+    let partialLine:String = ''
 
     try {
       while (true) {

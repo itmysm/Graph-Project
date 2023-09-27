@@ -8,9 +8,9 @@ import {
   DESTROY_OPERATION,
   PREPARATION_RESULT,
   START,
-} from "@/stores/reducers/process";
+} from "@/stores/reducers/process.ts";
 import { NEW_ALERT } from "@/stores/reducers/alert";
-import { checkStructure } from "@/utils/guard/structureCheck";
+import { checkStructure } from "@/utils/guard/structureCheck.ts";
 import delay from "@/utils/tools/delay";
 import { defaultAlertMessages } from "@/utils/constants";
 import typeCheck from "@/utils/guard/typeCheck";
@@ -20,15 +20,15 @@ import {
   ANALYZE_DATA,
   DETECT_APP,
   END_OPERATION,
-} from "@/stores/reducers/process";
+} from "@/stores/reducers/process.ts";
 
-import { set } from 'idb-keyval';
+import { set } from "idb-keyval";
 
 export default function ProcessController() {
   const { selectedFile } = useContext(FileContext);
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
-  let application = null;
+  let applicationType = null;
   let result = null;
 
   useEffect(() => {
@@ -67,13 +67,15 @@ export default function ProcessController() {
   };
 
   const onCheckStructure = async (file) => {
-    const status = await checkStructure(file);
-    application = status;
-
-    if (application) {
+    applicationType = await checkStructure(file);
+    if (applicationType.app) {
       dispatch({
         type: CHECK_STRUCTURE,
-        payload: { app: application, isValidStructure: !!application },
+        payload: {
+          app: applicationType.app,
+          os: applicationType.os || "general",
+          isValidStructure: !!applicationType.app,
+        },
       });
     } else {
       dispatch({ type: DESTROY_OPERATION });
@@ -88,7 +90,7 @@ export default function ProcessController() {
     }
   };
 
-  const onDetectApplication = async (app) => {
+  const onDetectApplication = async () => {
     dispatch({ type: DETECT_APP });
   };
 
@@ -114,14 +116,14 @@ export default function ProcessController() {
     onHandelExtensionTypeCheck(status);
     await delay(1000);
 
-    onCheckStructure(file);
+    await onCheckStructure(file);
     await delay(1000);
 
-    onDetectApplication(application);
+    onDetectApplication(applicationType);
     await delay(1000);
 
     // Call different methods base the application name
-    switch (application) {
+    switch (applicationType.app) {
       case "whatsapp":
         onHandelWhatsappAnalyzer(file);
         break;
@@ -133,7 +135,7 @@ export default function ProcessController() {
   };
 
   async function onSaveResultInDB() {
-    await set('result', result)
+    await set("result", result);
 
     dispatch({
       type: NEW_ALERT,
@@ -143,7 +145,7 @@ export default function ProcessController() {
       },
     });
 
-    showResult()
+    showResult();
   }
 
   async function showResult() {

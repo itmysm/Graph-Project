@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DEL_FILE } from "@/stores/reducers/file";
-import { DESTROY_OPERATION } from "@/stores/reducers/process";
+import { DESTROY_OPERATION } from "@/stores/reducers/process.ts";
 import { Button } from "@nextui-org/button";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmAlert from "@/components/UI/Confirm/Confirm";

@@ -50,7 +50,7 @@ const Results = () => {
   };
 
   const setRecommendedChartConfig = async () => {
-    const application = store.getState().process.app;
+    const application = store.getState().process.app.name;
     setChartConfig(chartConfigs[application]);
   };
 
