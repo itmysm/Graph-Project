@@ -68,12 +68,13 @@ export default function ProcessController() {
 
   const onCheckStructure = async (file) => {
     applicationType = await checkStructure(file);
+
     if (applicationType.app) {
       dispatch({
         type: CHECK_STRUCTURE,
         payload: {
           app: applicationType.app,
-          os: applicationType.os || "general",
+          os: applicationType.os || "android",
           isValidStructure: !!applicationType.app,
         },
       });
@@ -100,7 +101,7 @@ export default function ProcessController() {
 
   const onHandelWhatsappAnalyzer = async (file) => {
     dispatch({ type: ANALYZE_DATA });
-    result = whatsapp(file);
+    result = whatsapp(file, applicationType.os);
 
     await delay(1000);
 

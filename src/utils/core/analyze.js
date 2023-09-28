@@ -5,20 +5,8 @@ import { tempDataModel, periodTypes } from "@/utils/constants";
 const dataModel = tempDataModel
 
 export class Analyzer {
-  async start(message) {
-    const helpers = {
-      uniqKeyName: null,
-      messageTimeStamp: null,
-      messageTimePeriods: null,
-      messageTimeInfo: null,
-    }
-
-    helpers.uniqKeyName = await makeValidNameProperty(message.owner)
-    helpers.messageTime = await convert12To24HourFormat(message.time)
-    helpers.messageTimeStamp = await whatsappDateToUnixTimestamp(message.date, helpers.messageTime)
-    helpers.messageTimePeriods = await unixTimeToTimePeriods(helpers.messageTimeStamp)
-    helpers.messageTimeInfo = await getTimestampInfo(helpers.messageTimeStamp)
-
+  async start(message, helpers) {
+    console.log(message, helpers);
     this.messageCounter(message, helpers)
   }
 

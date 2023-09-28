@@ -13,3 +13,14 @@ export interface ApplicationType {
   app: String | Null;
   os: String | Null;
 }
+
+export interface MessageType {
+  owner: String,
+  content: String,
+  date: String,
+  time: String,
+  log: Object,
+  type: "unauthorized" | undefined
+}
+
+export type DefaultOperationSystems = "Android" | "IOS"

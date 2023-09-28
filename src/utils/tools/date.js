@@ -18,7 +18,7 @@ export const convert12To24HourFormat = (timeString = '00:00 AM') => {
   })
 };
 
-export const whatsappDateToUnixTimestamp = (whatsappDate, time) => {
+export const whatsappDateToUnixTimestamp = (whatsappDate, time = '00:00') => {
   return new Promise((resolve) => {
     const [month, day, year] = whatsappDate.split('/').map(Number);
     const adjustedYear = year < 70 ? 2000 + year : 1900 + year;
@@ -86,6 +86,33 @@ export const unixTimeToTimePeriods = async (unixTimestamp) => {
     }
 
     resolve(periods)
+  })
+}
+
+export const convertHandyTimeToAmPm = (time) => {
+  return new Promise((resolve) => {
+    const [digitTime, period] = time.split(' in the ')
+
+    const [hour, minute] = digitTime.split(":")
+    const amPm = () => {
+      switch (period) {
+        case 'morning':
+          return 'AM'
+          break;
+
+        case 'afternoon':
+          return 'PM'
+          break;
+        case 'afternoon':
+          return 'PM'
+          break;
+        default:
+          return 'AM'
+          break;
+      }
+    }
+
+    resolve(`${hour}:${minute} ${amPm()}`)
   })
 }
 
