@@ -1,16 +1,20 @@
 export const chartConfigs = {
   whatsapp: {
     eachPersonMessagesPie: {
-      title: 'All messages',
+      chartTitle: 'All messages',
+      blocksName: 'Message',
       keyNameInIndexDB: 'numberOfMessages',
       chartType: 'Pie',
+      chartName: 'Pie',
       periodSupport: true,
       maxNumberOfXAxis: 24,
     },
     eachPersonMessagesLineSmooth: {
-      title: 'All Messages',
+      chartTitle: 'All messages',
+      blocksName: 'Message',
       keyNameInIndexDB: 'numberOfMessages',
       chartType: 'LineSmooth',
+      chartName: 'LineSmooth',
       periodSupport: true,
       maxNumberOfXAxis: 12,
     },

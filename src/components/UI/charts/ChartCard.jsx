@@ -4,8 +4,9 @@ import { Divider } from "@nextui-org/divider";
 import { Button } from "@nextui-org/button";
 import { FiMaximize, FiXOctagon } from "react-icons/fi";
 import { formatTimePeriods } from "@/utils/constants";
+import { cardSettings } from "@/utils/config/card.settings";
 
-function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
+function ChartCard({ data, settings, children, setFormatTime }) {
   const [support, setSupport] = useState(true);
   const [supportedFormats, setSupportedFormats] = useState({});
   const [selectedFormat, setSelectedFormat] = useState(null);
@@ -15,7 +16,6 @@ function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
   }
 
   useEffect(() => {
-    console.log('every time?');
     const supportedFormatsData = Object.keys(data).reduce((formats, itemKey) => {
       if (formatTimePeriods[itemKey].key === itemKey) {
         formats[itemKey] = formatTimePeriods[itemKey];
@@ -36,13 +36,13 @@ function ChartCard({ data, cardInfo, responsive, children, setFormatTime }) {
     setSelectedFormat(key);
   };
 
-  return responsive && (
+  return (
     <Card
-      className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${responsive}`}
+      className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${cardSettings.responsive}`}
     >
       <div className="flex justify-between items-center px-5">
         <p className="text-xl font-semibold text-light tracking-wide">
-          {cardInfo.title}
+          {settings.chartTitle}
         </p>
 
         <Button

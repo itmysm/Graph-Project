@@ -1,3 +1,5 @@
+import { timeConstants } from "../constants";
+
 export const convert12To24HourFormat = (timeString = '00:00 AM') => {
   return new Promise((resolve) => {
     const [time, period] = timeString.split(/\s+/);
@@ -48,7 +50,7 @@ export const getTimestampInfo = async (unixTimestamp) => {
     const timestampInfo = {
       hoursOfDay: `${hours}${amPm}`,
       daysOfWeek: dayOfWeek,
-      daysOfMonth: day,
+      daysOfMonth: timeConstants['month'][day].name,
       monthsOfSixMonth: month,
       monthsOfYear: month,
       year: year

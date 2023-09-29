@@ -10,8 +10,7 @@ import { get } from 'idb-keyval';
 import { chartConfigs } from "@/utils/config/chart.config";
 import store from "@/stores/index";
 
-const responsiveSettingForChartCards = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3';
-const allCharts = {
+const availableChartComponents = {
   Pie,
   LineSmooth
 };
@@ -30,10 +29,11 @@ const Categories = [
 
 const Results = () => {
   const resultsStatus = useSelector((state) => state.process.status);
-  const [chartConfig, setChartConfig] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [exportedResult, setExportedResult] = useState(null);
+
   const [selectedTab, setSelectedTab] = useState("General");
+  const [chartSettings, setChartSettings] = useState(null);
+  const [exportedResult, setExportedResultsFromIndexDb] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (resultsStatus === 'done') {
@@ -42,28 +42,43 @@ const Results = () => {
   }, [resultsStatus]);
 
   useEffect(() => {
-    setRecommendedChartConfig();
-  }, [exportedResult, chartConfig]);
+    setApplicationNameForGettingChartSettings();
+  }, [exportedResult]);
 
   const handelChangeCategoryProccess = (index) => {
     setSelectedTab(Categories[index].title);
   };
 
-  const setRecommendedChartConfig = async () => {
-    const application = store.getState().process.app.name;
-    setChartConfig(chartConfigs[application]);
+  const setApplicationNameForGettingChartSettings = async () => {
+    const applicationName = store.getState().process.app.name;
+    const importedChartSettings = chartConfigs[applicationName]
+
+    setChartSettings(importedChartSettings);
   };
 
   const getResultFromIndexDB = async () => {
     setLoading(true);
     try {
       const newResults = await get('result');
-      setExportedResult(newResults);
+      setExportedResultsFromIndexDb(newResults);
     } catch (error) {
       console.error('Error while fetching data from IndexedDB:', error);
     }
     setLoading(false);
   };
+
+  const renderCharts = () => {
+    console.log(chartSettings && exportedResult);
+    if (chartSettings != null && exportedResult != null) {
+      return Object.keys(chartSettings).map((eachChart, index) => {
+        const chartConfig = chartSettings[eachChart]
+        const ChartComponent = availableChartComponents[chartConfig.chartName];
+        const chartData = exportedResult[chartConfig.keyNameInIndexDB]
+        return <ChartComponent settings={chartConfig} data={chartData} key={index} />;
+      })
+    }
+  }
+
 
   return (
     <>
@@ -90,16 +105,11 @@ const Results = () => {
 
         {selectedTab === "General" && (
           <div className="flex items-center px-5">
-            {chartConfig && exportedResult &&
-              Object.keys(chartConfig).map((key, index) => {
-                const chartCfg = chartConfig[key];
-                const cardInfo = { title: chartCfg.title };
-                const Chart = allCharts[chartCfg.chartType];
-                const specificResult = exportedResult[chartCfg.keyNameInIndexDB]
-                return <Chart data={specificResult} cardInfo={cardInfo} responsive={responsiveSettingForChartCards} key={index} />;
-              })}
+            {renderCharts()}
           </div>
         )}
+
+
       </div>
 
       {loading && (

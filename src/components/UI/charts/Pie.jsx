@@ -3,49 +3,11 @@ import ReactEcharts from "echarts-for-react";
 import extractColorFromClass from "@/utils/tools/extractColorFromClass";
 import ChartCard from "@/components/UI/Charts/ChartCard";
 import { genTimeStamp } from "@/utils/tools";
+import { defaultChartConfigs } from "@/utils/config/default.config";
+import { cardSettings } from "@/utils/config/card.settings";
 
-const initialOptions = {
-  backgroundColor: 'transparent',
-  tooltip: {
-    trigger: "item",
-  },
-  series: [
-    {
-      name: "Access From",
-      type: "pie",
-      radius: ["40%", "70%"],
-      avoidLabelOverlap: false,
-      itemStyle: {
-        borderRadius: 10,
-        borderColor: "transparent",
-        borderWidth: 0,
-      },
-      label: {
-        show: false,
-        position: "center",
-      },
-      emphasis: {
-        label: {
-          show: false,
-          fontSize: 40,
-          fontWeight: "bold",
-        },
-      },
-      labelLine: {
-        show: true,
-      },
-      data: [
-        { value: 1048, name: "Search Engine" },
-        { value: 735, name: "Direct" },
-        { value: 580, name: "Email" },
-        { value: 484, name: "Union Ads" },
-        { value: 300, name: "Video Ads" },
-      ],
-    },
-  ],
-};
-
-function Pie({ data, cardInfo, responsive }) {
+function Pie({ data, settings }) {
+  const initialChartOptions = defaultChartConfigs.pie
   const [backgroundColor, setBackgroundColor] = useState(null);
   const [defaultPeriod, setDefaultPeriod] = useState('year')
   const [chartKey, setChartKey] = useState(null);
@@ -56,29 +18,32 @@ function Pie({ data, cardInfo, responsive }) {
   }, []);
 
   const chartOptions = useMemo(() => {
-    if (!data) return initialOptions;
+    if (!data) return initialChartOptions;
 
-    const updatedOptions = { ...initialOptions };
+    const updatedOptions = { ...initialChartOptions };
+    updatedOptions.series[0].name = settings.blocksName
     updatedOptions.backgroundColor = backgroundColor;
     updatedOptions.series[0].data = Object.values(data[defaultPeriod])
 
     setChartKey(genTimeStamp())
     return updatedOptions;
-  }, [data, backgroundColor, defaultPeriod]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, defaultPeriod]);
 
   const switchTimeFormat = (item = 'day') => {
     setDefaultPeriod(item)
   }
 
   return (
-    <ChartCard responsive={responsive}
+    <ChartCard
       data={data}
-      cardInfo={cardInfo}
+      settings={settings}
       setFormatTime={switchTimeFormat}>
       <ReactEcharts
         key={chartKey}
         option={chartOptions}
-        style={{ width: "100%", height: "280px" }}
+        style={cardSettings.defaultChartStyle}
       ></ReactEcharts>
     </ChartCard>
   );
