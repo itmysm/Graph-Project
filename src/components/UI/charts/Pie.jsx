@@ -4,7 +4,10 @@ import extractColorFromClass from "@/utils/tools/extractColorFromClass";
 import ChartCard from "@/components/UI/Charts/ChartCard";
 import { genTimeStamp } from "@/utils/tools";
 import { defaultChartConfigs } from "@/utils/config/default.config";
-import { cardSettings } from "@/utils/config/card.settings";
+
+const defaultChartStyle = {
+  width: "100%", height: "280px"
+}
 
 function Pie({ data, settings }) {
   const initialChartOptions = defaultChartConfigs.pie
@@ -43,7 +46,7 @@ function Pie({ data, settings }) {
       <ReactEcharts
         key={chartKey}
         option={chartOptions}
-        style={cardSettings.defaultChartStyle}
+        style={defaultChartStyle}
       ></ReactEcharts>
     </ChartCard>
   );

@@ -4,7 +4,8 @@ import { Divider } from "@nextui-org/divider";
 import { Button } from "@nextui-org/button";
 import { FiMaximize, FiXOctagon } from "react-icons/fi";
 import { formatTimePeriods } from "@/utils/constants";
-import { cardSettings } from "@/utils/config/card.settings";
+
+const responsive = 'w-10/12 md:w-1/2 lg:max-w-[350px] m-3'
 
 function ChartCard({ data, settings, children, setFormatTime }) {
   const [support, setSupport] = useState(true);
@@ -38,7 +39,7 @@ function ChartCard({ data, settings, children, setFormatTime }) {
 
   return (
     <Card
-      className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${cardSettings.responsive}`}
+      className={`flex justify-center border-none shadow-md h-full py-5 transition-all duration-700 ease-out origin-top-left relative ${responsive}`}
     >
       <div className="flex justify-between items-center px-5">
         <p className="text-xl font-semibold text-light tracking-wide">

@@ -5,9 +5,11 @@ import ChartCard from "@/components/UI/Charts/ChartCard";
 import { genTimeStamp } from "@/utils/tools";
 import { ChartHandler } from "@/utils/core/handler";
 import { defaultChartConfigs } from "@/utils/config/default.config";
-import { cardSettings } from "@/utils/config/card.settings";
 
 const chartHandler = new ChartHandler();
+const defaultChartStyle = {
+  width: "100%", height: "280px"
+}
 
 export default function LineSmooth({ data, settings }) {
   const initialOptions = defaultChartConfigs.lineSmooth
@@ -51,7 +53,7 @@ export default function LineSmooth({ data, settings }) {
       <ReactEcharts
         key={chartKey}
         option={chartOptions}
-        style={cardSettings.defaultChartStyle}
+        style={defaultChartStyle}
       ></ReactEcharts>
     </ChartCard>
   );

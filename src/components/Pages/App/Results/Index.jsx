@@ -68,7 +68,6 @@ const Results = () => {
   };
 
   const renderCharts = () => {
-    console.log(chartSettings && exportedResult);
     if (chartSettings != null && exportedResult != null) {
       return Object.keys(chartSettings).map((eachChart, index) => {
         const chartConfig = chartSettings[eachChart]
@@ -78,7 +77,6 @@ const Results = () => {
       })
     }
   }
-
 
   return (
     <>
