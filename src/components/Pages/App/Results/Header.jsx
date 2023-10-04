@@ -5,13 +5,15 @@ import { FiHelpCircle, FiUploadCloud, FiRefreshCcw } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { DESTROY_OPERATION } from "@/stores/reducers/process.ts";
 import { DEL_FILE } from "@/stores/reducers/file";
+import { del } from "idb-keyval";
 
 export default function AppHeader() {
   const dispatch = useDispatch()
 
-  const onHandelResetApp = () => {
+  const onHandelResetApp = async () => {
     dispatch({ type: DEL_FILE });
     dispatch({ type: DESTROY_OPERATION })
+    await del('messages')
   }
 
   return (

@@ -5,7 +5,12 @@ export const tempDataModel = {
     numberOfDays: 0,
     firstMessage: null,
   },
-  numberOfMessages: {},
+  numberOfMessages: {
+    periods: {
+      
+    },
+    sum: 0
+  },
   messagesByPerson: {},
   messagesInDayCycle: {
     morning: 0,

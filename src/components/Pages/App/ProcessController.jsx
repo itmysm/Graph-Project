@@ -136,7 +136,7 @@ export default function ProcessController() {
   };
 
   async function onSaveResultInDB() {
-    await set("result", result);
+    // await set("result", result);
 
     dispatch({
       type: NEW_ALERT,
