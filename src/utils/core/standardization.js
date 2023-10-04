@@ -1,21 +1,31 @@
 // these scripts get content of the file and covert them into a readable object
-import { Analyzer } from '@/utils/core/analyze'
+import { Analyzer } from './analyze.ts';
 import { ReadFile } from '@/utils/core/readFile.ts';
 import { regexPatterns, makeValidNameProperty } from '@/utils/general';
 import { getTimestampInfo, unixTimeToTimePeriods, whatsappDateToUnixTimestamp, convert12To24HourFormat, convertHandyTimeToAmPm } from "@/utils/tools";
+import { set } from 'idb-keyval';
 
 const readFile = new ReadFile
 const analyzer = new Analyzer()
 let detectedOS = null
+let messages = null
 
-export function whatsapp(file, operationSystemThatChatExportedFrom) {
-  console.log(operationSystemThatChatExportedFrom);
+
+export async function whatsapp(file, operationSystemThatChatExportedFrom) {
+  messages = []
+  // exported data from android and ios have some different! So I here get the name of OS that data exported from! 
   detectedOS = operationSystemThatChatExportedFrom
-  readFile.lineByLine(file, exportDifferentParts)
-  return analyzer.done()
+
+  // export each line and calling exportPartsFromLine method to convert the data to object
+  await readFile.lineByLine(file, exportPartsFromLine)
+
+  // set all converted messages to indexDB and start analyzer method to start analyzing data
+  set('messages', messages)
+  analyzer.start()
+  
 }
 
-function exportDifferentParts(oneLineOfData) {
+function exportPartsFromLine(oneLineOfData) {
   const message = {}
 
   if (detectedOS === 'android') {
@@ -55,5 +65,6 @@ async function getRequireInfoFromMessage(message) {
   helpers.messageTimePeriods = await unixTimeToTimePeriods(helpers.messageTimeStamp)
   helpers.messageTimeInfo = await getTimestampInfo(helpers.messageTimeStamp)
 
-  analyzer.start(message, helpers)
+  // push message messages array
+  messages.push({ ...message, timeStamp: helpers.messageTimeStamp, messageTimePeriods: helpers.messageTimePeriods, messageInfo: helpers.messageTimeInfo, uniqKeyName: helpers.uniqKeyName })
 }
