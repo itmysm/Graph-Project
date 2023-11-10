@@ -3,33 +3,29 @@
 @tailwind utilities;
 
 @layer base {
-  /* [data-theme="light"] {
-  } */
-
-  [data-theme="dark"] {
+  [data-theme="light"] {
     --color-transparent: transparent;
-    --color-black: 49 35 35;
-    --color-white: 255 255 255;
-    --color-gray: 128 128 128;
-    --color-gray-text: 163 162 171;
-    --color-yellow: 237 245 147;
-    --colors-blue: 59 130 246;
-    --color-indigo: 99 102 241;
-    --color-purple: 139 92 246;
-    --color-green: 16 185 129;
-    --color-red: 239 68 68;
-    --color-teal: 97 209 172;
-    --color-primary: 227 228 232;
-    --color-primary-hover: 255 255 255;
-    --color-primary-active: 161 164 170;
-    --color-secondary: 14 16 21;
-    --color-secondary-hover: 20 23 31;
-    --color-secondary-active: 23 26 34;
-    --color-info: 145 140 242;
-    --color-info-hover: 0 189 254;
-    --color-info-active: 145 140 237;
+    --color-gray: 161 164 170;
+    --color-info: 145 140 237;
+    --color-active: 145 140 242;
+    --color-primary: 252 252 253;
+    --color-secondary: 246 247 249;
     --color-error: 239 68 68;
     --color-warning: 253 224 71;
     --color-success: 16 185 129;
+    --color-contrast: 14 16 21;
+  }
+
+  [data-theme="dark"] {
+    --color-transparent: transparent;
+    --color-gray: 161 164 170;
+    --color-info: 145 140 237;
+    --color-active: 145 140 242;
+    --color-primary: 14 16 21;
+    --color-secondary: 20 23 31;
+    --color-error: 239 68 68;
+    --color-warning: 253 224 71;
+    --color-success: 16 185 129;
+    --color-contrast: 252 252 253;
   }
 }

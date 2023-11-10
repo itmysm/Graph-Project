@@ -1,12 +1,18 @@
 {
+  "app": {
+    "name": "Graph",
+    "about": "What is graph?"
+  },
   "navigation": {
     "home": "Home",
     "about": "About"
   },
   "page": {
     "home": {
-      "title": "Welcome to NextJs i18n",
-      "description": "Internationalization in NextJs 13 App router"
+      "title1": "Analyze your chats ",
+      "title2": "with Graph Project",
+      "description": "Explore your chats with different vision that you never see.",
+      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!"
     },
     "about": {
       "title": "About Us",

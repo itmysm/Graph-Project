@@ -25,12 +25,12 @@ export default function LangSwitcher() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button variant="bordered" className="capitalize">
+        <Button variant="bordered" className="capitalize min-w-[fit-content]">
           {selectedValue}
         </Button>
       </DropdownTrigger>
       <DropdownMenu
-        aria-label="Single selection example"
+        aria-label="Language"
         variant="flat"
         disallowEmptySelection
         selectionMode="single"
