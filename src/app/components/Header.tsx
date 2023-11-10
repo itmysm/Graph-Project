@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Locale } from "../../../../i18n.config";
-import { getLocales } from "../../../lib/locales";
-import LocaleSwitcher from "./switcher";
+import { Locale } from "../../../i18n.config";
+import { getLocales } from "../../lib/locales";
+import LangSwitcher from "./LangSwitcher";
 
 export default async function Header({ lang }: { lang: Locale }) {
   const { navigation } = await getLocales(lang);
@@ -17,7 +17,7 @@ export default async function Header({ lang }: { lang: Locale }) {
             <Link href={`/${lang}/about`}>{navigation.about}</Link>
           </li>
         </ul>
-        <LocaleSwitcher />
+        <LangSwitcher />
       </nav>
     </header>
   );

@@ -1,9 +1,12 @@
-import "./globals.css";
+import "../styles/global.css";
 import type { Metadata } from "next";
-import { Locale, i18n } from "../../../i18n.config";
-import Header from "./components/Header";
-
+import { Locale, i18n } from "$/i18n.config";
+import Header from "../components/Header";
 import { Inter } from "next/font/google";
+import themeHandler from "@/lib/theme";
+import { useEffect, useState } from "react";
+import { Appearance } from "@/types/general";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,6 +24,7 @@ export default function RootLayout({ children, params }: { children: React.React
       <body className={inter.className}>
         <Header lang={params.lang} />
         <main>{children}</main>
+        <ThemeSwitcher />
       </body>
     </html>
   );

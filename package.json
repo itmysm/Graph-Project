@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.0",
+    "@nextui-org/react": "^2.2.8",
     "@types/negotiator": "^0.6.3",
+    "framer-motion": "^10.16.4",
     "negotiator": "^0.6.3",
     "next": "14.0.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@types/node": "^20",
