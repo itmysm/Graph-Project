@@ -19,7 +19,7 @@ export default function ThemeSwitcher() {
 
   return (
     <Switch
-      className="absolute bottom-4 left-4"
+      className="fixed bottom-4 left-4"
       defaultSelected={theme}
       size="lg"
       color="success"

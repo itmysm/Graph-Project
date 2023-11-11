@@ -2,6 +2,8 @@ import { Locale } from "$/i18n.config";
 import { getLocales } from "@/lib/locales";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
+import FeatureShapeGenerator from "@/components/home/FeatureShapeGenerator";
+import { FiLock, FiDollarSign, FiPenTool, FiCoffee, FiActivity, FiCloudLightning, FiWifiOff } from "react-icons/fi";
 
 export default async function Home({
   children,
@@ -11,6 +13,32 @@ export default async function Home({
   params: { lang: Locale };
 }) {
   const { page } = await getLocales(lang);
+  const items = [
+    {
+      icon: <FiCoffee />,
+      description: "this is a test",
+    },
+    {
+      icon: <FiDollarSign />,
+      description: "this is a test",
+    },
+    {
+      icon: <FiLock />,
+      description: "this is a test",
+    },
+    {
+      icon: <FiActivity />,
+      description: "this is a test",
+    },
+    {
+      icon: <FiCloudLightning />,
+      description: "this is a test",
+    },
+    {
+      icon: <FiWifiOff />,
+      description: "this is a test",
+    },
+  ];
 
   return (
     <div className="w-full flex justify-center pt-24">
@@ -35,19 +63,21 @@ export default async function Home({
             {Array.from({ length: 3 }).map((_, index) => (
               <Image
                 className={`relative left-[${10}px]`}
-                src="/src/assets/avatars/1.png"
+                src={`${process.env.AVATAR_URL}${index}.png` + `${process.env.AVATAR_KEY}`}
                 key={index}
                 width={40}
                 height={40}
                 alt="Picture of the author"
               />
             ))}
-
-            <a href="/src/assets/avatars/1.png">234234</a>
           </div>
-          <p className="text-success font-semibold text-sm tracking-widest mt-6">
-            {page.home.reward}
-          </p>
+          <p className="text-success font-semibold text-sm tracking-widest my-6">{page.home.reward}</p>
+
+          <div className="flex items-center">
+            <FeatureShapeGenerator features={items} styles={`scale-x-[-1]`} />
+            <Image src={require("public/shield.svg")} className="mx-10" width={400} height={400} alt="shield" />
+            <FeatureShapeGenerator features={items} />
+          </div>
         </section>
       </div>
     </div>

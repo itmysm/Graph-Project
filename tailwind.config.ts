@@ -15,12 +15,24 @@ const config: Config = {
       primary: "rgb(var(--color-primary) / <alpha-value>)",
       secondary: "rgb(var(--color-secondary) / <alpha-value>)",
       info: "rgb(var(--color-info) / <alpha-value>)",
+      active: "rgb(var(--color-active) / <alpha-value>)",
       error: "rgb(var(--color-error) / <alpha-value>)",
       warning: "rgb(var(--color-warning) / <alpha-value>)",
       success: "rgb(var(--color-success) / <alpha-value>)",
       contrast: "rgb(var(--color-contrast) / <alpha-value>)",
     },
-    extend: {},
+    extend: {
+      animation: {
+        wiggle: "wiggle 3.5s ease-in-out infinite",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "25%": { transform: "translateY(-3px)" },
+          "75%": { transform: "translateY(3px)" },
+        },
+      },
+    },
   },
   darkMode: "class",
   plugins: [
@@ -33,6 +45,7 @@ const config: Config = {
             primary: "rgb(var(--color-primary) / <alpha-value>)",
             secondary: "rgb(var(--color-secondary) / <alpha-value>)",
             info: "rgb(var(--color-info) / <alpha-value>)",
+            active: "rgb(var(--color-active) / <alpha-value>)",
             error: "rgb(var(--color-error) / <alpha-value>)",
             warning: "rgb(var(--color-warning) / <alpha-value>)",
             success: "rgb(var(--color-success) / <alpha-value>)",
@@ -45,6 +58,7 @@ const config: Config = {
             primary: "rgb(var(--color-primary) / <alpha-value>)",
             secondary: "rgb(var(--color-secondary) / <alpha-value>)",
             info: "rgb(var(--color-info) / <alpha-value>)",
+            active: "rgb(var(--color-active) / <alpha-value>)",
             error: "rgb(var(--color-error) / <alpha-value>)",
             warning: "rgb(var(--color-warning) / <alpha-value>)",
             success: "rgb(var(--color-success) / <alpha-value>)",
