@@ -6,7 +6,7 @@ const nextConfig = {
   },
 
   env: {
-    AVATAR_URL: process.env.AVATAR_URL,
+    AVATAR_API: process.env.AVATAR_API,
   }
 }
 

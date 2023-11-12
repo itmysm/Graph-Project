@@ -6,7 +6,11 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import themeHandler, { setTheme } from "@/lib/theme";
 
 export default function ThemeSwitcher() {
-  const [theme, assignTheme] = useState(themeHandler());
+  const [theme, assignTheme] = useState();
+
+  useEffect(() => {
+    themeHandler()
+  })
 
   const onChangeTheme = (isLightMode: boolean) => {
     setTheme(isLightMode);

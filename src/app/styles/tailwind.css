@@ -6,7 +6,7 @@
   [data-theme="light"] {
     --color-transparent: transparent;
     --color-gray: 161 164 170;
-    --color-info: 145 140 237;
+    --color-info: 127 94 255;
     --color-active: 145 140 242;
     --color-primary: 252 252 253;
     --color-secondary: 246 247 249;
@@ -18,11 +18,11 @@
 
   [data-theme="dark"] {
     --color-transparent: transparent;
-    --color-gray: 161 164 170;
-    --color-info: 145 140 237;
+    --color-gray: 190 185 207;
+    --color-info: 127 94 255;
     --color-active: 145 140 242;
     --color-primary: 14 16 21;
-    --color-secondary: 20 23 31;
+    --color-secondary: 66 64 73;
     --color-error: 239 68 68;
     --color-warning: 253 224 71;
     --color-success: 16 185 129;
