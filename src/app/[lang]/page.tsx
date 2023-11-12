@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import FeatureShapeGenerator from "@/components/home/FeatureShapeGenerator";
 import { FiLock, FiDollarSign, FiPenTool, FiCoffee, FiActivity, FiCloudLightning, FiWifiOff } from "react-icons/fi";
+import ChartPreView from "@/components/home/ChartPreview";
 
 export default async function Home({ children, params: { lang } }: { children: React.ReactNode; params: { lang: Locale } }) {
   const { page } = await getLocales(lang);
@@ -35,9 +36,9 @@ export default async function Home({ children, params: { lang } }: { children: R
   ];
 
   return (
-    <div className="w-full flex justify-center pt-24">
-      <div className="container">
-        <section className="flex flex-col items-center">
+    <div className="bg-primary">
+      <div className="w-full flex flex-col items-center justify-center pt-24 pb-[18rem] bg-gradient-main">
+        <section className="container flex flex-col items-center">
           <p className="w-full md:w-4/6 lg:w-3/6 xl:w-3/6 text-3xl lg:text-4xl xl:text-6xl font-black text-contrast text-center leading-[1.5] md:leading-[1.6] xl:leading-tight">
             <span className="text-info">{page.home.title1}</span>
             {page.home.title2}
@@ -67,10 +68,12 @@ export default async function Home({ children, params: { lang } }: { children: R
                 />
               ))}
             </div>
-            <p className="text-success font-semibold text-sm tracking-widest mt-6 mb-16">{page.home.reward}</p>
+            <p className="text-success font-semibold text-sm tracking-widest mt-6">{page.home.reward}</p>
           </div>
+        </section>
 
-          <div className="flex items-start">
+        {/* 
+        <div className="flex items-start">
             <FeatureShapeGenerator features={items} styles={`scale-x-[-1]`} />
             <div className="flex flex-col items-center">
               <Image src={require("public/shield.svg")} className="mx-10" width={400} height={400} alt="shield" />
@@ -83,8 +86,13 @@ export default async function Home({ children, params: { lang } }: { children: R
               </div>
             </div>
             <FeatureShapeGenerator features={items} />
-          </div>
-        </section>
+          </div> */}
+      </div>
+
+      <div className="w-full bg-contrast py-20 flex justify-center">
+        <div className="container flex justify-center relative">
+          <ChartPreView />
+        </div>
       </div>
     </div>
   );

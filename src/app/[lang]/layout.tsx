@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: Locale } }) {
   return (
     <html lang={params.lang}>
-      <body className={`bg-primary w-full ${inter.className} px-5`}>
+      <body className={`bg-primary w-full ${inter.className}`}>
         <Header lang={params.lang} />
         <main>{children}</main>
         <ThemeSwitcher />

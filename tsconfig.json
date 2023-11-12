@@ -25,7 +25,8 @@
       "@/components/*": ["./src/app/components/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/assets/*": ["./src/app/*"],
-      "@/tailwind/*": ["./src/tailwind/*"]
+      "@/tailwind/*": ["./src/tailwind/*"],
+      "@/util/*": ["./src/util/general/extractColorFromClass.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
