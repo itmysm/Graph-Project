@@ -48,9 +48,11 @@ export default async function Home({ children, params: { lang } }: { children: R
           <p className="text-gray text-xl font-semibold my-4 xl:my-6 text-center">{page.home.description}</p>
 
           <div className="flex gap-x-5">
-            <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg mt-10" size="lg">
-              Get Started
-            </Button>
+            <Link href="/app">
+              <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg mt-10" size="lg">
+                Get Started
+              </Button>
+            </Link>
             <Link href="/about">
               <Button className="text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg mt-10" size="lg">
                 What Is Graph?
