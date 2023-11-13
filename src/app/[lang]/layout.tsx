@@ -1,11 +1,8 @@
-import "../styles/global.css";
+import "@/styles/global.css";
 import type { Metadata } from "next";
 import { Locale, i18n } from "$/i18n.config";
-import Header from "../components/Header";
+import Header from "@/components/Header";
 import { Inter } from "next/font/google";
-import themeHandler from "@/lib/theme";
-import { useEffect, useState } from "react";
-import { Appearance } from "@/types/general";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 const inter = Inter({ subsets: ["latin"] });
 

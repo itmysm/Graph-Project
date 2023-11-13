@@ -1,6 +1,7 @@
 import { Locale } from "$/i18n.config";
 import { getLocales } from "@/lib/locales";
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
 import Image from "next/image";
 import FeatureShapeGenerator from "@/components/home/FeatureShapeGenerator";
 import { FiLock, FiDollarSign, FiPenTool, FiCoffee, FiActivity, FiCloudLightning, FiWifiOff } from "react-icons/fi";
@@ -50,10 +51,11 @@ export default async function Home({ children, params: { lang } }: { children: R
             <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg mt-10" size="lg">
               Get Started
             </Button>
-
-            <Button href="/about" className="text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg mt-10" size="lg">
-              What Is Graph?
-            </Button>
+            <Link href="/about">
+              <Button className="text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg mt-10" size="lg">
+                What Is Graph?
+              </Button>
+            </Link>
           </div>
           <div className="flex flex-col items-center my-20">
             <div className="flex">

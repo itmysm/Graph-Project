@@ -22,11 +22,12 @@
     "paths": {
       "@/*": ["src/*"],
       "$/*": ["*"],
-      "@/components/*": ["./src/app/components/*"],
-      "@/lib/*": ["./src/lib/*"],
-      "@/assets/*": ["./src/app/*"],
+      "@/components/*": ["./src/components/*"],
       "@/tailwind/*": ["./src/tailwind/*"],
-      "@/util/*": ["./src/util/general/extractColorFromClass.ts"]
+      "@/util/*": ["./src/util/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/styles/*": ["./src/styles/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
