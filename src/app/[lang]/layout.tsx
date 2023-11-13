@@ -1,10 +1,11 @@
 import "@/styles/global.css";
 import type { Metadata } from "next";
-import { Locale, i18n } from "$/i18n.config";
+import { Locale, LocaleLabel, i18n } from "$/i18n.config";
 import Header from "@/components/Header";
-import { Inter } from "next/font/google";
+import { Inter, Vazirmatn } from "next/font/google";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 const inter = Inter({ subsets: ["latin"] });
+const vazir = Vazirmatn({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
+  return i18n.locales.map((locale) => ({ lang: locale.label, dir: locale.dir }));
 }
 
-export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: Locale } }) {
+export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: LocaleLabel, dir: 'string' } }) {
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} data-theme="dark" dir={params.dir}>
       <body className={`bg-primary w-full ${inter.className}`}>
         <Header lang={params.lang} />
         <main>{children}</main>

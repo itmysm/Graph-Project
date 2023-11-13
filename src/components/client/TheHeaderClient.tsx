@@ -87,7 +87,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
             <LangSwitcher />
           </NavbarItem>
 
-          <NavbarItem className="hidden">
+          <NavbarItem className="hidden lg:flex">
             <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.about}</Button>
           </NavbarItem>
         </NavbarContent>

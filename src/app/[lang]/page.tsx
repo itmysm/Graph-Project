@@ -1,4 +1,4 @@
-import { Locale } from "$/i18n.config";
+import { Locale, LocaleLabel } from "$/i18n.config";
 import { getLocales } from "@/lib/locales";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import FeatureShapeGenerator from "@/components/home/FeatureShapeGenerator";
 import { FiLock, FiDollarSign, FiPenTool, FiCoffee, FiActivity, FiCloudLightning, FiWifiOff } from "react-icons/fi";
 import ChartPreView from "@/components/home/ChartPreview";
 
-export default async function Home({ children, params: { lang } }: { children: React.ReactNode; params: { lang: Locale } }) {
+export default async function Home({ params: { lang } }: { params: { lang: LocaleLabel } }) {
   const { page } = await getLocales(lang);
   const items = [
     {

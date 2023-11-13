@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "Graph",
+    "about": "درباره گراف"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About"
+  },
+  "page": {
+    "home": {
+      "title1": "Analyze your chats ",
+      "title2": "with Graph Project",
+      "description": "Explore your chats with different vision that you never see.",
+      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    }
+  }
+}

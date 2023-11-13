@@ -2,7 +2,8 @@
 import React from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
-import { i18n } from "$/i18n.config";
+import { Locale, LocaleLabel, i18n } from "$/i18n.config";
+import { HiOutlineLanguage } from "react-icons/hi2";
 
 export default function LangSwitcher() {
   const pathName = usePathname();
@@ -15,7 +16,7 @@ export default function LangSwitcher() {
     setSelectedKeys(newSelectedKeys);
   };
 
-  const redirectedPathName = (locale: string) => {
+  const redirectedPathName = (locale: LocaleLabel) => {
     if (!pathName) return "/";
     const segments = pathName.split("/");
     segments[1] = locale;
@@ -26,7 +27,8 @@ export default function LangSwitcher() {
     <Dropdown>
       <DropdownTrigger>
         <Button variant="bordered" className="capitalize min-w-[fit-content]">
-          {selectedValue}
+          <p className="mr-[2px]"> {selectedValue}</p>
+          <HiOutlineLanguage className="text-lg" />
         </Button>
       </DropdownTrigger>
       <DropdownMenu
@@ -37,9 +39,9 @@ export default function LangSwitcher() {
         selectedKeys={selectedKeys}
         onSelectionChange={handleSelectionChange}
       >
-        {i18n.locales.map((locale) => (
-          <DropdownItem key={locale} href={redirectedPathName(locale)}>
-            {locale}
+        {i18n.locales.map((locale, index) => (
+          <DropdownItem key={index} href={redirectedPathName(locale.label)}>
+            {locale.title}
           </DropdownItem>
         ))}
       </DropdownMenu>
