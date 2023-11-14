@@ -1,6 +1,6 @@
 import "@/styles/global.css";
 import type { Metadata } from "next";
-import { Locale, LocaleLabel, i18n } from "$/i18n.config";
+import { LocaleLabel, i18n } from "$/i18n.config";
 import Header from "@/components/Header";
 import { Inter, Vazirmatn } from "next/font/google";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
@@ -17,18 +17,18 @@ export async function generateStaticParams() {
 }
 
 const detectDirection = (lang: LocaleLabel): string => {
-  let dir = "en";
+  let dir = undefined;
   i18n.locales.forEach((eachLocale) => {
     if (lang === eachLocale.label) dir = eachLocale.dir;
   });
 
-  return dir;
+  return dir || "en";
 };
 
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: LocaleLabel } }) {
   return (
     <html lang={params.lang} data-theme="dark" dir={detectDirection(params.lang)}>
-      <body className={`bg-primary w-full ${inter.className}`}>
+      <body className={`bg-primary w-full ${params.lang == "fa" ? vazir.className : inter.className}`}>
         <Header lang={params.lang} />
         <main>{children}</main>
         <ThemeSwitcher />

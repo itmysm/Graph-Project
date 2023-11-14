@@ -1,22 +1,33 @@
 {
   "app": {
-    "name": "Graph",
+    "name": "'گراف'",
     "about": "درباره گراف"
   },
   "navigation": {
-    "home": "Home",
-    "about": "About"
+    "brand": "Graph",
+    "about": "درباره گراف",
+    "links": {
+      "telegram": "تلگرام",
+      "instagram": "اینستاگرام",
+      "whatsapp": "واتساپ"
+    }
   },
   "page": {
     "home": {
-      "title1": "Analyze your chats ",
-      "title2": "with Graph Project",
-      "description": "Explore your chats with different vision that you never see.",
-      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!"
+      "title1": "گراف، سیستم هوشمند آنالیز ",
+      "title2": "و تحلیل داده",
+      "description": "داده های خود را با یک نقطه دیدگاه جدید بررسی کنید.",
+      "reward": "لایک شده توسط  100+ دولوپر!",
+      "getStarted": "شروع",
+      "about": "درباره گراف"
     },
     "about": {
       "title": "About Us",
       "description": "This is the about page"
     }
+  },
+  "additional": {
+    "soon": "به‌زودی",
+    "new": "جدید"
   }
 }

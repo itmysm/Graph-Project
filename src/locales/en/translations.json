@@ -4,19 +4,31 @@
     "about": "What is graph?"
   },
   "navigation": {
-    "home": "Home",
-    "about": "About"
+    "brand": "Graph",
+    "about": "About Graph",
+    "links": {
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "whatsapp": "Whatsapp"
+    }
   },
   "page": {
     "home": {
       "title1": "Analyze your chats ",
       "title2": "with Graph Project",
       "description": "Explore your chats with different vision that you never see.",
-      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!"
+      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!",
+      "getStarted": "Get Started",
+      "about": "About Graph"
+
     },
     "about": {
       "title": "About Us",
       "description": "This is the about page"
     }
+  },
+  "additional": {
+    "soon": "soon",
+    "new": "new"
   }
 }

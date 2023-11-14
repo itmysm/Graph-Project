@@ -47,15 +47,15 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
 
           <p className="text-gray text-xl font-semibold my-4 xl:my-6 text-center">{page.home.description}</p>
 
-          <div className="flex gap-x-5">
-            <Link href="/app">
-              <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg mt-10" size="lg">
-                Get Started
+          <div className="flex gap-x-5 mt-10">
+            <Link className="h-fit" href="/app">
+              <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg" size="lg">
+                {page.home.getStarted}
               </Button>
             </Link>
             <Link href="/about">
-              <Button className="text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg mt-10" size="lg">
-                What Is Graph?
+              <Button className="text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg" size="lg">
+                {page.home.about}
               </Button>
             </Link>
           </div>

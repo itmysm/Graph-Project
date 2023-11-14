@@ -11,21 +11,22 @@ import { FiChevronDown } from "react-icons/fi";
 export default function TheHeaderClient({ locale }: { locale: any }) {
   const currentPath = usePathname();
   const appPaths = ["/app", "/results"];
+
   const paths = [
     {
-      title: "Whatsapp ",
+      title: locale.navigation.links.instagram,
       path: "./",
     },
     {
-      title: "Instagram",
+      title: locale.navigation.links.whatsapp,
       path: "./",
     },
     {
-      title: "Telegram ",
+      title: locale.navigation.links.telegram,
       path: "./",
       badge: {
         background: "warning",
-        content: "soon",
+        content: locale.additional.soon,
       },
     },
   ];
@@ -36,7 +37,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarBrand className="mr-3">
             <Link className="font-semibold text-3xl xl:text-2xl text-info tracking-wide" href="/app">
-              {locale.name}
+              {locale.navigation.brand}
             </Link>
           </NavbarBrand>
         </NavbarContent>
@@ -53,7 +54,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
         <NavbarContent className="flex items-center gap-4" justify="center">
           <NavbarBrand className="mr-1 lg:mr-3">
             <Link className="font-semibold text-3xl text-info tracking-wide" href="/app">
-              {locale.name}
+              {locale.navigation.brand}
             </Link>
           </NavbarBrand>
           {paths.map((path, index) => (
@@ -88,7 +89,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
           </NavbarItem>
 
           <NavbarItem className="hidden lg:flex">
-            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.about}</Button>
+            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.navigation.about}</Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>

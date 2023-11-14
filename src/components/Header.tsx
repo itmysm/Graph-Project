@@ -3,10 +3,10 @@ import { getLocales } from "@/lib/locales";
 import TheHeaderClient from "@/components/client/TheHeaderClient";
 
 export default async function Header({ lang }: { lang: LocaleLabel }) {
-  const { app } = await getLocales(lang);
+  const { navigation, additional } = await getLocales(lang);
   return (
     <header className="w-full flex justify-center py-6">
-      <TheHeaderClient locale={app} />
+      <TheHeaderClient locale={{navigation, additional}} />
     </header>
   );
 }
