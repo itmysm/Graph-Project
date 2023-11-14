@@ -16,9 +16,18 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale.label, dir: locale.dir }));
 }
 
-export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: LocaleLabel, dir: 'string' } }) {
+const detectDirection = (lang: LocaleLabel): string => {
+  let dir = "en";
+  i18n.locales.forEach((eachLocale) => {
+    if (lang === eachLocale.label) dir = eachLocale.dir;
+  });
+
+  return dir;
+};
+
+export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: LocaleLabel } }) {
   return (
-    <html lang={params.lang} data-theme="dark" dir={params.dir}>
+    <html lang={params.lang} data-theme="dark" dir={detectDirection(params.lang)}>
       <body className={`bg-primary w-full ${inter.className}`}>
         <Header lang={params.lang} />
         <main>{children}</main>
