@@ -14,10 +14,14 @@
     --color-warning: 253 224 71;
     --color-success: 16 185 129;
     --color-contrast: 14 16 21;
-    --color-dark-gradient: 255, 255, 255; /* change later */
-    --color-dark-gradient2: 249, 250, 222; /* change later */
-    --color-custom-gradient1: 246 247 245; /* change later */
-    --color-custom-gradient2: 246 241 249; /* change later */
+    --color-dark-gradient: 255, 255, 255;
+    /* change later */
+    --color-dark-gradient2: 249, 250, 222;
+    /* change later */
+    --color-custom-gradient1: 246 247 245;
+    /* change later */
+    --color-custom-gradient2: 246 241 249;
+    /* change later */
   }
 
   [data-theme="dark"] {
@@ -45,4 +49,8 @@
 
 .bg-gradient-custom {
   background: linear-gradient(140deg, rgb(var(--color-custom-gradient1)) 0%, rgb(var(--color-custom-gradient2)) 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(140deg, #201e1d 0%, hsl(260, 9%, 15%) 100%);
 }

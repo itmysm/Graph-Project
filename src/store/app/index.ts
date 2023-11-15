@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { AppStore, Status, FileInfo, Appearance } from "@/types/store";
+import { create } from "zustand";
 
 const useAppStore = create<AppStore>((set) => ({
   appearance: {
@@ -12,33 +12,21 @@ const useAppStore = create<AppStore>((set) => ({
     isFileUploaded: false,
     isFileSizeToLarge: false,
   },
-  fileInfo: null,
-
-  updateAppearance: (updatedAppearance: Appearance) =>
+  fileInfo: {
+    name: '',
+    extension: '',
+    size: 1,
+    date: '',
+  },
+  
+  updateAppearance: (appearance: Appearance) =>
     set((state) => ({
-      ...state,
-      appearance: {
-        ...state.appearance,
-        ...updatedAppearance,
-      },
+      appearance: appearance,
     })),
-
-  updateStatus: (updatedStatus: Status) =>
+  
+  updateFileInfo: (newFile: FileInfo) =>
     set((state) => ({
-      ...state,
-      status: {
-        ...state.status,
-        ...updatedStatus,
-      },
-    })),
-
-  updatedFileInfo: (updatedFileInfo: FileInfo) =>
-    set((state) => ({
-      ...state,
-      fileInfo: {
-        ...state.fileInfo,
-        ...updatedFileInfo,
-      },
+      fileInfo: newFile,
     })),
 }));
 

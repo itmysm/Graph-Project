@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import LangSwitcher from "@/components/LangSwitcher";
 import { Button } from "@nextui-org/react";
@@ -31,15 +32,42 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
     },
   ];
 
+
+  const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]));
+
+  const selectedValue = useMemo(() => Array.from(selectedKeys).join(", ").replaceAll("_", " "), [selectedKeys]);
+
   if (appPaths.some((item) => currentPath.includes(item))) {
     return (
       <Navbar shouldHideOnScroll className="w-full container bg-primary" maxWidth="full">
+        <NavbarBrand className="mr-3">
+          <Link className="font-semibold text-3xl xl:text-2xl text-info tracking-wide" href="/app">
+            {locale.navigation.brand}
+          </Link>
+        </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarBrand className="mr-3">
-            <Link className="font-semibold text-3xl xl:text-2xl text-info tracking-wide" href="/app">
-              {locale.navigation.brand}
-            </Link>
-          </NavbarBrand>
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant="light" className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold">
+                <p className="mr-1"> {selectedValue}</p>
+                <FiChevronDown />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Single selection example"
+              variant="flat"
+              disallowEmptySelection
+              selectionMode="single"
+              selectedKeys={selectedKeys}
+              onSelectionChange={() => setSelectedKeys}
+            >
+              <DropdownItem key="text">Text</DropdownItem>
+              <DropdownItem key="number">Number</DropdownItem>
+              <DropdownItem key="date">Date</DropdownItem>
+              <DropdownItem key="single_date">Single Date</DropdownItem>
+              <DropdownItem key="iteration">Iteration</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">

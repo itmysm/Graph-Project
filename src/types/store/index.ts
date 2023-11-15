@@ -1,7 +1,9 @@
 export type AppStore = {
   appearance: Appearance;
   status: Status;
-  fileInfo: FileInfo | null;
+  fileInfo: FileInfo;
+  updateAppearance: (appearance: Appearance) => void;
+  updateFileInfo: (fileInfo: FileInfo) => void
 };
 
 export type Status = {
