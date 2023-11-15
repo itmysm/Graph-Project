@@ -13,9 +13,11 @@ export type Status = {
 };
 export type FileInfo = {
   name: string;
-  extension: string;
+  // extension: string;
+  type: string,
   size: number;
-  date: string;
+  date: number;
+  uploadDate: number;
 };
 
 export type Appearance = {

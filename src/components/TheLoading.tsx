@@ -11,7 +11,7 @@ export default function TheLoading({ onShowLoading }: { onShowLoading: Boolean }
 
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} hideCloseButton={true} backdrop="blur">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} hideCloseButton={true} >
         <ModalContent className="w-32 h-32">
           {(onClose) => (
             <>
