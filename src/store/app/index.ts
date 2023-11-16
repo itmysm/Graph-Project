@@ -13,20 +13,27 @@ const useAppStore = create<AppStore>((set) => ({
     isFileSizeToLarge: false,
   },
   fileInfo: {
-    name: '',
-    extension: '',
+    name: "",
+    // extension: '',
     size: 1,
-    date: '',
+    date: undefined,
+    uploadDate: undefined,
+    type: undefined,
   },
-  
+
   updateAppearance: (appearance: Appearance) =>
-    set((state) => ({
+    set(() => ({
       appearance: appearance,
     })),
-  
+
   updateFileInfo: (newFile: FileInfo) =>
-    set((state) => ({
+    set(() => ({
       fileInfo: newFile,
+    })),
+
+  updateStatus: (updatedStatus: Status) =>
+    set(() => ({
+      status: updatedStatus,
     })),
 }));
 

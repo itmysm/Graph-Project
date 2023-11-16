@@ -1,3 +1,4 @@
+import { extensionExporter } from "@/lib/general";
 import extensionsValidator from "@/lib/guard/extensionsValidator";
 import useAppStore from "@/store/app";
 import useNotificationsStore from "@/store/notification";
@@ -9,7 +10,7 @@ export default function DragAndDropArea() {
   const [inZone, setInZone] = useState<Boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const { fileInfo, updateFileInfo } = useAppStore();
+  const { fileInfo, status, updateFileInfo, updateStatus } = useAppStore();
   const { addNewAlert } = useNotificationsStore();
 
   useEffect(() => {
@@ -55,9 +56,15 @@ export default function DragAndDropArea() {
     }
   };
 
-  const saveUploadedFile = (newFile: File) => {
+  const saveUploadedFile = (newFile: File) => {    
     if (!guard_onCheckFileExtension(newFile.name)) {
-      window.alert("error on file");
+      
+      addNewAlert({
+        type: "error",
+        title: `.${extensionExporter(newFile.name)} is not a valid extension!`,
+        content: ``,
+        id: new Date().getTime(),
+      });
       return;
     }
 
@@ -76,8 +83,10 @@ export default function DragAndDropArea() {
         type: "success",
         title: "File uploaded successful",
         content: "Your File uploaded successful",
-        id: new Date().getTime()
-      })
+        id: new Date().getTime(),
+      });
+
+      updateStatus({ ...status, state: 2, isFileUploaded: true });
     }
   };
 
