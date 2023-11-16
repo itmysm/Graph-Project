@@ -1,5 +1,6 @@
 import extensionsValidator from "@/lib/guard/extensionsValidator";
 import useAppStore from "@/store/app";
+import useNotificationsStore from "@/store/notification";
 import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import { FiFileText } from "react-icons/fi";
 
@@ -9,6 +10,7 @@ export default function DragAndDropArea() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const { fileInfo, updateFileInfo } = useAppStore();
+  const { addNewAlert } = useNotificationsStore();
 
   useEffect(() => {
     if (fileInfo.name == null && fileInputRef.current) {
@@ -55,7 +57,7 @@ export default function DragAndDropArea() {
 
   const saveUploadedFile = (newFile: File) => {
     if (!guard_onCheckFileExtension(newFile.name)) {
-      window.alert('error on file')
+      window.alert("error on file");
       return;
     }
 
@@ -69,6 +71,13 @@ export default function DragAndDropArea() {
         type: newFile.type,
         uploadDate: new Date().getTime(),
       });
+
+      addNewAlert({
+        type: "success",
+        title: "File uploaded successful",
+        content: "Your File uploaded successful",
+        id: new Date().getTime()
+      })
     }
   };
 

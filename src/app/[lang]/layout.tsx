@@ -1,9 +1,11 @@
 import "@/styles/global.css";
+import "animate.css"
 import type { Metadata } from "next";
 import { LocaleLabel, i18n } from "$/i18n.config";
 import Header from "@/components/Header";
 import { Inter, Vazirmatn } from "next/font/google";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import NotificationProvider from "@/components/notification/Provider";
 const inter = Inter({ subsets: ["latin"] });
 const vazir = Vazirmatn({ subsets: ["arabic"] });
 
@@ -30,6 +32,7 @@ export default function RootLayout({ children, params }: { children: React.React
     <html lang={params.lang} data-theme="dark" dir={detectDirection(params.lang)}>
       <body className={`bg-primary w-full ${params.lang == "fa" ? vazir.className : inter.className}`}>
         <Header lang={params.lang} />
+        <NotificationProvider />
         <main className="pt-10 h-screen">{children}</main>
         <ThemeSwitcher />
       </body>
