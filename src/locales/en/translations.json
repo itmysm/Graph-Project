@@ -25,6 +25,12 @@
     "about": {
       "title": "About Us",
       "description": "This is the about page"
+    },
+    "app": {
+     "noUploadedFile": "umm! You still does not any chat for analyzing",
+     "upload": "Upload",
+     "useTemplate": "Use templates",
+     "separator": "OR"
     }
   },
   "additional": {
