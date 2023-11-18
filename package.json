@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "generate-types": "node ./scripts/generate-types.js",
+    "dev": "npm run generate-types && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  },
+  },  
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.0",
     "@nextui-org/react": "^2.2.8",
@@ -17,6 +18,7 @@
     "dotenv": "^16.3.1",
     "echarts-for-react": "^3.0.2",
     "framer-motion": "^10.16.4",
+    "json2ts": "^0.0.7",
     "negotiator": "^0.6.3",
     "next": "14.0.1",
     "react": "^18",
