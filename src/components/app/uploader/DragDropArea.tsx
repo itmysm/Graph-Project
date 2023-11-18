@@ -4,8 +4,13 @@ import useAppStore from "@/store/app";
 import useNotificationsStore from "@/store/notification";
 import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import { FiFileText } from "react-icons/fi";
+import { Page } from '../../../types/locales/index';
 
-export default function DragAndDropArea() {
+type Props = {
+  i18n: Page
+}
+
+export default function DragAndDropArea({i18n}: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [inZone, setInZone] = useState<Boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -115,8 +120,8 @@ export default function DragAndDropArea() {
 
       <FiFileText className="text-5xl text-gray/50" strokeWidth="1" />
       <p className="text-base mt-4 text-center">
-        <span className="text-info">Upload document</span> or drag and drop <br />{" "}
-        <span className="text-gray/50">TXT, JSON up to 10MB</span>
+        <span className="text-info">{i18n.app.uploadDoc}</span> {i18n.app.uploadDragAndDrop} <br />{" "}
+        <span className="text-gray/50">{i18n.app.uploadRules}</span>
       </p>
     </div>
   );

@@ -6,13 +6,14 @@ import NoResult from "@/components/app/NoResult";
 import UploadBox from "@/components/app/uploader/UploadBox";
 import { getClientSideLocales } from "@/lib/locales/clientSideLocales";
 import useAppStore from "@/store/app";
+import { Page } from "@/types/locales";
 import { useEffect, useState } from "react";
 
 export default function App({ params }: { params: { lang: LocaleLabel } }) {
   const [showLoading, setShowLoading] = useState(false);
   const appStore = useAppStore((state) => state.status.state);
   const [showUploadDialog, setShowUploadDialog] = useState<Boolean>(false);
-  const [translations, setTranslations] = useState(null);
+  const [translations, setTranslations] = useState<any>(null);
 
   const handleUploadDialog = (status: Boolean) => {
     setShowUploadDialog(status);
@@ -22,7 +23,7 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
     const fetchTranslations = async () => {
       try {
         const translationModule = await getClientSideLocales(params.lang);
-        setTranslations(translationModule.page.app);
+        setTranslations(translationModule.page);
       } catch (error) {
         window.alert("Error loading translations");
         console.log("Error loading translations:", error);
@@ -37,7 +38,7 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
       <>
         <UploadBox i18n={translations} showDialog={showUploadDialog} onCloseDialog={handleUploadDialog} />
         <NoResult i18n={translations} onOpenUploadDialog={handleUploadDialog} />
-        <TheLoading i18n={translations} onShowLoading={showLoading} />
+        <TheLoading onShowLoading={showLoading} />
       </>
     )
   );

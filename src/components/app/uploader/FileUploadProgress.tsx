@@ -3,8 +3,9 @@ import useAppStore from "@/store/app";
 import { FiFileText, FiX } from "react-icons/fi";
 import { Progress } from "@nextui-org/react";
 import { progress } from "framer-motion";
+import { Page } from "@/types/locales";
 
-export default function FileUploadProgress() {
+export default function FileUploadProgress({i18n}: {i18n: Page}) {
   const { fileInfo, updateFileInfo } = useAppStore();
 
   const onHandleRemoveFile = (): void => {

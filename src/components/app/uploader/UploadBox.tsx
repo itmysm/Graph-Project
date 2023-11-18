@@ -12,9 +12,10 @@ import {
 } from "@nextui-org/react";
 import DragAndDropArea from "./DragDropArea";
 import FileUploadProgress from "./FileUploadProgress";
+import { Page } from "@/types/locales";
 
 type Props = {
-  i18n: Object,
+  i18n: Page,
   showDialog: Boolean;
   onCloseDialog: (status: Boolean) => void;
 };
@@ -40,8 +41,8 @@ export default function UploadBox({ i18n, showDialog, onCloseDialog }: Props) {
           {(onClose) => (
             <>
               <ModalBody className="pt-10 pb-4">
-                <DragAndDropArea />
-                <FileUploadProgress />
+                <DragAndDropArea i18n={i18n}  />
+                <FileUploadProgress i18n={i18n} />
               </ModalBody>
               <ModalFooter>
                 <Button

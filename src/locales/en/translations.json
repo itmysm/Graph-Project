@@ -30,7 +30,10 @@
      "noUploadedFile": "umm! You still does not any chat for analyzing",
      "upload": "Upload",
      "useTemplate": "Use templates",
-     "separator": "OR"
+     "separator": "OR",
+     "uploadDoc": "Upload document",
+     "uploadDragAndDrop": "or drag and drop",
+     "uploadRules": "TXT, JSON up to 10MB"
     }
   },
   "additional": {
