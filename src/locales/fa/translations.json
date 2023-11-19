@@ -1,10 +1,10 @@
 {
   "app": {
-    "name": "'گراف'",
-    "about": "درباره گراف"
+    "name": "گراف",
+    "about": "گراف چیست؟"
   },
   "navigation": {
-    "brand": "Graph",
+    "brand": "گراف",
     "about": "درباره گراف",
     "links": {
       "telegram": "تلگرام",
@@ -14,20 +14,29 @@
   },
   "page": {
     "home": {
-      "title1": "گراف، سیستم هوشمند آنالیز ",
-      "title2": "و تحلیل داده",
-      "description": "داده های خود را با یک نقطه دیدگاه جدید بررسی کنید.",
-      "reward": "لایک شده توسط  100+ دولوپر!",
-      "getStarted": "شروع",
+      "title1": "چت های خود را تجزیه و تحلیل کنید",
+      "title2": "با پروژه گراف",
+      "description": "چت های خود را با دیدگاه متفاوتی که هرگز ندیده اید، بررسی کنید.",
+      "reward": "هم اکنون بیش از 100 توسعه دهنده آن را دوست دارند!",
+      "getStarted": "شروع به کار",
       "about": "درباره گراف"
     },
     "about": {
-      "title": "About Us",
-      "description": "This is the about page"
+      "title": "درباره ما",
+      "description": "این صفحه درباره ما است"
+    },
+    "app": {
+      "noUploadedFile": "اوه! شما هنوز هیچ چتی برای تجزیه و تحلیل ندارید",
+      "upload": "بارگذاری",
+      "useTemplate": "استفاده از الگوها",
+      "separator": "یا",
+      "uploadDoc": "بارگذاری سند",
+      "uploadDragAndDrop": "یا بکشید و رها کنید",
+      "uploadRules": "TXT، JSON تا 10 مگابایت"
     }
   },
   "additional": {
-    "soon": "به‌زودی",
+    "soon": "به زودی",
     "new": "جدید"
   }
 }
