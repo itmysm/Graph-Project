@@ -35,6 +35,14 @@ const useAppStore = create<AppStore>((set) => ({
     set(() => ({
       status: updatedStatus,
     })),
+  reset: () =>
+    set(() => ({
+      status: {
+        state: 1,
+        isFileUploaded: false,
+        isFileSizeToLarge: false,
+      },
+    })),
 }));
 
 export default useAppStore;

@@ -32,7 +32,6 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
     },
   ];
 
-
   const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]));
 
   const selectedValue = useMemo(() => Array.from(selectedKeys).join(", ").replaceAll("_", " "), [selectedKeys]);
@@ -45,7 +44,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
             {locale.navigation.brand}
           </Link>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <Dropdown>
             <DropdownTrigger>
               <Button variant="light" className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold">
@@ -68,7 +67,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
               <DropdownItem key="iteration">Iteration</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </NavbarContent>
+        </NavbarContent> */}
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <LangSwitcher />

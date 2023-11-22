@@ -1,1 +1,2 @@
-export * from './extensionExporter'
+export * from "./extensionExporter";
+export * from "./effectWithDelay";

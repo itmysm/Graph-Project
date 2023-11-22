@@ -2,14 +2,7 @@ import { NotificationStore, Notification } from "@/types/store";
 import { create } from "zustand";
 
 const useNotificationsStore = create<NotificationStore>((set) => ({
-  listNotifications: [
-    {
-      type: "string",
-      title: "string",
-      content: "string",
-      id: 1,
-    },
-  ],
+  listNotifications: [],
 
   addNewAlert: (newNotification: Notification) =>
     set((state) => ({

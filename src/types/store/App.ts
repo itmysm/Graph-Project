@@ -5,6 +5,8 @@ export type AppStore = {
   updateAppearance: (appearance: Appearance) => void;
   updateFileInfo: (fileInfo: FileInfo) => void;
   updateStatus: (updatedStatus: Status) => void;
+  reset: () => void;
+
 };
 
 export type Status = {
@@ -19,7 +21,7 @@ export type FileInfo = {
   type: string | undefined;
   date: number | undefined;
   uploadDate: number | undefined;
-};
+} | null;
 
 export type Appearance = {
   lang: string;

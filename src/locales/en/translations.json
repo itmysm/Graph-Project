@@ -27,7 +27,7 @@
       "description": "This is the about page"
     },
     "app": {
-     "noUploadedFile": "umm! You still does not any chat for analyzing",
+     "noUploadedFile": "Upload Your chat and wait for results.",
      "upload": "Upload",
      "useTemplate": "Use templates",
      "separator": "OR",

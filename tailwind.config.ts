@@ -20,6 +20,7 @@ const config: Config = {
       warning: "rgb(var(--color-warning) / <alpha-value>)",
       success: "rgb(var(--color-success) / <alpha-value>)",
       contrast: "rgb(var(--color-contrast) / <alpha-value>)",
+      "always-white": "rgb(var(--color-always-white) / <alpha-value>)"
     },
     extend: {
       animation: {

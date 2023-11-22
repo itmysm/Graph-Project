@@ -33,7 +33,7 @@ export default function RootLayout({ children, params }: { children: React.React
       <body className={`bg-primary w-full ${params.lang == "fa" ? vazir.className : inter.className}`}>
         <Header lang={params.lang} />
         <NotificationProvider />
-        <main className="pt-10 h-screen">{children}</main>
+        <main className="h-screen pt-[64px]">{children}</main>
         <ThemeSwitcher />
       </body>
     </html>

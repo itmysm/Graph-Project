@@ -48,8 +48,13 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
           <p className="text-gray text-xl font-semibold my-4 xl:my-6 text-center">{page.home.description}</p>
 
           <div className="flex gap-x-5 mt-10">
-            <Link className="h-fit" href="/app">
-              <Button href="/app" className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg" size="lg">
+            <Link
+              className="h-fit"
+              href={{
+                pathname: "/en/app"
+              }}
+            >
+              <Button className="text-contrast font-semibold bg-info hover:bg-info/90 hover:text-contrast/80 rounded-lg" size="lg">
                 {page.home.getStarted}
               </Button>
             </Link>
