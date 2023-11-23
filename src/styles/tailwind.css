@@ -10,8 +10,8 @@
     --color-active: 145 140 242;
     --color-primary: 252 252 253;
     --color-secondary: 246 247 249;
-    --color-error: 239 68 68;
-    --color-warning: 253 224 71;
+    --color-error: 255 74 48;
+    --color-warning: 255 203 173;
     --color-success: 16 185 129;
     --color-contrast: 14 16 21;
     --color-always-white: 249, 250, 222;
@@ -32,8 +32,8 @@
     --color-active: 145 140 242;
     --color-primary: 14 16 21;
     --color-secondary: 66 64 73;
-    --color-error: 239 68 68;
-    --color-warning: 253 224 71;
+    --color-error: 255 74 48;
+    --color-warning: 255 203 173;
     --color-success: 16 185 129;
     --color-contrast: 252 252 253;
     --color-always-white: 255, 255, 255;

@@ -27,17 +27,23 @@
       "description": "This is the about page"
     },
     "app": {
-     "noUploadedFile": "Upload Your chat and wait for results.",
+     "uploadAreaTitle": "Upload your chat file here and wait for the results.",
+     "features": "Simple, Free, Secure",
      "upload": "Upload",
      "useTemplate": "Use templates",
      "separator": "OR",
-     "uploadDoc": "Upload document",
-     "uploadDragAndDrop": "or drag and drop",
+     "dragBoxTitle": "Drop it like it's hot",
      "uploadRules": "TXT, JSON up to 10MB"
     }
   },
   "additional": {
     "soon": "soon",
     "new": "new"
+  },
+  "alerts": {
+    "newFile": "File uploaded successfully",
+    "fileRemoved": "File removed from state",
+    "notAllowedFile": "Files with",
+    "notAllowedFilePart2": "extension are not allowed"
   }
 }

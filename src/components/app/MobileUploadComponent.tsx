@@ -14,15 +14,18 @@ export default function MobileUploadComponent({ i18n, onOpenUploadDialog }: Prop
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-full">
-      <p className="text-xl tracking-wide text-contrast/90 font-semibold mt-10 mb-8">{i18n.app.noUploadedFile}</p>
+    <div className="flex flex-col justify-center px-5 h-[inherit]">
+      <p className="text-3xl text-center font-semibold leading-10 tracking-wider text-contrast/90 font-semibold">Excellence redefined</p>
+      <p className="text-lg text-center text-contrast/60 my-6">Our main objective is to collaborate with digital products dedicated to creating a distinct visual identity that sets them apart from competitors
 
-      <div className="w-full flex justify-center items-center">
-        <Button className="text-white font-semibold bg-info tracking-wide hover:bg-info/90 hover:text-contrast/80 rounded-lg" onPress={() => handelFileUploader(true)}>
+</p>
+
+      <div className="w-full flex gap-x-3 justify-center items-center">
+        <Button className="text-white font-semibold bg-info tracking-wide hover:bg-info/90 hover:text-contrast/80 rounded-full" size="lg" onPress={() => handelFileUploader(true)}>
           {i18n.app.upload}
         </Button>
-        <p className="text-sm text-contrast mx-5 tracking-wide">{i18n.app.separator}</p>
-        <Button className="text-contrast tracking-wide font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{i18n.app.useTemplate}</Button>
+        <p className="text-sm text-contrast tracking-wide">{i18n.app.separator}</p>
+        <Button className="text-contrast tracking-wide font-semibold bg-secondary hover:bg-secondary/90 rounded-full" size="lg">{i18n.app.useTemplate}</Button>
       </div>
     </div>
   );

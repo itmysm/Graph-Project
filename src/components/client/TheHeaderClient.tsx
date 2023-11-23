@@ -39,8 +39,8 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
   if (appPaths.some((item) => currentPath.includes(item))) {
     return (
       <Navbar shouldHideOnScroll className="w-full container bg-primary" maxWidth="full">
-        <NavbarBrand className="mr-3">
-          <Link className="font-semibold text-3xl xl:text-2xl text-info tracking-wide" href="/app">
+        <NavbarBrand className="flex justify-center md:justify-start mr-3">
+          <Link className="font-bold text-4xl md:text-3xl xl:text-2xl text-info tracking-wide" href="/app">
             {locale.navigation.brand}
           </Link>
         </NavbarBrand>
@@ -68,8 +68,8 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
             </DropdownMenu>
           </Dropdown>
         </NavbarContent> */}
-        <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
+        <NavbarContent className="hidden" justify="end">
+          <NavbarItem className="lg:flex">
             <LangSwitcher />
           </NavbarItem>
         </NavbarContent>

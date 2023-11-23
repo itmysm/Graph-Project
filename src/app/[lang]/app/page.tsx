@@ -28,8 +28,10 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
   useEffect(() => {
     const fetchTranslations = async () => {
       try {
+        
         const translationModule = await getClientSideLocales(params.lang);
-        setTranslations(translationModule.page);
+        setTranslations(translationModule);
+        console.log(translations);
       } catch (error) {
         window.alert("Error loading translations");
         console.log("Error loading translations:", error);
@@ -42,25 +44,25 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
   return (
     translations && (
       <>
-        <div className="flex justify-center items-center h-full bg-gradient-main overflow-x-hidden">
+        <div className="flex justify-center md:items-center h-full bg-gradient-main overflow-x-hidden">
           {status.state == 1 && (
-            <div className={`w-full md:w-8/12 flex flex-col justify-center ${status.state === 1 ? classes.fadeIn : classes.fadeOut}`}>
+            <div className={`w-full md:w-8/12 h-[inherit] flex flex-col md:justify-center ${status.state === 1 ? classes.fadeIn : classes.fadeOut}`}>
               <div className="hidden md:flex flex-col justify-center items-center py-20">
-                <div className="mb-4 md:mb-6 lg:mb-10">
-                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-info">Upload Your chat and wait for results.</p>
-                  <p className="text-center font-semibold text-info/70 mt-4 tracking-widest">Simple, Secure, Offline</p>
+                <div className="flex flex-col items-center mb-4 md:mb-6 lg:mb-10">
+                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-info w-2/3 text-center !leading-snug">{translations.page.app.uploadAreaTitle}</p>
+                  <p className="text-center font-semibold text-info/70 mt-4 tracking-widest">{translations.page.app.features}</p>
                 </div>
 
-                <DragAndDropArea i18n={translations} showUploadDialog={showUploadDialog} setCloseUploadDialog={handleUploadDialog} />
+                <DragAndDropArea i18n={{...translations.alerts, ...translations.page}} showUploadDialog={showUploadDialog} setCloseUploadDialog={handleUploadDialog} />
               </div>
 
-              <div className="md:hidden w-full flex justify-center items-center h-full">
-                <MobileUploadComponent i18n={translations} onOpenUploadDialog={handleUploadDialog} />
+              <div className="md:hidden w-full h-[inherit]">
+                <MobileUploadComponent i18n={translations.page} onOpenUploadDialog={handleUploadDialog} />
               </div>
             </div>
           )}
 
-          {status.state == 2 && <Progresser extraClasses={status.state === 2 ? classes.fadeIn : classes.fadeOut} />}
+          {status.state == 2 && <Progresser i18n={translations.alerts} extraClasses={status.state === 2 ? classes.fadeIn : classes.fadeOut} />}
         </div>
 
         <TheLoading onShowLoading={showLoading} />

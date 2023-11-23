@@ -4,10 +4,11 @@ import useAppStore from "@/store/app";
 import useNotificationsStore from "@/store/notification";
 import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import { FiArrowUpCircle } from "react-icons/fi";
-import { Page } from "../../../types/locales/index";
+import { Page, Alert } from '../../../types/locales/index';
+
 
 type Props = {
-  i18n: Page;
+  i18n: Page & Alert;
   showUploadDialog: Boolean;
   setCloseUploadDialog: (status: boolean) => void;
 };
@@ -75,7 +76,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUpload
     if (!guard_onCheckFileExtension(newFile.name)) {
       addNewAlert({
         type: "error",
-        title: `.${extensionExporter(newFile.name)} is not a valid extension!`,
+        title: `${i18n.notAllowedFile} .${extensionExporter(newFile.name)} ${i18n.notAllowedFilePart2}`,
         content: ``,
         id: new Date().getTime(),
       });
@@ -95,8 +96,8 @@ export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUpload
 
       addNewAlert({
         type: "success",
-        title: "File uploaded successful",
-        content: "Your File uploaded successful",
+        title: `${i18n.newFile}`,
+        content:``,
         id: new Date().getTime(),
       });
 
@@ -132,7 +133,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUpload
 
         <p className="text-lg lg:text-xl text-white font-bold mt-3 lg:mt-6 text-center tracking-widest">
           {/* <span className="text-info">{i18n.app.uploadDoc}</span> {i18n.app.uploadDragAndDrop} <br /> <span className="text-gray/50">{i18n.app.uploadRules}</span> */}
-          Drop it like it's hot
+          {i18n.app.dragBoxTitle}
         </p>
 
         <p className="text-xs lg:text-sm text-white lg:font-semibold mt-2 tracking-wider">{i18n.app.uploadRules}</p>

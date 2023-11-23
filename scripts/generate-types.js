@@ -1,3 +1,5 @@
+// this script create types based locale en/translations.json to make development easier.
+
 console.log("🔰 Start generate types from translations.json");
 
 const fs = require('fs');

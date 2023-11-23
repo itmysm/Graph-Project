@@ -50,9 +50,17 @@ export interface Additional {
 	new: string;
 }
 
+export interface Alert {
+	newFile: string;
+	fileRemoved: string;
+	notAllowedFile: string;
+	notAllowedFilePart2: string;
+}
+
 export interface RootObject {
 	app: App;
 	navigation: Navigation;
 	page: Page;
 	additional: Additional;
+	alerts: Alert;
 }

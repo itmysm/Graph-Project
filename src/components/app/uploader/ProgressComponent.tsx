@@ -1,7 +1,9 @@
 "use client";
 
+import { bytesToKb, shortFileNameWithExtension } from "@/lib/general";
 import useAppStore from "@/store/app";
 import useNotificationsStore from "@/store/notification";
+import { Alert, Page } from "@/types/locales";
 import { Button, Chip, Spinner, Tooltip } from "@nextui-org/react";
 import { FiCheck, FiClock, FiRotateCw } from "react-icons/fi";
 
@@ -14,17 +16,21 @@ const steps = [
 ];
 
 type Props = {
+  i18n: Alert
   extraClasses: string;
 };
 
-export default function Progresser({ extraClasses }: Props) {
+export default function Progresser({ i18n, extraClasses }: Props) {
   const { status, reset, fileInfo } = useAppStore();
   const { addNewAlert } = useNotificationsStore();
+
+  console.log(i18n);
+  
 
   const onResetState = () => {
     addNewAlert({
       type: "warning",
-      title: `FFF`,
+      title: `${i18n.fileRemoved}`,
       content: ``,
       id: new Date().getTime(),
     });
@@ -33,17 +39,17 @@ export default function Progresser({ extraClasses }: Props) {
   };
 
   return (
-    <div className={`flex-col justify-center items-center py-20 ${extraClasses}`}>
+    <div className={`flex-col justify-center items-center px-4 lg:py-20 ${extraClasses}`}>
       {/* <div className="mb-4 md:mb-6 lg:mb-10">
         <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-info"></p>
         <p className="text-center font-semibold text-info/70 mt-4 tracking-widest">Simple, Secure, Offline</p>
       </div> */}
 
-      <div className="bg-primary/20  shadow-lg rounded-xl w-full md:w-[440px] h-fit p-3 backdrop-blur-md">
+      <div className="bg-primary/40 shadow-lg rounded-xl w-full md:w-[440px] h-fit md:h-fit backdrop-blur-md">
         <div className="flex justify-between p-3 text-contrast border border-gray/50 rounded-xl">
           <span className="flex items-center">
-            <p className="text-base tracking-wide">{fileInfo?.name}</p>
-            <p className="text-gray/90 text-xs ml-2">{fileInfo?.size} bytes</p>
+            <p className="text-base tracking-wide">{shortFileNameWithExtension(fileInfo?.name, 15)}</p>
+            <p className="text-gray/90 text-xs ml-2">{bytesToKb(fileInfo?.size)}</p>
           </span>
 
           <Tooltip radius="md" content="upload new file" color="secondary">

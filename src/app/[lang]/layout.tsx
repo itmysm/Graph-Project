@@ -1,5 +1,5 @@
-import "@/styles/global.css";
 import "animate.css"
+import "@/styles/global.css";
 import type { Metadata } from "next";
 import { LocaleLabel, i18n } from "$/i18n.config";
 import Header from "@/components/Header";
@@ -33,7 +33,7 @@ export default function RootLayout({ children, params }: { children: React.React
       <body className={`bg-primary w-full ${params.lang == "fa" ? vazir.className : inter.className}`}>
         <Header lang={params.lang} />
         <NotificationProvider />
-        <main className="h-screen pt-[64px]">{children}</main>
+        <main className="h-screen pt-[96px]">{children}</main>
         <ThemeSwitcher />
       </body>
     </html>
