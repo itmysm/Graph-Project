@@ -14,7 +14,7 @@ const useAppStore = create<AppStore>((set) => ({
   },
   fileInfo: {
     name: "",
-    // extension: '',
+    extension: "string" || null,
     size: 1,
     date: undefined,
     uploadDate: undefined,

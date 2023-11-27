@@ -4,16 +4,16 @@ import useAppStore from "@/store/app";
 import useNotificationsStore from "@/store/notification";
 import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import { FiArrowUpCircle } from "react-icons/fi";
-import { Page, Alert } from '../../../types/locales/index';
-
+import { Page, Alert } from "../../../types/locales/index";
 
 type Props = {
   i18n: Page & Alert;
   showUploadDialog: Boolean;
   setCloseUploadDialog: (status: boolean) => void;
+  handleUploadFile: (file: File) => void;
 };
 
-export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUploadDialog }: Props) {
+export default function DragAndDropArea({ i18n, showUploadDialog, handleUploadFile, setCloseUploadDialog }: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [inZone, setInZone] = useState<Boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -90,6 +90,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUpload
         name: newFile.name,
         date: newFile.lastModified,
         size: newFile.size,
+        extension: extensionExporter(newFile.name),
         type: newFile.type,
         uploadDate: new Date().getTime(),
       });
@@ -97,11 +98,12 @@ export default function DragAndDropArea({ i18n, showUploadDialog, setCloseUpload
       addNewAlert({
         type: "success",
         title: `${i18n.newFile}`,
-        content:``,
+        content: ``,
         id: new Date().getTime(),
       });
 
       updateStatus({ ...status, state: 2, isFileUploaded: true });
+      handleUploadFile(newFile);
     }
   };
 

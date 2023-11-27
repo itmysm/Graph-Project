@@ -30,12 +30,12 @@ export interface About {
 }
 
 export interface App {
-	noUploadedFile: string;
+	uploadAreaTitle: string;
+	features: string;
 	upload: string;
 	useTemplate: string;
 	separator: string;
-	uploadDoc: string;
-	uploadDragAndDrop: string;
+	dragBoxTitle: string;
 	uploadRules: string;
 }
 

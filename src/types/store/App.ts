@@ -6,7 +6,6 @@ export type AppStore = {
   updateFileInfo: (fileInfo: FileInfo) => void;
   updateStatus: (updatedStatus: Status) => void;
   reset: () => void;
-
 };
 
 export type Status = {
@@ -16,7 +15,7 @@ export type Status = {
 };
 export type FileInfo = {
   name: string;
-  // extension: string;
+  extension: string;
   size: number;
   type: string | undefined;
   date: number | undefined;

@@ -16,16 +16,13 @@ const steps = [
 ];
 
 type Props = {
-  i18n: Alert
+  i18n: Alert;
   extraClasses: string;
 };
 
 export default function Progresser({ i18n, extraClasses }: Props) {
   const { status, reset, fileInfo } = useAppStore();
   const { addNewAlert } = useNotificationsStore();
-
-  console.log(i18n);
-  
 
   const onResetState = () => {
     addNewAlert({
