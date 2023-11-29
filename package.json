@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  },  
+  },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.0",
     "@nextui-org/react": "^2.2.8",
@@ -18,7 +18,9 @@
     "dotenv": "^16.3.1",
     "echarts-for-react": "^3.0.2",
     "framer-motion": "^10.16.4",
+    "idb-keyval": "^6.2.1",
     "json2ts": "^0.0.7",
+    "moment": "^2.29.4",
     "negotiator": "^0.6.3",
     "next": "14.0.1",
     "react": "^18",

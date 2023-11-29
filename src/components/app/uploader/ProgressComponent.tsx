@@ -8,11 +8,11 @@ import { Button, Chip, Spinner, Tooltip } from "@nextui-org/react";
 import { FiCheck, FiClock, FiRotateCw } from "react-icons/fi";
 
 const steps = [
-  { title: "Checking the extension of the uploaded file.", step: 0 },
-  { title: "Checking the textual structure of the file", step: 1 },
-  { title: "Convert file structure to standard format", step: 2 },
-  { title: "Analyzing data and save the results", step: 3 },
-  { title: "Generating charts based results", step: 3 },
+  { title: "Checking the extension of the uploaded file.", step: 1 },
+  { title: "Checking the textual structure of the file", step: 2 },
+  { title: "Convert file structure to standard format", step: 3 },
+  { title: "Analyzing data and save the results", step: 4 },
+  { title: "Generating charts based results", step: 5 },
 ];
 
 type Props = {

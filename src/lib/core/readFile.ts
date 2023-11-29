@@ -1,33 +1,44 @@
 // this class read the content of uploaded file in various ways.
+
+type CallBackFunc = {
+  line: string;
+  isLastItem?: boolean;
+};
+
 export class ReadFile {
   constructor() {}
 
-  async lineByLine(file: File, callBackFunc: (line: string) => void, isTargetReached: () => boolean) {
+  async lineByLine(file: File, callBackFunc: (line: string, isLastItem?: boolean) => void, isTargetReached?: () => boolean) {
     const fileStream = file.stream().getReader();
     const decoder = new TextDecoder();
 
     let partialLine: string = "";
-    let targetReached = false; // Flag to track whether the target is reached
+    let targetReached = false;
 
     try {
       while (!targetReached) {
         const { done, value } = await fileStream.read();
 
         if (done) {
-          if (partialLine) callBackFunc(partialLine);
+          if (partialLine) {
+            callBackFunc(partialLine);
+          }
+
           break;
         }
 
         const chunk = decoder.decode(value, { stream: true });
         const lines: string[] = (partialLine + chunk).split(/\r\n|[\n\r\u2028\u2029]/g);
-        partialLine = lines.pop() || "error-In_ReadFile_script"; // Save the last partial line
+
+        partialLine = lines.pop(); // Save the last partial line
 
         for (const line of lines) {
           callBackFunc(line);
         }
 
-        // Check if the target is reached after processing each chunk
-        targetReached = isTargetReached();
+        if (isTargetReached && isTargetReached()) {
+          targetReached = isTargetReached();
+        }
       }
     } catch (error) {
       console.log(error, "A strange problem occurred! Contact the developer");

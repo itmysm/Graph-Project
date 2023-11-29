@@ -2,8 +2,9 @@ import { Page } from "@/types/locales";
 import { ReadFile, detectApplication, convertToStandardStructure } from "@/lib/core/index";
 import { extensionExporter } from "@/lib/general/index";
 import useAppStore from "@/store/app";
-import { Config } from "@/types/core";
+import { Config, Application } from "@/types/core";
 import { useEffect } from "react";
+import { get } from "idb-keyval";
 
 type Props = {
   i18n: Page;
@@ -16,7 +17,7 @@ export default function Processor({ i18n, file }: Props) {
 
   const config: Config = {
     isTargetReached: false,
-    application: null,
+    application: { os: null, app: null },
   };
 
   const isTargetReached = (): boolean => {
@@ -24,7 +25,7 @@ export default function Processor({ i18n, file }: Props) {
   };
 
   const onDetectApplication = (line: string) => {
-    const application = detectApplication(line, fileInfo?.extension);
+    const application: Application = detectApplication(line, fileInfo?.extension);
 
     if (application && status.state != 3) {
       config.application = application;
@@ -35,10 +36,15 @@ export default function Processor({ i18n, file }: Props) {
     }
   };
 
-  const onConvertToStandardStructure = () => {
+  const onConvertToStandardStructure = async () => {
     if (config.application) {
-      convertToStandardStructure(file, config.application);
+      await convertToStandardStructure(file, config.application);
+      updateStatus({ ...status, state: (status.state = 4) });
+      onAnalyzeData();
     }
+  };
+
+  const onAnalyzeData = async () => {
   };
 
   useEffect(() => {
