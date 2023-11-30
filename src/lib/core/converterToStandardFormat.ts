@@ -43,9 +43,10 @@ function ExportMessagesFromEachLineOfData(message: string) {
 
   if (messagePatterns.whatsapp.version[detectedOS].test(message)) {
     const date = message.match(messagePatterns.whatsapp.date[detectedOS])?.[0] || defaultDate;
-    msg.unixTime = moment(date, "M/D/YY, h:mm:ss A").unix();
+    msg.unixTime = moment(date, 'M/D/YY, h:mm A').unix();
     msg.sender = message.match(messagePatterns.whatsapp.sender[detectedOS])?.[0] || "unauthorized";
     msg.message = message.match(messagePatterns.whatsapp.message[detectedOS])?.[0];
+    msg.periods = []
 
     messages.push(msg);
   } else if (messages.length > 0) {

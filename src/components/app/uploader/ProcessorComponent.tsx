@@ -4,7 +4,7 @@ import { extensionExporter } from "@/lib/general/index";
 import useAppStore from "@/store/app";
 import { Config, Application } from "@/types/core";
 import { useEffect } from "react";
-import { get } from "idb-keyval";
+import { Analyzer } from "@/lib/core/analyze";
 
 type Props = {
   i18n: Page;
@@ -45,6 +45,7 @@ export default function Processor({ i18n, file }: Props) {
   };
 
   const onAnalyzeData = async () => {
+    Analyzer()
   };
 
   useEffect(() => {

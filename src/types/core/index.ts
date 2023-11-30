@@ -15,7 +15,8 @@ export type structures = {
       date: string;
       message: string;
       sender: string;
-      unixTime: string;
+      unixTime: number;
+      periods: ["24h" | "week" | "month" | "sixMonth" | "year" | "all"]
     };
   };
 };
