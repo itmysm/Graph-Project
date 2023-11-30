@@ -1,5 +1,7 @@
 // this class read the content of uploaded file in various ways.
 
+import { devLogger } from "../dev";
+
 type CallBackFunc = {
   line: string;
   isLastItem?: boolean;
@@ -41,7 +43,8 @@ export class ReadFile {
         }
       }
     } catch (error) {
-      console.log(error, "A strange problem occurred! Contact the developer");
+      // console.log(error, "A strange problem occurred! Contact the developer");
+      devLogger(`readFile can not read this file! check the content of file`, "error", true)
     }
   }
 }

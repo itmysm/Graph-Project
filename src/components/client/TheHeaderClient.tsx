@@ -68,7 +68,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
             </DropdownMenu>
           </Dropdown>
         </NavbarContent> */}
-        <NavbarContent className="hidden" justify="end">
+        <NavbarContent className="" justify="end">
           <NavbarItem className="lg:flex">
             <LangSwitcher />
           </NavbarItem>
@@ -96,7 +96,10 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
 
           <Dropdown className="lg:!hidden">
             <DropdownTrigger className="lg:!hidden mt-1">
-              <Button className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold" variant="light">
+              <Button
+                className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold"
+                variant="light"
+              >
                 <p className="mr-1">More</p>
                 <FiChevronDown />
               </Button>
@@ -116,7 +119,9 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
           </NavbarItem>
 
           <NavbarItem className="hidden lg:flex">
-            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.navigation.about}</Button>
+            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">
+              {locale.navigation.about}
+            </Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
