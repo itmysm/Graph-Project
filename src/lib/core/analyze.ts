@@ -1,4 +1,4 @@
-import { get } from "idb-keyval";
+import { get, set } from "idb-keyval";
 import { structures } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
@@ -15,12 +15,12 @@ export async function Analyzer() {
   }
 
   messages = result;
-  classificationByTime();
+  await classificationByTime();
 }
 
 type ChartTypes = "twin" | "separate";
 
-function classificationByTime() {
+async function classificationByTime() {
   messages?.forEach((msg, index) => {
     makeUniqueName(msg);
     const momentObj = moment.unix(msg.unixTime);
@@ -48,7 +48,9 @@ function classificationByTime() {
       messages?.splice(index, 1);
       devLogger(`Item number ${index} has been deleted from the list in classificationByTime section`, "warning", true);
     }
-  });  
+  });
+
+  await set("exportedMessages", messages);
 }
 
 function makeUniqueName(msg: structures["message"]["whatsapp"]) {
