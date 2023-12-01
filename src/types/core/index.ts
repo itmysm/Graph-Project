@@ -16,7 +16,8 @@ export type structures = {
       message: string;
       sender: string;
       unixTime: number;
-      periods: ["24h" | "week" | "month" | "sixMonth" | "year" | "all"]
+      uniqueName: object;
+      periods: ["24h" | "week" | "month" | "sixMonth" | "year" | "all"];
     };
   };
 };

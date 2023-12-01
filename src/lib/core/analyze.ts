@@ -2,6 +2,7 @@ import { get } from "idb-keyval";
 import { structures } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
+import { uniqueNameGenerator } from "../general";
 
 let messages: structures["message"]["whatsapp"][] | undefined = [];
 
@@ -21,6 +22,7 @@ type ChartTypes = "twin" | "separate";
 
 function classificationByTime() {
   messages?.forEach((msg, index) => {
+    makeUniqueName(msg);
     const momentObj = moment.unix(msg.unixTime);
     const passedDays = moment().diff(momentObj, "days");
 
@@ -46,7 +48,12 @@ function classificationByTime() {
       messages?.splice(index, 1);
       devLogger(`Item number ${index} has been deleted from the list in classificationByTime section`, "warning", true);
     }
-  });
+  });  
+}
+
+function makeUniqueName(msg: structures["message"]["whatsapp"]) {
+  const keyName = uniqueNameGenerator(msg.sender);
+  msg.uniqueName = { [keyName]: msg.sender };
 }
 
 function generateDataChartsBasedOnTypeOfCharts(type: ChartTypes) {}
