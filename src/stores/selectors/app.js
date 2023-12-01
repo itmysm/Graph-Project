@@ -1,1 +1,0 @@
-export const getSettings = (state) => state.app

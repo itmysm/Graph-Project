@@ -1,0 +1,49 @@
+{
+  "app": {
+    "name": "Graph",
+    "about": "What is graph?"
+  },
+  "navigation": {
+    "brand": "Graph",
+    "about": "About Graph",
+    "links": {
+      "telegram": "Telegram",
+      "instagram": "Instagram",
+      "whatsapp": "Whatsapp"
+    }
+  },
+  "page": {
+    "home": {
+      "title1": "Analyze your chats ",
+      "title2": "with Graph Project",
+      "description": "Explore your chats with different vision that you never see.",
+      "reward": "ALREADY LIKED BY 100+ DEVELOPERS!",
+      "getStarted": "Get Started",
+      "about": "About Graph"
+
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    },
+    "app": {
+     "uploadAreaTitle": "Upload your chat file here and wait for the results.",
+     "features": "Simple, Free, Secure",
+     "upload": "Upload",
+     "useTemplate": "Use templates",
+     "separator": "OR",
+     "dragBoxTitle": "Drop it like it's hot",
+     "uploadRules": "TXT, JSON up to 10MB"
+    }
+  },
+  "additional": {
+    "soon": "soon",
+    "new": "new"
+  },
+  "alerts": {
+    "newFile": "File uploaded successfully",
+    "fileRemoved": "File removed from state",
+    "notAllowedFile": "Files with",
+    "notAllowedFilePart2": "extension are not allowed"
+  }
+}

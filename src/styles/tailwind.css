@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [data-theme="light"] {
+    --color-transparent: transparent;
+    --color-gray: 161 164 170;
+    --color-info: 127 94 255;
+    --color-active: 145 140 242;
+    --color-primary: 252 252 253;
+    --color-secondary: 246 247 249;
+    --color-error: 255 74 48;
+    --color-warning: 255 203 173;
+    --color-success: 16 185 129;
+    --color-contrast: 14 16 21;
+    --color-always-white: 249, 250, 222;
+    --color-dark-gradient: 255, 255, 255;
+    /* change later */
+    --color-dark-gradient2: 249, 250, 222;
+    /* change later */
+    --color-custom-gradient1: 246 247 245;
+    /* change later */
+    --color-custom-gradient2: 246 241 249;
+    /* change later */
+  }
+
+  [data-theme="dark"] {
+    --color-transparent: transparent;
+    --color-gray: 190 185 207;
+    --color-info: 127 94 255;
+    --color-active: 145 140 242;
+    --color-primary: 14 16 21;
+    --color-secondary: 66 64 73;
+    --color-error: 255 74 48;
+    --color-warning: 255 203 173;
+    --color-success: 16 185 129;
+    --color-contrast: 252 252 253;
+    --color-always-white: 255, 255, 255;
+    --color-dark-gradient: 17, 16, 19;
+    --color-dark-gradient2: 42, 37, 65;
+    --color-custom-gradient1: 29, 27, 39;
+    --color-custom-gradient2: 37, 35, 42;
+
+  }
+}
+
+.bg-gradient-main {
+  background: radial-gradient(94% 58.3% at 50.3% 82.6%, rgb(var(--color-dark-gradient2)) 0%, var(--token-79f54f4b-5c08-4adb-84cd-68f4d833bf59, rgb(var(--color-dark-gradient))) 100%);
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(140deg, rgb(var(--color-custom-gradient1)) 0%, rgb(var(--color-custom-gradient2)) 100%);
+}
+
+.bg-gradient-upload-box {
+  background: rgb(127, 94, 255);
+  background: linear-gradient(90deg, rgba(127, 94, 255, 1) 32%, rgba(127, 94, 255, 0.6558998599439776) 71%);
+}
+
+.bg-border {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='rgb(127 94 255)' stroke-width='4' stroke-dasharray='10%2c 16' stroke-dashoffset='48' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 16px;
+}

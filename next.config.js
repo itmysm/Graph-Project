@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
-    unoptimized: true,
+    domains: ['127.0.0.1', 'api.multiavatar.com'
+    ],
+  },
+
+  env: {
+    AVATAR_API: process.env.AVATAR_API,
   }
 }
 

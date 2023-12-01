@@ -1,0 +1,49 @@
+{
+  "app": {
+    "name": "Graph",
+    "about": "گراف چیست؟"
+  },
+  "navigation": {
+    "brand": "گراف",
+    "about": "درباره گراف",
+    "links": {
+      "telegram": "تلگرام",
+      "instagram": "اینستاگرام",
+      "whatsapp": "واتساپ"
+    }
+  },
+  "page": {
+    "home": {
+      "title1": "چت های خود را تجزیه و تحلیل کنید",
+      "title2": "با پروژه گراف",
+      "description": "چت های خود را با دیدگاه متفاوتی که هرگز ندیده اید، بررسی کنید.",
+      "reward": "هم اکنون بیش از 100 توسعه دهنده آن را دوست دارند!",
+      "getStarted": "شروع به کار",
+      "about": "درباره گراف"
+    },
+    "about": {
+      "title": "درباره ما",
+      "description": "این صفحه درباره ما است"
+    },
+    "app": {
+      "uploadAreaTitle": "فایل خود را بارگذاری کنید و منتظر نتایج بمانید",
+      "features": "ساده، رایگان، امن",
+      "upload": "بارگذاری",
+      "useTemplate": "استفاده از چت های پیش فرض",
+      "separator": "یا",
+      "uploadDoc": "بارگذاری سند",
+      "dragBoxTitle": "فایل خود را اینجا رها کنید",
+      "uploadRules": "TXT، JSON تا 10 مگابایت"
+    }
+  },
+  "additional": {
+    "soon": "به زودی",
+    "new": "جدید"
+  },
+  "alerts": {
+    "newFile": "فایل با موفقیت بارگذاری شد",
+    "fileRemoved": "فایل با موفقیت حذف شد",
+    "notAllowedFile": "فایل هایی با پسوند",
+    "notAllowedFilePart2": "مجاز نیستند"
+  }
+}

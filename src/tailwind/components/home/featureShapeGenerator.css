@@ -1,0 +1,66 @@
+.features {
+  .col-1 {
+    @apply flex flex-col;
+
+    .child-2 {
+      @apply ml-3;
+    }
+
+    .child-1,
+    .child-2,
+    .child-3 {
+      @apply my-7 animate-wiggle;
+    }
+
+    .child-1 {
+      @apply bg-purple-300;
+    }
+
+    .child-2 {
+      @apply bg-blue-500;
+    }
+    .child-3 {
+      @apply bg-pink-400;
+    }
+  }
+
+  .col-2 {
+    @apply flex flex-col mx-8 my-10;
+
+    .child-2 {
+      @apply ml-3;
+    }
+
+    .child-4,
+    .child-5 {
+      @apply my-7 animate-wiggle;
+    }
+
+    .child-4 {
+      @apply bg-pink-300;
+    }
+    .child-5 {
+      @apply bg-pink-600;
+    }
+  }
+
+  .col-3 {
+    @apply flex flex-col mt-28;
+    .child-6 {
+      @apply animate-wiggle;
+    }
+
+    .child-6 {
+      @apply bg-blue-600;
+    }
+  }
+
+  .child-1,
+  .child-2,
+  .child-3,
+  .child-4,
+  .child-5,
+  .child-6 {
+    @apply text-contrast text-2xl w-14 h-14 rounded-full flex justify-center items-center;
+  }
+}
