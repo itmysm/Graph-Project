@@ -46,7 +46,7 @@ export default function Processor({ i18n, file }: Props) {
 
   const onAnalyzeData = async () => {
     Analyzer();
-    updateStatus({ ...status, state: (status.state = 5) });
+    updateStatus({ ...status, state: (status.state = 10) });
   };
 
   useEffect(() => {

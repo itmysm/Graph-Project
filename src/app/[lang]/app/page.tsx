@@ -9,7 +9,7 @@ import Processor from "@/components/app/uploader/ProcessorComponent";
 import { getClientSideLocales } from "@/lib/locales/clientSideLocales";
 import { useEffect, useState } from "react";
 import useAppStore from "@/store/app";
-import { effectWithDelay } from "@/lib/general";
+import { useRouter } from "next/navigation";
 
 export default function App({ params }: { params: { lang: LocaleLabel } }) {
   const [file, setFile] = useState<File | null>(null);
@@ -17,6 +17,7 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
   const [showUploadDialog, setShowUploadDialog] = useState<Boolean>(false);
   const [translations, setTranslations] = useState<any>(null);
   const { status, updateStatus } = useAppStore();
+  const router = useRouter();
 
   const classes = {
     fadeOut: "animate__animated  animate__fadeOutRight",
@@ -45,16 +46,19 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
     fetchTranslations();
   }, [params.lang]);
 
+  useEffect(() => {
+    if (status.state === 10) {
+      // useRouter().push("/result");
+      router.push("/result");
+    }
+  }, [status.state]);
+
   return (
     translations && (
       <>
         <div className="flex justify-center md:items-center h-full bg-gradient-main overflow-x-hidden">
           {status.state == 1 && (
-            <div
-              className={`w-full md:w-8/12 h-[inherit] flex flex-col md:justify-center ${
-                status.state === 1 ? classes.fadeIn : classes.fadeOut
-              }`}
-            >
+            <div className={`w-full md:w-8/12 h-[inherit] flex flex-col md:justify-center ${status.state === 1 ? classes.fadeIn : classes.fadeOut}`}>
               <div className="hidden md:flex flex-col justify-center items-center py-20">
                 <div className="flex flex-col items-center mb-4 md:mb-6 lg:mb-10">
                   <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-info w-2/3 text-center !leading-snug">
@@ -78,10 +82,7 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
           )}
 
           {status.state >= 2 && (
-            <Progresser
-              i18n={translations.alerts}
-              extraClasses={status.state >= 2 && status.state <= 4 ? classes.fadeIn : classes.fadeOut}
-            />
+            <Progresser i18n={translations.alerts} extraClasses={status.state >= 2 && status.state <= 4 ? classes.fadeIn : classes.fadeOut} />
           )}
           {status.state >= 2 && file != null && <Processor file={file} i18n={translations.alerts} />}
         </div>

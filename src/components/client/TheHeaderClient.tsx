@@ -11,7 +11,7 @@ import { FiChevronDown } from "react-icons/fi";
 
 export default function TheHeaderClient({ locale }: { locale: any }) {
   const currentPath = usePathname();
-  const appPaths = ["/app", "/results"];
+  const appPaths = ["/app", "/result"];
 
   const paths = [
     {
@@ -32,7 +32,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
     },
   ];
 
-  const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]));
+  const [selectedKeys, setSelectedKeys] = useState(new Set(["Charts"]));
 
   const selectedValue = useMemo(() => Array.from(selectedKeys).join(", ").replaceAll("_", " "), [selectedKeys]);
 
@@ -44,10 +44,14 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
             {locale.navigation.brand}
           </Link>
         </NavbarBrand>
-        {/* <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="gap-4" justify="center">
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="light" className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold">
+              <Button
+                variant="light"
+                className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold"
+                isDisabled={currentPath.includes("result") ? false : true}
+              >
                 <p className="mr-1"> {selectedValue}</p>
                 <FiChevronDown />
               </Button>
@@ -60,14 +64,12 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
               selectedKeys={selectedKeys}
               onSelectionChange={() => setSelectedKeys}
             >
-              <DropdownItem key="text">Text</DropdownItem>
-              <DropdownItem key="number">Number</DropdownItem>
-              <DropdownItem key="date">Date</DropdownItem>
-              <DropdownItem key="single_date">Single Date</DropdownItem>
-              <DropdownItem key="iteration">Iteration</DropdownItem>
+              <DropdownItem key="charts">Charts</DropdownItem>
+              <DropdownItem key="ai">AI</DropdownItem>
+              <DropdownItem key="cloud">Cloud words</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </NavbarContent> */}
+        </NavbarContent>
         <NavbarContent className="" justify="end">
           <NavbarItem className="lg:flex">
             <LangSwitcher />
@@ -96,10 +98,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
 
           <Dropdown className="lg:!hidden">
             <DropdownTrigger className="lg:!hidden mt-1">
-              <Button
-                className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold"
-                variant="light"
-              >
+              <Button className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold" variant="light">
                 <p className="mr-1">More</p>
                 <FiChevronDown />
               </Button>
@@ -119,9 +118,7 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
           </NavbarItem>
 
           <NavbarItem className="hidden lg:flex">
-            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">
-              {locale.navigation.about}
-            </Button>
+            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.navigation.about}</Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
