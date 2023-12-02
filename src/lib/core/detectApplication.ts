@@ -1,4 +1,4 @@
-import { Application, whatsappOS } from "@/types/core";
+import { Application, WhatsappOS } from "@/types/core";
 import { whatsappRegexPatterns } from "../patterns";
 
 const application: Application = { os: null, app: null };

@@ -1,10 +1,10 @@
 import { get, set } from "idb-keyval";
-import { structures } from "@/types/core";
+import { Structures } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
 import { uniqueNameGenerator } from "../general";
 
-let messages: structures["message"]["whatsapp"][] | undefined = [];
+let messages: Structures["message"]["whatsapp"][] | undefined = [];
 
 export async function Analyzer() {
   const result = await get("exportedMessages");
@@ -53,7 +53,7 @@ async function classificationByTime() {
   await set("exportedMessages", messages);
 }
 
-function makeUniqueName(msg: structures["message"]["whatsapp"]) {
+function makeUniqueName(msg: Structures["message"]["whatsapp"]) {
   const keyName = uniqueNameGenerator(msg.sender);
   msg.uniqueName = { [keyName]: msg.sender };
 }

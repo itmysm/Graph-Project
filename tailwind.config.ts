@@ -20,7 +20,7 @@ const config: Config = {
       warning: "rgb(var(--color-warning) / <alpha-value>)",
       success: "rgb(var(--color-success) / <alpha-value>)",
       contrast: "rgb(var(--color-contrast) / <alpha-value>)",
-      "always-white": "rgb(var(--color-always-white) / <alpha-value>)"
+      "always-white": "rgb(var(--color-always-white) / <alpha-value>)",
     },
     extend: {
       animation: {
@@ -72,7 +72,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(transparent|white|black|gray|gray-text|yellow|blue|indigo|purple|green|red|teal|primary|primary-hover|primary-active|secondary|secondary-hover|secondary-active|info|info-hover|info-active|error|warning|success)/,
+        /(bg|text|border)-(transparent|white|black|gray|gray-text|yellow|blue|indigo|purple|green|red|teal|primary|primary-hover|primary-active|secondary|secondary-hover|secondary-active|info|info-hover|info-active|error|warning|success|w-(1\/2|1\/3|1\/4|4\/12|3\/4|2\/5))/,
     },
   ],
 };

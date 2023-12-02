@@ -1,13 +1,13 @@
 import moment from "moment";
 import { ReadFile } from "@/lib/core/index";
 import { messagePatterns } from "@/types/patterns/whatsapp";
-import { Application, structures, whatsappOS } from "@/types/core";
+import { Application, Structures, WhatsappOS } from "@/types/core";
 import { set } from "idb-keyval";
 
 const fileReader = new ReadFile();
 
-let messages: structures["message"]["whatsapp"][] = [];
-let detectedOS: null | whatsappOS = null;
+let messages: Structures["message"]["whatsapp"][] = [];
+let detectedOS: null | WhatsappOS = null;
 
 const defaultDate = "1/24/23, 3:42:06 in the afternoon";
 
@@ -52,7 +52,7 @@ function ExportMessagesFromEachLineOfData(message: string) {
     messages.push(msg);
   } else if (messages.length > 0) {
     const indexOfLastItem = messages.length - 1;
-    let lastMessageInList: structures["message"]["whatsapp"] = messages[indexOfLastItem];
+    let lastMessageInList: Structures["message"]["whatsapp"] = messages[indexOfLastItem];
     lastMessageInList.message += `\n\r ${message}`;
     messages[indexOfLastItem] = lastMessageInList;
   } else {

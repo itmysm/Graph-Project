@@ -4,12 +4,12 @@ export type Config = {
 };
 
 export type Application = {
-  os: null | whatsappOS;
+  os: null | WhatsappOS;
   app: "whatsapp" | "instagram" | "telegram" | null;
 };
-export type whatsappOS = "android" | "ios";
+export type WhatsappOS = "android" | "ios";
 
-export type structures = {
+export type Structures = {
   message: {
     whatsapp: {
       date: string;
@@ -17,7 +17,9 @@ export type structures = {
       sender: string;
       unixTime: number;
       uniqueName: object;
-      periods: ["24h" | "week" | "month" | "sixMonth" | "year" | "all"];
+      periods: Periods[];
     };
   };
 };
+
+export type Periods = "24h" | "week" | "month" | "sixMonth" | "year" | "all"
