@@ -49,6 +49,12 @@
   background: radial-gradient(94% 58.3% at 50.3% 82.6%, rgb(var(--color-dark-gradient2)) 0%, var(--token-79f54f4b-5c08-4adb-84cd-68f4d833bf59, rgb(var(--color-dark-gradient))) 100%);
 }
 
+.bg-temp-for-chart-cards {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgb(55, 51, 63);
+  background: linear-gradient(180deg, rgba(55, 51, 63, 0.50) 0%, rgba(49, 45, 66, 0.50) 100%);
+}
+
 .bg-gradient-custom {
   background: linear-gradient(140deg, rgb(var(--color-custom-gradient1)) 0%, rgb(var(--color-custom-gradient2)) 100%);
 }

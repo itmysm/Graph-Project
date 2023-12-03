@@ -22,6 +22,14 @@ const config: Config = {
       contrast: "rgb(var(--color-contrast) / <alpha-value>)",
       "always-white": "rgb(var(--color-always-white) / <alpha-value>)",
     },
+    screens: {
+      xs: "570px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       animation: {
         wiggle: "wiggle 3.5s ease-in-out infinite",

@@ -1,13 +1,22 @@
 "use client";
 
-import { Periods, Structures } from "@/types/core";
+import { Periods } from "@/types/core";
 import { Button, Divider } from "@nextui-org/react";
 import { useState } from "react";
-export default function Card() {
+
+type CardProps = {
+  children: React.ReactNode;
+  dataInfo: object;
+  classes: string;
+};
+
+export default function Card({ children, dataInfo, classes }: CardProps) {
   const isSupported = true;
 
   return (
-    <div className={`rounded-lg py-4 px-1 w-1/2 md:w-1/3 xl:w-1/4 relative overflow-hidden ${isSupported ? "bg-[#222]" : "bg-[#222]/50"}`}>
+    <div className={`rounded-xl p-4 relative overflow-hidden ${classes} ${isSupported ? "" : ""} bg-temp-for-chart-cards`}>
+      <p className="text-xl tracking-wider "></p>
+      {children}
       <Pagination availablePeriods={["all", "month"]} />
       {!isSupported && <NotSupported />}
     </div>
@@ -40,7 +49,7 @@ export function Pagination({ availablePeriods, defaultSelectedItem = "all" }: Pe
         <div className="flex items-center" key={index}>
           {index > 0 && <Divider className="mx-1 !h-5" orientation="vertical" />}
           <Button
-            className={`${selectedItem === periods[key] ? "text-info" : ""}`}
+            className={`text-xs capitalize font-semibold tracking-wide ${selectedItem === periods[key] ? "text-info" : ""}`}
             isIconOnly
             variant="light"
             aria-label="1"
@@ -57,7 +66,5 @@ export function Pagination({ availablePeriods, defaultSelectedItem = "all" }: Pe
 }
 
 export function NotSupported() {
-  return <div className="absolute w-full h-full top-0 flex justify-center items-center">
-    this is not work
-  </div>;
+  return <div className="absolute w-full h-full top-0 flex justify-center items-center">this is not work</div>;
 }
