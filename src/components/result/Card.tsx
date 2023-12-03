@@ -1,21 +1,22 @@
 "use client";
 
+import { ChartStructure, ChartsStructure } from "@/types/constant";
 import { Periods } from "@/types/core";
 import { Button, Divider } from "@nextui-org/react";
 import { useState } from "react";
 
 type CardProps = {
   children: React.ReactNode;
-  dataInfo: object;
+  chartInfo: ChartStructure;
   classes: string;
 };
 
-export default function Card({ children, dataInfo, classes }: CardProps) {
+export default function Card({ children, chartInfo, classes }: CardProps) {
   const isSupported = true;
 
   return (
     <div className={`rounded-xl p-4 relative overflow-hidden ${classes} ${isSupported ? "" : ""} bg-temp-for-chart-cards`}>
-      <p className="text-xl tracking-wider "></p>
+      <p className="text-xl tracking-wider ">{chartInfo.tile || "undefined"}</p>
       {children}
       <Pagination availablePeriods={["all", "month"]} />
       {!isSupported && <NotSupported />}

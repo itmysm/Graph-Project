@@ -48,7 +48,6 @@ export default function App({ params }: { params: { lang: LocaleLabel } }) {
 
   useEffect(() => {
     if (status.state === 10) {
-      // useRouter().push("/result");
       router.push("/result");
     }
   }, [status.state]);
