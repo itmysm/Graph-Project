@@ -1,10 +1,10 @@
 import { Page } from "@/types/locales";
 import { ReadFile, detectApplication, convertToStandardStructure } from "@/lib/core/index";
-import { extensionExporter } from "@/lib/general/index";
 import useAppStore from "@/store/app";
 import { Config, Application } from "@/types/core";
 import { useEffect } from "react";
 import { Analyzer } from "@/lib/core/analyze";
+import { devLogger } from "@/lib/dev";
 
 type Props = {
   i18n: Page;
@@ -25,23 +25,27 @@ export default function Processor({ i18n, file }: Props) {
   };
 
   const onDetectApplication = (line: string) => {
-    const application: Application = detectApplication(line, fileInfo?.extension);
-
-    if (application && status.state != 3) {
+    const application: Application | null = detectApplication(line, fileInfo.extension);
+    if (application == null) {
+      exitProcess("application not detected");
+      return;
+    } else if (status.state != 3) {
       config.application = application;
       config.isTargetReached = true;
       updateStatus({ ...status, state: (status.state = 3) });
+      updateFileInfo({
+        ...fileInfo,
+        application: config.application.app,
+      });
 
       onConvertToStandardStructure();
     }
   };
 
   const onConvertToStandardStructure = async () => {
-    if (config.application) {
-      await convertToStandardStructure(file, config.application);
-      updateStatus({ ...status, state: (status.state = 4) });
-      onAnalyzeData();
-    }
+    await convertToStandardStructure(file, config.application);
+    updateStatus({ ...status, state: (status.state = 4) });
+    onAnalyzeData();
   };
 
   const onAnalyzeData = async () => {
@@ -49,8 +53,17 @@ export default function Processor({ i18n, file }: Props) {
     updateStatus({ ...status, state: (status.state = 10) });
   };
 
+  const exitProcess = (error: string) => {
+    window.alert(error);
+    devLogger(error, "error");
+  };
+
   useEffect(() => {
-    fileReader.lineByLine(file, onDetectApplication, isTargetReached);
+    if (fileInfo) {
+      fileReader.lineByLine(file, onDetectApplication, isTargetReached);
+    } else {
+      exitProcess("fileInfo it's not contains any value");
+    }
   }, []);
 
   return <div className=""></div>;

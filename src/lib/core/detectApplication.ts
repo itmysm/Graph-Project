@@ -3,13 +3,14 @@ import { whatsappRegexPatterns } from "../patterns";
 
 const application: Application = { os: null, app: null };
 
-export const detectApplication = (line: string, fileExtension = ""): Application => {
+export const detectApplication = (line: string, fileExtension: string): Application | null => {
   if (fileExtension === "txt") {
     detectWhatsappDataBelongsToWhichOS(line);
     application.app = "whatsapp";
+    return application;
+  } else {
+    return null;
   }
-
-  return application;
 };
 
 function detectWhatsappDataBelongsToWhichOS(line: string) {

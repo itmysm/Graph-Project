@@ -93,6 +93,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, handleUploadFi
         extension: extensionExporter(newFile.name),
         type: newFile.type,
         uploadDate: new Date().getTime(),
+        application: undefined,
       });
 
       addNewAlert({
