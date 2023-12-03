@@ -5,21 +5,24 @@ export type Config = {
 
 export type Application = {
   os: null | WhatsappOS;
-  app: "whatsapp" | "instagram" | "telegram" | null;
+  app: SupportedApplications;
 };
+export type SupportedApplications = "whatsapp" | "instagram" | "telegram";
 export type WhatsappOS = "android" | "ios";
 
 export type Structures = {
   message: {
-    whatsapp: {
-      date: string;
-      message: string;
-      sender: string;
-      unixTime: number;
-      uniqueName: object;
-      periods: Periods[];
-    };
+    whatsapp: whatsapp[];
   };
 };
 
-export type Periods = "24h" | "week" | "month" | "sixMonth" | "year" | "all"
+export type whatsapp = {
+  date: string;
+  message: string;
+  sender: string;
+  unixTime: number;
+  uniqueName: object;
+  periods: Periods[];
+};
+
+export type Periods = "24h" | "week" | "month" | "sixMonth" | "year" | "all";

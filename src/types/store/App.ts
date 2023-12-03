@@ -1,3 +1,5 @@
+import { SupportedApplications } from "../core";
+
 export type AppStore = {
   appearance: Appearance;
   status: Status;
@@ -19,6 +21,7 @@ export type FileInfo = {
   size: number;
   type: string | undefined;
   date: number | undefined;
+  application: SupportedApplications;
   uploadDate: number | undefined;
 } | null;
 
