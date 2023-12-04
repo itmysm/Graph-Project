@@ -3,25 +3,22 @@
 import ReactEcharts from "echarts-for-react";
 import { chartsConfig } from "@/constants";
 import { CSSProperties, useEffect, useState } from "react";
+import { ChartStructure } from "@/types/constant";
 
 type ChartProps = {
-  config: object;
+  chart: ChartStructure;
   messagesProp: [];
   styles?: CSSProperties;
   classes?: string;
-  lazyUpdate?: boolean;
-  notMerge?: boolean;
 };
 
-export default function Chart({ config, messagesProp, styles, classes }: ChartProps) {
+export default function Chart({ chart, messagesProp, styles, classes }: ChartProps) {
   const [messages, setMessages] = useState(messagesProp);
 
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
+  useEffect(() => {}, [messages]);
   return (
     <>
-      <ReactEcharts className={`${classes}`} option={chartsConfig.pie} notMerge={true} lazyUpdate={true} style={styles} />
+      <ReactEcharts className={`${classes}`} option={chart.options} style={styles} />
     </>
   );
 }

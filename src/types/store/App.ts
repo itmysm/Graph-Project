@@ -24,7 +24,6 @@ export type FileInfo = {
   application: SupportedApplications;
   uploadDate: number | undefined;
 } | null;
-
 export type Appearance = {
   lang: string;
   dir: string;

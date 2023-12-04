@@ -45,5 +45,11 @@
     "fileRemoved": "File removed from state",
     "notAllowedFile": "Files with",
     "notAllowedFilePart2": "extension are not allowed"
+  },
+  "charts": {
+    "titles": {
+      "allMessages": "All messages",
+      "messagesByPerson": "Messages by person"
+    }
   }
 }

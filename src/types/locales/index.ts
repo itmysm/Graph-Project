@@ -57,10 +57,20 @@ export interface Alert {
 	notAllowedFilePart2: string;
 }
 
+export interface Title {
+	allMessages: string;
+	messagesByPerson: string;
+}
+
+export interface Chart {
+	titles: Title;
+}
+
 export interface RootObject {
 	app: App;
 	navigation: Navigation;
 	page: Page;
 	additional: Additional;
 	alerts: Alert;
+	charts: Chart;
 }

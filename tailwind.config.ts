@@ -7,6 +7,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/constants/charts.view.ts",
   ],
   theme: {
     colors: {
@@ -80,7 +81,7 @@ const config: Config = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(transparent|white|black|gray|gray-text|yellow|blue|indigo|purple|green|red|teal|primary|primary-hover|primary-active|secondary|secondary-hover|secondary-active|info|info-hover|info-active|error|warning|success|w-(1\/2|1\/3|1\/4|4\/12|3\/4|2\/5))/,
+        /(bg|text|border)-(transparent|white|black|gray|gray-text|yellow|blue|indigo|purple|green|red|teal|primary|primary-hover|primary-active|secondary|secondary-hover|secondary-active|info|info-hover|info-active|error|warning|success)/,
     },
   ],
 };
