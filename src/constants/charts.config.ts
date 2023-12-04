@@ -39,6 +39,34 @@ const Pie = {
   ],
 };
 
+const BarSmooth = {
+  backgroundColor: "transparent",
+  grid: {
+    left: "15%",
+    right: "12%",
+    top: "17%",
+    bottom: "17%",
+  },
+  xAxis: {
+    type: "category",
+    data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  },
+  yAxis: {
+    type: "value",
+    splitLine: {
+      show: false,
+    },
+  },
+  series: [
+    {
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: "line",
+      smooth: true,
+    },
+  ],
+};
+
 export const chartsConfig = {
   pie: Pie,
+  barSmooth: BarSmooth,
 };

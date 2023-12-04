@@ -1,22 +1,23 @@
 import { ChartStructure } from "@/types/constant";
+import { chartsConfig } from ".";
 
 const whatsapp = {
-  allMessages_BarLineSmooth: { chart: "BarSmooth", title: "allMessages" },
-  messagesByPerson_Pie: { chart: "Pie", title: "messagesByPerson" },
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
 };
 
 const telegram = {
-  allMessages_BarLineSmooth: { chart: "BarSmooth", title: "allMessages" },
-  messagesByPerson_Pie: { chart: "Pie", title: "messagesByPerson" },
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
 };
 
 const instagram = {
-  allMessages_BarLineSmooth: { chart: "BarSmooth", title: "allMessages" },
-  messagesByPerson_Pie: { chart: "Pie", title: "messagesByPerson" },
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
 };
 
 const defaultStructure = {
-  allMessages_BarLineSmooth: { chart: "BarSmooth", title: "allMessages" },
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
 };
 
 export const chartsStructures = {
