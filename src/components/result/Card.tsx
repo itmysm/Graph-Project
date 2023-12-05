@@ -1,6 +1,6 @@
 "use client";
 
-import { ChartStructure, ChartsStructure } from "@/types/constant";
+import { ChartStructure, ChartsStructure } from "@/types/charts";
 import { Periods } from "@/types/core";
 import { Chart } from "@/types/locales";
 import { Button, Divider } from "@nextui-org/react";
@@ -15,8 +15,6 @@ type CardProps = {
 
 export default function Card({ children, i18n, chartInfo, classes }: CardProps) {
   const isSupported = true;
-  console.log(i18n);
-
   return (
     <div className={`rounded-xl p-4 relative overflow-hidden ${classes} ${isSupported ? "" : ""} bg-temp-for-chart-cards`}>
       <p className="text-xl tracking-wider ">{i18n[chartInfo.title]}</p>

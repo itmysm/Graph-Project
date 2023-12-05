@@ -1,21 +1,23 @@
 "use client";
 
 import ReactEcharts from "echarts-for-react";
-import { chartsConfig } from "@/constants";
-import { CSSProperties, useEffect, useState } from "react";
-import { ChartStructure } from "@/types/constant";
+import { CSSProperties, useMemo } from "react";
+import { ChartOptions, ChartStructure } from "@/types/charts";
+import useResultStore from "@/store/result";
 
 type ChartProps = {
   chart: ChartStructure;
-  messagesProp: [];
   styles?: CSSProperties;
   classes?: string;
 };
 
-export default function Chart({ chart, messagesProp, styles, classes }: ChartProps) {
-  const [messages, setMessages] = useState(messagesProp);
+export default function Chart({ chart, styles, classes }: ChartProps) {
+  const { exportedMessages } = useResultStore();
 
-  useEffect(() => {}, [messages]);
+  const chartOptions = useMemo(() => {
+    const updatedOptions = { ...chart.options };
+  }, []);
+
   return (
     <>
       <ReactEcharts className={`${classes}`} option={chart.options} style={styles} />

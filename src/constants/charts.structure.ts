@@ -1,9 +1,9 @@
-import { ChartStructure } from "@/types/constant";
+import { ChartStructure } from "@/types/charts";
 import { chartsConfig } from ".";
 
 const whatsapp = {
   allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
-  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", type: "" },
 };
 
 const telegram = {

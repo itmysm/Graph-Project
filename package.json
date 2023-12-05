@@ -12,6 +12,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.0",
     "@nextui-org/react": "^2.2.8",
+    "@types/echarts": "^4.9.22",
     "@types/negotiator": "^0.6.3",
     "animate.css": "^4.1.1",
     "colord": "^2.9.3",

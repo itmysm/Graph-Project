@@ -11,12 +11,32 @@ export type SupportedApplications = "whatsapp" | "instagram" | "telegram";
 export type WhatsappOS = "android" | "ios";
 
 export type Structures = {
-  message: {
-    whatsapp: whatsapp[];
+  apps: {
+    whatsapp: whatsappMessageStructure[];
+    telegram: telegramMessageStructure[];
+    instagram: instagramMessageStructure[];
   };
 };
+export type MessagesStructure = whatsappMessageStructure | instagramMessageStructure | telegramMessageStructure;
+export type whatsappMessageStructure = {
+  date: string;
+  message: string;
+  sender: string;
+  unixTime: number;
+  uniqueName: object;
+  periods: Periods[];
+};
 
-export type whatsapp = {
+export type telegramMessageStructure = {
+  date: string;
+  message: string;
+  sender: string;
+  unixTime: number;
+  uniqueName: object;
+  periods: Periods[];
+};
+
+export type instagramMessageStructure = {
   date: string;
   message: string;
   sender: string;
