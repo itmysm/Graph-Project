@@ -6,8 +6,8 @@ import Card from "@/components/result/Card";
 import Chart from "@/components/result/Chart";
 import useAppStore from "@/store/app";
 import { get } from "idb-keyval";
-import { chartsStructures, chartsView } from "@/constants";
-import { ChartsStructure } from "@/types/charts";
+import { allCharts, chartsView, mainFlowMethods } from "@/constants";
+import { ChartsTarget } from "@/types/charts";
 import { getClientSideLocales } from "@/lib/locales/clientSideLocales";
 import { LocaleLabel } from "$/i18n.config";
 import useResultStore from "@/store/result";
@@ -17,14 +17,14 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const { fileInfo } = useAppStore();
   const { updateExportedMessages } = useResultStore();
   const [isChartsReady, setIsChartsReady] = useState<Boolean>(false);
-  const [chartsStructure, setChartsStructure] = useState<ChartsStructure>(chartsStructures["defaultStructure"]);
+  const [chartsTarget, setChartsTarget] = useState<ChartsTarget>(allCharts["defaultStructure"]);
   const [translations, setTranslations] = useState<any>(null);
 
   useEffect(() => {
     if (!fileInfo?.application) {
       router.push("/app");
     } else {
-      setChartsStructure(chartsStructures[fileInfo.application]);
+      setChartsTarget(allCharts[fileInfo.application]);
       onGetChatsFromIndexDB();
     }
   }, []);
@@ -54,9 +54,9 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
       <div className="w-full bg-primary bg-gradient-main flex justify-center min-h-full max-h-[fit-content] overflow-y-hidden">
         <div className="flex flex-wrap gap-y-4 gap-x-2 md:gap-5 w-full container py-10 px-10 md:px-0">
           {isChartsReady &&
-            Object.keys(chartsStructure).map((key, index) => (
-              <Card key={index} i18n={translations.charts.titles} classes={chartsView[key]} chartInfo={chartsStructure[key]}>
-                <Chart chart={chartsStructure[key]} classes="w-full" />
+            Object.keys(chartsTarget).map((key: keyof ChartsTarget, index) => (
+              <Card key={index} i18n={translations.charts.titles} classes={chartsView[key]} chartInfo={chartsTarget[key]}>
+                <Chart chart={chartsTarget[key]} target={mainFlowMethods[chartsTarget[key].target]} classes="w-full" />
               </Card>
             ))}
         </div>

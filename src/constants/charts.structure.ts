@@ -1,26 +1,30 @@
 import { ChartStructure } from "@/types/charts";
 import { chartsConfig } from ".";
+import { MainFlowMethods } from "@/constants";
 
-const whatsapp = {
-  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
-  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", type: "" },
+type ValidStructures = { [key: string]: ChartStructure };
+
+const whatsapp: ValidStructures = {
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages", target: "countAllMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", target: "countAllMessages" },
 };
 
-const telegram = {
-  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
-  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
+const telegram: ValidStructures = {
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages", target: "countAllMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", target: "countAllMessages" },
 };
 
-const instagram = {
-  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
-  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson" },
+const instagram: ValidStructures = {
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages", target: "countAllMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", target: "countAllMessages" },
 };
 
-const defaultStructure = {
-  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages" },
+const defaultStructure: ValidStructures = {
+  allMessages_BarLineSmooth: { options: chartsConfig.barSmooth, title: "allMessages", target: "countAllMessages" },
+  messagesByPerson_Pie: { options: chartsConfig.pie, title: "messagesByPerson", target: "countAllMessages" },
 };
 
-export const chartsStructures = {
+export const allCharts = {
   whatsapp,
   instagram,
   telegram,

@@ -1,3 +1,13 @@
-const countAllMessages = (messages) => {};
+import { MessagesStructure } from "@/types/core";
 
-export const methods = [countAllMessages];
+const countAllMessages = (data: MessagesStructure[]) => {
+  return data.length;
+};
+
+export type MainFlowMethods = {
+  countAllMessages: (data: MessagesStructure[]) => [];
+};
+
+export const mainFlowMethods = {
+  countAllMessages,
+};

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChartStructure, ChartsStructure } from "@/types/charts";
+import { ChartStructure, ChartsTarget } from "@/types/charts";
 import { Periods } from "@/types/core";
 import { Chart } from "@/types/locales";
 import { Button, Divider } from "@nextui-org/react";
