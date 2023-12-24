@@ -23,7 +23,7 @@ export type whatsappMessageStructure = {
   message: string;
   sender: string;
   unixTime: number;
-  uniqueName: object;
+  uniqueName: { [key: string]: string };
   periods: Periods[];
 };
 
@@ -32,7 +32,7 @@ export type telegramMessageStructure = {
   message: string;
   sender: string;
   unixTime: number;
-  uniqueName: object;
+  uniqueName: { [key: string]: string };
   periods: Periods[];
 };
 
@@ -41,7 +41,7 @@ export type instagramMessageStructure = {
   message: string;
   sender: string;
   unixTime: number;
-  uniqueName: object;
+  uniqueName: { [key: string]: string };
   periods: Periods[];
 };
 
