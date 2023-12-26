@@ -17,7 +17,9 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const { fileInfo } = useAppStore();
   const { updateExportedMessages } = useResultStore();
   const [isChartsReady, setIsChartsReady] = useState<Boolean>(false);
-  const [targetCharts, setTargetCharts] = useState<TargetCharts>(allCharts["defaultStructure"]);
+  const [targetCharts, setTargetCharts] = useState<TargetCharts>(
+    allCharts["defaultStructure"]
+  );
   const [translations, setTranslations] = useState<any>(null);
 
   useEffect(() => {
@@ -52,14 +54,14 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   return (
     translations && (
       <div className="w-full bg-primary bg-gradient-main flex justify-center min-h-full max-h-[fit-content] overflow-y-hidden">
-        <div className="flex flex-wrap gap-y-4 gap-x-2 md:gap-5 w-full container py-10 px-10 md:px-0">
+        {/* <div className="flex flex-wrap gap-y-4 gap-x-2 md:gap-5 w-full container py-10 px-10 md:px-0">
           {isChartsReady &&
             Object.keys(targetCharts).map((chartKey: keyof TargetCharts, index) => (
               <Card key={index} i18n={translations.charts.titles} classes={chartsView[chartKey]} chartInfo={targetCharts[chartKey]}>
                 <Chart chart={targetCharts[chartKey]} mainflow={mainFlowMethods[targetCharts[chartKey].target]} classes="w-full" />
               </Card>
             ))}
-        </div>
+        </div> */}
       </div>
     )
   );

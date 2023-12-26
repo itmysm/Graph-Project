@@ -1,5 +1,5 @@
 // a script for short long strings and these stuffs
-import CryptoJS from "crypto-js"
+import CryptoJS from "crypto-js";
 
 import { extensionExporter } from "./extensionExporter";
 
@@ -7,7 +7,10 @@ export const shortText = (text: string, length = 10) => {
   return text.slice(0, length);
 };
 
-export const shortFileNameWithExtension = (text: string = "unknown", length = 24) => {
+export const shortFileNameWithExtension = (
+  text: string = "unknown",
+  length = 24
+) => {
   const extension = extensionExporter(text);
 
   if (text.length + extension.length > length) {
