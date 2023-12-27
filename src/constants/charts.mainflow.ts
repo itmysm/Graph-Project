@@ -3,23 +3,29 @@ import { MessagesStructure } from "@/types/core";
 import { Periods } from "@/types/core";
 import { getPeriods } from "@/util/general/getters";
 
-type simpleChartData = {
-  [key: string]: [];
+type Info = {
+  type: "flat" | "nested" | "nestedX2";
 };
-export type ChartResultType = simpleChartData;
 
 type ResultTypeMessageByPerson = {
-  [key: string]: MessagesStructure[];
-};
+  data: {
+    [key: string]: MessagesStructure[];
+  };
+
+  info: Info;
+}; // x { "24h": [] }
 
 async function countMessagesByPerson(messages: MessagesStructure[]) {
-  const persons: ResultTypeMessageByPerson = {};
+  const persons: ResultTypeMessageByPerson = {
+    data: {},
+    info: { type: "nested" },
+  };
   messages.forEach((msg) => {
     const key = Object.keys(msg.uniqueName)[0];
-    if (persons[key]) persons[key].push(msg);
+    if (persons.data[key]) persons.data[key].push(msg);
     else if (msg.uniqueName) {
-      persons[key] = [];
-      persons[key].push(msg);
+      persons.data[key] = [];
+      persons.data[key].push(msg);
     }
   });
 
@@ -28,22 +34,32 @@ async function countMessagesByPerson(messages: MessagesStructure[]) {
 
 type ResultTypeMessagesInPeriods =
   | {
-      [key in Periods]:
-        | {
-            [key: number]: number;
-          }
-        | {
-            [key: string]: number;
-          };
+      data: {
+        [key in Periods]:
+          | {
+              [key: number]: number;
+            }
+          | {
+              [key: string]: number;
+            };
+      };
+
+      info: Info;
     }
-  | {};
+  | {}; // x { "24h": {1: 11, 2, 22} }
 
 async function mostMessagesInTimePeriod(messages: MessagesStructure[]) {
   const periods: ResultTypeMessagesInPeriods = {
-    "24h": {},
-    week: {},
-    month: {},
-    year: {},
+    data: {
+      "24h": {},
+      week: {},
+      month: {},
+      year: {},
+    },
+
+    info: {
+      type: "nestedX2",
+    },
   };
   messages.forEach((msg) => {
     const date = moment(msg.unixTime);
@@ -57,7 +73,6 @@ async function mostMessagesInTimePeriod(messages: MessagesStructure[]) {
     periods["week"][dayOfWeek] = (periods["week"][dayOfWeek] || 0) + 1;
     periods["year"][monthName] = (periods["year"][monthName] || 0) + 1;
   });
-  console.log(periods);
 
   return periods;
 }
@@ -73,6 +88,12 @@ export type AllMainFlowMethods = {
 export const MainFlowMethodsByApplication = {
   whatsapp: [countMessagesByPerson, mostMessagesInTimePeriod],
 };
+
 export type ResponseMainFlowMethods = {
-  whatsapp: [ResultTypeMessageByPerson, ResultTypeMessagesInPeriods];
+  whatsapp: {
+    countMessagesByPerson: ResultTypeMessageByPerson;
+    mostMessagesInTimePeriod: ResultTypeMessagesInPeriods;
+  };
+  instagram: {};
+  telegram: {};
 };

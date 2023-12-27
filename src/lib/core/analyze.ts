@@ -2,6 +2,7 @@ import { get, keys, set } from "idb-keyval";
 import { MessagesStructure } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
+import useResultStore from "@/store/result";
 import { uniqueNameGenerator } from "../general";
 import {
   MainFlowMethodsByApplication,
@@ -10,7 +11,7 @@ import {
 
 const methodsQueue: ((
   messages: MessagesStructure[]
-) => Promise<DesiredResultType[number]>)[] = [];
+) => Promise<DesiredResultType[keyof DesiredResultType]>)[] = [];
 
 const theFinalResults: DesiredResultType | {} = {};
 const flowName = "whatsapp"; // this value is dynamic and not just for test
@@ -88,6 +89,5 @@ async function processQueue() {
     theFinalResults[method.name] = await method(exportedMessagesFromIndexDB);
   }
 
-  console.log(theFinalResults);
-  await set("analysisResult", theFinalResults);
+  await set("results", theFinalResults);
 }

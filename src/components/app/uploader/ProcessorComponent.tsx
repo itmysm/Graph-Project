@@ -1,10 +1,16 @@
 import { Page } from "@/types/locales";
-import { ReadFile, detectApplication, convertToStandardStructure } from "@/lib/core/index";
+import {
+  ReadFile,
+  detectApplication,
+  convertToStandardStructure,
+} from "@/lib/core/index";
 import useAppStore from "@/store/app";
 import { Config, Application } from "@/types/core";
 import { useEffect } from "react";
 import { Analyzer } from "@/lib/core/analyze";
 import { devLogger } from "@/lib/dev";
+import useResultStore from "@/store/result";
+import { get } from "idb-keyval";
 
 type Props = {
   i18n: Page;
@@ -12,6 +18,7 @@ type Props = {
 };
 
 export default function Processor({ i18n, file }: Props) {
+  const { updateResults } = useResultStore();
   const { fileInfo, updateFileInfo, updateStatus, status } = useAppStore();
   const fileReader = new ReadFile();
 
@@ -25,7 +32,10 @@ export default function Processor({ i18n, file }: Props) {
   };
 
   const onDetectApplication = (line: string) => {
-    const application: Application | null = detectApplication(line, fileInfo.extension);
+    const application: Application | null = detectApplication(
+      line,
+      fileInfo.extension
+    );
     if (application == null) {
       exitProcess("application not detected");
       return;
@@ -50,6 +60,9 @@ export default function Processor({ i18n, file }: Props) {
 
   const onAnalyzeData = async () => {
     Analyzer();
+    const updatedResult = await get("results");
+    updatedResult && updateResults(updatedResult);
+    console.log(updatedResult);
     updateStatus({ ...status, state: (status.state = 10) });
   };
 

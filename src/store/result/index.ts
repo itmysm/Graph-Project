@@ -1,16 +1,32 @@
-import { MessagesStructure } from "@/types/core";
+import { ResponseMainFlowMethods } from "@/constants";
+import { MessagesStructure, SupportedApplications } from "@/types/core";
 import { ResultStore } from "@/types/store";
 import { create } from "zustand";
 
 const useResultStore = create<ResultStore>((set) => ({
   exportedMessages: [],
+  results: [],
   updateExportedMessages: (data: MessagesStructure[]) =>
-    set(() => ({
+    set((prevState) => ({
+      ...prevState,
       exportedMessages: data,
     })),
-  resetResults: () =>
-    set(() => ({
+  resetExportedMessages: () =>
+    set((prevState) => ({
+      ...prevState,
       exportedMessages: [],
+    })),
+  updateResults: (
+    data: ResponseMainFlowMethods[keyof ResponseMainFlowMethods]
+  ) =>
+    set((prevState) => ({
+      ...prevState,
+      results: data,
+    })),
+  resetResults: () =>
+    set((prevState) => ({
+      ...prevState,
+      results: [],
     })),
 }));
 

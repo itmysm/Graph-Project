@@ -1,14 +1,13 @@
 // "use client";
 
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import ReactEcharts from "echarts-for-react";
 // import { CSSProperties, useMemo } from "react";
 // import { StructureOfChartOptions, ChartStructure, AvailableCharts } from "@/types/charts";
-// import useResultStore from "@/store/result";
 // import { MessagesStructure } from "@/types/core";
 // import { Button, Divider } from "@nextui-org/react";
 // import { Periods } from "@/types/core";
-// import { ChartResultType, chartsConfig } from "@/constants";
+// import {  chartsConfig } from "@/constants";
 // import { Pagination } from "@/components/result/options/Pagination";
 
 // type ChartProps = {
@@ -63,24 +62,15 @@
 // }
 
 import useResultStore from "@/store/result";
-import { StructureOfChartOptions, ChartStructure, AvailableCharts } from "@/types/charts";
-import { MessagesStructure } from "@/types/core";
-import { CSSProperties, useMemo } from "react";
-import { ChartResultType, chartsConfig } from "@/constants";
+import useAppStore from "@/store/app";
 
-type ChartProps = {
-  chart: ChartStructure;
-  mainflow: (data: MessagesStructure[]) => ChartResultType;
-  styles?: CSSProperties;
-  classes?: string;
-};
+type ChartProps = {};
 
-export default function Chart({ chart, styles, classes, mainflow }: ChartProps) {
-  const { exportedMessages } = useResultStore();
+export default function Chart({}: ChartProps) {
+  const { fileInfo } = useAppStore();
+  const { results } = useResultStore();
 
-  useMemo(() => {
-
-  }, [exportedMessages]);
+  useEffect(() => {}, [results]);
 
   return <>simple</>;
 }
