@@ -63,14 +63,37 @@ import { useEffect, useState } from "react";
 
 import useResultStore from "@/store/result";
 import useAppStore from "@/store/app";
+import { TargetCharts } from "@/types/charts";
+import EChartsReact from "echarts-for-react";
+import { chartsConfig } from "@/constants";
 
-type ChartProps = {};
+type ChartStatus = "initial" | "initialized" | "disabled";
+type ChartProps = {
+  target: string;
+};
 
-export default function Chart({}: ChartProps) {
-  const { fileInfo } = useAppStore();
+export default function Chart({ target }: ChartProps) {
   const { results } = useResultStore();
+  const [chartStatus, setChartStatus] = useState<ChartStatus>("initial");
 
-  useEffect(() => {}, [results]);
+  useEffect(() => {
+    let localChartStatus: ChartStatus = chartStatus;
+
+    if (results[target]) {
+      localChartStatus = "initialized";
+      barSmooth(results[target]);
+    } else {
+      localChartStatus = "disabled";
+    }
+
+    setChartStatus(localChartStatus);
+  }, [results]);
 
   return <>simple</>;
+}
+
+export function barSmooth(results) {
+  console.log(results);
+
+  Object.keys(results.data).map((item) => results.data["item"]);
 }

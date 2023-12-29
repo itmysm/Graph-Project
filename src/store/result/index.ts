@@ -5,7 +5,7 @@ import { create } from "zustand";
 
 const useResultStore = create<ResultStore>((set) => ({
   exportedMessages: [],
-  results: [],
+  results: null,
   updateExportedMessages: (data: MessagesStructure[]) =>
     set((prevState) => ({
       ...prevState,
