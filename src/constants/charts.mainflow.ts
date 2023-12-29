@@ -32,21 +32,19 @@ async function countMessagesByPerson(messages: MessagesStructure[]) {
   return await persons;
 }
 
-type ResultTypeMessagesInPeriods =
-  | {
-      data: {
-        [key in Periods]:
-          | {
-              [key: number]: number;
-            }
-          | {
-              [key: string]: number;
-            };
-      };
+type ResultTypeMessagesInPeriods = {
+  data: {
+    [key in Periods]?:
+      | {
+          [key: number]: number;
+        }
+      | {
+          [key: string]: number;
+        };
+  };
 
-      info: Info;
-    }
-  | {}; // x { "24h": {1: 11, 2, 22} }
+  info: Info;
+};
 
 async function mostMessagesInTimePeriod(messages: MessagesStructure[]) {
   const periods: ResultTypeMessagesInPeriods = {
@@ -68,19 +66,17 @@ async function mostMessagesInTimePeriod(messages: MessagesStructure[]) {
     const dayOfWeek = date.format("dddd").toLocaleLowerCase();
     const monthName = date.format("MMMM").toLocaleLowerCase();
 
-    periods["24h"][hour] = (periods["24h"][hour] || 0) + 1;
-    periods["month"][day] = (periods["month"][day] || 0) + 1;
-    periods["week"][dayOfWeek] = (periods["week"][dayOfWeek] || 0) + 1;
-    periods["year"][monthName] = (periods["year"][monthName] || 0) + 1;
+    periods.data["24h"][hour] = (periods.data["24h"][hour] || 0) + 1;
+    periods.data["month"][day] = (periods.data["month"][day] || 0) + 1;
+    periods.data["week"][dayOfWeek] = (periods.data["week"][dayOfWeek] || 0) + 1;
+    periods.data["year"][monthName] = (periods.data["year"][monthName] || 0) + 1;
   });
 
   return periods;
 }
 
 export type AllMainFlowMethods = {
-  countMessagesByPerson: (
-    messages: MessagesStructure[]
-  ) => ResultTypeMessageByPerson;
+  countMessagesByPerson: (messages: MessagesStructure[]) => ResultTypeMessageByPerson;
 
   mostMessagesInTimePeriod: (messages: MessagesStructure[]) => [];
 };
