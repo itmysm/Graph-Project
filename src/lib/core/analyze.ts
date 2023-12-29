@@ -1,43 +1,32 @@
-import { get, keys, set } from "idb-keyval";
+import { get, set } from "idb-keyval";
 import { MessagesStructure } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
-import useResultStore from "@/store/result";
 import { uniqueNameGenerator } from "../general";
-import {
-  MainFlowMethodsByApplication,
-  ResponseMainFlowMethods,
-} from "@/constants";
 
-const methodsQueue: ((
-  messages: MessagesStructure[]
-) => Promise<DesiredResultType[keyof DesiredResultType]>)[] = [];
-
-const theFinalResults: DesiredResultType | {} = {};
-const flowName = "whatsapp"; // this value is dynamic and not just for test
-type DesiredResultType = ResponseMainFlowMethods[typeof flowName];
 let exportedMessagesFromIndexDB: MessagesStructure[] | [] = [];
 
 async function classificationByTime() {
-  exportedMessagesFromIndexDB?.forEach((msg, index) => {
+  exportedMessagesFromIndexDB?.forEach((msg: MessagesStructure, index) => {
     msg.uniqueName = makeUniqueName(msg);
     const momentObj = moment.unix(msg.unixTime);
     const passedDays = moment().diff(momentObj, "days");
+    if (passedDays >= 0) {
+      if (passedDays <= 365 && passedDays >= 0) {
+        msg.periods.push("year");
 
-    if (passedDays <= 365 && passedDays >= 0) {
-      msg.periods.push("year");
+        if (passedDays <= 120) {
+          msg.periods.push("sixMonth");
 
-      if (passedDays <= 120) {
-        msg.periods.push("sixMonth");
+          if (passedDays <= 31) {
+            msg.periods.push("month");
 
-        if (passedDays <= 31) {
-          msg.periods.push("month");
+            if (passedDays <= 7) {
+              msg.periods.push("week");
 
-          if (passedDays <= 7) {
-            msg.periods.push("week");
-
-            if (passedDays == 0) {
-              msg.periods.push("24h");
+              if (passedDays == 0) {
+                msg.periods.push("24h");
+              }
             }
           }
         }
@@ -52,7 +41,7 @@ async function classificationByTime() {
     }
   });
 
-  await set("exportedMessages", exportedMessagesFromIndexDB);
+  await set("result", exportedMessagesFromIndexDB);
 }
 
 function makeUniqueName(msg: MessagesStructure) {
@@ -66,28 +55,13 @@ function makeUniqueName(msg: MessagesStructure) {
 
 export async function Analyzer() {
   exportedMessagesFromIndexDB = await get("exportedMessages");
-  const methods = MainFlowMethodsByApplication[flowName];
 
   if (exportedMessagesFromIndexDB) {
     await classificationByTime();
-
-    while (methods.length > 0) {
-      const currentMethod = methods.shift();
-      methodsQueue.push(currentMethod);
-    }
-    await processQueue();
   } else {
     window.alert(
       "Error: in ExportMessagesFromEachLineOfData => OS has not been detected!"
     );
     return;
   }
-}
-
-async function processQueue() {
-  for (const method of methodsQueue) {
-    theFinalResults[method.name] = await method(exportedMessagesFromIndexDB);
-  }
-
-  await set("results", theFinalResults);
 }

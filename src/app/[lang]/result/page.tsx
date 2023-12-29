@@ -5,28 +5,30 @@ import { useRouter } from "next/navigation";
 import Card from "@/components/result/Card";
 import Chart from "@/components/result/Chart";
 import useAppStore from "@/store/app";
-import { get } from "idb-keyval";
-import { ResponseMainFlowMethods, allCharts, chartsView } from "@/constants";
-import { TargetCharts } from "@/types/charts";
 import { getClientSideLocales } from "@/lib/locales/clientSideLocales";
 import { LocaleLabel } from "$/i18n.config";
+import { get } from "idb-keyval";
 import useResultStore from "@/store/result";
+import { MessagesStructure } from "@/types/core";
+import { ChartType, charts } from "@/lib/charts/charts.map";
+import { SupportedApplications } from "@/types/core";
+import Selector from "@/components/result/options/Selector";
+import { Divider } from "@nextui-org/react";
 
 export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const router = useRouter();
   const { fileInfo } = useAppStore();
-  const { updateExportedMessages, results } = useResultStore();
-  const [data, setData] = useState<[ResponseMainFlowMethods[ keyof ResponseMainFlowMethods] | null]>(results);
-  const [isChartsReady, setIsChartsReady] = useState<Boolean>(false);
-  const [targetCharts, setTargetCharts] = useState<TargetCharts | null>(null);
+  const { results } = useResultStore();
+
+  const application = fileInfo.application;
+  const [data, setData] = useState<MessagesStructure[] | null>();
   const [translations, setTranslations] = useState<any>(null);
 
   useEffect(() => {
-    if (!results) {
-      router.push("/app");
+    if (results) {
+      setData(data);
     } else {
-      setTargetCharts(allCharts[fileInfo.application]);
-      onGetChatsFromIndexDB();
+      router.push("/app");
     }
   }, [results]);
 
@@ -44,30 +46,29 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
     fetchTranslations();
   }, [params.lang]);
 
-  const onGetChatsFromIndexDB = async () => {
-    const exportedMessages = await get("exportedMessages");
-    updateExportedMessages(exportedMessages);
-    setIsChartsReady(true);
-  };
-
   return (
-    translations && (
-      <div className="w-full bg-primary bg-gradient-main flex justify-center min-h-full max-h-[fit-content] overflow-y-hidden">
+    translations &&
+    application && (
+      <div className="w-full bg-primary bg-gradient-main flex flex-col items-center min-h-full max-h-[fit-content] overflow-y-hidden">
+        <div className="w-full flex justify-start container">
+          <Selector />
+        </div>
+
+        {/* <Divider className="w-full border border-gray/20 container" /> */}
+
         <div className="flex flex-wrap gap-y-4 gap-x-2 md:gap-5 w-full container py-10 px-10 md:px-0">
-          {isChartsReady &&
-            targetCharts &&
-            Object.keys(targetCharts).map(
-              (chartKey: keyof TargetCharts, index) => (
-                <Card
-                  key={index}
-                  i18n={translations.charts.titles}
-                  classes={chartsView[chartKey]}
-                  chartInfo={targetCharts[chartKey]}
-                >
-                  <Chart />
-                </Card>
-              )
-            )}
+          {Object.keys(charts[application]).map((key, index) => {
+            return (
+              <Card
+                key={index}
+                cardTitle={charts[application][key].title}
+                classes={charts[application][key].styles}
+                i18n={translations.charts.titles}
+              >
+                <Chart chart={charts[application][key]} />
+              </Card>
+            );
+          })}
         </div>
       </div>
     )

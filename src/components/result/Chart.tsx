@@ -1,76 +1,60 @@
-// "use client";
-
-import { useEffect, useState } from "react";
-// import ReactEcharts from "echarts-for-react";
-// import { CSSProperties, useMemo } from "react";
-// import { StructureOfChartOptions, ChartStructure, AvailableCharts } from "@/types/charts";
-// import { MessagesStructure } from "@/types/core";
-// import { Button, Divider } from "@nextui-org/react";
-// import { Periods } from "@/types/core";
-// import {  chartsConfig } from "@/constants";
-// import { Pagination } from "@/components/result/options/Pagination";
-
-// type ChartProps = {
-//   chart: ChartStructure;
-//   mainflow: (data: MessagesStructure[]) => ChartResultType;
-//   styles?: CSSProperties;
-//   classes?: string;
-// };
-
-// export default function Chart({ chart, styles, classes, mainflow }: ChartProps) {
-//   const { exportedMessages } = useResultStore();
-//   const [result, setResult] = useState<ChartResultType["data"]>(null);
-//   const [periods, setPeriods] = useState<Periods[]>(["all"]);
-//   const [selectedPeriod, setSelectedPeriod] = useState<Periods>("all");
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const finalResult = await mainflow(exportedMessages);
-//       setResult(finalResult.data);
-//       setPeriods(finalResult.periods);
-//     };
-
-//     fetchData();
-//   }, [mainflow, exportedMessages]);
-
-//   const onPeriodChange = (period: Periods) => {
-//     setSelectedPeriod(period);
-//   };
-
-//   const chartOptions = useMemo(() => {
-//     const updatedOptions = extractTheCorrectPathBaseOnChart(chart.chart, result);
-//   }, [selectedPeriod]);
-
-//   return (
-//     <>
-//       <ReactEcharts className={`${classes}`} option={chart.options} style={styles} />
-//       <Pagination availablePeriods={periods} defaultSelectedItem={selectedPeriod} periodChanged={onPeriodChange} />
-//     </>
-//   );
-// }
-
-// function extractTheCorrectPathBaseOnChart(chartName: AvailableCharts, updatedData) {
-//   let selectedOption;
-//   switch (chartName) {
-//     case "pie":
-//       return (chartsConfig["pie"].series[0].data = updatedOptions);
-//       break;
-
-//     default:
-//       break;
-//   }
-// }
-
+import { ChartType } from "@/lib/charts/charts.map";
 import useResultStore from "@/store/result";
-import useAppStore from "@/store/app";
+import { useEffect, useMemo, useState } from "react";
+import ReactEcharts from "echarts-for-react";
+import { Pagination } from "./options/Pagination";
+import { Periods } from "@/types/core";
+import { getPeriods } from "@/util/general/getters";
+import Selector from "./options/Selector";
 
-type ChartProps = {};
+type ChartProp = {
+  chart: ChartType;
+};
 
-export default function Chart({}: ChartProps) {
-  const { fileInfo } = useAppStore();
+export default function Chart({ chart }: ChartProp) {
   const { results } = useResultStore();
+  const [periods, setPeriods] = useState<Periods[]>(
+    Object.values(getPeriods())
+  );
 
-  useEffect(() => {}, [results]);
+  const [selectedPeriod, setSelectedPeriod] = useState<Periods>("all");
+  const [finalResult, setFinalResult] = useState<[] | null>(null);
+  const [loading, setLoading] = useState<Boolean>(true);
+  const [chartOptions, setChartOptions] = useState(chart.defaultOptions);
 
-  return <>simple</>;
+  let selectedPeriodVar = selectedPeriod;
+
+  const onHandleResult = async () => {
+    setLoading(true);
+    let filteredList =
+      selectedPeriodVar === "all"
+        ? results
+        : results.filter((msg) => msg.periods.includes(selectedPeriodVar));
+
+    const res = chart.target(filteredList);
+
+    setChartOptions(chart.func(res));
+    setLoading(false);
+  };
+
+  const onPeriodChange = (period: Periods) => {
+    selectedPeriodVar = period;
+    setSelectedPeriod(selectedPeriodVar);
+    onHandleResult();
+  };
+
+  useEffect(() => {
+    onHandleResult();
+  }, []);
+
+  return (
+    <>
+      <ReactEcharts option={chartOptions} key={selectedPeriod} />
+      <Pagination
+        availablePeriods={periods}
+        defaultSelectedItem={selectedPeriod}
+        periodChanged={onPeriodChange}
+      />
+    </>
+  );
 }

@@ -9,8 +9,8 @@ import { Config, Application } from "@/types/core";
 import { useEffect } from "react";
 import { Analyzer } from "@/lib/core/analyze";
 import { devLogger } from "@/lib/dev";
-import useResultStore from "@/store/result";
 import { get } from "idb-keyval";
+import useResultStore from "@/store/result";
 
 type Props = {
   i18n: Page;
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function Processor({ i18n, file }: Props) {
-  const { updateResults } = useResultStore();
+  const { updateResults, results } = useResultStore();
   const { fileInfo, updateFileInfo, updateStatus, status } = useAppStore();
   const fileReader = new ReadFile();
 
@@ -59,11 +59,13 @@ export default function Processor({ i18n, file }: Props) {
   };
 
   const onAnalyzeData = async () => {
-    Analyzer();
-    const updatedResult = await get("results");
-    updatedResult && updateResults(updatedResult);
-    console.log(updatedResult);
+    await Analyzer();
+    const result = await get("result");
+
+    updateResults(result);
     updateStatus({ ...status, state: (status.state = 10) });
+
+    console.log(results);
   };
 
   const exitProcess = (error: string) => {

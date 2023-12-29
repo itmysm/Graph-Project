@@ -5,7 +5,7 @@ const Pie = {
   },
   series: [
     {
-      name: "Default",
+      name: "",
       type: "pie",
       radius: ["40%", "70%"],
       avoidLabelOverlap: false,
@@ -39,6 +39,49 @@ const Pie = {
   ],
 };
 
+const BarBasic = {
+  tooltip: {
+    trigger: "axis",
+    axisPointer: {
+      type: "shadow",
+    },
+  },
+  grid: {
+    left: "3%",
+    right: "4%",
+    bottom: "3%",
+    containLabel: true,
+  },
+  xAxis: [
+    {
+      type: "category",
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      axisTick: {
+        alignWithLabel: true,
+      },
+      splitLine: {
+        show: false,
+      },
+    },
+  ],
+  yAxis: [
+    {
+      type: "value",
+      splitLine: {
+        show: false,
+      },
+    },
+  ],
+  series: [
+    {
+      name: "",
+      type: "bar",
+      barWidth: "60%",
+      data: [10, 52, 200, 334, 390, 330, 220],
+    },
+  ],
+};
+
 const BarSmooth = {
   backgroundColor: "transparent",
   grid: {
@@ -66,7 +109,8 @@ const BarSmooth = {
   ],
 };
 
-export const chartsConfig = {
-  pie: Pie,
+export const typesCharts = {
+  barBasic: BarBasic,
   barSmooth: BarSmooth,
+  pie: Pie,
 };
