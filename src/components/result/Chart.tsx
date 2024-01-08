@@ -58,3 +58,9 @@ export default function Chart({ chart }: ChartProp) {
     </>
   );
 }
+
+export function barSmooth(results) {
+  console.log(results);
+
+  Object.keys(results.data).map((item) => results.data["item"]);
+}
