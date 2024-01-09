@@ -5,6 +5,9 @@ import { create } from "zustand";
 const useResultStore = create<ResultStore>((set) => ({
   exportedMessages: [],
   results: null,
+  filters: {
+    view: "View all",
+  },
   updateExportedMessages: (data: MessagesStructure[]) =>
     set((prevState) => ({
       ...prevState,
@@ -24,6 +27,12 @@ const useResultStore = create<ResultStore>((set) => ({
     set((prevState) => ({
       ...prevState,
       results: [],
+    })),
+
+  updateFilters: (filters) =>
+    set((prevState) => ({
+      ...prevState,
+      filters: filters,
     })),
 }));
 

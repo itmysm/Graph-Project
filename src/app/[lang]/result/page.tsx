@@ -12,8 +12,9 @@ import useResultStore from "@/store/result";
 import { MessagesStructure } from "@/types/core";
 import { ChartType, charts } from "@/lib/charts/charts.map";
 import { SupportedApplications } from "@/types/core";
-import Selector from "@/components/result/options/Selector";
 import { Divider } from "@nextui-org/react";
+import Filters from "@/components/result/options/Filters";
+import ViewSettings from "@/components/result/options/ViewSettings";
 
 export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const router = useRouter();
@@ -50,8 +51,9 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
     translations &&
     application && (
       <div className="w-full bg-primary bg-gradient-main flex flex-col items-center min-h-full max-h-[fit-content] overflow-y-hidden">
-        <div className="w-full flex justify-start container">
-          <Selector />
+        <div className="w-full flex gap-2 justify-end container">
+          <Filters />
+          <ViewSettings />
         </div>
 
         {/* <Divider className="w-full border border-gray/20 container" /> */}
