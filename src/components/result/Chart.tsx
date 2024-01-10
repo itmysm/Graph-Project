@@ -12,7 +12,7 @@ type ChartProp = {
 };
 
 export default function Chart({ chart }: ChartProp) {
-  const { results } = useResultStore();
+  const { results, filters } = useResultStore();
   const [periods, setPeriods] = useState<Periods[]>(
     Object.values(getPeriods())
   );
@@ -37,6 +37,11 @@ export default function Chart({ chart }: ChartProp) {
     setLoading(false);
   };
 
+  useEffect(() => {
+    console.log('filters updated');
+    
+  }, [filters])
+
   const onPeriodChange = (period: Periods) => {
     selectedPeriodVar = period;
     setSelectedPeriod(selectedPeriodVar);
@@ -57,10 +62,4 @@ export default function Chart({ chart }: ChartProp) {
       />
     </>
   );
-}
-
-export function barSmooth(results) {
-  console.log(results);
-
-  Object.keys(results.data).map((item) => results.data["item"]);
 }

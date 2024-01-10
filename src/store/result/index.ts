@@ -6,7 +6,7 @@ const useResultStore = create<ResultStore>((set) => ({
   exportedMessages: [],
   results: null,
   filters: {
-    view: "View all",
+    view: 1,
   },
   updateExportedMessages: (data: MessagesStructure[]) =>
     set((prevState) => ({

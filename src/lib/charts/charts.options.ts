@@ -56,6 +56,7 @@ const BarBasic = {
     {
       type: "category",
       data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      show: true,
       axisTick: {
         alignWithLabel: true,
       },

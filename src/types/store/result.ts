@@ -1,7 +1,7 @@
 import { MessagesStructure } from "../core";
 
 export type Filters = {
-  view: "View all" | "Tops" | "Active charts";
+  view: number;
 };
 
 export type ResultStore = {

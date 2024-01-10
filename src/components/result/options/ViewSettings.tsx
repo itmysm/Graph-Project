@@ -1,5 +1,11 @@
 import React, { useMemo, useState } from "react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
 import useResultStore from "@/store/result";
 import { Filters } from "@/types/store";
 
@@ -7,24 +13,27 @@ export default function App() {
   const { filters, updateFilters } = useResultStore();
   const [selectedKeys, setSelectedKeys] = useState(new Set([filters.view]));
 
-  const selectedValue = useMemo(() => Array.from(selectedKeys).join(", ").replaceAll("_", " "), [selectedKeys]);
+  const selectedValue = useMemo(
+    () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
+    [selectedKeys]
+  );
   const dropDownItems = [
     {
       title: "View all",
-      key: "View all",
+      key: 1,
     },
     {
       title: "Tops",
-      key: "Tops",
+      key: 2,
     },
     {
       title: "Active charts",
-      key: "Active charts",
+      key: 3,
     },
   ];
 
-  const onViewSettingChange = (key) => {
-    const selected = [...key][0]
+  const onChangeViewSetting = (key) => {
+    const selected = [...key][0];
     setSelectedKeys(key);
     updateFilters({ ...filters, view: selected });
   };
@@ -33,7 +42,7 @@ export default function App() {
     <Dropdown>
       <DropdownTrigger>
         <Button variant="light" className="capitalize">
-          {selectedValue}
+          {dropDownItems[selectedValue].title}
         </Button>
       </DropdownTrigger>
       <DropdownMenu
@@ -42,10 +51,10 @@ export default function App() {
         disallowEmptySelection
         selectionMode="single"
         selectedKeys={selectedKeys}
-        onSelectionChange={onViewSettingChange}
+        onSelectionChange={onChangeViewSetting}
       >
-        {dropDownItems.map((item) => (
-          <DropdownItem className="flex" key={item.key}>
+        {dropDownItems.map((item, index) => (
+          <DropdownItem className="flex" key={index}>
             {item.title}
           </DropdownItem>
         ))}
