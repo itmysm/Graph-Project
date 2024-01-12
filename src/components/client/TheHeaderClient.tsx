@@ -8,8 +8,10 @@ import { usePathname } from "next/navigation";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Badge } from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { FiChevronDown } from "react-icons/fi";
+import useAppStore from "@/store/app";
 
 export default function TheHeaderClient({ locale }: { locale: any }) {
+  const { status, updateStatus } = useAppStore();
   const currentPath = usePathname();
   const appPaths = ["/app", "/result"];
 
@@ -40,7 +42,11 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
     return (
       <Navbar shouldHideOnScroll className="w-full container bg-primary" maxWidth="full">
         <NavbarBrand className="flex justify-center md:justify-start mr-3">
-          <Link className="font-bold text-4xl md:text-3xl xl:text-2xl text-info tracking-wide" href="/app">
+          <Link
+            className="font-bold text-4xl md:text-3xl xl:text-2xl text-info tracking-wide"
+            href="/app"
+            onClick={() => updateStatus({ ...status, state: 1 })}
+          >
             {locale.navigation.brand}
           </Link>
         </NavbarBrand>
@@ -98,7 +104,10 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
 
           <Dropdown className="lg:!hidden">
             <DropdownTrigger className="lg:!hidden mt-1">
-              <Button className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold" variant="light">
+              <Button
+                className="bg-transparent hover:!bg-transparent hover:text-info transition-all text-base font-semibold"
+                variant="light"
+              >
                 <p className="mr-1">More</p>
                 <FiChevronDown />
               </Button>
@@ -118,7 +127,9 @@ export default function TheHeaderClient({ locale }: { locale: any }) {
           </NavbarItem>
 
           <NavbarItem className="hidden lg:flex">
-            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">{locale.navigation.about}</Button>
+            <Button className="text-sm text-contrast font-semibold bg-secondary hover:bg-secondary/90 rounded-lg">
+              {locale.navigation.about}
+            </Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
