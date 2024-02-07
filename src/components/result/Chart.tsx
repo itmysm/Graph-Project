@@ -5,7 +5,7 @@ import ReactEcharts from "echarts-for-react";
 import { Pagination } from "./options/Pagination";
 import { Periods } from "@/types/core";
 import { getPeriods } from "@/util/general/getters";
-import Selector from "./options/Selector";
+import { FilterResult } from "./FilterResult";
 
 type ChartProp = {
   chart: ChartType;
@@ -38,14 +38,17 @@ export default function Chart({ chart }: ChartProp) {
   };
 
   useEffect(() => {
-    console.log('filters updated');
-    
-  }, [filters])
+    console.log("filters updated");
+  }, [filters]);
 
   const onPeriodChange = (period: Periods) => {
     selectedPeriodVar = period;
     setSelectedPeriod(selectedPeriodVar);
     onHandleResult();
+  };
+
+  const onFilterChange = (filter: []) => {
+    // here
   };
 
   useEffect(() => {
@@ -55,11 +58,16 @@ export default function Chart({ chart }: ChartProp) {
   return (
     <>
       <ReactEcharts option={chartOptions} key={selectedPeriod} />
-      <Pagination
-        availablePeriods={periods}
-        defaultSelectedItem={selectedPeriod}
-        periodChanged={onPeriodChange}
-      />
+
+      <div className="flex justify-between items-center">
+        <Pagination
+          availablePeriods={periods}
+          defaultSelectedItem={selectedPeriod}
+          periodChanged={onPeriodChange}
+        />
+
+        <FilterResult />
+      </div>
     </>
   );
 }

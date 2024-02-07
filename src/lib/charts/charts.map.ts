@@ -19,6 +19,7 @@ export type ChartType = {
   target: ValueOf<Methods>;
   chart: availableCharts;
   styles: string;
+  settings: { minItem: number; maxItem: number };
   viewGroup: number[];
   func?: (res) => any;
 };
@@ -31,6 +32,7 @@ export const whatsapp: { [key: string]: ChartType } = {
     defaultOptions: typesCharts.pie,
     styles: chartsStyle.commonStyles,
     viewGroup: [0, 1],
+    settings: { minItem: 2, maxItem: 10 },
     func: (res: CountMessagesByPersonResType) => {
       const chartOptions = typesCharts.pie;
       const result = [];
@@ -50,6 +52,7 @@ export const whatsapp: { [key: string]: ChartType } = {
     defaultOptions: typesCharts.barBasic,
     styles: chartsStyle.commonStyles,
     viewGroup: [0, 1],
+    settings: { minItem: 2, maxItem: 6 },
     func: (res: CountMessagesByPersonResType) => {
       const chartOptions = typesCharts.barBasic;
       const xAxisData = [];
@@ -59,7 +62,7 @@ export const whatsapp: { [key: string]: ChartType } = {
         result.push(res[key].length);
       });
 
-      chartOptions.xAxis[0].show = false
+      chartOptions.xAxis[0].show = false;
       chartOptions.xAxis[0].data = xAxisData;
       chartOptions.series[0].data = result;
       return chartOptions;

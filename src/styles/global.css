@@ -1,3 +1,16 @@
 @import "./tailwind.css";
 @import "../tailwind/components/home/featureShapeGenerator.css";
 @import "./custom-animates.css";
+
+::-webkit-scrollbar {
+  width: 10px; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #636363;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
