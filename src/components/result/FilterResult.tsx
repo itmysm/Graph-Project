@@ -1,3 +1,5 @@
+import { get } from "idb-keyval";
+
 import {
   Button,
   Tooltip,
@@ -7,7 +9,7 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import {
   FiCheck,
   FiFilter,
@@ -17,10 +19,13 @@ import {
 } from "react-icons/fi";
 
 import UserListModal from "./UserListModal";
-
 export function FilterResult() {
   const [selectedItem, setSelectedItem] = useState<Number>(0);
   const [modalAction, setModalAction] = useState(false);
+  const [participation, setParticipation] = useState<
+    { [key: string]: string } | {}
+  >({});
+  const [filters, setFilters] = useState<object | null>(null);
   const filterItems = [
     {
       name: "Top users",
@@ -39,6 +44,18 @@ export function FilterResult() {
     },
   ];
 
+  const onGetParticipation = async () => {
+    const list = (await get("allParticipationInChat")) || {};
+    setParticipation(list);
+  };
+
+  const x64 = (ss) => {
+    console.log(ss);
+  };
+
+  useEffect(() => {
+    onGetParticipation();
+  }, []);
   return (
     <>
       <Dropdown onClick={() => setModalAction(false)}>
@@ -48,6 +65,7 @@ export function FilterResult() {
             color="default"
             variant="bordered"
             aria-label="close"
+            isLoading={Object.keys(participation).length == 0}
           >
             <FiFilter className="text-white/80 text-lg" strokeWidth="3" />
           </Button>
@@ -75,14 +93,8 @@ export function FilterResult() {
       </Dropdown>
 
       <UserListModal
-        items={[
-          { name: "meysam" },
-          { name: "ali" },
-          { name: "amir" },
-          { name: "sati" },
-          { name: "meysam" },
-        ]}
-        onSetChanges={}
+        participation={participation}
+        onSetChanges={(items) => x64(items)}
         modalAction={modalAction}
         onModelClose={() => setModalAction(false)}
       />

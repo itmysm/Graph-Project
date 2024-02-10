@@ -10,38 +10,43 @@ import {
   Input,
   Listbox,
   ListboxItem,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import { FiSearch } from "react-icons/fi";
 
 type modalProps = {
-  items: { name: string }[];
+  participation: { [key: string]: string };
   modalAction: boolean;
   onModelClose: () => void;
-  onSetChanges: (list: []) => void;
+  onSetChanges: (participation: string[]) => void;
 };
 
 export default function UserListModal({
-  items,
+  participation,
   modalAction,
   onModelClose,
   onSetChanges,
 }: modalProps) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [searchBoxValue, setSearchBoxValue] = useState("");
-  const [selectedKeys, setSelectedKeys] = useState(null);
-  const [filteredItems, setFilteredItems] = useState(items);
-  const closeModal = () => {
+  const [selectedKeys, setSelectedKeys] = useState(
+    new Set(Object.keys(participation)[0])
+  );
+  const [filteredItems, setFilteredItems] = useState([]);
+
+  // status 0 mean no filters add ans 1 means some filters selected
+  const closeModal = (status = 0) => {
     onModelClose();
     onClose();
+
+    if (status == 1) setSelectedKeys(new Set("0"));
   };
 
-  const selectedValue: string = React.useMemo(() => {
-    if (selectedKeys) {
-      return Array.from(selectedKeys).join(", ");
-    } else {
-      return "";
-    }
-  }, [selectedKeys]);
+  const selectedValue: string = React.useMemo(
+    () => Array.from(selectedKeys).join(", "),
+    [selectedKeys]
+  );
 
   const [settings, setSettings] = useState({
     minItem: 2,
@@ -53,14 +58,28 @@ export default function UserListModal({
   }, [modalAction]);
 
   useEffect(() => {
-    setFilteredItems(
-      items.filter((item) => item.name.includes(searchBoxValue))
-    );
+    let list;
+    if (searchBoxValue.length) {
+      list = Object.keys(participation).filter(
+        (key) =>
+          participation[key]
+            .toLowerCase()
+            .includes(searchBoxValue.toLowerCase()) && key
+      );
+    } else {
+      list = Object.keys(participation);
+    }
+
+    setFilteredItems(list);
   }, [searchBoxValue]);
 
   const appendChanges = () => {
+    const selectedItems = Object.keys(participation).filter((item) => {
+      return participation[item].includes(searchBoxValue);
+    });
+
     onClose();
-    onSetChanges(selectedKeys);
+    onSetChanges(selectedItems);
   };
 
   return (
@@ -98,18 +117,15 @@ export default function UserListModal({
                   >
                     {filteredItems.map((item, index) => (
                       <ListboxItem className="select-none" key={index}>
-                        {item.name}
+                        {participation[item]}
                       </ListboxItem>
                     ))}
                   </Listbox>
                 </div>
               </ModalBody>
+              {filteredItems.length}
               <ModalFooter>
-                <Button
-                  color="default"
-                  variant="bordered"
-                  onPress={closeModal}
-                >
+                <Button color="default" variant="bordered" onPress={closeModal}>
                   Close
                 </Button>
 
@@ -121,7 +137,10 @@ export default function UserListModal({
                       : true
                   }
                   color="primary"
-                  onPress={appendChanges}
+                  onPress={() => {
+                    appendChanges();
+                    closeModal(1);
+                  }}
                 >
                   Append
                 </Button>

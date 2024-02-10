@@ -5,10 +5,16 @@ import { devLogger } from "../dev";
 import { uniqueNameGenerator } from "../general";
 
 let exportedMessagesFromIndexDB: MessagesStructure[] | [] = [];
-
+const allParticipationInChat = {};
 async function classificationByTime() {
   exportedMessagesFromIndexDB?.forEach((msg: MessagesStructure, index) => {
-    msg.uniqueName = makeUniqueName(msg);
+    const uniqueName = makeUniqueName(msg);
+    const uniqueNameHashKey = Object.keys(uniqueName)[0];
+    if (!allParticipationInChat[uniqueNameHashKey]) {
+      allParticipationInChat[uniqueNameHashKey] = uniqueName[uniqueNameHashKey];
+    }
+
+    msg.uniqueName = uniqueName;
     const momentObj = moment.unix(msg.unixTime);
     const passedDays = moment().diff(momentObj, "days");
     if (passedDays >= 0) {
@@ -42,6 +48,7 @@ async function classificationByTime() {
   });
 
   await set("result", exportedMessagesFromIndexDB);
+  await set('allParticipationInChat', allParticipationInChat)
 }
 
 function makeUniqueName(msg: MessagesStructure) {
