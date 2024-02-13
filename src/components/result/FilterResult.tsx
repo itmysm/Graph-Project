@@ -18,10 +18,16 @@ import {
   FiTrendingUp,
 } from "react-icons/fi";
 
+type FilterResultProps = {
+  applyFilter: (filter: ChartFilter) => void;
+  rules: ChartRules;
+};
+
 import UserListModal from "./UserListModal";
-export function FilterResult() {
-  const [selectedItem, setSelectedItem] = useState<Number>(0);
-  const [modalAction, setModalAction] = useState(false);
+import { ChartFilter, ChartRules } from "@/types/charts";
+export function FilterResult({ applyFilter, rules }: FilterResultProps) {
+  const [selectedFilter, setSelectedFilter] = useState<number>(0);
+  const [modalStatus, setModalStatus] = useState(false);
   const [participation, setParticipation] = useState<
     { [key: string]: string } | {}
   >({});
@@ -49,23 +55,35 @@ export function FilterResult() {
     setParticipation(list);
   };
 
-  const x64 = (ss) => {
-    console.log(ss);
-  };
-
   useEffect(() => {
     onGetParticipation();
   }, []);
+
+  const isParticipationListAvailable = (): Boolean => {
+    return !!Object.keys(participation).length;
+  };
+
+  const setNewFilter = (key: string, index: number) => {
+    setSelectedFilter(index);
+    if (key == "custom") setModalStatus(true);
+    else {
+      onSetFilters(key);
+    }
+  };
+
+  const onSetFilters = (keyName, items = []) => {
+    applyFilter({ key: keyName, value: items });
+  };
   return (
     <>
-      <Dropdown onClick={() => setModalAction(false)}>
+      <Dropdown onClick={() => setModalStatus(false)}>
         <DropdownTrigger>
           <Button
             isIconOnly
             color="default"
             variant="bordered"
             aria-label="close"
-            isLoading={Object.keys(participation).length == 0}
+            isLoading={!isParticipationListAvailable()}
           >
             <FiFilter className="text-white/80 text-lg" strokeWidth="3" />
           </Button>
@@ -75,15 +93,14 @@ export function FilterResult() {
             <DropdownItem
               key={item.key}
               startContent={
-                selectedItem === index ? (
+                selectedFilter === index ? (
                   <FiCheck className="text-success text-lg" />
                 ) : (
                   item.icon
                 )
               }
               onClick={() => {
-                setSelectedItem(index);
-                item.key === "custom" && setModalAction(true);
+                setNewFilter(item.key, index);
               }}
             >
               {item.name}
@@ -91,13 +108,15 @@ export function FilterResult() {
           ))}
         </DropdownMenu>
       </Dropdown>
-
-      <UserListModal
-        participation={participation}
-        onSetChanges={(items) => x64(items)}
-        modalAction={modalAction}
-        onModelClose={() => setModalAction(false)}
-      />
+      {isParticipationListAvailable() && (
+        <UserListModal
+          participation={participation}
+          onSetChanges={(items) => onSetFilters("custom", items)}
+          modalStatus={modalStatus}
+          onModelClose={() => setModalStatus(false)}
+          rules={rules}
+        />
+      )}
     </>
   );
 }

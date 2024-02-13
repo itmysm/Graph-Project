@@ -13,8 +13,6 @@ import { MessagesStructure } from "@/types/core";
 import { ChartType, charts } from "@/lib/charts/charts.map";
 import { SupportedApplications } from "@/types/core";
 import { Divider } from "@nextui-org/react";
-import Filters from "@/components/result/options/Filters";
-import ViewSettings from "@/components/result/options/ViewSettings";
 
 export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const router = useRouter();
@@ -51,11 +49,6 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
     translations &&
     application && (
       <div className="w-full bg-primary bg-gradient-main flex flex-col items-center min-h-full max-h-[fit-content] overflow-y-hidden">
-        <div className="w-full flex gap-2 justify-end container">
-          <Filters />
-          <ViewSettings />
-        </div>
-
         {/* <Divider className="w-full border border-gray/20 container" /> */}
 
         <div className="flex flex-wrap gap-y-4 gap-x-2 md:gap-5 w-full container py-10 px-10 md:px-0">

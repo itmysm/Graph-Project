@@ -10,52 +10,45 @@ import {
   Input,
   Listbox,
   ListboxItem,
-  Select,
-  SelectItem,
 } from "@nextui-org/react";
 import { FiSearch } from "react-icons/fi";
+import { ChartRules } from "@/types/charts";
 
 type modalProps = {
   participation: { [key: string]: string };
-  modalAction: boolean;
+  modalStatus: boolean;
   onModelClose: () => void;
   onSetChanges: (participation: string[]) => void;
+  rules: ChartRules;
 };
 
 export default function UserListModal({
   participation,
-  modalAction,
+  modalStatus,
   onModelClose,
   onSetChanges,
+  rules,
 }: modalProps) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [searchBoxValue, setSearchBoxValue] = useState("");
-  const [selectedKeys, setSelectedKeys] = useState(
-    new Set(Object.keys(participation)[0])
+  const [itemsList, setItemsList] = useState(new Set("0"));
+  const [filteredItems, setFilteredItems] = useState(
+    Object.keys(participation)
   );
-  const [filteredItems, setFilteredItems] = useState([]);
 
-  // status 0 mean no filters add ans 1 means some filters selected
-  const closeModal = (status = 0) => {
+  const closeModal = () => {
     onModelClose();
     onClose();
-
-    if (status == 1) setSelectedKeys(new Set("0"));
   };
 
-  const selectedValue: string = React.useMemo(
-    () => Array.from(selectedKeys).join(", "),
-    [selectedKeys]
+  const selectedItemsInList: string = React.useMemo(
+    () => Array.from(itemsList).join(", "),
+    [itemsList]
   );
 
-  const [settings, setSettings] = useState({
-    minItem: 2,
-    maxItem: 10,
-  });
-
   useEffect(() => {
-    modalAction ? onOpen() : closeModal();
-  }, [modalAction]);
+    modalStatus ? onOpen() : closeModal();
+  }, [modalStatus]);
 
   useEffect(() => {
     let list;
@@ -74,12 +67,14 @@ export default function UserListModal({
   }, [searchBoxValue]);
 
   const appendChanges = () => {
-    const selectedItems = Object.keys(participation).filter((item) => {
-      return participation[item].includes(searchBoxValue);
-    });
+    onSetChanges(
+      selectedItemsInList
+        .replaceAll(" ", "")
+        .split(",")
+        .map((item, index) => filteredItems[item])
+    );
 
     onClose();
-    onSetChanges(selectedItems);
   };
 
   return (
@@ -112,8 +107,8 @@ export default function UserListModal({
                     variant="flat"
                     disallowEmptySelection
                     selectionMode="multiple"
-                    selectedKeys={selectedKeys}
-                    onSelectionChange={setSelectedKeys}
+                    selectedKeys={itemsList}
+                    onSelectionChange={setItemsList}
                   >
                     {filteredItems.map((item, index) => (
                       <ListboxItem className="select-none" key={index}>
@@ -123,7 +118,6 @@ export default function UserListModal({
                   </Listbox>
                 </div>
               </ModalBody>
-              {filteredItems.length}
               <ModalFooter>
                 <Button color="default" variant="bordered" onPress={closeModal}>
                   Close
@@ -131,15 +125,15 @@ export default function UserListModal({
 
                 <Button
                   isDisabled={
-                    selectedValue.split(",").length >= settings.minItem &&
-                    selectedValue.split(",").length <= settings.maxItem
+                    selectedItemsInList.split(",").length >= rules.minItems &&
+                    selectedItemsInList.split(",").length <= rules.maxItems
                       ? false
                       : true
                   }
                   color="primary"
                   onPress={() => {
                     appendChanges();
-                    closeModal(1);
+                    closeModal();
                   }}
                 >
                   Append

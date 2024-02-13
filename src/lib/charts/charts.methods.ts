@@ -1,3 +1,4 @@
+import { ChartFilter } from "@/types/charts";
 import { MessagesStructure } from "@/types/core";
 
 export type CountMessagesByPersonResType = {
@@ -5,7 +6,8 @@ export type CountMessagesByPersonResType = {
 };
 
 export const countMessagesByPerson = (
-  messages: MessagesStructure[]
+  messages: MessagesStructure[],
+  filter: ChartFilter
 ): CountMessagesByPersonResType => {
   const persons = {};
   messages.forEach((msg) => {
@@ -17,8 +19,18 @@ export const countMessagesByPerson = (
     }
   });
 
-  return persons;
+  return filter.key != "custom" ? sort(persons, filter) : persons;
 };
+
+function sort(obj: object, filter: ChartFilter) {
+  let arr = Object.entries(obj);
+
+  arr.sort(function (a, b) {
+    return a[1].length - b[1].length;
+  });
+
+  return Object.fromEntries(filter.key == "topUsers" ? arr.reverse() : arr);
+}
 
 export const methods = {
   countMessagesByPerson,

@@ -6,6 +6,7 @@ import { Pagination } from "./options/Pagination";
 import { Periods } from "@/types/core";
 import { getPeriods } from "@/util/general/getters";
 import { FilterResult } from "./FilterResult";
+import { ChartFilter } from "@/types/charts";
 
 type ChartProp = {
   chart: ChartType;
@@ -18,22 +19,24 @@ export default function Chart({ chart }: ChartProp) {
   );
 
   const [selectedPeriod, setSelectedPeriod] = useState<Periods>("all");
-  const [finalResult, setFinalResult] = useState<[] | null>(null);
   const [loading, setLoading] = useState<Boolean>(true);
   const [chartOptions, setChartOptions] = useState(chart.defaultOptions);
-
+  const [chartGenId, setChartGenId] = useState(Math.random());
+  const [filter, setFilter] = useState<ChartFilter>({
+    key: "topUsers",
+    value: [],
+  });
   let selectedPeriodVar = selectedPeriod;
 
-  const onHandleResult = async () => {
+  const onHandleResult = async (incomingFilter = filter) => {
+    setChartGenId(Math.random());
     setLoading(true);
     let filteredList =
       selectedPeriodVar === "all"
         ? results
         : results.filter((msg) => msg.periods.includes(selectedPeriodVar));
 
-    const res = chart.target(filteredList);
-
-    setChartOptions(chart.func(res));
+    chart.target(filteredList, incomingFilter);
     setLoading(false);
   };
 
@@ -47,17 +50,18 @@ export default function Chart({ chart }: ChartProp) {
     onHandleResult();
   };
 
-  const onFilterChange = (filter: []) => {
-    // here
-  };
-
   useEffect(() => {
     onHandleResult();
   }, []);
 
+  const applyFilters = (incomingFilter: ChartFilter) => {
+    setFilter(incomingFilter);
+    onHandleResult(incomingFilter);
+  };
+
   return (
     <>
-      <ReactEcharts option={chartOptions} key={selectedPeriod} />
+      <ReactEcharts option={chartOptions} key={chartGenId} />
 
       <div className="flex justify-between items-center">
         <Pagination
@@ -66,7 +70,10 @@ export default function Chart({ chart }: ChartProp) {
           periodChanged={onPeriodChange}
         />
 
-        <FilterResult />
+        <FilterResult
+          applyFilter={(filter) => applyFilters(filter)}
+          rules={chart.rules}
+        />
       </div>
     </>
   );
