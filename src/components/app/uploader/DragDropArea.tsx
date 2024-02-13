@@ -18,7 +18,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, handleUploadFi
   const [inZone, setInZone] = useState<Boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const { fileInfo, status, updateFileInfo, updateStatus } = useAppStore();
+  const { fileInfo, status, updateFileInfo, updateStatus, reset } = useAppStore();
   const { addNewAlert } = useNotificationsStore();
 
   useEffect(() => {
@@ -84,6 +84,7 @@ export default function DragAndDropArea({ i18n, showUploadDialog, handleUploadFi
     }
 
     if (newFile.name != fileInfo?.name) {
+      reset()
       setFile(newFile);
       updateFileInfo({
         ...fileInfo,

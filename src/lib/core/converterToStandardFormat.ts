@@ -17,7 +17,7 @@ export async function convertToStandardStructure(file: File, application: Applic
   switch (application.app) {
     case "whatsapp":
       detectedOS = application.os;
-      whatsapp(file);
+      await whatsapp(file);
       await saveResultsInDB();
       break;
 
