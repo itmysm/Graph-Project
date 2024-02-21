@@ -1,10 +1,6 @@
 import { ValueOf } from "next/dist/shared/lib/constants";
-import {
-  CountMessagesByPersonResType,
-  methods,
-  Methods,
-} from "./charts.methods";
-import { MessagesStructure, SupportedApplications } from "@/types/core";
+import { CountMessagesByPersonResType, methods, Methods } from "./charts.methods";
+import { ExportedDataFromChat, MessagesStructure, SupportedApplications } from "@/types/core";
 import { typesCharts } from "./charts.options";
 import { ChartFilter, ChartRules } from "@/types/charts";
 
@@ -17,7 +13,7 @@ export const chartsStyle = {
 export type ChartType = {
   title: string;
   defaultOptions: object;
-  target: (messages: MessagesStructure[], filters: ChartFilter) => any;
+  target: (messages: ExportedDataFromChat, filters: ChartFilter) => any;
   chart: AvailableCharts;
   styles: string;
   rules: ChartRules;
@@ -30,8 +26,8 @@ export const whatsapp: { [key: string]: ChartType } = {
     defaultOptions: typesCharts.pie,
     styles: chartsStyle.commonStyles,
     rules: { minItems: 2, maxItems: 16 },
-    target: (messages, filter) => {
-      const result = methods.countMessagesByPerson(messages, filter);
+    target: (data, filter) => {
+      const result = methods.countMessagesByPerson(data, filter);
       const chartOptions = typesCharts.pie;
 
       const finalResult = [];
@@ -61,8 +57,8 @@ export const whatsapp: { [key: string]: ChartType } = {
     styles: chartsStyle.commonStyles,
     rules: { minItems: 2, maxItems: 20 },
 
-    target: (messages, filter) => {
-      const result = methods.countMessagesByPerson(messages, filter);
+    target: (data, filter) => {
+      const result = methods.countMessagesByPerson(data, filter);
       const chartOptions = typesCharts.barBasic;
 
       const finalResult = [];

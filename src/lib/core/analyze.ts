@@ -1,13 +1,13 @@
 import { get, set } from "idb-keyval";
-import { MessagesStructure } from "@/types/core";
+import { ExportedDataFromChat, MessagesStructure } from "@/types/core";
 import moment from "moment";
 import { devLogger } from "../dev";
 import { uniqueNameGenerator } from "../general";
 
-let exportedMessagesFromIndexDB: MessagesStructure[] | [] = [];
+let exportedMessagesFromIndexDB: ExportedDataFromChat;
 const allParticipationInChat = {};
 async function classificationByTime() {
-  exportedMessagesFromIndexDB?.forEach((msg: MessagesStructure, index) => {
+  exportedMessagesFromIndexDB.messages?.forEach((msg: MessagesStructure, index) => {
     const uniqueName = makeUniqueName(msg);
     const uniqueNameHashKey = Object.keys(uniqueName)[0];
     if (!allParticipationInChat[uniqueNameHashKey]) {
@@ -15,7 +15,9 @@ async function classificationByTime() {
     }
 
     msg.uniqueName = uniqueName;
-    const momentObj = moment.unix(msg.unixTime);
+    console.log(msg.unixTime[exportedMessagesFromIndexDB.dateFormat]);
+
+    const momentObj = moment.unix(msg.unixTime[exportedMessagesFromIndexDB.dateFormat]);
     const passedDays = moment().diff(momentObj, "days");
     if (passedDays >= 0) {
       if (passedDays <= 365 && passedDays >= 0) {
@@ -38,17 +40,13 @@ async function classificationByTime() {
         }
       }
     } else {
-      exportedMessagesFromIndexDB?.splice(index, 1);
-      devLogger(
-        `Item number ${index} has been deleted from the list in classificationByTime section`,
-        "warning",
-        true
-      );
+      exportedMessagesFromIndexDB.messages?.splice(index, 1);
+      devLogger(`Item number ${index} has been deleted from the list in classificationByTime section`, "warning", true);
     }
   });
 
   await set("result", exportedMessagesFromIndexDB);
-  await set('allParticipationInChat', allParticipationInChat)
+  await set("allParticipationInChat", allParticipationInChat);
 }
 
 function makeUniqueName(msg: MessagesStructure) {
@@ -66,9 +64,7 @@ export async function Analyzer() {
   if (exportedMessagesFromIndexDB) {
     await classificationByTime();
   } else {
-    window.alert(
-      "Error: in ExportMessagesFromEachLineOfData => OS has not been detected!"
-    );
+    window.alert("Error: in ExportMessagesFromEachLineOfData => OS has not been detected!");
     return;
   }
 }

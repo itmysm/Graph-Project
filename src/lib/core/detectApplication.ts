@@ -14,6 +14,12 @@ export const detectApplication = (line: string, fileExtension: string): Applicat
 };
 
 function detectWhatsappDataBelongsToWhichOS(line: string) {
+  console.log(
+    line,
+    line.search(whatsappRegexPatterns.whatsappIOSVersion) >= 0,
+    line.search(whatsappRegexPatterns.whatsappAndroidVersion) >= 0
+  );
+
   if (line.search(whatsappRegexPatterns.whatsappIOSVersion) >= 0) {
     application.os = "ios";
   } else if (line.search(whatsappRegexPatterns.whatsappAndroidVersion) >= 0) {

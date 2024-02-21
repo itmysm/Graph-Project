@@ -9,7 +9,6 @@ import { getClientSideLocales } from "@/lib/locales/clientSideLocales";
 import { LocaleLabel } from "$/i18n.config";
 import { get } from "idb-keyval";
 import useResultStore from "@/store/result";
-import { MessagesStructure } from "@/types/core";
 import { ChartType, charts } from "@/lib/charts/charts.map";
 import { SupportedApplications } from "@/types/core";
 import { Divider } from "@nextui-org/react";
@@ -20,16 +19,16 @@ export default function Result({ params }: { params: { lang: LocaleLabel } }) {
   const { results } = useResultStore();
 
   const application = fileInfo.application;
-  const [data, setData] = useState<MessagesStructure[] | null>();
+  // const [data, setData] = useState<MessagesStructure[] | null>();
   const [translations, setTranslations] = useState<any>(null);
 
-  useEffect(() => {
-    if (results) {
-      setData(data);
-    } else {
-      router.push("/app");
-    }
-  }, [results]);
+  // useEffect(() => {
+  //   if (results) {
+  //     setData(data);
+  //   } else {
+  //     router.push("/app");
+  //   }
+  // }, [results]);
 
   useEffect(() => {
     const fetchTranslations = async () => {

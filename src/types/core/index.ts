@@ -46,3 +46,8 @@ export type instagramMessageStructure = {
 };
 
 export type Periods = "24h" | "week" | "month" | "sixMonth" | "year" | "all";
+
+export type ExportedDataFromChat = {
+  dateFormat: "MDY" | "DMY";
+  messages: MessagesStructure[];
+};

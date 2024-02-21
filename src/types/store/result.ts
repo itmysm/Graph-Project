@@ -1,16 +1,16 @@
-import { MessagesStructure } from "../core";
+import { ExportedDataFromChat, MessagesStructure } from "../core";
 
 export type Filters = {
   view: number;
 };
 
 export type ResultStore = {
-  exportedMessages: MessagesStructure[] | [];
-  results: MessagesStructure[] | null;
+  exportedMessages: ExportedDataFromChat | null;
+  results: ExportedDataFromChat | null;
   filters: Filters;
-  updateExportedMessages: (data: MessagesStructure[]) => void;
+  updateExportedMessages: (data: ExportedDataFromChat) => void;
   resetExportedMessages: () => void;
-  updateResults: (data: MessagesStructure[]) => void;
+  updateResults: (data: ExportedDataFromChat) => void;
   resetResults: () => void;
   updateFilters: (settings: Filters) => void;
 };

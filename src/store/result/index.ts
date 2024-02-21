@@ -1,14 +1,17 @@
-import { MessagesStructure, SupportedApplications } from "@/types/core";
+import { ExportedDataFromChat, MessagesStructure, SupportedApplications } from "@/types/core";
 import { ResultStore } from "@/types/store";
 import { create } from "zustand";
 
 const useResultStore = create<ResultStore>((set) => ({
-  exportedMessages: [],
+  exportedMessages: {
+    dateFormat: null,
+    messages: [],
+  },
   results: null,
   filters: {
     view: 1,
   },
-  updateExportedMessages: (data: MessagesStructure[]) =>
+  updateExportedMessages: (data: ExportedDataFromChat) =>
     set((prevState) => ({
       ...prevState,
       exportedMessages: data,
@@ -16,17 +19,21 @@ const useResultStore = create<ResultStore>((set) => ({
   resetExportedMessages: () =>
     set((prevState) => ({
       ...prevState,
-      exportedMessages: [],
+      dateFormat: null,
+      messages: [],
     })),
-  updateResults: (data: MessagesStructure[]) =>
+  updateResults: (data: ExportedDataFromChat) =>
     set((prevState) => ({
       ...prevState,
       results: data,
     })),
   resetResults: () =>
     set((prevState) => ({
-      ...prevState,
-      results: [],
+      results: {
+        ...prevState,
+        dateFormat: null,
+        messages: [],
+      },
     })),
 
   updateFilters: (filters) =>
